@@ -1,3 +1,5 @@
 znx_web
 ====
-Web代码库
+
+使用flask框架的web application
+
