@@ -9,4 +9,7 @@ Setup
     source venv/bin/activate
     pip install -r requirements.txt
     
-
+Run
+----
+    ./manager db upgrade
+    ./manager runserver -d
