@@ -6,6 +6,7 @@ from wtforms import ValidationError
 from ..models import User
 
 
+# TODO: add telephone number.
 class LoginForm(Form):
     email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])

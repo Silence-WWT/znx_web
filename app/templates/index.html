@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<h1>Hello</h1>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}在哪学{% endblock %}
+
+{% block page_content %}
+ <h1>Hello, index!</h1>
+{% endblock %}
