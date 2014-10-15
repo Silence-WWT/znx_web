@@ -3,10 +3,14 @@ from flask import Flask
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.bootstrap import Bootstrap
+from flask.ext.mail import Mail
+from flask.ext.rq import RQ
 from config import config
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+mail = Mail()
+rq = RQ()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
@@ -18,6 +22,8 @@ def create_app(config_name):
 
     bootstrap.init_app(app)
     db.init_app(app)
+    mail.init_app(app)
+    rq.init_app(app)
     login_manager.init_app(app)
 
     from .auth import auth as auth_blueprint

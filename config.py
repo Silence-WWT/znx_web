@@ -8,6 +8,14 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
+    MAIL_SERVER = 'smtp.exmail.qq.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = 'notification@znx.com'
+    MAIL_PASSWORD = 'ntfc12345'
+    ZNX_MAIL_SUBJECT_PREFIX = '[ZNX]'
+    ZNX_MAIL_SENDER = 'Notification <Notification@znx.com>'
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

@@ -1,0 +1,6 @@
+{{ user.email }}, 第{{ user.id }}位
+
+Sincerely,
+
+The znx Team
+

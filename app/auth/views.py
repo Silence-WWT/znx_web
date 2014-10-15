@@ -3,6 +3,7 @@ from . import auth
 from .. import db
 from .forms import LoginForm, RegistrationForm
 from ..models import User
+from ..email import send_email
 from flask.ext.login import login_user, login_required, logout_user
 from flask import redirect, url_for, render_template, flash, request
 
@@ -27,9 +28,9 @@ def register():
         db.session.add(user)
         db.session.commit()
         # token = user.generate_confirmation_token()
-        # TODO: send email.
-        #send_email(user.email, 'Confirm Your Account',
-        #           'auth/email/confirm', user=user, token=token)
+        # TODO: Add token.
+        send_email(user.email, 'Confirm Your Account',
+                   'auth/mail/confirm', user=user)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
