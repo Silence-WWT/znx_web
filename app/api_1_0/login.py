@@ -11,17 +11,18 @@ from api_constants import *
 @api.route('/login')
 def login():
     data = {}
-    username = request.args.get('username')
+    cellphone = request.args.get('cellphone')
     password = request.args.get('password')
-    # TODO: 如果用户名恰好是另一个用户的手机号，可能会导致登陆错误
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        user = User.query.filter_by(cellphone=username).first()
+    user = User.query.filter_by(cellphone=cellphone).first()
     if user is not None and user.verify_password(password):
         # user.update_uuid(request.args.get('uuid'))
         # 待数据库表建完整后再适当修改
         # TODO: update uuid.
         data[STATUS] = SUCCESS
+        data['username'] = user.username
+        data['cellphone'] = user.cellphone
+        data['email'] = user.email
+        data['uuid'] = user.uuid
     else:
         data[STATUS] = LOGIN_FAILED
     return json.dumps(data)
