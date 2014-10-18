@@ -12,9 +12,9 @@ register
         cellphone
         identity: cellphone + uuid + 0
     json:
-        {"status": 0, "username": "", "cellphone": "", "identity": ""}
+        {"status": ["0"], "username": "", "cellphone": "", "identity": ""}
         
-        status: 0 for success, 1004 for existing username, 5000 for SQL exception
+        status: 0 for success, 1002 for existing cellphone, 1004 for existing username, 5000 for SQL exception
         username
         cellphone
         identity
@@ -42,19 +42,17 @@ login
         cellphone
         email
         identity
-        classes: a list of classes
-        activities: a list of activities
-        timestamp: timestamp of order
-        time: ONLY included in classes try time of class
-        class_name/activity_name
-        org_name:
-        name: name of user
-        age
-        sex
-        cellphone
-        address
-        remark: user's remark of a class or activity
-        
+        classes/activities: a list of classes/activities
+            timestamp: timestamp of order
+            time: ONLY included in classes try time of class
+            class_name/activity_name
+            org_name:
+            name: user's name
+            age
+            sex
+            cellphone
+            address: user's address
+            remark: user's remark of a class or activity
         
 confirm_cellphone
 ----
@@ -86,8 +84,53 @@ filter_organization
          
         status: 0 for success
         organizations: a list of organizations
-        id
-        name
-        photo: url of photo
-        intro
+            id
+            name
+            photo: url of photo
+            intro
         
+organization_detail
+---
+    URL:
+        /api/v1.0/organization_detail?organization=
+    method:
+        get
+    parameters:
+        organization: id of organization
+    json:
+        {"status": 0,
+         "organization": {"id": "", "name": "", "location": "", "photo": "", "intro": "", "address": "",
+            "cellphone": "", "comments_count": ""},
+         "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}],
+         "activities": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
+         
+        status: 0 for success, 2000 for organization not exists
+        organization
+            id
+            name
+            photo: url of photo
+            intro
+            address
+            cellphone
+            comments_count
+        classes/activities: a list of classes/activities
+            id
+            name
+            age
+            price
+            start_time
+            end_time
+        
+        
+CONSTANTS
+---
+    SUCCESS = 0
+    
+    LOGIN_FAILED = 1000
+    CELLPHONE_NOT_EXISTS = 1001
+    CELLPHONE_EXISTS = 1002
+    USER_NOT_EXISTS = 1003
+    USERNAME_EXISTS = 1004
+    
+    SQL_EXCEPTION = 5000
+    
