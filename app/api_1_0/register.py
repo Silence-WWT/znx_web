@@ -15,6 +15,7 @@ def register():
     username = request.args.get('username')
     password = request.args.get('password')
     cellphone = request.args.get('cellphone')
+    identity = request.args.get('identity')
     if User.query.filter_by(username=username).first():
         data[STATUS] = USERNAME_EXISTS
     else:
@@ -22,6 +23,7 @@ def register():
         user.username = username
         user.password = password
         user.cellphone = cellphone
+        user.identity = identity
         try:
             db.session.add(user)
             db.session.commit()
@@ -29,4 +31,7 @@ def register():
             data[STATUS] = SQL_EXCEPTION
         else:
             data[STATUS] = SUCCESS
+            data['username'] = username
+            data['cellphone'] = cellphone
+            data['identity'] = identity
     return json.dumps(data)

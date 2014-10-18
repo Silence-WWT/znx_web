@@ -11,7 +11,7 @@ from api_constants import *
 @api.route('/filter_organization')
 def filter_organization():
     # TODO: update after completed models
-    data = {'organization': []}
+    data = {'organizations': []}
     org_list = []
     if request.args.get('location'):
         location_list = re.findall('location=(\w+?)', request.query_string)
@@ -30,8 +30,13 @@ def filter_organization():
         elif condition == ORDER_COUNT:
             org_list.extend(list(Organization.query.order_by(Organization.orders.count()).limit(20).all()))
     for org in org_list:
-        org_dict = {'id': org.id, 'name': org.name, 'location': org.location, 'photo': org.photo.url,
-                    'introduction': org.introduction}
-        data['organization'].append(org_dict)
+        org_dict = {
+            'id': org.id,
+            'name': org.name,
+            'location': org.location,
+            'photo': org.photo.url,
+            'intro': org.intro
+        }
+        data['organizations'].append(org_dict)
     data[STATUS] = SUCCESS
     return json.dumps(data)
