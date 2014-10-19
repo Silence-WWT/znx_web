@@ -98,9 +98,33 @@ $(function () {
  
 })
  
- 
- 
  $('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
 });
+$(function(){
+	var boxmore=$("#boxmore").html();
+	var boxmorelen=boxmore.length;
+   if(boxmorelen>200){
+	var newup=boxmore.substring(0,200); 
+	$("#boxmore").html(newup);
+	$("<a href=\"#tab1\"/ style='color: #FFoooo' id='moremore'>...显示更多</a>").appendTo($('#boxmore')); }
+	
+	//alert(moreword);
+		$("#moremore").click(function(){
+			var moreword=$("#moremore").html();
+			if(moreword=="...显示更多"){
+	   $("#boxmore").html(boxmore);
+	  $("<a href=\"#tab1\"/ style='color: #FFoooo' id='moremore'>展开</a>").appendTo($('#boxmore'));
+			}
+			 moreword=$("#moremore").html();
+			if(moreword=="展开"){
+			//newup=boxmore.substring(0,200);
+			
+	      $("#boxmore").html(boxmore);
+	   //alert(newup);
+	 
+			}
+		})
+
+	})

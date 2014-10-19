@@ -779,7 +779,7 @@ body {
     display:block;
 }
 #myorgan {
-    height:500px;
+    
 }
 #myorgan .myhead {
     height:366px;
@@ -909,3 +909,22 @@ body {
     border-right:0;
     border-left:0;
 }
+#organthree #tab1 .organallknow {
+	padding: 25px 41px;
+}
+#organthree #tab1 .organallknow .dl-horizontal dt{
+	width: 1060px;
+height: 40px;
+background: #F4F4F4;
+font-size: 20px;
+color: #000;
+text-align: left;
+line-height: 40px;
+padding-left: 20px;
+font-weight: normal;
+	}
+	#organthree #tab1 .organallknow .dl-horizontal dd{
+		margin-left: 0;
+padding: 56px 16px 0px;
+width: 1060px;
+text-indent:2em; }
