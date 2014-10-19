@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(UserMixin, db.Model):
+    # TODO: replace Boolean with BOOLEAN
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, index=True)
@@ -26,6 +27,33 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+    @staticmethod
+    def generate_fake(count=100):
+        from sqlalchemy.exc import IntegrityError
+        from random import seed
+        from faker import Factory
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+
+        seed()
+        for i in range(count):
+            u = User(username=fake.user_name(),
+                     email=fake.email(),
+                     email_confirmed=True,
+                     cellphone=zh.phone_number(),
+                     password=fake.password(),
+                     member_since=fake.date_time(),
+                     last_login=fake.date_time(),
+                     identity=fake.password(44)
+                     )
+
+            db.session.add(u)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
 
 
 @login_manager.user_loader
@@ -186,6 +214,16 @@ class Time(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.Unicode(16))
 
+    @staticmethod
+    def generate():
+        db.session.add(Time(time=u'周一'))
+        db.session.add(Time(time=u'周二'))
+        db.session.add(Time(time=u'周三'))
+        db.session.add(Time(time=u'周四'))
+        db.session.add(Time(time=u'周五'))
+        db.session.add(Time(time=u'周六'))
+        db.session.add(Time(time=u'周日'))
+        db.session.commit()
 
 class Type(db.Model):
     __tablename__ = 'types'
@@ -208,11 +246,26 @@ class Profession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     profession = db.Column(db.Unicode(16))
 
+    @staticmethod
+    def generate():
+        db.session.add(Profession(profession=u'婴儿早教'))
+        db.session.add(Profession(profession=u'幼儿培训'))
+        db.session.add(Profession(profession=u'胎前课程'))
+        db.session.commit()
+
 
 class Property(db.Model):
     __tablename__ = 'properties'
     id = db.Column(db.Integer, primary_key=True)
     property = db.Column(db.Unicode(16))
+
+    @staticmethod
+    def generate():
+        db.session.add(Property(property=u'国有'))
+        db.session.add(Property(property=u'民营'))
+        db.session.add(Property(property=u'外资'))
+        db.session.add(Property(property=u'合资'))
+        db.session.commit()
 
 
 class Size(db.Model):
@@ -220,11 +273,29 @@ class Size(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     size = db.Column(db.Unicode(16))
 
+    @staticmethod
+    def generate():
+        db.session.add(Size(size=u'0-50'))
+        db.session.add(Size(size=u'51-100'))
+        db.session.add(Size(size=u'101-200'))
+        db.session.add(Size(size=u'201-400'))
+        db.session.add(Size(size=u'>400'))
+        db.session.commit()
+
 
 class Age(db.Model):
     __tablename__ = 'ages'
     id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.Unicode(16))
+    age = db.Column(db.Unicode(64))
+
+    @staticmethod
+    def generate():
+        db.session.add(Age(age=u'0-6个月'))
+        db.session.add(Age(age=u'6-12个月'))
+        db.session.add(Age(age=u'1-2岁'))
+        db.session.add(Age(age=u'2-4岁'))
+        db.session.add(Age(age=u'学龄前'))
+        db.session.commit()
 
 
 class Location(db.Model):
@@ -233,4 +304,9 @@ class Location(db.Model):
     city = db.Column(db.Unicode(6))
     district = db.Column(db.Unicode(9))
 
-
+    @staticmethod
+    def generate():
+        db.session.add(Location(city=u'西安', district=u'雁塔区'))
+        db.session.add(Location(city=u'西安', district=u'长安区'))
+        db.session.add(Location(city=u'北京', district=u'海淀区'))
+        db.session.commit()
