@@ -104,7 +104,7 @@ organization_detail
          "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}],
          "activities": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
          
-        status: 0 for success, 2000 for organization not exists
+        status: 0 for success, 2000 for organization not exist
         organization
             id
             name
@@ -120,8 +120,56 @@ organization_detail
             price
             start_time
             end_time
-        
-        
+    
+order_list
+---
+    URL:
+        /api/v1.0/order_list?username=&cellphone=
+    method:
+        get
+    parameters:
+        username
+        cellphone
+    json:
+        {"status": 0,
+         "orders": [{"class_order_id": "", "timestamp": "", "class_name": "", "org_name": ""},
+            {"activity_order_id": "", "timestamp": "", "activity_name", "", "org_name": ""}]}
+         
+         status: 0 for success, 1003 for user not exist
+         class_order_id/activity_order_id
+         class_name/activity_name
+         timestamp
+         org_name
+         
+order_detail
+---
+    URL:
+        /api/v1.0/order_list?username=&cellphone=&class_order=&activity_order=
+    method:
+        get
+    parameters:
+        username
+        cellphone
+        class_order/activity_order
+    json:
+        {"status": 0,
+         "class": [{"time": "", "timestamp": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
+             "cellphone": "", "address": "", "remark": ""}],
+         "activity": [{"timestamp": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
+             "cellphone": "", "address": "", "remark": ""}]}
+         
+        status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
+        class/activity
+        timestamp: timestamp of order
+        time: ONLY included in classes, the try time of class
+        class_name/activity_name
+        name: user's name
+        age
+        sex
+        cellphone
+        address: user's address
+        remark: user's remark of a class or activity
+    
 CONSTANTS
 ---
     SUCCESS = 0
@@ -131,6 +179,8 @@ CONSTANTS
     CELLPHONE_EXISTS = 1002
     USER_NOT_EXISTS = 1003
     USERNAME_EXISTS = 1004
+    ACCESS_RESTRICTED = 1005
+    ORDER_NOT_EXISTS = 1006
     
     SQL_EXCEPTION = 5000
     
