@@ -190,30 +190,47 @@ class Time(db.Model):
 class Type(db.Model):
     __tablename__ = 'types'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    type = db.Column(db.Unicode(16))
+
+    @staticmethod
+    def generate():
+        a = Type(type=u'学校')
+        b = Type(type=u'机构')
+        db.session.add(a)
+        db.session.add(b)
+        db.session.commit()
+
+
+
 
 class Profession(db.Model):
     __tablename__ = 'professions'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    profession = db.Column(db.Unicode(16))
+
 
 class Property(db.Model):
     __tablename__ = 'properties'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    property = db.Column(db.Unicode(16))
+
 
 class Size(db.Model):
     __tablename__ = 'sizes'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    size = db.Column(db.Unicode(16))
+
 
 class Age(db.Model):
     __tablename__ = 'ages'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    age = db.Column(db.Unicode(16))
+
 
 class Location(db.Model):
     __tablename__ = 'locations'
     id = db.Column(db.Integer, primary_key=True)
-    city = db.Column(db.Unicode(12))
-    district = db.Column(db.Unicode(12))
+    city = db.Column(db.Unicode(6))
+    district = db.Column(db.Unicode(9))
+
+
