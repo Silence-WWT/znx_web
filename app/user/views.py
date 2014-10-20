@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-from . import auth
+from . import user
 from .. import db
 from .forms import LoginForm, RegistrationForm
 from ..models import User
 from ..email import send_email
-from flask.ext.login import login_user, login_required, logout_user
+from flask.ext.login import login_user
 from flask import redirect, url_for, render_template, flash, request
 
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
+@user.route('/login', methods=['POST'])
+def user_login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -20,7 +20,7 @@ def login():
     return render_template('auth/login.html', form=form)
 
 
-@auth.route('/register', methods=['GET', 'POST'])
+@user.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -34,11 +34,3 @@ def register():
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html', form=form)
-
-
-@auth.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    flash('You have been logged out.')
-    return redirect(url_for('main.index'))
