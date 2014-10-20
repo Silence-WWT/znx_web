@@ -8,8 +8,8 @@ from flask.ext.login import login_user
 from flask import redirect, url_for, render_template, flash, request
 
 
-@user.route('/login', methods=['POST'])
-def user_login():
+@user.route('/login', methods=['GET', 'POST'])
+def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
