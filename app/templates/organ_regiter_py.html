@@ -43,7 +43,12 @@
                         <label class="control-label" for="{{ form.cellphone.id }}">手机号</label>
                         <div class="controls">
                             <input type="text" id="{{ form.cellphone.id }}" class="form-control" name="{{ form.cellphone.name }}"> <span></span>
- 
+                            {%- if form.cellphone.errors %}
+                            {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                            {%- endfor %}
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="control-group">
@@ -51,20 +56,33 @@
                         <div class="controls">
                             <input type="text" id="{{ form.captcha.id }}" class="form-control" name="{{ form.captcha.name }}">
                             <button class="btn-myred">免费获取验证码</button>
+                            {%- if form.captcha.errors %}
+                                {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPassword">设置密码</label>
                         <div class="controls">
                             <input type="password" id="{{ form.password.id }}" name="{{ form.password.name }}" class="form-control"> <span></span>
- 
+                            {%- if form.password.errors %}
+                                {%- for error in form.password.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputConfirmPassword">确认密码</label>
                         <div class="controls">
                             <input type="password" id="{{ form.password2.id }}" class="form-control" name="{{ form.password2.name }}"> <span></span>
- 
+                            {%- if form.password2.errors %}
+                                {%- for error in form.password2.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="controls">
