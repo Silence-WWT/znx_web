@@ -924,7 +924,74 @@ padding-left: 20px;
 font-weight: normal;
 	}
 	#organthree #tab1 .organallknow .dl-horizontal dd{
-		margin-left: 0;
+	margin-left: 0;
 padding: 56px 16px 0px;
 width: 1060px;
-text-indent:2em; }
+text-indent: 2em;
+font-size: 16px;
+line-height: 25px;}
+#organthree #tab1 .organallknow .dl-horizontal dd .amoremore{
+float: right;
+font-size: 16px;
+margin-right: 10px;}
+#organthree #tab1 .organallknow .dl-horizontal dd p.organplace{
+margin: 6px -33px 4px;}
+
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.clearfix{display:inline-table}
+*html .clearfix{height:1%}
+.clearfix{display:block}
+*+html .clearfix{min-height:1%}
+.fl{float:left;}
+
+.gradecon{border:1px solid #E0DCDC;background:#fefdea;padding:10px;width:320px;margin:40px auto 0 auto;}
+.rev_pro li{line-height:20px;height:20px;}
+.rev_pro li .revtit{text-align:right;display:block;float:left;margin-right:10px;width:70px;}
+.revinp{float:left;display:inline;margin: 0px 15px;}
+.level .level_solid,.level .level_hollow{float:left;background-image:url("../images/icon2.png");background-repeat:no-repeat;display:inline-block;width:15px;height:15px;}
+.level .level_solid{background-position:0px 0px;}
+.level .level_hollow{background-position:-21px 0px;}
+.revgrade{margin-left:20px;}
+#usertest li{
+	height: 150px;
+margin-bottom: 70px;
+margin-top:30px;}
+	#usertest li .leftuser{
+		width: 70px;
+float: left;
+margin-top: 23px;}
+		#usertest li .leftuser img{
+			
+			float: left;
+margin: 10px 12px;
+width: 70px;
+height: 70px;}
+			#usertest li .leftuser span{
+				float:left;}
+				#usercomment1,#usercomment2{
+					display: block;
+position: relative;
+float: left;
+max-width: 933px;
+margin-left: 32px;
+height: 170px;}
+#usercomment1 .popover-title,#usercomment1 .popover-title{
+	background: #fff;
+height: 30px;
+line-height: 30px;}
+#usercomment1 .popover-title span,#usercomment2 .popover-title span{
+	color: #000;
+margin-right: 13px;
+font-size: 16px;}
+#usercomment1 .popover-content span,#usercomment .popover-content b,#usercomment2 .popover-content span,#usercomment .popover-content b{
+	float:left;}
+	#usercomment1 .commment,#usercomment2 .commment{
+		margin-top: 15px;
+		margin-top:15px;
+padding: 19px 0px;}
+#icommnet{
+	float: right;
+vertical-align: middle;
+margin: -2px 25px;
+cursor: pointer;}

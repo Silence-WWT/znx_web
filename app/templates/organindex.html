@@ -6,7 +6,7 @@
   <link href="../static/css/main.css" rel="stylesheet"/>
   <script src="../static/js/jquery.js" type="text/javascript"></script>
   <script src="../static/js/znx.min.js" type="text/javascript"></script>
-  <script src="../static/js/user.js" type="text/javascript" ></script>
+ 
 <meta charset="utf-8">
 </head>
 <body>
@@ -89,7 +89,16 @@
 <span><img src="../static/images/organknow1.png"/></span>
 <span><img src="../static/images/organknow2.png"/></span>
 <span><img src="../static/images/organknow3.png"/></span></br>
-<span class="lastspan"><img src="../static/images/organstar.png"/><b>4.5分</b></span>
+<span class="lastspan"><div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
 </li>
 <li><span>54</span>
 <p>报名总数（人）</p></li>
@@ -104,16 +113,16 @@
 <div class="container" id="organthree"> 
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Section 1</a></li>
-    <li><a href="#tab2" data-toggle="tab">Section 2</a></li>
-    <li><a href="#tab3" data-toggle="tab">Section 3</a></li>
+    <li class="active"><a href="#tab1" data-toggle="tab">机构简介</a></li>
+    <li><a href="#tab2" data-toggle="tab">课程信息</a></li>
+    <li><a href="#tab3" data-toggle="tab">活动</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
      <div class="organallknow">
      <dl class="dl-horizontal">
   <dt>机构简介</dt>
-  <dd><p id="boxmore">杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
+  <dd><div><div id="boxmore">杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
 地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
 来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
 远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
@@ -125,16 +134,144 @@
 远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
 地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
 来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
-远程可控、学生显著进步。</p></dd>
+远程可控、学生显著进步。</div>
+</dd>
 </dl>
 <dl class="dl-horizontal">
   <dt>附近交通</dt>
-  <dd><p>地铁5号线南站</p></dd>
+  <dd><p class="organplace">地铁5号线南站</p></dd>
 </dl>
 <dl class="dl-horizontal">
-  <dt>评论（34）</dt>
-  <dd>...</dd>
+
+  <dt>评论（34）<span id="icommnet"><a href="#myComment" role="button"  data-toggle="modal"><img src="../static/images/icomment.png"/></a></span></dt>
+  <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCommentLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+  <dd>
+  <ul class="unstyled" id="usertest">
+  <li>
+  <div class="leftuser"><img src="../static/images/userpic.png" class="img-circle"/>
+  <span class="text-center">程文</span>
+  </div>
+  <div class="righttest" >
+  <div class="popover right" id="usercomment1">
+            <div class="arrow"></div>
+            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
+            <div class="popover-content">
+             <div class="commentin"><span><img src="../static/images/happypic.png"/>好评</span>
+            
+            <span><div class="revinp">
+				<span class="level">
+                <b>描述相符：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+            <span><div class="revinp">
+				<span class="level">
+                <b>响应速度：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+          <span>
+            <div class="revinp">
+				<span class="level"> <b>描述相符：</b>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div>
+          </span></div>
+             <div class="commment">
+             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
+             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
+             </p>
+             
+             </div>
+            </div>
+          </div>
+  </div>
+  </li>
+ <li>
+  <div class="leftuser"><img src="../static/images/userpic.png" class="img-circle"/>
+  <span class="text-center">程文</span>
+  </div>
+  <div class="righttest">
+  <div class="popover right" id="usercomment2">
+            <div class="arrow"></div>
+            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
+            <div class="popover-content">
+             <div class="commentin"><span><img src="../static/images/happypic.png"/>好评</span>
+            
+            <span><div class="revinp">
+				<span class="level">
+                <b>描述相符：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+            <span><div class="revinp">
+				<span class="level">
+                <b>响应速度：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+          <span>
+            <div class="revinp">
+				<span class="level"> <b>描述相符：</b>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div>
+          </span></div>
+             <div class="commment">
+             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
+             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
+             </p>
+             
+             </div>
+            </div>
+          </div>
+  </div>
+  </li>
+  </ul>
+  </dd>
 </dl>
+
+ 
+<!-- Modal -->
+
      </div>
     </div>
     <div class="tab-pane" id="tab2">
@@ -204,8 +341,10 @@
 <span>
 Copyright@2014 - 2015 在哪学版权所有. 京公网安备11010802015210号 | 京ICP证14027590号
 </span>
+
 </div>
 </div>
 </div>
 </body>
 </html>
+<script src="../static/js/user.js" type="text/javascript" ></script>
