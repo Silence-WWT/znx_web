@@ -995,3 +995,52 @@ padding: 19px 0px;}
 vertical-align: middle;
 margin: -2px 25px;
 cursor: pointer;}
+#myComment .modal-header{
+	padding: 10px;
+height: 28px;
+line-height: 28px;
+background: #00B98D;
+font-size: 16px;
+color: #fff;
+font-weight: normal;}
+#myComment .modal-header .close{
+	width: 20px;
+font-size: 36px;
+color: #000;
+margin: 5px;}
+#myCommentLabel{
+	font-size:16px;
+	font-weight:normal;}
+	#myComment .control-group textarea{
+		width: 433px;
+margin:0 44px;
+font-size: 16px;
+}
+#myComment .control-group  label{
+	font-size: 18px;
+color: #000;
+}
+#myComment .control-group {
+	padding-top:15px;}
+#myComment .control-group  .revgrade{
+	color: #ff0000;
+font-size: 16px;}
+	#myComment .control-group h4{
+		margin-left: 49px;
+font-size: 16px;
+font-size: 14px;
+font-weight: normal;
+margin-top:26px;}
+#myComment .control-group b{
+	margin:0px 45px;
+	font-size:14px;
+	color:#000;
+	font-weight:normal;}
+	#myComment .modal-footer{
+		padding:5px 10px;}
+			#myComment .modal-body{
+				padding: 10px 15px 0px;}
+				#niming span{
+					margin: -10px 0px;
+					}
+					.nomargin{margin-left:20px;}

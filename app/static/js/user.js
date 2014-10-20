@@ -238,3 +238,22 @@ $(function(){
 
 })
  
+document.getElementById("Commenttext").focus();
+ var chackTextarea = function(obj,num,objTip){
+  obj.onkeyup=obj.onfocus=function(){
+    if(obj.value.length>=1){
+     if (obj.value.length > num) {
+       objTip.innerHTML="已超出";
+       objTip.style.color="#F00";
+       document.getElementById("button").disabled="disabled";
+     }else{
+        objTip.innerHTML="已输入"+(obj.value.length) +"/"+num+"个字!";
+       objTip.style.color="#000";
+       document.getElementById("button").disabled="";
+     }
+    }else{
+      document.getElementById("button").disabled="disabled";
+    }
+  }
+ }
+ chackTextarea(document.getElementById("Commenttext"),500,document.getElementById("commentnum"));
