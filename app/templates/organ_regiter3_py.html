@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-机构注册－上传资质证明{% endblock title %}
+ {% block navbar %}
+ {% include 'headless.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    <div id="organregall">
+        <div class="container">
+             
+<h3>机构注册</h3>
+ 
+            <ul class="breadcrumb">
+                <li><a href="organ_regiter.html">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="organ_regiter2.html">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li class="active"><a href="organ_regiter3.html">3、上传资质证明</a>
+                </li>
+            </ul>
+            <div id="organregform">
+                <div class="upload1">
+                     
+<h3 id="about-header1">上传营业执照</h3>
+ 
+                    <ul class="inline unstyled">
+                        <li>
+                             
+<h3>参考案例</h3>
+ 
+                            <div class="anlipic">
+                                <img src="{{ url_for('static', filename='images/anli1.png') }}" class="img-polaroid">
+                            </div>
+                        </li>
+                        <li>
+                            <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadorginpic').click();">上传本地照片</button>
+<input type="file" name="upload1" id="uploadorginpic" style="display:none"></h3><h3>
+<div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.png') }}" class="img-polaroid"></div>
+</h3></li>
+</ul>
+</div>
+<div style="clear:both;"></div>
+<div class="upload2">
+<h3 id="about-header2">上传门店照片</h3>
+ 
+                            <ul class="inline unstyled">
+                                <li>
+                                     
+<h3>参考案例</h3>
+ 
+                                    <div class="anlipic">
+                                        <img src="{{ url_for('static', filename='images/mendian1.png') }}" class="img-polaroid">
+                                    </div>
+                                </li>
+                                <li>
+                                    <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadshoppic').click();">上传本地照片</button>
+<input type="file" name="upload2" id="uploadshoppic" style="display:none"></h3><h3>
+<div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.png') }}" class="img-polaroid"></div>
+</h3></li>
+</ul>
+</div>
+<div class="controls">
+ <button type="submit" class="btn-next btn-final">完成</button>
+ </div>
+</div>
+</div>
+</div>
+      {% endblock content %}
