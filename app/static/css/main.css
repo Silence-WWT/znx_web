@@ -993,9 +993,9 @@ padding: 19px 0px;}
 #icommnet{
 	float: right;
 vertical-align: middle;
-margin: -2px 25px;
+margin: -2px 9px;
 cursor: pointer;}
-#myComment .modal-header{
+#myComment .modal-header,#myeditwrong .modal-header{
 	padding: 10px;
 height: 28px;
 line-height: 28px;
@@ -1003,7 +1003,7 @@ background: #00B98D;
 font-size: 16px;
 color: #fff;
 font-weight: normal;}
-#myComment .modal-header .close{
+#myComment .modal-header .close,#myeditwrong .modal-header .close{
 	width: 20px;
 font-size: 36px;
 color: #000;
@@ -1025,7 +1025,7 @@ color: #000;
 #myComment .control-group  .revgrade{
 	color: #ff0000;
 font-size: 16px;}
-	#myComment .control-group h4{
+	#myComment .control-group h4,#myeditwrong .control-group h4{
 		margin-left: 49px;
 font-size: 16px;
 font-size: 14px;
@@ -1036,11 +1036,72 @@ margin-top:26px;}
 	font-size:14px;
 	color:#000;
 	font-weight:normal;}
-	#myComment .modal-footer{
+	#myComment .modal-footer,#myeditwrong .modal-footer{
 		padding:5px 10px;}
 			#myComment .modal-body{
 				padding: 10px 15px 0px;}
 				#niming span{
 					margin: -10px 0px;
 					}
-					.nomargin{margin-left:20px;}
+					.nomargin{margin-left:20px;height:40px;}
+					#organclass ul li,#organplay ul li{
+						padding: 40px 80px 20px;
+border-bottom: 1px solid #DDDDDD;
+height:130px;
+width:1040px;}
+#organclass,#organplay{
+	margin-bottom: 100px;}
+#organclass ul li .classright,#organplay ul li .classright{
+	float:right;
+	}
+	#organclass ul li .classleft img,#organclass ul li .classleft span,#organplay ul li .classleft img,#organplay ul li .classleft span{
+		float:left;
+	}
+	#organclass ul li .classleft .classtest,#organplay ul li .classleft .classtest{
+		width: 300px;
+float: left;
+color:#292929;}
+#organclass ul li .classleft span,#organplay ul li .classleft span{
+	
+float: left;
+width: 241px;
+font-size: 16px;
+line-height: 20px;
+height: 22px;}
+#organclass ul li .classleft span.level,#organplay ul li .classleft span.level{
+	width:85px;}
+		#organclass ul li .classleft h3,#organplay ul li .classleft h3{
+			color: #000;
+font-size: 24px;
+float: left;
+margin: 10px 20px;
+font-weight:normal;
+			}
+			#organclass ul li .classright span,#organplay ul li .classright span{
+		float: right;
+font-size: 30px;
+color: #00B98D;
+line-height: 30px;
+height: 30px;
+width: 120px;
+margin: 22px 2px 12px;
+text-align: center;}
+#organclass ul li .classright a,#organplay ul li .classright a{
+	display:block;}
+	#zixunbtn{
+		width:230px;
+		height:45px;
+		background:url("../images/zixun.png");
+		border:0px;
+		border-radius:0px;
+		float: right;
+margin: -43px 70px;
+outline:none;
+		}
+		.threesmall{
+			float: right;
+margin: 46px 115px;
+cursor:pointer;}
+#wrongtext{
+	width: 458px;
+margin-left: 30px;}
