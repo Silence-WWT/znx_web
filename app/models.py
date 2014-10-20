@@ -17,6 +17,9 @@ class User(UserMixin, db.Model):
     last_login = db.Column(db.TIMESTAMP)
     identity = db.Column(db.CHAR(44))
 
+    def get_id(self):
+        return u'u'+unicode(self.id)
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -28,16 +31,13 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
     @staticmethod
-    def generate_fake(count=100):
+    def generate_fake(count=1000):
         from sqlalchemy.exc import IntegrityError
-        from random import seed
         from faker import Factory
         fake = Factory.create()
         zh = Factory.create('zh-CN')
 
-        seed()
         for i in range(count):
             u = User(username=fake.user_name(),
                      email=fake.email(),
@@ -58,7 +58,9 @@ class User(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    if user_id[0] == u'o':
+        return Organization.query.get(int(user_id[1:]))
+    return User.query.get(int(user_id[1:]))
 
 
 class Register(db.Model):
@@ -70,6 +72,25 @@ class Register(db.Model):
     need = db.Column(db.Unicode(64))
     timestamp = db.Column(db.TIMESTAMP)
 
+    @staticmethod
+    def generate_fake(count=1000):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        location_count = Location.query.count()
+
+        seed()
+        for i in range(count):
+            u = Register(location=randint(1, location_count),
+                         cellphone=zh.phone_number(),
+                         name=unicode(zh.name()),
+                         need=unicode(zh.job()),
+                         timestamp=fake.date_time())
+
+            db.session.add(u)
+            db.session.commit()
+
 
 class SiteComment(db.Model):
     __tablename__ = 'site_comments'
@@ -77,23 +98,39 @@ class SiteComment(db.Model):
     cellphone = db.Column(db.CHAR(11))
     body = db.Column(db.UnicodeText)
     timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean)
+    disabled = db.Column(db.Boolean, default=False)
+
+    @staticmethod
+    def generate_fake(count=1000):
+        from faker import Factory
+        from random import seed
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+
+        seed()
+        for i in range(count):
+            u = SiteComment(cellphone=zh.phone_number(),
+                            body=zh.text(),
+                            timestamp=fake.date_time())
+
+            db.session.add(u)
+            db.session.commit()
 
 
-class Organization(db.Model):
+class Organization(UserMixin, db.Model):
     __tablename__ = 'organizations'
     id = db.Column(db.Integer, primary_key=True)
     cellphone = db.Column(db.CHAR(11))
     password_hash = db.Column(db.String(128))
     member_since = db.Column(db.TIMESTAMP)
     type = db.Column(db.Integer)
-    name = db.Column(db.Unicode(64))
+    name = db.Column(db.Unicode(256))
     contact = db.Column(db.Unicode(16))
-    address = db.Column(db.Unicode(256))
+    address = db.Column(db.Unicode(512))
     authorization = db.Column(db.CHAR(32))
     photo = db.Column(db.CHAR(32))
     profession = db.Column(db.Integer)
-    property = db.Column(db.Integer)
+    property_ = db.Column(db.Integer)
     size = db.Column(db.Integer)
     location = db.Column(db.Integer)
     confirmed = db.Column(db.Boolean)
@@ -102,36 +139,134 @@ class Organization(db.Model):
     latitude = db.Column(db.Float)
     page_view = db.Column(db.Integer)
 
+    def get_id(self):
+        return 'o'+unicode(self.id)
+
+    @property
+    def password(self):
+        raise AttributeError('password is not a readable attribute')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    @staticmethod
+    def generate_fake(count=50):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        location_count = Location.query.count()
+        type_count = Type.query.count()
+        profession_count = Profession.query.count()
+        property_count = Property.query.count()
+        size_count = Size.query.count()
+
+        seed()
+        for i in range(count):
+            u = Organization(cellphone=zh.phone_number(),
+                             password=fake.password(),
+                             member_since=fake.date_time(),
+                             type=randint(1, type_count),
+                             name=zh.company(),
+                             contact=zh.name(),
+                             address=zh.address(),
+                             authorization='1'*32,
+                             photo='1'*32,
+                             profession=randint(1, profession_count),
+                             property_=randint(1, property_count),
+                             size=randint(1, size_count),
+                             location=randint(1, location_count),
+                             confirmed=True,
+                             intro=zh.text(),
+                             longitude=zh.longitude(),
+                             latitude=zh.latitude(),
+                             page_view=randint(0, 10000))
+            db.session.add(u)
+            db.session.commit()
+
 
 class OrganizationComment(db.Model):
     __tablename__ = 'organization_comments'
     id = db.Column(db.Integer, primary_key=True)
-    organization = db.Column(db.Integer)
-    user = db.Column(db.Integer)
+    organization_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
     stars = db.Column(db.Integer)
     body = db.Column(db.UnicodeText)
     timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean)
+    disabled = db.Column(db.Boolean, default=False)
+
+    @staticmethod
+    def generate_fake(count=50):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        organization_count = Organization.query.count()
+        user_count = User.query.count()
+
+        seed()
+        for organization_id in range(1, organization_count+1):
+            for i in range(count):
+                u = OrganizationComment(
+                    organization_id=organization_id,
+                    user_id=randint(1, user_count),
+                    stars=randint(1, 5),
+                    body=zh.text(),
+                    timestamp=fake.date_time())
+                db.session.add(u)
+                db.session.commit()
 
 
 class Class(db.Model):
     __tablename__ = 'classes'
     id = db.Column(db.Integer, primary_key=True)
     organization_id = db.Column(db.Integer)
-    name = db.Column(db.Unicode(64))
+    name = db.Column(db.Unicode(256))
     age_id = db.Column(db.Integer)
     price = db.Column(db.Integer)
-    consult_time = db.Column(db.Unicode(64))
+    consult_time = db.Column(db.Unicode(128))
     start_time = db.Column(db.TIMESTAMP)
     end_time = db.Column(db.TIMESTAMP)
     try_ = db.Column(db.Boolean)
     timestamp = db.Column(db.TIMESTAMP)
     intro = db.Column(db.UnicodeText)
-    closed = db.Column(db.Boolean)
+    closed = db.Column(db.Boolean, default=False)
     page_view = db.Column(db.Integer)
+
+    @staticmethod
+    def generate_fake(count=20):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        organization_count = Organization.query.count()
+        age_count = Age.query.count()
+
+        seed()
+        for organization_id in range(1, organization_count+1):
+            for i in range(count):
+                u = Class(organization_id=organization_id,
+                          name=zh.text(),
+                          age_id=randint(1, age_count),
+                          price=randint(0, 100000),
+                          consult_time=zh.sentence(),
+                          start_time=fake.date_time(),
+                          end_time=fake.date_time(),
+                          try_=True,
+                          timestamp=fake.date_time(),
+                          intro=zh.text(),
+                          closed=False,
+                          page_view=randint(1, 10000))
+                db.session.add(u)
+                db.session.commit()
 
 
 class ClassComment(db.Model):
+    # TODO：confirm joined.
     __tablename__ = 'classes_comments'
     id = db.Column(db.Integer, primary_key=True)
     class_id = db.Column(db.Integer)
@@ -139,7 +274,28 @@ class ClassComment(db.Model):
     stars = db.Column(db.Integer)
     body = db.Column(db.UnicodeText)
     timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean)
+    disabled = db.Column(db.Boolean, default=False)
+
+    @staticmethod
+    def generate_fake(count=20):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        class_count = Class.query.count()
+        user_count = User.query.count()
+
+        seed()
+        for class_id in range(1, class_count+1):
+            for i in range(count):
+                u = ClassComment(
+                    class_id=class_id,
+                    user_id=randint(1, user_count),
+                    stars=randint(1, 5),
+                    body=zh.text(),
+                    timestamp=fake.date_time())
+                db.session.add(u)
+            db.session.commit()
 
 
 class ClassTime(db.Model):
@@ -148,20 +304,59 @@ class ClassTime(db.Model):
     class_id = db.Column(db.Integer)
     time_id = db.Column(db.Integer)
 
+    @staticmethod
+    def generate_fake():
+        from random import seed, sample
+        class_count = Class.query.count()
+        time_count = Time.query.count()
+        time_range = range(1, time_count+1)
+
+        seed()
+        for class_id in range(1, class_count+1):
+            for time_id in sample(time_range, 3):
+                u = ClassTime(class_id=class_id, time_id=time_id)
+                db.session.add(u)
+            db.session.commit()
+
 
 class Activity(db.Model):
     __tablename__ = 'activities'
     id = db.Column(db.Integer, primary_key=True)
     organization_id = db.Column(db.Integer)
-    name = db.Column(db.Unicode(64))
+    name = db.Column(db.Unicode(256))
     age_id = db.Column(db.Integer)
     price = db.Column(db.Integer)
     start_time = db.Column(db.TIMESTAMP)
     end_time = db.Column(db.TIMESTAMP)
     timestamp = db.Column(db.TIMESTAMP)
     intro = db.Column(db.UnicodeText)
-    closed = db.Column(db.Boolean)
+    closed = db.Column(db.Boolean, default=False)
     page_view = db.Column(db.Integer)
+
+    @staticmethod
+    def generate_fake(count=20):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        organization_count = Organization.query.count()
+        age_count = Age.query.count()
+
+        seed()
+        for organization_id in range(1, organization_count+1):
+            for i in range(count):
+                u = Activity(organization_id=organization_id,
+                             name=zh.text(),
+                             age_id=randint(1, age_count),
+                             price=randint(0, 100000),
+                             start_time=fake.date_time(),
+                             end_time=fake.date_time(),
+                             timestamp=fake.date_time(),
+                             intro=zh.text(),
+                             closed=False,
+                             page_view=randint(1, 10000))
+                db.session.add(u)
+                db.session.commit()
 
 
 class ActivityComment(db.Model):
@@ -172,7 +367,28 @@ class ActivityComment(db.Model):
     stars = db.Column(db.Integer)
     body = db.Column(db.UnicodeText)
     timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean)
+    disabled = db.Column(db.Boolean, default=False)
+
+    @staticmethod
+    def generate_fake(count=20):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        activity_count = Activity.query.count()
+        user_count = User.query.count()
+
+        seed()
+        for activity_id in range(1, activity_count+1):
+            for i in range(count):
+                u = ActivityComment(
+                    activity_id=activity_id,
+                    user_id=randint(1, user_count),
+                    stars=randint(1, 5),
+                    body=zh.text(),
+                    timestamp=fake.date_time())
+                db.session.add(u)
+            db.session.commit()
 
 
 # TODO: chart 等待魏鹏的方案
@@ -183,15 +399,41 @@ class ClassOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
     class_id = db.Column(db.Integer)
-    time = db.Column(db.Date)
+    time = db.Column(db.TIMESTAMP)
     name = db.Column(db.Unicode(24))
     age = db.Column(db.Integer)
     sex = db.Column(db.Boolean)
     cellphone = db.Column(db.CHAR(11))
     address = db.Column(db.Unicode(128))
     timestamp = db.Column(db.TIMESTAMP)
-    remark = db.Column(db.Unicode(100))
-    canceled = db.Column(db.Boolean)
+    remark = db.Column(db.Unicode(300))
+    canceled = db.Column(db.Boolean, default=False)
+
+    @staticmethod
+    def generate_fake(count=100):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        class_count = Class.query.count()
+        user_count = User.query.count()
+
+        seed()
+        for class_id in range(1, class_count+1):
+            for i in range(count):
+                u = ClassOrder(
+                    class_id=class_id,
+                    user_id=randint(1, user_count),
+                    time=fake.date_time(),
+                    name=zh.name(),
+                    age=randint(1, 10),
+                    sex=True,
+                    cellphone=zh.phone_number(),
+                    address=zh.address(),
+                    timestamp=fake.date_time(),
+                    remark=zh.text())
+                db.session.add(u)
+            db.session.commit()
 
 
 class ActivityOrder(db.Model):
@@ -199,15 +441,42 @@ class ActivityOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
     activity_id = db.Column(db.Integer)
-    time = db.Column(db.Date)
+    time = db.Column(db.TIMESTAMP)
     name = db.Column(db.Unicode(24))
     age = db.Column(db.Integer)
     sex = db.Column(db.Boolean)
     cellphone = db.Column(db.CHAR(11))
     address = db.Column(db.Unicode(128))
     timestamp = db.Column(db.TIMESTAMP)
-    remark = db.Column(db.Unicode(100))
+    remark = db.Column(db.Unicode(300))
     canceled = db.Column(db.Boolean)
+
+    @staticmethod
+    def generate_fake(count=100):
+        from faker import Factory
+        from random import seed, randint
+        fake = Factory.create()
+        zh = Factory.create('zh-CN')
+        activity_count = Activity.query.count()
+        user_count = User.query.count()
+
+        seed()
+        for activity_id in range(1, activity_count+1):
+            for i in range(count):
+                u = ActivityOrder(
+                    activity_id=activity_id,
+                    user_id=randint(1, user_count),
+                    time=fake.date_time(),
+                    name=zh.name(),
+                    age=randint(1, 10),
+                    sex=True,
+                    cellphone=zh.phone_number(),
+                    address=zh.address(),
+                    timestamp=fake.date_time(),
+                    remark=zh.text())
+                db.session.add(u)
+            db.session.commit()
+
 
 class Time(db.Model):
     __tablename__ = 'times'
@@ -225,6 +494,7 @@ class Time(db.Model):
         db.session.add(Time(time=u'周日'))
         db.session.commit()
 
+
 class Type(db.Model):
     __tablename__ = 'types'
     id = db.Column(db.Integer, primary_key=True)
@@ -237,8 +507,6 @@ class Type(db.Model):
         db.session.add(a)
         db.session.add(b)
         db.session.commit()
-
-
 
 
 class Profession(db.Model):
@@ -310,3 +578,30 @@ class Location(db.Model):
         db.session.add(Location(city=u'西安', district=u'长安区'))
         db.session.add(Location(city=u'北京', district=u'海淀区'))
         db.session.commit()
+
+
+def generate_helper_data():
+    Location.generate()
+    Age.generate()
+    Size.generate()
+    Property.generate()
+    Profession.generate()
+    Type.generate()
+    Time.generate()
+
+
+def generate_fake_data():
+    Register.generate_fake()
+    SiteComment.generate_fake()
+    User.generate_fake()
+    Organization.generate_fake()
+    OrganizationComment.generate_fake()
+    Class.generate_fake()
+    ClassComment.generate_fake()
+    ClassOrder.generate_fake()
+
+    ClassTime.generate_fake()
+
+    Activity.generate_fake()
+    ActivityComment.generate_fake()
+    ActivityOrder.generate_fake()
