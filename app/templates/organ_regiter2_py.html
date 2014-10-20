@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-机构注册－填写详细信息{% endblock title %}
+ {% block navbar %}
+ {% include 'headless.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    <div id="organregall">
+        <div class="container">
+             
+<h3>机构注册</h3>
+ 
+            <ul class="breadcrumb">
+                <li><a href="organ_regiter.html">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li class="active"><a href="organ_regiter2.html">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="organ_regiter3.html">3、上传资质证明</a>
+                </li>
+            </ul>
+            <div id="organregform">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">选择类型</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>学校</option>
+                                <option>补习班</option>
+                                <option>社会学校</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">机构名称</label>
+                        <div class="controls">
+                            <input type="text" class="form-control"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">行业</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>艺术培训</option>
+                                <option>科技培训</option>
+                                <option>教育培训</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">类别</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>民营</option>
+                                <option>公有</option>
+                                <option>外企</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">规模</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>100-400</option>
+                                <option>500-1000</option>
+                                <option>1000以上</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">联系人</label>
+                        <div class="controls">
+                            <input type="text" class="form-control"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">城市</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>北京</option>
+                                <option>广东</option>
+                                <option>西安</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">区域</label>
+                        <div class="controls form-control">
+                            <select class="form-control">
+                                <option>长沙</option>
+                                <option>西安</option>
+                                <option>厦门</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">详细地址</label>
+                        <div class="controls">
+                            <input type="text" class="form-control"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">详细介绍</label>
+                        <div class="controls">
+                            <textarea rows="4" class="form-textarea"></textarea> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next">下一步</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+      {% endblock content %}

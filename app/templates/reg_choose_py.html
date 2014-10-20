@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-注册选择{% endblock title %}
+ {% block navbar %}
+ {% include 'headless.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    <div id="tworeg">
+        <div class="container">
+            <ul class="unstyled inline">
+                <li>
+                    <img src="{{ url_for('static', filename='images/userreg.png') }}">
+                    <a href="user_regiter.html">
+                        <button class="btn-userreg" type="submit"></button>
+                    </a>
+                </li>
+                <li>
+                    <img src="{{ url_for('static', filename='images/organreg.png') }}">
+                    <a href="organ_regiter.html">
+                        <button class="btn-organrreg" type="submit"></button>
+                    </a>
+                </li>
+            </ul>
+             
+        </div>
+    </div>
+      {% endblock content %}
