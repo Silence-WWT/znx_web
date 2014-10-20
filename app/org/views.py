@@ -28,3 +28,39 @@ def register():
         #flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
     return render_template('organ_regiter_py.html', form=form)
+
+
+@org.route('/detail', methods=['GET', 'POST'])
+def detail():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        organization = Organization(cellphone=form.cellphone.data,
+                                    password=form.password.data)
+        db.session.add(organization)
+        db.session.commit()
+        # token = user.generate_confirmation_token()
+        # TODO: Add token.
+        # TODO: add macro in template for errors.
+        #send_email(user.email, 'Confirm Your Account',
+        #           'auth/mail/confirm', user=user)
+        #flash('A confirmation email has been sent to you by email.')
+        return redirect(url_for('main.index'))
+    return render_template('organ_regiter2_py.html', form=form)
+
+
+@org.route('/certification', methods=['GET', 'POST'])
+def certification():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        organization = Organization(cellphone=form.cellphone.data,
+                                    password=form.password.data)
+        db.session.add(organization)
+        db.session.commit()
+        # token = user.generate_confirmation_token()
+        # TODO: Add token.
+        # TODO: add macro in template for errors.
+        #send_email(user.email, 'Confirm Your Account',
+        #           'auth/mail/confirm', user=user)
+        #flash('A confirmation email has been sent to you by email.')
+        return redirect(url_for('main.index'))
+    return render_template('organ_regiter3_py.html', form=form)

@@ -33,4 +33,4 @@ def register():
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
-    return render_template('auth/register.html', form=form)
+    return render_template('user_regiter_py.html', form=form)

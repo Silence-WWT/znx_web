@@ -10,11 +10,11 @@
 <h3>机构注册</h3>
  
             <ul class="breadcrumb">
-                <li class="active"><a href="organ_regiter.html">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                <li class="active"><a href="{{ url_for('org.register') }}">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
                 </li>
-                <li><a href="organ_regiter2.html">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                <li><a href="{{ url_for('org.detail') }}">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
                 </li>
-                <li><a href="organ_regiter3.html">3、上传资质证明</a>
+                <li><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
                 </li>
             </ul>
             <div id="organregform">

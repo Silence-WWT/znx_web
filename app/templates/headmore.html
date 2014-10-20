@@ -6,10 +6,10 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
                         <li>
-                            <a href="login_choose.html">
+                            <a href="{{ url_for('main.login') }}">
                                 <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
                         </li>
-                        <li><a href="reg_choose.html">注册</a>
+                        <li><a href="{{ url_for('main.register') }}">注册</a>
                         </li>
                         <li><a href="#myznx">我的在哪学</a>
                         </li>
