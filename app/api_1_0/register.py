@@ -21,15 +21,17 @@ def register():
     if User.query.filter_by(username=username).first():
         data[STATUS].append(USERNAME_EXISTS)
     if not data[STATUS] and username and password:
-        user = User()
-        user.username = username
-        user.password = password
-        user.cellphone = cellphone
-        user.identity = identity
+        user = User(
+            username=username,
+            password=password,
+            cellphone=cellphone,
+            identity=identity
+        )
         try:
             db.session.add(user)
             db.session.commit()
         except Exception:
+            db.session.rollback()
             data[STATUS].append(SQL_EXCEPTION)
         else:
             data[STATUS].append(SUCCESS)
