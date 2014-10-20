@@ -1,0 +1,54 @@
+{% extends "head.html" %}
+{% block body %}
+    <div id="organregall">
+        <div class="container">
+             
+<h3>机构注册</h3>
+ 
+            <ul class="breadcrumb">
+                <li class="active"><a href="organ_regiter.html">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="organ_regiter2.html">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="organ_regiter3.html">3、上传资质证明</a>
+                </li>
+            </ul>
+            <div id="organregform">
+                <form class="form-horizontal"  action="{{ url_for('login') }}" method="post">
+                    <div class="control-group">
+                        <label class="control-label" for="inputPhone">手机号</label>
+                        <div class="controls">
+                            <input type="text" id="inputPhone" class="form-control" name="phoneNumber"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputVerCode">验证码</label>
+                        <div class="controls">
+                            <input type="text" id="inputVerCode" class="form-control">
+                            <button class="btn-myred">免费获取验证码</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">设置密码</label>
+                        <div class="controls">
+                            <input type="password" id="password" name="password" class="form-control"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputConfirmPassword">确认密码</label>
+                        <div class="controls">
+                            <input type="password" class="form-control" name="confirmPassword"> <span></span>
+ 
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next">下一步</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+  {% extends "footer.html" %}
