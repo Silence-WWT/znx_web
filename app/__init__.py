@@ -26,11 +26,14 @@ def create_app(config_name):
     rq.init_app(app)
     login_manager.init_app(app)
 
-    from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix='/auth')
-
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    from .user import user as user_blueprint
+    app.register_blueprint(user_blueprint, url_prefix='/user')
+
+    from .org import org as org_blueprint
+    app.register_blueprint(org_blueprint, url_prefix='/org')
 
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint, url_prefix='/api/v1.0')

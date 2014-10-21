@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-机构注册-账号注册{% endblock title %}
+ {% block navbar %}
+ {% include 'headless.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    <div id="organregall">
+        <div class="container">
+             
+<h3>机构注册</h3>
+ 
+            <ul class="breadcrumb">
+                <li class="active"><a href="{{ url_for('org.register') }}">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="{{ url_for('org.detail') }}">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
+                </li>
+            </ul>
+            <div id="organregform">
+                <form class="form-horizontal"  action="" method="post">
+                        {{ form.hidden_tag() }}
+                    <div class="control-group">
+                        <label class="control-label" for="{{ form.cellphone.id }}">手机号</label>
+                        <div class="controls">
+                            <input type="text" id="{{ form.cellphone.id }}" class="form-control" name="{{ form.cellphone.name }}"> <span></span>
+                            {%- if form.cellphone.errors %}
+                            {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                            {%- endfor %}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="{{ form.captcha.id }}">验证码</label>
+                        <div class="controls">
+                            <input type="text" id="{{ form.captcha.id }}" class="form-control" name="{{ form.captcha.name }}">
+                            <button class="btn-myred">免费获取验证码</button>
+                            {%- if form.captcha.errors %}
+                                {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputPassword">设置密码</label>
+                        <div class="controls">
+                            <input type="password" id="{{ form.password.id }}" name="{{ form.password.name }}" class="form-control"> <span></span>
+                            {%- if form.password.errors %}
+                                {%- for error in form.password.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputConfirmPassword">确认密码</label>
+                        <div class="controls">
+                            <input type="password" id="{{ form.password2.id }}" class="form-control" name="{{ form.password2.name }}"> <span></span>
+                            {%- if form.password2.errors %}
+                                {%- for error in form.password2.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next">下一步</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
