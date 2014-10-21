@@ -1,0 +1,23 @@
+
+    <div class="navbar navbar-static-top" id="bigheadnav">
+        <div class="navbar-inner ">
+            <div class="container">
+                <a class="bigbrand" href="{{ url_for('main.index') }}">
+                    <img src="{{ url_for('static', filename='images/biglogo.png') }}">
+                </a>
+                <div class="bignavright">
+                    <ul class="inline unstyled">
+                        <li><a href="{{ url_for('main.login') }}">我的在哪学</a>
+                        </li>
+                        <li style="color: #E2E1DE;">|</li>
+                          <li><a href="{{ url_for('main.loginout') }}">登出</a>
+                        </li>
+                         <li style="color: #E2E1DE;">|</li>
+                        <li>
+                            <img src="{{ url_for('static', filename='images/returnhome.png') }}"><a href="{{ url_for('main.index') }}">回到首页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

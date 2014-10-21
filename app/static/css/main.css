@@ -1222,4 +1222,8 @@ background: #fff;}
 			float:left;}
 			.itemcontentdown img{
 				float:left;}
+				#lead #myCarousel .carousel-inner{
+					background:#fff;}
+				#lead #myCarousel .carousel-inner .item{
+					height:294px;}
 				
