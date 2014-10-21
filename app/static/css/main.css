@@ -5,6 +5,8 @@
     text-decoration:none;
     color:#727272;
 }
+a:hover{
+	text-decoration:none;}
 #warp {
     color:#727272;
 }
