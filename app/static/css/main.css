@@ -1225,5 +1225,11 @@ background: #fff;}
 				#lead #myCarousel .carousel-inner{
 					background:#fff;}
 				#lead #myCarousel .carousel-inner .item{
-					height:294px;}
+					height: 230px;
+padding-top: 60px;
+}
+#lead #myCarousel .carousel-inner .item h1{
+	font-size: 28px;
+font-weight: normal;
+text-align: center;}
 				
