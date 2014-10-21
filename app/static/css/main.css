@@ -839,6 +839,8 @@ body {
     line-height:20px;
     color: #000;
 }
+#myorgan .headdes .organmoredec span i{
+	margin:5px;}
 #myorgan .headdes .organmoredec organplace img{
 	margin:4px;}
 #myorgan .headdes .organmoredec span img {
@@ -1146,3 +1148,50 @@ margin-top:10px;}
 	background:#dddddd;
 	float:left;
 	color:#727272;}
+	#classdet{
+		background: #fff;
+height: 160px;
+padding: 34px 50px;
+border: 1px solid #ECE9E2;
+color:#000;}
+#classdet .classnamepic{
+	float:left;
+	width:158px;
+	height:158px;}
+	#classdet .organmoredec{
+	
+		float: left;
+width: 117px;
+font-size: 18px;}
+#classdet .calssinfo{
+	float:left;}
+#classdet .organmoredec span i{
+	margin:6px;
+	}
+	#classdet ul{
+		margin-top: 60px;}
+		#classdet h3{
+			
+font-size: 30px;
+font-weight: normal;
+float:left;}
+#classdet h3 span{
+	font-size:18px;}
+#classdet .picright{
+	float: left;
+height: 158px;
+padding-left: 20px;}
+#classdet .picright .revinp{
+
+	float: left;
+margin-top: 21px;}
+.attendbtn{
+	width: 230px;
+height: 45px;
+background: url("../images/attendclass.png");
+border: 0px;
+border-radius: 0px;
+float: right;
+outline: none;
+margin: -91px 100px;
+	}
