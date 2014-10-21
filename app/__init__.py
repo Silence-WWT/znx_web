@@ -35,6 +35,9 @@ def create_app(config_name):
     from .org import org as org_blueprint
     app.register_blueprint(org_blueprint, url_prefix='/org')
 
+    from .test import test as test_blueprint
+    app.register_blueprint(test_blueprint, url_prefix='/test')
+
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint, url_prefix='/api/v1.0')
 

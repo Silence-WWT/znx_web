@@ -21,6 +21,9 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return u'u'+unicode(self.id)
 
+    def get_name(self):
+        return self.username
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -142,6 +145,9 @@ class Organization(UserMixin, db.Model):
 
     def get_id(self):
         return 'o'+unicode(self.id)
+
+    def get_name(self):
+        return self.name or self.cellphone
 
     @property
     def password(self):

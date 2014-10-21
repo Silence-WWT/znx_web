@@ -3,7 +3,7 @@ from . import org
 from .. import db
 from ..models import Organization
 from .forms import RegistrationForm
-from flask.ext.login import login_user
+from flask.ext.login import login_user, login_required
 from flask import redirect, url_for, render_template, flash, request
 
 
@@ -26,11 +26,13 @@ def register():
         #send_email(user.email, 'Confirm Your Account',
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
+        login_user(organization)
         return redirect(url_for('main.index'))
     return render_template('organ_regiter_py.html', form=form)
 
 
 @org.route('/detail', methods=['GET', 'POST'])
+@login_required
 def detail():
     form = RegistrationForm()
     if form.validate_on_submit():
