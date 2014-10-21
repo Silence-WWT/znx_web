@@ -18,6 +18,12 @@
                     {{ form.hidden_tag() }}
                     {{ wtf.form_errors(form) }}
                     <div class="control-group">
+                        <label class="control-label" >用户名</label>
+                        <div class="controls">
+                            <input type="text"  name="{{ form.username.name }}" class="form-control" placeholder="请输入用户名 "> <span></span>
+                        </div>
+                    </div>
+                    <div class="control-group">
                         <label class="control-label" for="inputPhone">手机号</label>
                         <div class="controls">
                             <input type="text" id="inputPhone" class="form-control" name="{{ form.cellphone.name }}" placeholder="请输入有效手机号 "> <span></span>
