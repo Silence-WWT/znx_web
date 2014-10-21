@@ -9,13 +9,13 @@
             <ul class="unstyled inline">
                 <li>
                     <img src="{{ url_for('static', filename='images/userreg.png') }}">
-                    <a href="user_regiter.html">
+                    <a href="{{ url_for('user.register') }}">
                         <button class="btn-userreg" type="submit"></button>
                     </a>
                 </li>
                 <li>
                     <img src="{{ url_for('static', filename='images/organreg.png') }}">
-                    <a href="organ_regiter.html">
+                    <a href="{{ url_for('org.register') }}">
                         <button class="btn-organrreg" type="submit"></button>
                     </a>
                 </li>

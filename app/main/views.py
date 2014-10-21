@@ -6,7 +6,7 @@ from flask import redirect, url_for, render_template, flash
 
 @main.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    return render_template('login_choose_py.html')
 
 
 @main.route('/logout')
@@ -16,7 +16,10 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('main.index'))
 
+@main.route('/register')
+def register():
+    return render_template('reg_choose_py.html')
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_py.html')

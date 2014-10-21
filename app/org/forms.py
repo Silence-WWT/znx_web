@@ -1,53 +1,32 @@
 # -*- coding: utf-8 -*-
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField
 from wtforms.validators import DataRequired, Length, EqualTo
 from wtforms import ValidationError
-from ..models import User
+from ..models import Organization
 
 
-class OrganizationForm1(Form):
-    cellphone = StringField('Email', validators=[DataRequired(),
-                                                 Length(11, 11)])
-    captcha = StringField('Captcha', validators=[DataRequired,
-                                                 Length(6, 6)])
+class RegistrationForm(Form):
+    cellphone = StringField('cellphone',
+                            validators=[
+                                DataRequired(u'必填'),
+                                Length(11, 11, u'手机号码不符合规范')])
+    captcha = StringField('Captcha', validators=[DataRequired(u'必填'),
+                                                 Length(6, 6, u'验证码错误')])
     password = PasswordField('Password', validators=[
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
-    submit = SubmitField('Register')
 
     def validate_cellphone(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
+        if Organization.query.filter_by(cellphone=field.data).first():
+            raise ValidationError('Cellphone already registered.')
 
 
 # TODO: cellphone regexp validator
 
 class OrganizationForm2(Form):
-    cellphone = StringField('Email', validators=[DataRequired(),
-                                                 Length(11, 11)])
-    captcha = StringField('Captcha', validators=[DataRequired,
-                                                 Length(6, 6)])
-    password = PasswordField('Password', validators=[
-        DataRequired(), EqualTo('password2', message='Passwords must match.')])
-    password2 = PasswordField('Confirm password', validators=[DataRequired()])
-    submit = SubmitField('Register')
-
-    def validate_cellphone(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
+    pass
 
 
 class OrganizationForm3(Form):
-    cellphone = StringField('Email', validators=[DataRequired(),
-                                                 Length(11, 11)])
-    captcha = StringField('Captcha', validators=[DataRequired,
-                                                 Length(6, 6)])
-    password = PasswordField('Password', validators=[
-        DataRequired(), EqualTo('password2', message='Passwords must match.')])
-    password2 = PasswordField('Confirm password', validators=[DataRequired()])
-    submit = SubmitField('Register')
-
-    def validate_cellphone(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError('Email already registered.')
+    pass

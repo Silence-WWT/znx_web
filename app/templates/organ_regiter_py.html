@@ -10,41 +10,60 @@
 <h3>机构注册</h3>
  
             <ul class="breadcrumb">
-                <li class="active"><a href="organ_regiter.html">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                <li class="active"><a href="{{ url_for('org.register') }}">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
                 </li>
-                <li><a href="organ_regiter2.html">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                <li><a href="{{ url_for('org.detail') }}">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
                 </li>
-                <li><a href="organ_regiter3.html">3、上传资质证明</a>
+                <li><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
                 </li>
             </ul>
             <div id="organregform">
-                <form class="form-horizontal"  action="{{ url_for('org.login') }}" method="post">
+                <form class="form-horizontal"  action="" method="post">
+                        {{ form.hidden_tag() }}
                     <div class="control-group">
-                        <label class="control-label" for="inputPhone">手机号</label>
+                        <label class="control-label" for="{{ form.cellphone.id }}">手机号</label>
                         <div class="controls">
-                            <input type="text" id="inputPhone" class="form-control" name="phoneNumber"> <span></span>
- 
+                            <input type="text" id="{{ form.cellphone.id }}" class="form-control" name="{{ form.cellphone.name }}"> <span></span>
+                            {%- if form.cellphone.errors %}
+                            {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                            {%- endfor %}
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label" for="inputVerCode">验证码</label>
+                        <label class="control-label" for="{{ form.captcha.id }}">验证码</label>
                         <div class="controls">
-                            <input type="text" id="inputVerCode" class="form-control">
+                            <input type="text" id="{{ form.captcha.id }}" class="form-control" name="{{ form.captcha.name }}">
                             <button class="btn-myred">免费获取验证码</button>
+                            {%- if form.captcha.errors %}
+                                {%- for error in form.cellphone.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPassword">设置密码</label>
                         <div class="controls">
-                            <input type="password" id="password" name="password" class="form-control"> <span></span>
- 
+                            <input type="password" id="{{ form.password.id }}" name="{{ form.password.name }}" class="form-control"> <span></span>
+                            {%- if form.password.errors %}
+                                {%- for error in form.password.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputConfirmPassword">确认密码</label>
                         <div class="controls">
-                            <input type="password" class="form-control" name="confirmPassword"> <span></span>
- 
+                            <input type="password" id="{{ form.password2.id }}" class="form-control" name="{{ form.password2.name }}"> <span></span>
+                            {%- if form.password2.errors %}
+                                {%- for error in form.password2.errors %}
+                                    <p class="help-block">{{error}}</p>
+                                {%- endfor %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="controls">
