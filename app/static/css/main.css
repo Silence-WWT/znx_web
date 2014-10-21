@@ -1213,3 +1213,14 @@ padding: 0;
 font-size: 18px;
 padding-left: 10px;
 background: #fff;}
+.itemcontent{
+	width:600px;
+	margin:0 auto;}
+	.itemcontent .img{
+		float:left;}
+		.itemcontentdown{
+			float:left;}
+			.itemcontentdown img{
+				float:left;}
+				#origanCarousel .carousel-inner .item{
+					height:294px;}

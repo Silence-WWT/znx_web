@@ -2,17 +2,23 @@ $(function(){$('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
 });})
- $('#datetimepicker').datetimepicker({
-		  format: 'yyyy/MM/dd hh:mm',
-      //  format: 'MM/dd/yyyy hh:mm',
-        language: 'ch',
-        pickDate: true,
-        pickTime: true,
-        hourStep: 1,
-        minuteStep: 15,
-        secondStep: 30,
-        inputMask: true
-      });
+
+	 
+	  $(function () {
+		  
+    $("#navorgan").click(function () {
+	
+      $("#allnav").toggle();
+        if ($("#allnav").is(":hidden")) {
+ 
+            $("#iconcheck").removeClass('icon-chevron-up').addClass('icon-chevron-down');
+        } else {
+            $("#iconcheck").removeClass('icon-chevron-down').addClass('icon-chevron-up');
+        }
+    })
+ 
+})
+
 $(function () {
     var ok1 = false;
     var ok2 = false;
@@ -98,18 +104,6 @@ $(function () {
     });
  
 });
-$(function () {
-    $("#navorgan").click(function () {
-       // $("#allnav").toggle();
-        if ($("#allnav").is(":hidden")) {
- 
-            $("#iconcheck").removeClass('icon-chevron-up').addClass('icon-chevron-down');
-        } else {
-            $("#iconcheck").removeClass('icon-chevron-down').addClass('icon-chevron-up');
-        }
-    })
- 
-})
 
 function show(){ 
 var box = document.getElementById("boxmore"); 
@@ -134,6 +128,8 @@ box.appendChild(newBox);
 box.appendChild(btn); 
 } 
 show();
+
+
 var degree = ['','很差','差','中','良','优','未评分'];
 //重新点评
 function addComment2(e,inid,opt,id){
