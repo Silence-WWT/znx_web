@@ -109,7 +109,7 @@ body {
     width: 540px;
     border-radius: 0;
     border: 0px;
-    height: 40px;
+    height: 32px;
     padding-left:20px;
     font-size: 14px;
 }
@@ -997,7 +997,7 @@ padding: 19px 0px;}
 #icommnet{
 	float: right;
 vertical-align: middle;
-margin: 5px 7px;
+margin: -3px 5px;
 cursor: pointer;}
 #myComment .modal-header,#myeditwrong .modal-header{
 	padding: 10px;
@@ -1120,14 +1120,14 @@ margin: 0;}
 #myzixun .modal-body{
 	height: 400px;
 padding-Bottom: 6PX;}
-	#myzixun .modal-body textarea{width: 530px;
+	#myzixun .modal-body textarea{width: 513px;
 border: 1px solid rgb(221, 221, 221);
 margin: 0px 0px 10px;
-height: 120px;
+height: 80px;
 outline: none;
 resize: none;}
 	#myzixun .modal-body .talk{
-		height:270px;
+		height:300px;
 		}
 		#myzixun .modal-body .talk .italk,#myzixun .modal-body .talk .ytalk{
 			background: #00B98D;
