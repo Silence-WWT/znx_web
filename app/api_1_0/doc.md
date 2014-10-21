@@ -33,40 +33,26 @@ login
         identity: cellphone + uuid + 0
     json:
         {"status": 0,
-         "user": {"username": "", "cellphone": "", "email": "", "identity": ""},
-         "classes": [{"time": "", "timestamp": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "cellphone": "", "address": "", "remark": ""}],
-         "activities": [{"timestamp": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "cellphone": "", "address": "", "remark": ""}]}
+         "user": {"username": "", "cellphone": "", "email": "", "identity": ""}}
              
         status: 0 for success, 1000 for login failed
         username: if login fail, username, cellphone, email, identity won't return
         cellphone
         email
         identity
-        classes/activities: a list of classes/activities
-            timestamp: timestamp of order
-            time: ONLY included in classes try time of class
-            class_name/activity_name
-            org_name:
-            name: user's name
-            age
-            sex
-            cellphone
-            address: user's address
-            remark: user's remark of a class or activity
         
 filter_organization
 ---
     URL:
-        /api/v1.0/filter_organization?location=&location=&location=&page=
+        /api/v1.0/filter_organization?city=&district=&city=&district=&city=&district=&page=
         /api/v1.0/filter_organization?property=&property=&property=&page=  
         /api/v1.0/filter_organization?condition=&page=
         /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
     method:
         get
     parameters:
-        location: location id
+        city: name of a city
+        district: name of a district
         property: property id
         condition: condition id
         distance
@@ -77,26 +63,31 @@ filter_organization
         distance can coexist with another parameter (location OR property OR condition)
     json:
         {"status": 0,
-         "organizations": [{"id": "", "name": "", "location": "", "photo": "", "intro": ""}]}
+         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "view_count"/"comments_count"/"orders_count": ""}]}
          
         status: 0 for success
         organizations: a list of organizations
             id
             name
+            city
+            district
             photo: url of photo
             intro
+            view_count/comments_count/order_count
         
 organization_detail
 ---
     URL:
-        /api/v1.0/organization_detail?organization=
+        /api/v1.0/organization_detail?organization=&content=&page=
     method:
         get
     parameters:
         organization: id of organization
+        page
+        content: 0 for organization detail, 1 for classes list, 2 for activities list
     json:
         {"status": 0,
-         "organization": {"id": "", "name": "", "location": "", "photo": "", "intro": "", "address": "",
+         "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "address": "",
             "cellphone": "", "comments_count": ""},
          "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}],
          "activities": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
@@ -105,6 +96,8 @@ organization_detail
         organization
             id
             name
+            city
+            district
             photo: url of photo
             intro
             address
@@ -121,12 +114,13 @@ organization_detail
 order_list
 ---
     URL:
-        /api/v1.0/order_list?username=&cellphone=
+        /api/v1.0/order_list?username=&cellphone=&page=
     method:
         get
     parameters:
         username
         cellphone
+        page
     json:
         {"status": 0,
          "orders": [{"class_order_id": "", "timestamp": "", "class_name": "", "org_name": ""},
@@ -167,6 +161,27 @@ order_detail
         address: user's address
         remark: user's remark of a class or activity
     
+register_requirement
+---
+    URL:
+        /api/v1.0/register_requirement?name=&cellphone=&need=&page=&method=
+    method:
+        get
+    parameters:
+        method: 0 for get, 1 for post
+        username
+        cellphone
+        need
+        page
+    json:
+        {"status": 0}
+        {"status": 0, "registers": [{"name": "", "cellphone": "", "need": "", "time": ""}]}
+        registers: a list of registers
+            name
+            cellphone
+            need
+            time
+            
 CONSTANTS
 ---
     SUCCESS = 0
@@ -189,4 +204,11 @@ CONSTANTS
     ORDER_COUNT = 2
     
     PER_PAGE = 10
+    
+    ORGANIZATION_DETAIL = 0
+    CLASSES_LIST = 1
+    ACTIVITIES_LIST = 2
+    
+    GET = 0
+    POST = 1
     
