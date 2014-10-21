@@ -14,7 +14,8 @@ class User(UserMixin, db.Model):
     cellphone = db.Column(db.String(11), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     member_since = db.Column(db.TIMESTAMP)
-    last_login = db.Column(db.TIMESTAMP)
+    # TODO: last_login redis
+    # last_login = db.Column(db.TIMESTAMP)
     identity = db.Column(db.CHAR(44))
 
     def get_id(self):

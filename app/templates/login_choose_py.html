@@ -19,7 +19,9 @@
                 <div class="tab-content">
                 
                     <div class="tab-pane active" id="userLogin">
-                     <form class="form-horizontal">
+                      <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
++                                 {{ user_form.hidden_tag() }}
++                                 {{ wtf.form_errors(user_form) }}
                         <div class="control-group">
                            
                                 <div class="controls">
@@ -29,7 +31,7 @@
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="text" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->
@@ -61,7 +63,7 @@
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="text" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->

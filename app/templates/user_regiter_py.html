@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 {% block title %}在哪学-用户注册{% endblock title %}
  {% block navbar %}
  {% include 'headless.html' %}
@@ -13,17 +14,19 @@
                 <hr>
             </div>
             <div id="organregform">
-                <form class="form-horizontal">
-                <div class="control-group">
+                <form class="form-horizontal" action="" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
+                    <div class="control-group">
                         <label class="control-label" >用户名</label>
                         <div class="controls">
-                            <input type="text"  class="form-control" placeholder="请输入用户名 "> <span></span>
+                            <input type="text"  name="{{ form.username.name }}" class="form-control" placeholder="请输入用户名 "> <span></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPhone">手机号</label>
                         <div class="controls">
-                            <input type="text" id="inputPhone" class="form-control" name="phoneNumber" placeholder="请输入有效手机号 "> <span></span>
+                            <input type="text" id="inputPhone" class="form-control" name="{{ form.cellphone.name }}" placeholder="请输入有效手机号 "> <span></span>
  
                         </div>
                     </div>
@@ -37,20 +40,20 @@
                     <div class="control-group">
                         <label class="control-label" for="inputEmail">邮箱</label>
                         <div class="controls">
-                            <input type="text" id="inputEmail" class="form-control" name="email"> <span></span>
+                            <input type="text" id="inputEmail" class="form-control" name="{{ form.email.name }}"> <span></span>
  
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputPassword">设置密码</label>
                         <div class="controls">
-                            <input type="password" id="password" name="password" class="form-control">
+                            <input type="password" id="password" name="{{ form.password.name }}" class="form-control">
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" for="inputConfirmPassword">确认密码</label>
                         <div class="controls">
-                            <input type="password" class="form-control" name="confirmPassword"> <span></span>
+                            <input type="password" class="form-control" name="{{ form.password2.name }}"> <span></span>
  
                         </div>
                     </div>
@@ -58,7 +61,7 @@
                         <button type="submit" class="btn-long">同意以下协议并注册</button>
                     </div>
                     <div class="controls" id="checkrule">
-                        <input type="checkbox">
+                        <input type="checkbox" name="{{ form.confirmed.name }}">
 <a href="#myModal" role="button" data-toggle="modal">《在哪学用户注册协议》</a>
  
                     </div>

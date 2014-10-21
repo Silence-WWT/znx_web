@@ -13,11 +13,19 @@ def order_list():
     data = {}
     cellphone = request.args.get('cellphone')
     username = request.args.get('username')
+    try:
+        page = int(request.args.get('page'))
+    except TypeError:
+        page = 1
     user = User.query.filter_by(username=username, cellphone=cellphone).first()
     if user:
         orders_list = []
-        class_orders = ClassOrder.query.filter_by(user_id=user.id).order_by(-ClassOrder.timestamp)
-        activity_orders = ActivityOrder.query.filter_by(user_id=user.id).order_by(-ActivityOrder.timestamp)
+        class_orders = ClassOrder.query.filter_by(user_id=user.id)\
+            .order_by(-ClassOrder.timestamp)\
+            .paginate(page, PER_PAGE, False).items
+        activity_orders = ActivityOrder.query.filter_by(user_id=user.id)\
+            .order_by(-ActivityOrder.timestamp)\
+            .paginate(page, PER_PAGE, False).items
         for class_order in class_orders:
             class_ = Class.query.filter_by(id=class_order.class_id).first()
             org = Organization.query.filter_by(id=class_.organization_id).first()

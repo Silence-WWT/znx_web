@@ -6,7 +6,7 @@ from flask import request
 from sqlalchemy.sql import func, desc
 
 from app import db
-from ..models import Organization, OrganizationComment, Class, ClassOrder, Activity, ActivityOrder
+from ..models import Organization, OrganizationComment, Class, ClassOrder, Activity, ActivityOrder, Location
 from . import api
 from . import helper
 from api_constants import *
@@ -22,7 +22,8 @@ def filter_organization():
         page = int(request.args.get('page'))
     except TypeError:
         page = 1
-    location_list = request.args.getlist('location')
+    city_list = request.args.getlist('city')
+    district_list = request.args.getlist('district')
     property_list = request.args.getlist('property')
     condition = request.args.get('condition')
     distance = request.args.get('distance')
@@ -45,8 +46,13 @@ def filter_organization():
     else:
         org_query = Organization.query
 
-    if location_list:
-        location_list = request.args.getlist('location')
+    if city_list and len(city_list) == len(district_list):
+        city_district_list = map(lambda city, district: (city, district), city_list, district_list)
+        location_list = []
+        for (city, district) in city_district_list:
+            location = Location.query.filter_by(city=city, district=district).frist()
+            if location:
+                location_list.append(location.id)
         org_list = org_query.filter(Organization.location.in_(location_list)) \
             .paginate(page, PER_PAGE, False).items
 
@@ -121,10 +127,12 @@ def filter_organization():
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
     for org in org_list:
+        location = Location.query.filter_by(id=org.location).first()
         org_dict = {
             'id': org.id,
             'name': org.name,
-            'location': org.location,
+            'city': location.city,
+            'district': location.district,
             'photo': org.photo,
             'intro': org.intro,
         }
