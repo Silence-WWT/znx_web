@@ -16,7 +16,7 @@ def organization_detail():
     if organization:
         data = {STATUS: SUCCESS, 'classes': [], 'activities': []}
         location = Location.query.filter_by(id=organization.location).first()
-        comments_count = OrganizationComment.query.filter_by(organization=organization.id).count()
+        comments_count = OrganizationComment.query.filter_by(organization_id=organization.id).count()
         org_dict = {
             'id': organization.id,
             'name': organization.name,

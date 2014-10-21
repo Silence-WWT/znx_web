@@ -4,20 +4,22 @@ Android API
 register
 ----
     URL:
-        /api/v1.0/register?&password=&cellphone=&identity=
+        /api/v1.0/register?&password=&cellphone=&identity=&email=
     method:
         get
     parameters:
         password
         cellphone
+        email
         identity: cellphone + uuid + 0
     json:
-        {"status": ["0"], "username": "", "cellphone": "", "identity": ""}
+        {"status": ["0"], "user": {"username": "", "cellphone": "", "identity": "", "email": ""}}
         
         status: 0 for success, 1002 for existing cellphone, 1004 for existing username, 5000 for SQL exception
         username
         cellphone
         identity
+        email
         
 login
 ----
@@ -54,30 +56,25 @@ login
             address: user's address
             remark: user's remark of a class or activity
         
-confirm_cellphone
-----
-    URL:
-        /api/v1.0/confirm_cellphone?cellphone=
-    method:
-        get
-    parameters:
-        cellphone
-    json:
-        {"status": 0}
-        
-        status: 0 for success, 1002 for existing cellphone
-        
 filter_organization
 ---
     URL:
-        /api/v1.0/filter_organization?location=&property=&condition=
+        /api/v1.0/filter_organization?location=&location=&location=&page=
+        /api/v1.0/filter_organization?property=&property=&property=&page=  
+        /api/v1.0/filter_organization?condition=&page=
+        /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
     method:
         get
     parameters:
         location: location id
-        property: property id 
+        property: property id
         condition: condition id
+        distance
+        latitude
+        longitude
+        page
         location and property can repeat, but condition can't repeat
+        distance can coexist with another parameter (location OR property OR condition)
     json:
         {"status": 0,
          "organizations": [{"id": "", "name": "", "location": "", "photo": "", "intro": ""}]}
@@ -182,5 +179,14 @@ CONSTANTS
     ACCESS_RESTRICTED = 1005
     ORDER_NOT_EXISTS = 1006
     
+    ORGANIZATION_NOT_EXISTS = 2000
+    
     SQL_EXCEPTION = 5000
+    PARAMETER_ERROR = 5001
+    
+    VIEW_COUNT = 0
+    COMMENTS_COUNT = 1
+    ORDER_COUNT = 2
+    
+    PER_PAGE = 10
     
