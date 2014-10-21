@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 {% block title %}在哪学-注册选择{% endblock title %}
  {% block navbar %}
  {% include 'headless.html' %}
@@ -19,7 +20,9 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="userLogin">
                         <div class="control-group">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
+                                {{ user_form.hidden_tag() }}
+                                {{ wtf.form_errors(user_form) }}
                                 <div class="controls">
                                     <input type="text" id="inputUsername" class="form-control" name="username" placeholder="手机号/用户名">
                                 </div>
@@ -34,7 +37,7 @@
                         <div class="controls">
                             <label class="checkbox" id="rememberme">
                                 <input type="checkbox">记住我</label> <span><a href="#">短信登录</a></span>
- 
+
                         </div>
                         <div class="controls">
                             <button type="submit" class="btn-long1" id="organLoginSubmit">登录</button>

@@ -2,7 +2,17 @@ $(function(){$('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
 });})
-
+ $('#datetimepicker').datetimepicker({
+		  format: 'yyyy/MM/dd hh:mm',
+      //  format: 'MM/dd/yyyy hh:mm',
+        language: 'ch',
+        pickDate: true,
+        pickTime: true,
+        hourStep: 1,
+        minuteStep: 15,
+        secondStep: 30,
+        inputMask: true
+      });
 $(function () {
     var ok1 = false;
     var ok2 = false;
@@ -177,19 +187,6 @@ function addComment2(e,inid,opt,id){
 		}
 	})	
 }
-//提交点评
-function addComment3(){
-	$.ajax({
-		url:'/siteMessage/commentinterview',
-		type:'post',
-		data:$('form[name="comment"]').serialize(),
-		dataType:'json',
-		success:function(data){
-
-		}
-
-	})
-}
 
 $(function(){
 	//点星星
@@ -237,7 +234,7 @@ $(function(){
 	
 
 })
- 
+  //alert("");
 document.getElementById("Commenttext").focus();
  var chackTextarea = function(obj,num,objTip){
   obj.onkeyup=obj.onfocus=function(){
@@ -256,4 +253,6 @@ document.getElementById("Commenttext").focus();
     }
   }
  }
+ 
  chackTextarea(document.getElementById("Commenttext"),500,document.getElementById("commentnum"));
+

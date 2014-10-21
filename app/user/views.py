@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 from . import user
 from .. import db
 from .forms import LoginForm, RegistrationForm
@@ -24,7 +25,11 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email=form.email.data, password=form.password.data)
+        # TODO: add username
+        user = User(email=form.email.data,
+                    cellphone=form.cellphone.data,
+                    password=form.password.data,
+                    member_since=datetime.datetime.now())
         db.session.add(user)
         db.session.commit()
         # token = user.generate_confirmation_token()
