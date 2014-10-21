@@ -26,6 +26,7 @@ def register():
         #send_email(user.email, 'Confirm Your Account',
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
+        login_user(organization)
         return redirect(url_for('main.index'))
     return render_template('organ_regiter_py.html', form=form)
 
