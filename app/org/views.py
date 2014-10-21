@@ -3,7 +3,7 @@ from . import org
 from .. import db
 from ..models import Organization
 from .forms import RegistrationForm
-from flask.ext.login import login_user
+from flask.ext.login import login_user, login_required
 from flask import redirect, url_for, render_template, flash, request
 
 
@@ -32,6 +32,7 @@ def register():
 
 
 @org.route('/detail', methods=['GET', 'POST'])
+@login_required
 def detail():
     form = RegistrationForm()
     if form.validate_on_submit():
