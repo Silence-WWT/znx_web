@@ -193,7 +193,7 @@ body {
     color: #fff;
     width: 175px;
     font-size: 16px;
-    padding: 10px 20px 12px;
+    padding: 10px 20px 10px;
     text-shadow: none;
     margin-left: 0px;
 }
@@ -207,7 +207,7 @@ body {
     margin: 10px 5px;
 }
 #navbar ul {
-    margin:0px 40px;
+    margin:0px 30px;
     font-size:18px;
 }
 .brand img {
@@ -215,6 +215,7 @@ body {
 }
 .nav li {
     line-height:34px;
+	
 }
 .nav li span {
     color:#fff;
@@ -226,8 +227,12 @@ body {
     z-index: 1;
     margin: 44px -20px;
 }
+#navbar > div > ul >li{
+	margin-right:45px;}
 #indexcontent .row {
     margin-left:0px;
+	
+margin-top: -4px;
 }
 #indexcontent .catalog {
     height: 333px;
