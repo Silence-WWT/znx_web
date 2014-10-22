@@ -18,6 +18,9 @@
                 </li>
             </ul>
             <div id="organregform">
+            <form action="" method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_errors(form) }}
                 <div class="upload1">
                      
 <h3 id="about-header1">上传营业执照</h3>
@@ -32,7 +35,7 @@
                             </div>
                         </li>
                         <li>
-                            <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadorginpic').click();">上传本地照片</button>
+                            <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadorginpic').click();return false;">上传本地照片</button>
 <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display:none"></h3><h3>
 <div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}" class="img-polaroid"></div>
 </h3></li>
@@ -52,7 +55,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadshoppic').click();">上传本地照片</button>
+                                    <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadshoppic').click(); return false;">上传本地照片</button>
 <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none"></h3><h3>
 <div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}" class="img-polaroid"></div>
 </h3></li>
@@ -61,6 +64,7 @@
 <div class="controls">
  <button type="submit" class="btn-next btn-final">完成</button>
  </div>
+                </form>
 </div>
 </div>
 </div>
