@@ -78,19 +78,15 @@ filter_organization
 organization_detail
 ---
     URL:
-        /api/v1.0/organization_detail?organization=&content=&page=
+        /api/v1.0/organization_detail?organization=
     method:
         get
     parameters:
         organization: id of organization
-        page
-        content: 0 for organization detail, 1 for classes list, 2 for activities list
     json:
         {"status": 0,
          "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "address": "",
-            "cellphone": "", "comments_count": ""},
-         "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}],
-         "activities": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
+            "cellphone": "", "comments_count": ""}}
          
         status: 0 for success, 2000 for organization not exist
         organization
@@ -103,7 +99,22 @@ organization_detail
             address
             cellphone
             comments_count
-        classes/activities: a list of classes/activities
+    
+class_list
+---
+    URL:
+        /api/v1.0/class_list?organization=&page=
+    method:
+        get
+    parameters:
+        organization: id of organization
+        page
+    json:
+        {"status": 0,
+         "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
+        
+        status: 0 for success
+        classes: a list of classes
             id
             name
             age
@@ -111,6 +122,77 @@ organization_detail
             start_time
             end_time
     
+class_detail
+---
+    URL:
+        /api/v1.0/class_detail?class=
+    method:
+        get
+    parameters:
+        class: id of class
+    json:
+        {"status": 0,
+         "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "try": "", "consult_time": "",
+            "start_time": "", "end_time": ""}}
+        
+        status: 0 for success, 2001 for class not exist
+        class: a dict of class
+            id
+            name
+            age
+            price
+            intro
+            try
+            consult_time
+            start_time
+            end_time
+    
+activity_list
+---
+    URL:
+        /api/v1.0/activity_list?organization=&page=
+    method:
+        get
+    parameters:
+        organization: id of organization
+        page
+    json:
+        {"status": 0,
+         "activities": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
+        
+        status: 0 for success
+        activities: a list of activities
+            id
+            name
+            age
+            price
+            start_time
+            end_time
+
+activity_detail
+---
+    URL:
+        /api/v1.0/activity_detail?activity=
+    method:
+        get
+    parameters:
+        activity: id of activity
+    json:
+        {"status": 0,
+         "activity": {"id": "", "name": "", "age": "", "price": "", "intro": "", "start_time": "", "end_time": ""}}
+        
+        status: 0 for success, 2002 fot activity not exist
+        activity: a dict of activity
+            id
+            name
+            age
+            price
+            intro
+            try
+            consult_time
+            start_time
+            end_time
+
 order_list
 ---
     URL:
@@ -195,6 +277,8 @@ CONSTANTS
     ORDER_NOT_EXISTS = 1006
     
     ORGANIZATION_NOT_EXISTS = 2000
+    CLASS_NOT_EXISTS = 2001
+    ACTIVITY_NOT_EXISTS = 2002
     
     SQL_EXCEPTION = 5000
     PARAMETER_ERROR = 5001
@@ -204,10 +288,6 @@ CONSTANTS
     ORDER_COUNT = 2
     
     PER_PAGE = 10
-    
-    ORGANIZATION_DETAIL = 0
-    CLASSES_LIST = 1
-    ACTIVITIES_LIST = 2
     
     GET = 0
     POST = 1
