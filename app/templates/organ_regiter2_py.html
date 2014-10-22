@@ -76,21 +76,41 @@
                     <div class="control-group">
                         <label class="control-label">城市</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>北京</option>
-                                <option>广东</option>
-                                <option>西安</option>
-                            </select>
+                             <select id="city" class="form-control"> 
+   	   <option>----请选择城市----</option> 
+       <option>北京</option> 
+       <option>上海</option> 
+       <option>西安</option> 
+   </select> 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">区域</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>长沙</option>
-                                <option>西安</option>
-                                <option>厦门</option>
-                            </select>
+                              <select class="district"> 
+   		<option>----请选择城市----</option> 
+   </select> 
+   <select class="district"> 
+       <option>东城</option> 
+       <option>西城</option> 
+       <option>崇文</option> 
+       <option>宣武</option> 
+       <option>朝阳</option> 
+   </select>  
+   <select class="district"> 
+       <option>黄浦</option> 
+       <option>卢湾</option> 
+       <option>徐汇</option> 
+       <option>长宁</option> 
+       <option>静安</option> 
+   </select> 
+   <select class="district"> 
+       <option>长安</option> 
+       <option>雁塔</option> 
+       <option>小寨</option> 
+       
+   </select> 
+
                         </div>
                     </div>
                     <div class="control-group">
@@ -115,3 +135,24 @@
         </div>
     </div>
       {% endblock content %}
+  {% block inscript %}
+  
+  <script type="text/javascript"> 
+
+var currentShowCity=0;
+$(document).ready(function(){
+   $("#city").change(function(){
+	   $("#city option").each(function(i,o){
+		   if($(this).attr("selected"))
+		   {
+		 
+			   $(".district").hide();
+			   $(".district").eq(i).show();
+			   currentShowCity=i;
+		   }
+	   });
+   });
+   $("#city").change();
+});
+</script> 
+     {% endblock inscript %}
