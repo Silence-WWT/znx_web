@@ -13,7 +13,7 @@ register
         email
         identity: cellphone + uuid + 0
     json:
-        {"status": ["0"], "user": {"username": "", "cellphone": "", "identity": "", "email": ""}}
+        {"status": 0, "user": {"username": "", "cellphone": "", "identity": "", "email": ""}}
         
         status: 0 for success, 1002 for existing cellphone, 1004 for existing username, 5000 for SQL exception
         username
@@ -45,27 +45,25 @@ filter_organization
 ---
     URL:
         /api/v1.0/filter_organization?city=&district=&city=&district=&city=&district=&page=
-        /api/v1.0/filter_organization?property=&property=&property=&page=  
-        /api/v1.0/filter_organization?condition=&page=
+        /api/v1.0/filter_organization?profession=&profession=&profession=&page=  
         /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
     method:
         get
     parameters:
         city: name of a city
         district: name of a district
-        property: property id
-        condition: condition id
+        profession: name of  profession
         distance
         latitude
         longitude
         page
         location and property can repeat, but condition can't repeat
-        distance can coexist with another parameter (location OR property OR condition)
+        distance can coexist with another parameter (location OR profession)
     json:
         {"status": 0,
-         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "view_count"/"comments_count"/"orders_count": ""}]}
+         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": ""}]}
          
-        status: 0 for success
+        status: 0 for success, 5001 for parameter error
         organizations: a list of organizations
             id
             name
@@ -73,7 +71,6 @@ filter_organization
             district
             photo: url of photo
             intro
-            view_count/comments_count/order_count
         
 organization_detail
 ---
@@ -286,27 +283,55 @@ order_detail
         address: user's address
         remark: user's remark of a class or activity
     
-register_requirement
+requirement_list
 ---
     URL:
-        /api/v1.0/register_requirement?name=&cellphone=&need=&page=&method=
+        /api/v1.0/requirement_list?page=
     method:
         get
     parameters:
-        method: 0 for get, 1 for post
+        page
+    json:
+        {"status": 0, "registers": [{"name": "", "cellphone": "", "need": "", "time": ""}]}
+        
+        status: 0 for success, 5001 for parameter error
+        registers: a list of registers
+            name
+            cellphone
+            need
+            time
+
+requirement_sign_up
+---
+    URL:
+        /api/v1.0/requirement_sign_up?name=&cellphone=&need=&page=
+    method:
+        get
+    parameters:
         username
         cellphone
         need
         page
     json:
         {"status": 0}
-        {"status": 0, "registers": [{"name": "", "cellphone": "", "need": "", "time": ""}]}
-        registers: a list of registers
-            name
-            cellphone
-            need
-            time
-            
+        
+        status: 0 for success, 5000 for sql exception 5001 for parameter error
+        
+get_location_profession
+---
+    URL:
+        /api/v1.0/get_location_profession?city=
+    method:
+        get
+    parameters:
+        city
+    json:
+        {"status": 0, "districts": [""], "professions": [""]}
+        
+        status: 0 for success, 3000 for city not exist
+        districts: a list of districts in city
+        professions: a list of professions
+
 CONSTANTS
 ---
     SUCCESS = 0
@@ -323,16 +348,12 @@ CONSTANTS
     CLASS_NOT_EXISTS = 2001
     ACTIVITY_NOT_EXISTS = 2002
     
+    CITY_NOT_EXISTS = 3000
+    
     SQL_EXCEPTION = 5000
     PARAMETER_ERROR = 5001
     LACK_OF_PARAMETER = 5002
     
-    VIEW_COUNT = 0
-    COMMENTS_COUNT = 1
-    ORDER_COUNT = 2
-    
     PER_PAGE = 10
-    
-    GET = 0
-    POST = 1
+    EARTH_CIRCUMFERENCE = 40000
     

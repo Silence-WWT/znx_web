@@ -15,4 +15,6 @@ from .import activity_detail
 from .import activity_sign_up
 from .import order_list
 from .import order_detail
-from .import register_requirement
+from .import requirement_list
+from .import requirement_sign_up
+from .import get_location_profession

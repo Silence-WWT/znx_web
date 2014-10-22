@@ -11,17 +11,19 @@ from api_constants import *
 
 @api.route('/register')
 def register():
-    data = {'status': []}
+    data = {}
     username = request.args.get('username')
     password = request.args.get('password')
     cellphone = request.args.get('cellphone')
     identity = request.args.get('identity')
     email = request.args.get('email')
     if User.query.filter_by(cellphone=cellphone).first():
-        data['status'].append(CELLPHONE_EXISTS)
-    if User.query.filter_by(username=username).first():
-        data['status'].append(USERNAME_EXISTS)
-    if not data['status'] and username and password:
+        data['status'] = CELLPHONE_EXISTS
+        return json.dumps(data)
+    elif User.query.filter_by(username=username).first():
+        data['status'] = USERNAME_EXISTS
+        return json.dumps(data)
+    if username and password and cellphone:
         user = User(
             username=username,
             password=password,
@@ -35,9 +37,9 @@ def register():
             db.session.commit()
         except Exception:
             db.session.rollback()
-            data['status'].append(SQL_EXCEPTION)
+            data['status'] = SQL_EXCEPTION
         else:
-            data['status'].append(SUCCESS)
+            data['status'] = SUCCESS
             data['user'] = {
                 'username': username,
                 'cellphone': cellphone,
