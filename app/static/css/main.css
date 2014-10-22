@@ -379,6 +379,7 @@ body {
     height:auto;
     background:#fff;
     padding:20px 0 0px;
+	border:1px solid #ECE9E2;
 }
 #organregall .container>h3 {
     margin-left: 40px;
@@ -1204,7 +1205,7 @@ margin: -91px 100px;
 			width:283px;}
 			#datetimepicker span.add-on{
 				margin: 0px;
-height: 20px;
+height: 18px;
 padding: 10px;
 cursor:pointer;}
 .form-control-more{
@@ -1233,7 +1234,8 @@ color: #292929;
 line-height: 24px;}
 				#lead #myCarousel .carousel-inner{
 					background:#fff;
-					margin-bottom:150px;}
+					margin-bottom:100px;
+					border:1px solid #ECE9E2;}
 				#lead #myCarousel .carousel-inner .item{
 					height: 230px;
 padding-top: 60px;
@@ -1255,7 +1257,8 @@ font-weight: normal;}
 	height: 100px;
 background: #fff;
 margin: 30px 0;
-padding: 100px 0;}
+padding: 100px 0;
+border:1px solid #ECE9E2;}
 #myCarousel li.carli{
 	text-indent: 0;
 height: 43px;
@@ -1266,17 +1269,38 @@ border: 1px solid #fff;
 width: 283px;
 text-align: center;
 }
+#myCarousel li.carlilast{
+	text-indent: 0;
+height: 43px;
+width: 43px;
+cursor: pointer;
+background: #fff;
+border: 1px solid #fff;
+width: 120px;
+text-align: center;}
 	#myCarousel  li.active{
 		border:1px solid #fff;}
 		#myCarousel .anothercar{
 			position: relative;
 			top:0;
-			right:0;}
-				
-				#cartop .carleft,	#cartop .carright{
-					width:150px;
-					float:left;}
-					#organregform .district {
+			right:0;
+			margin-left:100px;}
+				#cartop .carleft{
+					float:left;
+					width:150px;}
+					#cartop .carleft h3{
+						font-size:20px;
+						color:#292929;
+						font-weight:normal;
+						line-height:20px;}
+					#cartop .carright{
+					
+width: 124px;
+float: right;
+margin-top: 10px;
+margin-left: 0px;
+margin-right: 0px;}
+#organregform .district {
 
 padding: 0;
 font-size: 18px;
@@ -1286,4 +1310,81 @@ margin-left: -10px;
 width: 330px;
 height: 42px;
 }
-				
+	
+	#organregall .askleft{
+		width: 680px;
+background: #fff;
+float: left;
+padding:10px 50px 100px;}			
+#organregall .askleft h3.asklearntitle{
+	color: #00B98D;
+border-bottom: 1px solid #dddddd;
+font-size: 28px;
+font-weight: normal;
+}
+#asklearnform  .control-label{
+	line-height: 40px;
+height: 40px;
+font-size: 18px;}
+#asklearnform{
+	padding-top:50px;}
+#asklearnform .form-control{
+	margin-left: 3px;
+width: 320px;
+height: 44px;
+padding: 0;
+font-size: 18px;
+padding-left: 10px;
+background: #fff;}
+#askright{
+	width: 390px;
+float: left;
+
+margin-left: 30px;
+font-size: 12px;
+color: #292929;}
+#askright .learnreason,#askright .newasklearn{
+	padding:0 25px;
+	height:320px;
+	float:left;
+	background: #fff;
+	margin-bottom:20px;
+	border:1px solid #ECE9E2;}
+	#askright .learnreason h3,#askright .newasklearn h3{
+		color: #000;
+font-size: 16px;
+border-bottom: 1px solid #00B98D;
+width: 153px;
+font-weight: normal;
+		}
+		#askright .learnreason hr{
+			margin-top:-10px;}
+			#askright .learnreason ul li{
+				padding:0px 0px;
+				border-bottom:1px solid #dddddd;}
+				#askright .learnreason ul li:last-child{
+					border-bottom:0px;}
+			#askright .learnreason ul li img{
+				float:left;
+				margin-right:10px;}
+					#askright .learnreason ul li h4{
+						color:#292929;
+						font-weight:normal;}
+						#askright .learnreason ul li p{
+							margin-top:-6px;}
+							.askbtn{
+								margin-top: 33px;
+width: 330px;
+margin-left: 0px;}
+#askright .newasklearn{
+	width:340px;
+	height:305px;}
+	#askright .newasklearn ul li{
+		line-height: 40px;
+border-bottom: 1px solid #dddddd;}
+#askright .newasklearn ul li:last-child{
+	border-bottom: 0px;}
+	#askright .newasklearn ul li span{
+		margin-right:20px;}
+		#usercomment2 > h3{
+			background:#fff;}

@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-求学登记{% endblock title %}
+ {% block navbar %}
+ {% include 'headmore.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    <div id="organregall"  class="container">
+        <div class="askleft">
+             
+<h3 class="asklearntitle"><img src="{{ url_for('static', filename='images/asklearn.png') }}"/>让专业培训顾问帮你选课</h3>
+ 
+            <div id="asklearnform">
+                <form class="form-horizontal">
+                
+                 <div class="control-group">
+                        <label class="control-label" >你在哪里</label>
+                        <select class="form-control-more">
+                                <option>全国</option>
+                                <option>西安</option>
+                                 <option>北京</option>
+                                  <option>厦门</option>
+                            </select>
+                        </div>
+                    <div class="control-group">
+                        <label class="control-label">你的姓名</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control"  /> 
+ 
+                        </div>
+                    </div>
+                   
+                    <div class="control-group">
+                        <label class="control-label" >你的手机号</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" />
+ 
+                        </div>
+                    </div>
+                   
+                  <div class="control-group">
+                        <label class="control-label">想学什么</label>
+                        <div class="controls">
+                            <textarea rows="4" class="form-textarea" ></textarea> 
+ 
+                        </div>
+                        </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next askbtn">立即开始</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="askright" id="askright">
+        <div class="learnreason">
+        <h3>为什么上在哪学求学</h3>
+       <hr>
+        <ul class="unstyled">
+        <li>
+        <img src="{{ url_for('static', filename='images/learnwhy1.png') }}" class="img-circle"/>
+        <div><h4>认证学校</h4>
+        <p>在哪学推荐的都是经过认证的学校，已核实营业执照和办学许可证，并签约了诚信合作协议。</p>
+        </div>
+        </li>
+        <li>
+        <img src="{{ url_for('static', filename='images/learnwhy2.png') }}" class="img-circle"/>
+        <div><h4>省时省心</h4>
+        <p>在哪学推荐的都是经过认证的学校，已核实营业执照和办学许可证，并签约了诚信合作协议。</p>
+        </div>
+        </li>
+         <li>
+        <img src="{{ url_for('static', filename='images/learnwhy3.png') }}" class="img-circle"/>
+        <div><h4>点评奖金</h4>
+        <p>在哪学推荐的都是经过认证的学校，已核实营业执照和办学许可证，并签约了诚信合作协议。</p>
+        </div>
+        </li>
+        </ul>
+        
+        </div>
+        <div  class="newasklearn">
+<h3>最新求学信息<img src="{{ url_for('static', filename='images/hot.png') }}"></h3>
+ 
+                <ul class="unstyled">
+                    <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                       <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                        <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                       <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                        <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                        <li><span>10-17 15:48:23</span><span>李同学</span><span>188xxxx6604</span><span>电脑维修</span>
+                    </li>
+                </ul>
+              
+            </div>
+            
+        
+        </div>
+  </div>
+{% endblock content %}

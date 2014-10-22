@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-免费试听课程报名-课程信息 {% endblock title %}
+ {% block navbar %}
+ {% include 'head.html' %}
+    {% endblock navbar %}
+    {% block content %}
+
+
+    <div id="organregall">
+        <div class="container">
+             
+<h3 class="attendtitle">免费试听课程报名</h3>
+ 
+            <ul class="breadcrumb">
+                <li ><a href="#">1、课程信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li ><a href="#">2、个人信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+                </li>
+                <li class="active"><a href="#">3、提交订单</a>
+                </li>
+            </ul>
+            <div id="organregform">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">真实姓名</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control"  value="原宥"/> 
+ 
+                        </div>
+                    </div>
+                   
+                    <div class="control-group">
+                        <label class="control-label" >年龄</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" value="3岁"/>
+ 
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >学员性别</label>
+                            <div class="controls">
+                          <input type="text"  class="form-control" value="男"/>
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label" >联系电话</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" value="150292917283" />
+ 
+                        </div>
+                        </div>
+                         <div class="control-group">
+                        <label class="control-label" >电子邮箱</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" value="3435677@qq.com" />
+ 
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label" >课程名称</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" value="小熊亲子班" />
+ 
+                        </div>
+                    </div>
+                         <div class="control-group">
+                        <label class="control-label" >试听时间</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control"  value="2014/11/10"/>
+ 
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label">备注</label>
+                        <div class="controls">
+                            <textarea rows="4" class="form-textarea" placeholder="请填写你期望开设的课程"></textarea> 
+ 
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next">提交订单</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+  
+    </div>
+{% endblock content %}
