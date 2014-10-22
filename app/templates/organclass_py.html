@@ -1,0 +1,259 @@
+{% extends "layout.html" %}
+{% block title %}去哪学-机构课程详情页 {% endblock title %}
+ {% block navbar %}
+ {% include 'head.html' %}
+    {% endblock navbar %}
+    {% block content %}
+<div class="container" id="myorgan">
+<div class="classdet" id="classdet">
+<div class="classnamepic">
+<img src="{{ url_for('static', filename='images/classname.png') }}"/></div>
+<div class="picright">
+<h3>小熊亲子班</h3><div class="revinp">
+				<span class="level">
+             	    <i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+                    <span>4分</span>
+				</span>
+			</div>
+            
+
+<ul class="unstyled">
+<li>
+<span class="organview"><i class="icon-eye-open"></i>1233</span>
+<span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+</li>
+<li class="firstli">适合年龄：6-12个月</li>
+<li>总课时：24课时</li>
+<li>咨询时间：09:00-21:00</li>
+<li>上课时间：周一至周五09:00-21:00（滚动开班）</li>
+</ul>
+</div>
+<div class="threesmall">
+<span><i class=" icon-star"></i>收藏</span>
+<span><i class="  icon-share"></i>分享</span>
+<span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"  data-toggle="modal">纠错</a></span>
+</div>
+<div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mywrongLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCommentLabel">我要纠错</h3>
+  </div>
+  <div class="modal-body">
+ <form action="#" method="post" class="form-horizontal"/>
+ <div class="control-group">
+             <h4>请留言</h4>
+                          <textarea rows="5" class="form-textarea" id="wrongtext"></textarea> 
+                         
+                        </div>
+ </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-next nomargin" type="submit">提交</button>
+  </div>
+</div>
+</div>
+
+<a href="#" ><button  class="attendbtn" ></button></a>
+
+</div>
+
+<div class="container" id="organthree"> 
+  
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+     <div class="organallknow">
+     <dl class="dl-horizontal">
+  <dt>简介特色</dt>
+  <dd><div><div id="boxmore">杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
+地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
+来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
+远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
+地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
+来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
+远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
+地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
+来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
+远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
+地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
+来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
+远程可控、学生显著进步。</div>
+</dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>附近交通</dt>
+  <dd><p class="organplace">地铁5号线南站</p></dd>
+</dl>
+<dl class="dl-horizontal">
+
+  <dt>评论（34）<span id="icommnet"><a href="#myComment" role="button"  data-toggle="modal"><img src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+  <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCommentLabel">写评价，攒人品！</h3>
+  </div>
+  <div class="modal-body">
+ <form action="#" method="post" class="form-horizontal"/>
+ <div class="control-group">
+                        <label class="control-label" for="inputPhone">总体评价</label>
+                        <div class="controls">
+                            <div class="revinp">
+				<span class="level">
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+				</span>
+				<span class="revgrade">未评分</span>
+			</div>
+
+                        </div>
+                        <br>
+                       <div class="control-group">
+                        <h4>写评价</h4>
+                          <textarea rows="5" class="form-textarea" id="Commenttext"></textarea> 
+                          <b id="commentnum"></b>
+                        </div>
+                    </div>
+ </form>
+  </div>
+  <div class="modal-footer">
+  <span id="niming">
+   <input type="checkbox">匿名登录</span>
+    <button class="btn-next nomargin" type="submit">提交</button>
+  </div>
+</div>
+  <dd>
+  <ul class="unstyled" id="usertest">
+  <li>
+  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
+  <span class="text-center">程文</span>
+  </div>
+  <div class="righttest" >
+  <div class="popover right" id="usercomment1">
+            <div class="arrow"></div>
+            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
+            <div class="popover-content">
+             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
+            
+            <span><div class="revinp">
+				<span class="level">
+                <b>描述相符：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+            <span><div class="revinp">
+				<span class="level">
+                <b>响应速度：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+          <span>
+            <div class="revinp">
+				<span class="level"> <b>描述相符：</b>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div>
+          </span></div>
+             <div class="commment">
+             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
+             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
+             </p>
+             
+             </div>
+            </div>
+          </div>
+  </div>
+  </li>
+ <li>
+  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
+  <span class="text-center">程文</span>
+  </div>
+  <div class="righttest">
+  <div class="popover right" id="usercomment2">
+            <div class="arrow"></div>
+            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
+            <div class="popover-content">
+             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
+            
+            <span><div class="revinp">
+				<span class="level">
+                <b>描述相符：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+            <span><div class="revinp">
+				<span class="level">
+                <b>响应速度：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div></span>
+          <span>
+            <div class="revinp">
+				<span class="level"> <b>描述相符：</b>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+				
+			</div>
+          </span></div>
+             <div class="commment">
+             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
+             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
+             </p>
+             
+             </div>
+            </div>
+          </div>
+  </div>
+  </li>
+  </ul>
+  </dd>
+</dl>
+
+ 
+<!-- Modal -->
+
+     </div>
+    </div>
+    
+     
+  </div>
+
+
+</div>
+
+ {% endblock content %}
+
+
+
+
+
