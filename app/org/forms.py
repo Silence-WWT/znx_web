@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import uuid
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, SelectField
+from wtforms import StringField, PasswordField, SelectField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
@@ -27,15 +27,15 @@ class RegistrationForm(Form):
 # TODO: cellphone regexp validator
 
 class DetailForm(Form):
-    type_id = SelectField()
+    type_id = SelectField(coerce=int)
     name = StringField()
-    profession_id = SelectField()
-    property_id = SelectField()
-    size_id = SelectField()
+    profession_id = SelectField(coerce=int)
+    property_id = SelectField(coerce=int)
+    size_id = SelectField(coerce=int)
     contact = StringField()
-
+    location_id = SelectField(coerce=int)
     address = StringField()
-    intro = StringField()
+    intro = TextAreaField()
 
 
 class CertificationForm(Form):

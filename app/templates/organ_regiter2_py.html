@@ -18,7 +18,7 @@
                 </li>
             </ul>
             <div id="organregform">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                     {{ form.hidden_tag() }}
                     {{ wtf.form_errors(form) }}
                     <div class="control-group">
@@ -30,7 +30,7 @@
                     <div class="control-group">
                         <label class="control-label">机构名称</label>
                         <div class="controls">
-                            <input type="text" class="form-control"> <span></span>
+                            <input type="text" name="{{ form.name.name }}" class="form-control"> <span></span>
  
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                     <div class="control-group">
                         <label class="control-label">联系人</label>
                         <div class="controls">
-                            <input type="text" class="form-control"> <span></span>
+                            <input type="text" name="{{ form.contact.name }}" class="form-control"> <span></span>
  
                         </div>
                     </div>
@@ -63,11 +63,11 @@
                         <label class="control-label">城市</label>
                         <div class="controls form-control">
                              <select id="city" class="form-control"> 
-   	   <option>----请选择城市----</option> 
-       <option>北京</option> 
-       <option>上海</option> 
-       <option>西安</option> 
-   </select> 
+   	   <option>----请选择城市----</option>
+                                 {% for city in form.location.iterkeys() %}
+                                 <option>{{ city }}</option>
+                                 {% endfor %}
+   </select>
                         </div>
                     </div>
                     <div class="control-group">
@@ -75,41 +75,29 @@
                         <div class="controls form-control">
                               <select class="district"> 
    		<option>----请选择区域----</option> 
-   </select> 
-   <select class="district"> 
-       <option>东城</option> 
-       <option>西城</option> 
-       <option>崇文</option> 
-       <option>宣武</option> 
-       <option>朝阳</option> 
-   </select>  
-   <select class="district"> 
-       <option>黄浦</option> 
-       <option>卢湾</option> 
-       <option>徐汇</option> 
-       <option>长宁</option> 
-       <option>静安</option> 
-   </select> 
-   <select class="district"> 
-       <option>长安</option> 
-       <option>雁塔</option> 
-       <option>小寨</option> 
-       
-   </select> 
+   </select>
+
+                            {% for city, districts in form.location.iteritems() %}
+   <select name="{{ form.location_id.name }}" class="district">
+       {% for id, district in districts %}
+       <option value="{{ id }}">{{ district }}</option>
+       {% endfor %}
+   </select>
+                        {% endfor %}
 
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">详细地址</label>
                         <div class="controls">
-                            <input type="text" class="form-control"> <span></span>
+                            <input type="text" name="{{ form.address.name }}" class="form-control"> <span></span>
  
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">详细介绍</label>
                         <div class="controls">
-                            <textarea rows="4" class="form-textarea"></textarea> <span></span>
+                            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea"></textarea> <span></span>
  
                         </div>
                     </div>
