@@ -5,13 +5,13 @@ from flask import redirect, url_for
 from flask.ext.login import login_user
 
 
-@test.route('/user/<id>')
+@test.route('/user/<int:id>')
 def user_login(id):
     user = User.query.filter_by(id=id).first()
     login_user(user)
     return redirect(url_for('main.index'))
 
-@test.route('/org/<id>')
+@test.route('/org/<int:id>')
 def org_login(id):
     org = Organization.query.filter_by(id=id).first()
     login_user(org)
