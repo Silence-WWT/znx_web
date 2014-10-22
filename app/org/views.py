@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, Profession, Property, Size
-from .forms import RegistrationForm, DetailForm
+from .forms import RegistrationForm, DetailForm, CertificationForm
 from flask.ext.login import login_user, login_required
 from flask import redirect, url_for, render_template, flash, request
 
@@ -60,7 +61,7 @@ def detail():
 
 @org.route('/certification', methods=['GET', 'POST'])
 def certification():
-    form = RegistrationForm()
+    form = CertificationForm()
     if form.validate_on_submit():
         organization = Organization(cellphone=form.cellphone.data,
                                     password=form.password.data)

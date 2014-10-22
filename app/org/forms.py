@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+import uuid
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo
-from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from ..models import Organization, Type
 
@@ -37,5 +38,8 @@ class DetailForm(Form):
     intro = StringField()
 
 
-class OrganizationForm3(Form):
-    pass
+class CertificationForm(Form):
+    certification = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+    photo = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
