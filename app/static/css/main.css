@@ -1223,9 +1223,17 @@ background: #fff;}
 		.itemcontentdown{
 			float:left;}
 			.itemcontentdown img{
-				float:left;}
+				float:left;
+				margin-right: 15px;
+}
+.itemcontentdown p{
+	margin-top: 1px;
+font-size: 20px;
+color: #292929;
+line-height: 24px;}
 				#lead #myCarousel .carousel-inner{
-					background:#fff;}
+					background:#fff;
+					margin-bottom:150px;}
 				#lead #myCarousel .carousel-inner .item{
 					height: 230px;
 padding-top: 60px;
@@ -1234,4 +1242,38 @@ padding-top: 60px;
 	font-size: 28px;
 font-weight: normal;
 text-align: center;}
+#arr1,#arr2{
+	background: #fff;
+color: #919191;
+height: 200px;
+font-size: 200px;
+/* line-height: 200px; */
+line-height: 200px;
+margin: 65px 50px;
+font-weight: normal;}
+#cartop{
+	height: 100px;
+background: #fff;
+margin: 30px 0;
+padding: 100px 0;}
+#myCarousel li.carli{
+	text-indent: 0;
+height: 43px;
+width: 43px;
+cursor: pointer;
+background: #fff;
+border: 1px solid #fff;
+width: 283px;
+text-align: center;
+}
+	#myCarousel  li.active{
+		border:1px solid #fff;}
+		#myCarousel .anothercar{
+			position: relative;
+			top:0;
+			right:0;}
 				
+				#cartop .carleft,	#cartop .carright{
+					width:150px;
+					float:left;}
+					
