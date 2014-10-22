@@ -15,12 +15,14 @@ class Config:
     MAIL_PASSWORD = 'ntfc12345'
     ZNX_MAIL_SUBJECT_PREFIX = '[ZNX]'
     ZNX_MAIL_SENDER = 'Notification <Notification@znx.com>'
+    PHOTO_DIR = os.path.join(basedir, 'photos')
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'mysql://dev:devpassword@localhost/znx?charset=utf8'
+    PHOTO_DIR = os.path.join(basedir, 'photos')
 
 
 class TestingConfig(Config):
