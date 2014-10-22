@@ -147,6 +147,28 @@ class_detail
             start_time
             end_time
     
+class_sign_up
+---
+    URL:
+        /api/v1.0/class_sign_up?class=&username=&name=&cellphone=&age=&sex=&address=&remark=&email=&time=
+    method:
+        get
+    parameters:
+        class: id of class
+        username
+        name
+        cellphone
+        age
+        sex
+        address
+        remark
+        email
+        time: YYYY-mm-dd
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 5002 for lack of parameters
+        
 activity_list
 ---
     URL:
@@ -193,6 +215,27 @@ activity_detail
             start_time
             end_time
 
+activity_sign_up
+---
+    URL:
+        /api/v1.0/activity_sign_up?class=&username=&name=&cellphone=&age=&sex=&address=&remark=&email=
+    method:
+        get
+    parameters:
+        class: id of class
+        username
+        name
+        cellphone
+        age
+        sex
+        address
+        remark
+        email
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 5002 for lack of parameters
+        
 order_list
 ---
     URL:
@@ -282,6 +325,7 @@ CONSTANTS
     
     SQL_EXCEPTION = 5000
     PARAMETER_ERROR = 5001
+    LACK_OF_PARAMETER = 5002
     
     VIEW_COUNT = 0
     COMMENTS_COUNT = 1
