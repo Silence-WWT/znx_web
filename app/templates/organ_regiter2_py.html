@@ -19,14 +19,12 @@
             </ul>
             <div id="organregform">
                 <form class="form-horizontal">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
                     <div class="control-group">
                         <label class="control-label">选择类型</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>学校</option>
-                                <option>补习班</option>
-                                <option>社会学校</option>
-                            </select>
+                            {{ form.type_id(class="form-control") }}
                         </div>
                     </div>
                     <div class="control-group">
@@ -39,31 +37,19 @@
                     <div class="control-group">
                         <label class="control-label">行业</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>艺术培训</option>
-                                <option>科技培训</option>
-                                <option>教育培训</option>
-                            </select>
+                            {{ form.profession_id(class="form-control") }}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">类别</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>民营</option>
-                                <option>公有</option>
-                                <option>外企</option>
-                            </select>
+                            {{ form.property_id(class="form-control") }}
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">规模</label>
                         <div class="controls form-control">
-                            <select class="form-control">
-                                <option>100-400</option>
-                                <option>500-1000</option>
-                                <option>1000以上</option>
-                            </select>
+                            {{ form.size_id(class="form-control") }}
                         </div>
                     </div>
                     <div class="control-group">
