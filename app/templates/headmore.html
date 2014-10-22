@@ -5,14 +5,21 @@
                     <img src="{{ url_for('static', filename='images/phonelogo.png') }}">手机版在哪学</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
+                      {% if current_user.is_authenticated() %}
+                           <li> <a href="">{{current_user.get_name()}}</a>的在哪学</li>
+                            <li style="color: #E2E1DE;">|</li>
+                         <li><a href="{{ url_for('main.logout') }}">登出</a>
+                        </li>
+                	{% else %}
                         <li>
                             <a href="{{ url_for('main.login') }}">
                                 <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
                         </li>
                         <li><a href="{{ url_for('main.register') }}">注册</a>
                         </li>
-                        <li><a href="#myznx">我的在哪学</a>
-                        </li>
+                        {% endif %}
+                     
+                        
                         <li><span><img src="{{ url_for('static', filename='images/telelogo.png') }}">400-91-910</span>
                         </li>
                     </ul>

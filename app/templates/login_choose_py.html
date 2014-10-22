@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
 {% block title %}在哪学-注册选择{% endblock title %}
  {% block navbar %}
  {% include 'headless.html' %}
@@ -18,26 +17,28 @@
                     </li>
                 </ul>
                 <div class="tab-content">
+                
                     <div class="tab-pane active" id="userLogin">
+                      <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
++                                 {{ user_form.hidden_tag() }}
++                                 {{ wtf.form_errors(user_form) }}
                         <div class="control-group">
-                            <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
-                                {{ user_form.hidden_tag() }}
-                                {{ wtf.form_errors(user_form) }}
+                           
                                 <div class="controls">
                                     <input type="text" id="inputUsername" class="form-control" name="username" placeholder="手机号/用户名">
                                 </div>
-                        </form></div>
+                        </div>
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="text" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->
                         <div class="controls">
                             <label class="checkbox" id="rememberme">
                                 <input type="checkbox">记住我</label> <span><a href="#">短信登录</a></span>
-
+ 
                         </div>
                         <div class="controls">
                             <button type="submit" class="btn-long1" id="organLoginSubmit">登录</button>
@@ -47,20 +48,22 @@
                             <div class="form-right"><a class="form-signup" href="user_regiter.html">免费注册</a><a href="#" class="form-feedback" target="_blank" style="color:#000;"><span class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
-                         
+                           </form> 
                     </div>
+                 
                     <!--userLogin-->
                     <div class="tab-pane" id="organLogin">
+                    <form class="form-horizontal">
                         <div class="control-group">
-                            <form class="form-horizontal">
+                            
                                 <div class="controls">
                                     <input type="text" id="inputUsername" class="form-control" name="username" placeholder="手机号/机构名称">
                                 </div>
-                        </form></div>
+                        </div>
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="text" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control" name="password" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->
@@ -77,8 +80,9 @@
                             <div class="form-right"><a class="form-signup" href="organ_regiter.html">免费注册</a><a href="#" class="form-feedback" target="_blank" style="color:#000;"><span class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
-                         
+                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>

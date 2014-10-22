@@ -5,13 +5,15 @@
     text-decoration:none;
     color:#727272;
 }
+a:hover{
+	text-decoration:none;}
 #warp {
     color:#727272;
 }
 .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .container {
     width:1200px;
 }
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+textarea:focus, select:focus,input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
     border-color: rgba(0, 185, 141, 0.8);
     outline: 0px none;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(0, 185, 141, 0.6);
@@ -1213,3 +1215,75 @@ padding: 0;
 font-size: 18px;
 padding-left: 10px;
 background: #fff;}
+.itemcontent{
+	width:600px;
+	margin:0 auto;}
+	.itemcontent .img{
+		float:left;}
+		.itemcontentdown{
+			float:left;}
+			.itemcontentdown img{
+				float:left;
+				margin-right: 15px;
+}
+.itemcontentdown p{
+	margin-top: 1px;
+font-size: 20px;
+color: #292929;
+line-height: 24px;}
+				#lead #myCarousel .carousel-inner{
+					background:#fff;
+					margin-bottom:150px;}
+				#lead #myCarousel .carousel-inner .item{
+					height: 230px;
+padding-top: 60px;
+}
+#lead #myCarousel .carousel-inner .item h1{
+	font-size: 28px;
+font-weight: normal;
+text-align: center;}
+#arr1,#arr2{
+	background: #fff;
+color: #919191;
+height: 200px;
+font-size: 200px;
+/* line-height: 200px; */
+line-height: 200px;
+margin: 65px 50px;
+font-weight: normal;}
+#cartop{
+	height: 100px;
+background: #fff;
+margin: 30px 0;
+padding: 100px 0;}
+#myCarousel li.carli{
+	text-indent: 0;
+height: 43px;
+width: 43px;
+cursor: pointer;
+background: #fff;
+border: 1px solid #fff;
+width: 283px;
+text-align: center;
+}
+	#myCarousel  li.active{
+		border:1px solid #fff;}
+		#myCarousel .anothercar{
+			position: relative;
+			top:0;
+			right:0;}
+				
+				#cartop .carleft,	#cartop .carright{
+					width:150px;
+					float:left;}
+					#organregform .district {
+
+padding: 0;
+font-size: 18px;
+padding-left: 10px;
+background: #fff;
+margin-left: -10px;
+width: 330px;
+height: 42px;
+}
+				
