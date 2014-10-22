@@ -18,7 +18,7 @@ def login():
     if user is not None and user.verify_password(password):
         if user.identity != identity and identity:
             user.identity = identity
-        data[STATUS] = SUCCESS
+        data['status'] = SUCCESS
         data['user'] = {
             'username': user.username,
             'cellphone': user.cellphone,
@@ -26,5 +26,5 @@ def login():
             'identity': user.identity
         }
     else:
-        data[STATUS] = LOGIN_FAILED
+        data['status'] = LOGIN_FAILED
     return json.dumps(data)

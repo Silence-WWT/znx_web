@@ -17,6 +17,9 @@ def order_list():
         page = int(request.args.get('page'))
     except TypeError:
         page = 1
+    except ValueError:
+        data['status'] = PARAMETER_ERROR
+        return json.dumps(data)
     user = User.query.filter_by(username=username, cellphone=cellphone).first()
     if user:
         orders_list = []

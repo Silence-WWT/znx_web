@@ -7,6 +7,12 @@ from .import login
 from .import register
 from .import filter_organization
 from .import organization_detail
+from .import class_list
+from .import class_detail
+from .import class_sign_up
+from .import activity_list
+from .import activity_detail
+from .import activity_sign_up
 from .import order_list
 from .import order_detail
 from .import register_requirement
