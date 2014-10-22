@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms import ValidationError
-from ..models import Organization
+from ..models import Organization, Type
 
 
 class RegistrationForm(Form):
@@ -24,8 +25,16 @@ class RegistrationForm(Form):
 
 # TODO: cellphone regexp validator
 
-class OrganizationForm2(Form):
-    pass
+class DetailForm(Form):
+    type_id = SelectField()
+    name = StringField()
+    profession_id = SelectField()
+    property_id = SelectField()
+    size_id = SelectField()
+    contact = StringField()
+
+    address = StringField()
+    intro = StringField()
 
 
 class OrganizationForm3(Form):
