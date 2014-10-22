@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import uuid
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization
+from ..models import Organization, Type
 
 
 class RegistrationForm(Form):
@@ -24,9 +26,20 @@ class RegistrationForm(Form):
 
 # TODO: cellphone regexp validator
 
-class OrganizationForm2(Form):
-    pass
+class DetailForm(Form):
+    type_id = SelectField()
+    name = StringField()
+    profession_id = SelectField()
+    property_id = SelectField()
+    size_id = SelectField()
+    contact = StringField()
+
+    address = StringField()
+    intro = StringField()
 
 
-class OrganizationForm3(Form):
-    pass
+class CertificationForm(Form):
+    certification = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+    photo = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])

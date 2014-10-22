@@ -28,13 +28,13 @@
 <h3>参考案例</h3>
  
                             <div class="anlipic">
-                                <img src="{{ url_for('static', filename='images/anli1.png') }}" class="img-polaroid">
+                                <img src="{{ url_for('static', filename='images/anli1.jpg') }}" class="img-polaroid">
                             </div>
                         </li>
                         <li>
                             <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadorginpic').click();">上传本地照片</button>
-<input type="file" name="upload1" id="uploadorginpic" style="display:none"></h3><h3>
-<div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.png') }}" class="img-polaroid"></div>
+<input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display:none"></h3><h3>
+<div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}" class="img-polaroid"></div>
 </h3></li>
 </ul>
 </div>
@@ -48,13 +48,13 @@
 <h3>参考案例</h3>
  
                                     <div class="anlipic">
-                                        <img src="{{ url_for('static', filename='images/mendian1.png') }}" class="img-polaroid">
+                                        <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
                                     </div>
                                 </li>
                                 <li>
                                     <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadshoppic').click();">上传本地照片</button>
-<input type="file" name="upload2" id="uploadshoppic" style="display:none"></h3><h3>
-<div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.png') }}" class="img-polaroid"></div>
+<input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none"></h3><h3>
+<div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}" class="img-polaroid"></div>
 </h3></li>
 </ul>
 </div>
