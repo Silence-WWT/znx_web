@@ -3,7 +3,8 @@ import os
 from uuid import uuid4
 from . import org
 from .. import db
-from ..models import Organization, Type, Profession, Property, Size, Location
+from ..models import Organization, Type,\
+    Profession, Property, Size, Location, Class, Activity
 from .forms import RegistrationForm, DetailForm, CertificationForm, LoginForm
 from ..user.forms import  LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
@@ -118,3 +119,14 @@ def certification():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('organ_regiter3_py.html', form=form)
+
+
+@org.route('/home/<int:id>')
+def home(id):
+    org = Organization.query.get_or_404(id)
+    classes = Class.query.filter_by(organization_id=id).all()
+    activities = Activity.query.filter_by(organization_id=id).all()
+    return render_template('organindex_py.html',
+                           org=org,
+                           classes=classes,
+                           activities=activities)
