@@ -230,8 +230,7 @@
        </div>
    <div class="classright">
    <span>￥{{ class.price }}</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
-   </div>
+   <a href="#"><button class=" btn-myred">查看详情</button></a></div>
    </li>
         {% endfor %}
    </ul>
@@ -240,12 +239,12 @@
      <div class="tab-pane" id="tab3">
       <div id="organplay">
    <ul class="unstyled">
-       {#
+       {% for activity in org.get_activities()  %}
    <li>
    <div class="classleft">
    <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
    <div class="classtest">
-   <h3>{{机构活动}}</h3>
+   <h3>{{ activity.name }}</h3>
    <br>
    <span> <div class="revinp">
 				<span class="level">
@@ -254,21 +253,19 @@
 					<i class="level_solid" ></i>
 					<i class="level_solid" ></i>
 					<i class="level_hollow" ></i>
-				</span><b>{{评价人数}}</b>
+				</span><b>{{ activity.get_comment_count() }}</b>
        </div>
    </span>
-           <span>适合年龄：{{适合年龄}}</span>
-           <span>总课时：{{总课时}}</span>
+           <span>适合年龄：{{ activity.get_age() }}</span>
+           <span>总课时： {# TODO #}</span>
 
    </div>
    <div class="classright">
-   <span>￥500</span>
+   <span>￥{{ activity.price }}</span>
    <a href="#" ><button class=" btn-myred">查看详情</button></a></div>
    </div>
    </li>
-
-
-        #}
+       {% endfor %}
 
    </ul>
    </div>
