@@ -32,6 +32,7 @@ def register():
     if form.validate_on_submit():
         # TODO: add username
         user = User(email=form.email.data,
+                    username=form.username.data,
                     cellphone=form.cellphone.data,
                     password=form.password.data,
                     member_since=datetime.datetime.now())

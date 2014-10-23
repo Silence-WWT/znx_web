@@ -55,7 +55,7 @@
                  
                     <!--userLogin-->
                     <div class="tab-pane" id="organLogin">
-                    <form class="form-horizontal" action="{{ url_for('org.login') }}">
+                    <form class="form-horizontal" action="{{ url_for('org.login') }}" method="post">
                         {{ org_form.hidden_tag() }}
                         {{ wtf.form_errors(org_form) }}
                         <div class="control-group">
