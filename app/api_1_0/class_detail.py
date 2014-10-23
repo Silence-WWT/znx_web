@@ -28,5 +28,5 @@ def class_detail():
         }
         data['status'] = SUCCESS
     else:
-        data['status'] = CLASS_NOT_EXISTS
+        data['status'] = CLASS_NOT_EXIST
     return json.dumps(data)

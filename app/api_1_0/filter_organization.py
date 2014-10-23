@@ -19,9 +19,9 @@ def filter_organization():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
-    city_list = request.args.getlist('city')
-    district_list = request.args.getlist('district')
-    profession_list = request.args.getlist('profession')
+    city = request.args.get('city')
+    district = request.args.get('district')
+    profession = request.args.get('profession')
     distance = request.args.get('distance')
     if distance:
         try:
@@ -43,20 +43,20 @@ def filter_organization():
     else:
         org_query = Organization.query
 
-    if city_list and len(city_list) == len(district_list):
-        city_district_list = map(lambda city, district: (city, district), city_list, district_list)
-        location_list = []
-        for (city, district) in city_district_list:
-            location = Location.query.filter_by(city=city, district=district).frist()
-            if location:
-                location_list.append(location.id)
-        org_list = org_query.filter(Organization.location.in_(location_list)) \
-            .paginate(page, PER_PAGE, False).items
-    elif profession_list:
-        professions = Profession.query.filter(Profession.profession.in_(profession_list))
-        profession_list = [profession.id for profession in professions]
-        org_list = org_query.filter(Organization.profession.in_(profession_list)) \
-            .paginate(page, PER_PAGE, False).items
+    if city and district:
+        location = Location.query.filter_by(city=city, district=district).frist()
+        if location:
+            org_list = org_query.filter_by(location=location.id).paginate(page, PER_PAGE, False).items
+        else:
+            data['status'] = CITY_NOT_EXIST
+            return json.dumps(data)
+    elif profession:
+        profession = Profession.query.filter_by(profession=profession).first()
+        if profession:
+            org_list = org_query.filter_by(profession=profession.id).paginate(page, PER_PAGE, False).items
+        else:
+            data['status'] = PROFESSION_NOT_EXIST
+            return json.dumps(data)
     else:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)

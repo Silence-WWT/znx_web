@@ -22,7 +22,7 @@ def order_detail():
             activity_order_id = request.args.get('activity_order')
             order = ActivityOrder.query.filter_by(id=activity_order_id).first()
         if not order:
-            data['status'] = ORDER_NOT_EXISTS
+            data['status'] = ORDER_NOT_EXIST
             return json.dumps(data)
         elif user.id != order.user_id:
             data['status'] = ACCESS_RESTRICTED
@@ -47,5 +47,5 @@ def order_detail():
             data['activity_order'] = order_dict
         data['status'] = SUCCESS
     else:
-        data['status'] = USER_NOT_EXISTS
+        data['status'] = USER_NOT_EXIST
     return json.dumps(data)

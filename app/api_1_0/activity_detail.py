@@ -26,5 +26,5 @@ def activity_detail():
         }
         data['status'] = SUCCESS
     else:
-        data['status'] = ACTIVITY_NOT_EXISTS
+        data['status'] = ACTIVITY_NOT_EXIST
     return json.dumps(data)

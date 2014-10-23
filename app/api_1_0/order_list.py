@@ -52,5 +52,5 @@ def order_list():
         data['orders'] = sorted(orders_list, key=lambda x: x['timestamp'], reverse=True)
         data['status'] = SUCCESS
     else:
-        data['status'] = USER_NOT_EXISTS
+        data['status'] = USER_NOT_EXIST
     return json.dumps(data)
