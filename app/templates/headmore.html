@@ -7,7 +7,7 @@
                     <ul class="nav pull-right">
                       {% if current_user.is_authenticated() %}
                            <li> <a href="">{{current_user.get_name()}}</a>的在哪学</li>
-                            <li style="color: #E2E1DE;">|</li>
+                              <li class="linehr">|</li>
                          <li><a href="{{ url_for('main.logout') }}">登出</a>
                         </li>
                 	{% else %}
@@ -15,6 +15,7 @@
                             <a href="{{ url_for('main.login') }}">
                                 <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
                         </li>
+                          <li class="linehr">|</li>
                         <li><a href="{{ url_for('main.register') }}">注册</a>
                         </li>
                         {% endif %}
@@ -156,3 +157,4 @@
             </div>
         </div>
     </div>
+    <hr class="longhr"/>

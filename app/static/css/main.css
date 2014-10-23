@@ -52,6 +52,13 @@ filter: alpha(opacity=70);
 #navbar {
     margin-bottom:0px;
 }
+#headnav > div > div > div > ul > li:nth-child(1) > a > img{
+	margin-right:1px;}
+	#headnav > div > div > div > ul > li.linehr{
+		margin-top: 3px;
+margin-left: 0px;
+margin-right: 10px;
+color: #E0E0E0;}
 body {
     height: 100%;
     font-family:"微软雅黑";
@@ -167,6 +174,11 @@ body {
 #navbar i {
     margin: 4px 45px 3px;
 }
+#navbar i.icon-chevron-down{
+	background:url("../images/arrdown.png");} 
+	#navbar i.icon-chevron-up{
+	background:url("../images/arrup.png");} 
+
 .logopic {
     text-indent: -9999px;
     width: 200px;
@@ -211,7 +223,7 @@ body {
     font-size:18px;
 }
 .brand img {
-    height:35px;
+   margin:-4px 5px 0px;
 }
 .nav li {
     line-height:34px;
@@ -299,14 +311,17 @@ margin-top: -4px;
     text-align: center;
 }
 #asklearn .abtn button {
-    background: url(../images/qxdj.png);
-    height: 56px;
-    width: 200px;
-    outline: none;
-    border: 0px;
+   background: url(../images/qxdj.png);
+height: 58px;
+width: 236px;
+outline: none;
+border: 0px;
 }
+#bigheadnav > div > div > div > ul > li:nth-child(3) > a{
+	color:#727272;}
 .nav li span img {
-    height:35px;
+  /* height: 35px; */
+MARGIN: -3px 4px 0px;
 }
 .allfooter .row-fluid ul li {
     margin-left: 15px;
@@ -737,7 +752,7 @@ margin-top: -4px;
     cursor:pointer;
 }
 .bignavright ul li img {
-    margin-bottom:6px;
+    margin-bottom:5px;
 }
 #userLogin .form-auxlinks, #organLogin .form-auxlinks {
     margin-left: 56px;
@@ -1393,3 +1408,8 @@ border-bottom: 1px solid #dddddd;}
 		margin-right:20px;}
 		#usercomment2 > h3{
 			background:#fff;}
+			#wrap .longhr{
+				width:100%; border-top: 1px solid #D3C9BB;
+border-bottom: 1px solid #ECE9E2;
+margin:0px;
+				}
