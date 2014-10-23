@@ -12,8 +12,8 @@
 <div class="organlogo"><img src="{{ url_for('static', filename='images/organlogo.png') }}" class="img-circle img-polaroid"/> </div>
 <div class="organname">
 <dl>
-  <dt><span>{{机构名称}}</span><address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{机构网址}}</address></dt>
-  <dd>——{{机构宣传语}}</dd>
+  <dt><span>{{ org.name }}</span><address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{ url_for('org.home', id=org.id) }}</address></dt>
+  <dd>——{{ org.slogan }}</dd>
 </dl>
 </div>
 </div>
@@ -107,14 +107,14 @@
   <dt>机构简介</dt>
   <dd>
       <div>
-          <div id="boxmore">{{ 机构简介}}
+          <div id="boxmore">{{ org.intro }}
           </div>
           </div>
 </dd>
 </dl>
 <dl class="dl-horizontal">
   <dt>附近交通</dt>
-  <dd><p class="organplace">{{机构地址}}</p></dd>
+  <dd><p class="organplace">{{ org.address }}</p></dd>
 </dl>
 <dl class="dl-horizontal">
 
@@ -158,14 +158,14 @@
 </div>
   <dd>
   <ul class="unstyled" id="usertest">
+      {% for comment in org.get_comments() %}
   <li>
   <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
-  <span class="text-center">{{评价用户名}}</span>
+  <span class="text-center">{{ comment.get_user().username }}</span>
   </div>
   <div class="righttest" >
   <div class="popover right" id="usercomment1">
             <div class="arrow"></div>
-            <h3 class="popover-title"><span>{{课程名}}</span><span>{{上课方式}}</span><span>{{上课时间}}</span></h3>
             <div class="popover-content">
              <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
 
@@ -176,13 +176,15 @@
 					<i class="level_solid" ></i>
 					<i class="level_solid" ></i>
 					<i class="level_hollow" ></i>
+                    {{ comment.stars }}
 				</span>
+            <span>{{ comment.timestamp }}</span>
 
 			</div></span>
 
          </div>
              <div class="commment">
-             <p>{{评价内容}}
+             <p>{{comment.body}}
              </p>
 
              </div>
@@ -190,6 +192,7 @@
           </div>
   </div>
   </li>
+      {% endfor %}
 
   </ul>
   </dd>
@@ -203,6 +206,7 @@
     <div class="tab-pane" id="tab2">
     <div id="organclass">
    <ul class="unstyled">
+       {#
    <li>
    <div class="classleft">
    <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
@@ -229,12 +233,14 @@
    <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
    </div>
    </li>
+        #}
    </ul>
    </div>
     </div>
      <div class="tab-pane" id="tab3">
       <div id="organplay">
    <ul class="unstyled">
+       {#
    <li>
    <div class="classleft">
    <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
@@ -262,6 +268,7 @@
    </li>
 
 
+        #}
 
    </ul>
    </div>
