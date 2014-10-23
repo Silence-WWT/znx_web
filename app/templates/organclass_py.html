@@ -1,0 +1,174 @@
+{% extends "layout.html" %}
+{% block title %}去哪学-机构课程详情页 {% endblock title %}
+ {% block navbar %}
+ {% include 'head.html' %}
+    {% endblock navbar %}
+    {% block content %}
+<div class="container" id="myorgan">
+<div class="classdet" id="classdet">
+<div class="classnamepic">
+<img src="{{ url_for('static', filename='images/classname.png') }}"/></div>
+<div class="picright">
+<h3>小熊亲子班</h3><div class="revinp">
+				<span class="level">
+             	    <i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+                    <span>4分</span>
+				</span>
+			</div>
+            
+
+<ul class="unstyled">
+<li>
+<span class="organview"><i class="icon-eye-open"></i>1233</span>
+<span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+</li>
+<li class="firstli">适合年龄：{{课程适合年龄}}</li>
+<li>总课时：{{课程课时}}</li>
+<li>咨询时间：{{咨询时间}}</li>
+<li>上课时间：{{上课时间}}</li>
+</ul>
+</div>
+<div class="threesmall">
+<span><i class=" icon-star"></i>收藏</span>
+<span><i class="  icon-share"></i>分享</span>
+<span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"  data-toggle="modal">纠错</a></span>
+</div>
+<div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mywrongLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="mywrongLabel">我要纠错</h3>
+  </div>
+  <div class="modal-body">
+ <form action="#" method="post" class="form-horizontal"/>
+ <div class="control-group">
+             <h4>请留言</h4>
+                          <textarea rows="5" class="form-textarea" id="wrongtext"></textarea> 
+                         
+                        </div>
+ </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn-next nomargin" type="submit">提交</button>
+  </div>
+</div>
+</div>
+
+<a href="#" ><button  class="attendbtn" ></button></a>
+
+</div>
+
+<div class="container" id="organthree"> 
+  
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+     <div class="organallknow">
+     <dl class="dl-horizontal">
+  <dt>简介特色</dt>
+  <dd>
+      <div id="boxmore">{{课程简介}}</div>
+  </dd>
+</dl>
+<dl class="dl-horizontal">
+  <dt>附近交通</dt>
+  <dd><p class="organplace">{{交通地址}}</p></dd>
+</dl>
+<dl class="dl-horizontal">
+
+  <dt>评论（{{评论数目}}）<span id="icommnet"><a href="#myComment" role="button"  data-toggle="modal"><img src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+  <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCommentLabel">写评价，攒人品！</h3>
+  </div>
+  <div class="modal-body">
+ <form action="#" method="post" class="form-horizontal"/>
+ <div class="control-group">
+                        <label class="control-label" >总体评价</label>
+                        <div class="controls">
+                            <div class="revinp">
+				<span class="level">
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+					<i class="level_hollow" cjmark=""></i>
+				</span>
+				<span class="revgrade">未评分</span>
+			</div>
+
+                        </div>
+                        <br>
+                       <div class="control-group">
+                        <h4>写评价</h4>
+                          <textarea rows="5" class="form-textarea" id="Commenttext"></textarea> 
+                          <b id="commentnum"></b>
+                        </div>
+                    </div>
+ </form>
+  </div>
+  <div class="modal-footer">
+  <span id="niming">
+   <input type="checkbox">匿名登录</span>
+    <button class="btn-next nomargin" type="submit">提交</button>
+  </div>
+</div>
+  <dd>
+  <ul class="unstyled" id="usertest">
+ <li>
+  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
+  <span class="text-center">{{评价用户名}}</span>
+  </div>
+  <div class="righttest" >
+  <div class="popover right" id="usercomment1">
+            <div class="arrow"></div>
+            <h3 class="popover-title"><span>{{课程名}}</span><span>{{上课方式}}</span><span>{{上课时间}}</span></h3>
+            <div class="popover-content">
+             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
+
+            <span><div class="revinp">
+				<span class="level">
+                <b>评价：</b>		<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+
+			</div></span>
+
+         </div>
+             <div class="commment">
+             <p>{{评价内容}}
+             </p>
+
+             </div>
+            </div>
+          </div>
+  </div>
+  </li>
+  </ul>
+  </dd>
+</dl>
+
+ 
+<!-- Modal -->
+
+     </div>
+    </div>
+    
+     
+  </div>
+
+
+</div>
+
+ {% endblock content %}
+
+
+
+
+

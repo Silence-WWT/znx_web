@@ -129,6 +129,7 @@ class Organization(UserMixin, db.Model):
     member_since = db.Column(db.TIMESTAMP)
     type = db.Column(db.Integer)
     name = db.Column(db.Unicode(256))
+    slogan = db.Column(db.Unicode(256))
     contact = db.Column(db.Unicode(16))
     address = db.Column(db.Unicode(512))
     authorization = db.Column(db.CHAR(32))
@@ -142,6 +143,10 @@ class Organization(UserMixin, db.Model):
     longitude = db.Column(db.Float)
     latitude = db.Column(db.Float)
     page_view = db.Column(db.Integer)
+
+    def get_comments(self):
+        return OrganizationComment.query.\
+            filter_by(organization_id=self.id).all()
 
     def get_id(self):
         return 'o'+unicode(self.id)
@@ -205,6 +210,9 @@ class OrganizationComment(db.Model):
     body = db.Column(db.UnicodeText)
     timestamp = db.Column(db.TIMESTAMP)
     disabled = db.Column(db.Boolean, default=False)
+
+    def get_user(self):
+        return User.query.get(self.user_id)
 
     @staticmethod
     def generate_fake(count=50):

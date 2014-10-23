@@ -13,7 +13,8 @@
     {% block styles %}
    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"></link>
  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/znx.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">    {% endblock styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">   
+ {% endblock styles %}
     {% endblock head %}
   </head>
   <body{% block body_attribs %}{% endblock body_attribs %}>
@@ -21,11 +22,48 @@
     {% block body %}
      {% block wrap %}
     <div id="wrap">
-     
+     {% block tophead %}
+<div class="navbar navbar-static-top" id="headnav">
+        <div class="navbar-inner ">
+            <div class="container">
+                <a class="brand" href="#">
+                    <img src="{{ url_for('static', filename='images/phonelogo.png') }}">手机版在哪学</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                      {% if current_user.is_authenticated() %}
+                           <li> <a href="">{{current_user.get_name()}}</a>的在哪学</li>
+                            <li style="color: #E2E1DE;">|</li>
+                         <li><a href="{{ url_for('main.logout') }}">登出</a>
+                        </li>
+                	{% else %}
+                        <li>
+                            <a href="{{ url_for('main.login') }}">
+                                <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
+                        </li>
+                        <li><a href="{{ url_for('main.register') }}">注册</a>
+                        </li>
+                        {% endif %}
+
+
+                        <li><span><img src="{{ url_for('static', filename='images/telelogo.png') }}">400-91-910</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    {% endblock tophead %}
     {% block navbar %}
     
     {% endblock navbar %}
     {% block content %}
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endblock content %}
      {% block footer %}
 <div id="footer">
