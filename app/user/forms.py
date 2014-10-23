@@ -8,8 +8,7 @@ from ..models import User
 
 # TODO: add telephone number.
 class LoginForm(Form):
-    username = StringField('Email', validators=[DataRequired(), Length(1, 64),
-                                             Email()])
+    username = StringField(validators=[DataRequired(), Length(1, 64)])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me logged in')
 
