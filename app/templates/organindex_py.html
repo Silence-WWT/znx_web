@@ -12,8 +12,8 @@
 <div class="organlogo"><img src="{{ url_for('static', filename='images/organlogo.png') }}" class="img-circle img-polaroid"/> </div>
 <div class="organname">
 <dl>
-  <dt><span>蓝翔技校</span><address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>http://www.lxjx.cn</address></dt>
-  <dd>——学技术，就到山东蓝翔高级技工学校</dd>
+  <dt><span>{{机构名称}}</span><address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{机构网址}}</address></dt>
+  <dd>——{{机构宣传语}}</dd>
 </dl>
 </div>
 </div>
@@ -107,26 +107,14 @@
   <dt>机构简介</dt>
   <dd>
       <div>
-          <div id="boxmore">杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
-地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
-来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
-远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
-地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
-来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
-远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
-地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
-来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
-远程可控、学生显著进步。杭州来了网络科技有限公司是一家移动互联网创业公司，分别来自互联网行业和教育行业的小伙伴们组成了一支有趣给力、战天斗
-地的跨界团队。传统教育行业，学生支付的高额学费中，教师只获得很小一部分，大量的价值被教育机构的低效率中间环节侵占。老师
-来了基于教师评价拟合和LBS实现学生与教师的有效匹配，让教师收入翻番、学生学费减半；内置智能教学系统让教师轻松教学、家长
-远程可控、学生显著进步。
+          <div id="boxmore">{{ 机构简介}}
           </div>
           </div>
 </dd>
 </dl>
 <dl class="dl-horizontal">
   <dt>附近交通</dt>
-  <dd><p class="organplace">地铁5号线南站</p></dd>
+  <dd><p class="organplace">{{机构地址}}</p></dd>
 </dl>
 <dl class="dl-horizontal">
 
@@ -172,12 +160,12 @@
   <ul class="unstyled" id="usertest">
   <li>
   <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
-  <span class="text-center">程文</span>
+  <span class="text-center">{{评价用户名}}</span>
   </div>
   <div class="righttest" >
   <div class="popover right" id="usercomment1">
             <div class="arrow"></div>
-            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
+            <h3 class="popover-title"><span>{{课程名}}</span><span>{{上课方式}}</span><span>{{上课时间}}</span></h3>
             <div class="popover-content">
              <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
 
@@ -194,8 +182,7 @@
 
          </div>
              <div class="commment">
-             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
-             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
+             <p>{{评价内容}}
              </p>
 
              </div>
@@ -203,39 +190,7 @@
           </div>
   </div>
   </li>
- <li>
-  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
-  <span class="text-center">程文</span>
-  </div>
-  <div class="righttest">
-  <div class="popover right" id="usercomment2">
-            <div class="arrow"></div>
-            <h3 class="popover-title"><span>音乐-乐器-钢琴</span><span>学生上门</span><span>1小时</span></h3>
-            <div class="popover-content">
-             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
 
-            <span><div class="revinp">
-				<span class="level">
-                <b>评价：</b>		<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span>
-
-			</div></span>
-
-         </div>
-             <div class="commment">
-             <p>心声：老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！
-             老师很赞，真人比照片气质更佳，很亲切。学弹了一首 my heart will go on,学习了节拍、音程、和弦，重点练习了右手指法，期待下次上课！老师很赞，真人比照片气质更佳！
-             </p>
-
-             </div>
-            </div>
-          </div>
-  </div>
-  </li>
   </ul>
   </dd>
 </dl>
@@ -252,7 +207,7 @@
    <div class="classleft">
    <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
    <div class="classtest">
-   <h3>综合课程</h3>
+   <h3>{{课程名称}}</h3>
    <br>
    <span> <div class="revinp">
 				<span class="level">
@@ -261,90 +216,16 @@
 					<i class="level_solid" ></i>
 					<i class="level_solid" ></i>
 					<i class="level_hollow" ></i>
-				</span><b>23人评价</b></div>
+				</span><b>{{课程评价人数}}</b>
+   </div>
    </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-
+           <span>适合年龄：{{适合年龄}}</span>
+           <span>总课时：{{课程数}}</span>
 
    </div>
-   <div class="classright">
-   <span>￥500</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
-  </div>
-   </li>
-  <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>综合课程</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
        </div>
-   </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-
-   </div>
    <div class="classright">
-   <span>￥500</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
-   </div>
-   </li>
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>综合课程</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
-       </div>
-   </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-
-   </div>
-   <div class="classright">
-   <span>￥500</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
-   </div>
-   </li>
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>综合课程</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
-   </div>
-   </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-
-   </div>
-   <div class="classright">
-   <span>￥500</span>
+   <span>{{价格}}</span>
    <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
    </div>
    </li>
@@ -358,7 +239,7 @@
    <div class="classleft">
    <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
    <div class="classtest">
-   <h3>欧洲七日游</h3>
+   <h3>{{机构活动}}</h3>
    <br>
    <span> <div class="revinp">
 				<span class="level">
@@ -367,93 +248,21 @@
 					<i class="level_solid" ></i>
 					<i class="level_solid" ></i>
 					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
+				</span><b>{{评价人数}}</b>
        </div>
    </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
+           <span>适合年龄：{{适合年龄}}</span>
+           <span>总课时：{{总课时}}</span>
 
    </div>
    <div class="classright">
    <span>￥500</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
+   <a href="#" ><button class=" btn-myred">查看详情</button></a></div>
    </div>
    </li>
-  <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>欧洲七日游</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
-   </div>
-   </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-
-   </div>
-   <div class="classright">
-   <span>￥500</span>
-   <a href="#"/><button class=" btn-myred">查看详情</button></a></div>
-   </div>
-   </li>
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>欧洲七日游</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span>
-       <b>23人评价</b></div>
-   </span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-           </div>
 
 
-      <div class="classright">
-   <span>￥500</span>
-   <a href="#"><button class=" btn-myred">查看详情</button></a></div>
-   </div>
-   </li>
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>欧洲七日游</h3>
-   <br>
-   <span> <div class="revinp">
-				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
-				</span><b>23人评价</b>
-   </div></span>
-           <span>适合年龄：6-12岁</span>
-           <span>总课时：100节</span>
-           </div>
-   </div>
-   <div class="classright">
-   <span>￥500</span>
-   <a href="#"><button class=" btn-myred">查看详情</button></a></div>
 
-   </li>
    </ul>
    </div>
     </div>
