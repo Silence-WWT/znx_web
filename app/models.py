@@ -148,6 +148,14 @@ class Organization(UserMixin, db.Model):
         return OrganizationComment.query.\
             filter_by(organization_id=self.id).all()
 
+    def get_classes(self):
+        return Class.query.\
+            filter_by(organization_id=self.id).all()
+
+    def get_activities(self):
+        return Activity.query.\
+            filter_by(organization_id=self.id).all()
+
     def get_id(self):
         return 'o'+unicode(self.id)
 
@@ -252,6 +260,12 @@ class Class(db.Model):
     closed = db.Column(db.Boolean, default=False)
     page_view = db.Column(db.Integer)
 
+    def get_comment_count(self):
+        return ClassComment.query.filter_by(class_id=self.id).count()
+
+    def get_age(self):
+        return Age.query.get(self.age_id).age
+
     @staticmethod
     def generate_fake(count=20):
         from faker import Factory
@@ -347,6 +361,12 @@ class Activity(db.Model):
     intro = db.Column(db.UnicodeText)
     closed = db.Column(db.Boolean, default=False)
     page_view = db.Column(db.Integer)
+
+    def get_comment_count(self):
+        return ActivityComment.query.filter_by(activity_id=self.id).count()
+
+    def get_age(self):
+        return Age.query.get(self.age_id).age
 
     @staticmethod
     def generate_fake(count=20):
