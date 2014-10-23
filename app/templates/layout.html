@@ -31,7 +31,7 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
                       {% if current_user.is_authenticated() %}
-                           <li> <a href="">{{current_user.get_name()}}</a>的在哪学</li>
+                           <li> <a href="">{{current_user.get_name()}}的在哪学</a></li>
                             <li style="color: #E2E1DE;">|</li>
                          <li><a href="{{ url_for('main.logout') }}">登出</a>
                         </li>
