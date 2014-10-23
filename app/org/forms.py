@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import uuid
 from flask.ext.wtf import Form
-from wtforms import StringField, PasswordField, SelectField, TextAreaField, SubmitField
-from wtforms.validators import DataRequired, Length, EqualTo
+from wtforms import StringField, PasswordField, SelectField,\
+    TextAreaField, BooleanField
+from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from ..models import Organization, Type
@@ -43,3 +44,9 @@ class CertificationForm(Form):
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
     photo = FileField(validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+
+
+class LoginForm(Form):
+    cellphone = StringField(validators=[DataRequired(), Length(11, 11)])
+    password = PasswordField(validators=[DataRequired()])
+    remember_me = BooleanField()

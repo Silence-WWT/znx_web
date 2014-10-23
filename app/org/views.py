@@ -4,14 +4,26 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, Profession, Property, Size, Location
-from .forms import RegistrationForm, DetailForm, CertificationForm
+from .forms import RegistrationForm, DetailForm, CertificationForm, LoginForm
+from ..user.forms import  LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
-from flask import redirect, url_for, render_template, flash, current_app
+from flask import redirect, url_for, render_template,\
+    flash, current_app, request
 
 
 @org.route('/login', methods=['POST'])
 def login():
-    return render_template('auth/login.html')
+    user_form = UserLoginForm()
+    org_form = LoginForm()
+    if org_form.validate_on_submit():
+        org = Organization.query.filter_by(cellphone=org_form.cellphone.data).first()
+        if org is not None and org.verify_password(user_form.password.data):
+            login_user(org, user_form.remember_me.data)
+            return redirect(request.args.get('next') or url_for('main.index'))
+        flash(u'用户名密码错误')
+    return render_template('login_choose_py.html',
+                           user_form=user_form,
+                           org_form=org_form)
 
 
 @org.route('/register', methods=['GET', 'POST'])
