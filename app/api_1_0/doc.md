@@ -44,8 +44,8 @@ login
 filter_organization
 ---
     URL:
-        /api/v1.0/filter_organization?city=&district=&city=&district=&city=&district=&page=
-        /api/v1.0/filter_organization?profession=&profession=&profession=&page=  
+        /api/v1.0/filter_organization?city=&district=&page=
+        /api/v1.0/filter_organization?profession=&page=  
         /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
     method:
         get
@@ -57,7 +57,6 @@ filter_organization
         latitude
         longitude
         page
-        location and property can repeat, but condition can't repeat
         distance can coexist with another parameter (location OR profession)
     json:
         {"status": 0,
@@ -83,7 +82,7 @@ organization_detail
     json:
         {"status": 0,
          "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "address": "",
-            "cellphone": "", "comments_count": ""}}
+            "cellphone": "", "comments_count": "", "stars": ""}}
          
         status: 0 for success, 2000 for organization not exist
         organization
@@ -96,7 +95,43 @@ organization_detail
             address
             cellphone
             comments_count
+            stars: a float number for stars
     
+organization_comment
+---
+    URL:
+        /api/v1.0/organization_comment?organization=&username&comment=&stars=
+    method:
+        get
+    parameters:
+        organization: id of organization
+        username
+        comment
+        stars
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 2000 for organization not exist, 5000 for sql exception, 5001 for parameter error
+
+organization_comment_list
+---
+    URL:
+        /api/v1.0/organization_comment_list?organization=&page=
+    method:
+        get
+    parameters:
+        organization: id of organization
+        page
+    json:
+        {"status": 0,
+         "organization_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+        
+        status: 0 for success, 2000 for organization not exist, 5001 for parameter error
+        organization_comments: a list of organization_comments
+            comment
+            stars
+            timestamp
+        
 class_list
 ---
     URL:
@@ -165,7 +200,42 @@ class_sign_up
         {"status": 0}
         
         status: 0 for success, 5002 for lack of parameters
+    
+class_comment
+---
+    URL:
+        /api/v1.0/class_comment?class=&username&comment=&stars=
+    method:
+        get
+    parameters:
+        class: id of class
+        username
+        comment
+        stars
+    json:
+        {"status": 0}
         
+        status: 0 for success, 2001 for class not exist, 5000 for sql exception, 5001 for parameter error
+
+class_comment_list
+---
+    URL:
+        /api/v1.0/class_comment_list?class=&page=
+    method:
+        get
+    parameters:
+        class: id of class
+        page
+    json:
+        {"status": 0,
+         "class_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+        
+        status: 0 for success, 2001 for class not exist, 5001 for parameter error
+        class_comments: a list of class_comments
+            comment
+            stars
+            timestamp
+            
 activity_list
 ---
     URL:
@@ -232,7 +302,42 @@ activity_sign_up
         {"status": 0}
         
         status: 0 for success, 5002 for lack of parameters
+    
+activity_comment
+---
+    URL:
+        /api/v1.0/activity_comment?activity=&username&comment=&stars=
+    method:
+        get
+    parameters:
+        activity: id of activity
+        username
+        comment
+        stars
+    json:
+        {"status": 0}
         
+        status: 0 for success, 2002 for activity not exist, 5000 for sql exception, 5001 for parameter error
+
+activity_comment_list
+---
+    URL:
+        /api/v1.0/activity_comment_list?activity=&page=
+    method:
+        get
+    parameters:
+        activity: id of activity
+        page
+    json:
+        {"status": 0,
+         "activity_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+        
+        status: 0 for success, 2002 for activity not exist, 5001 for parameter error
+        activity_comments: a list of activity_comments
+            comment
+            stars
+            timestamp
+            
 order_list
 ---
     URL:
@@ -337,18 +442,19 @@ CONSTANTS
     SUCCESS = 0
     
     LOGIN_FAILED = 1000
-    CELLPHONE_NOT_EXISTS = 1001
-    CELLPHONE_EXISTS = 1002
-    USER_NOT_EXISTS = 1003
-    USERNAME_EXISTS = 1004
+    CELLPHONE_NOT_EXIST = 1001
+    CELLPHONE_EXIST = 1002
+    USER_NOT_EXIST = 1003
+    USERNAME_EXIST = 1004
     ACCESS_RESTRICTED = 1005
-    ORDER_NOT_EXISTS = 1006
+    ORDER_NOT_EXIST = 1006
     
-    ORGANIZATION_NOT_EXISTS = 2000
-    CLASS_NOT_EXISTS = 2001
-    ACTIVITY_NOT_EXISTS = 2002
+    ORGANIZATION_NOT_EXIST = 2000
+    CLASS_NOT_EXIST = 2001
+    ACTIVITY_NOT_EXIST = 2002
     
-    CITY_NOT_EXISTS = 3000
+    CITY_NOT_EXIST = 3000
+    PROFESSION_NOT_EXIST = 3001
     
     SQL_EXCEPTION = 5000
     PARAMETER_ERROR = 5001

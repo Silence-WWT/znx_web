@@ -11,7 +11,6 @@ from api_constants import *
 @api.route('/class_list')
 def class_list():
     data = {'classes': []}
-    organization_id = request.args.get('organization')
     try:
         page = int(request.args.get('page'))
     except TypeError:
@@ -19,6 +18,7 @@ def class_list():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
+    organization_id = request.args.get('organization')
     class_list_ = Class.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for class_ in class_list_:
         age = Age.query.filter_by(id=class_.age_id).first()
