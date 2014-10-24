@@ -3,7 +3,7 @@ import json
 
 from flask import request
 
-from ..models import Organization, OrganizationComment
+from ..models import User, Organization, OrganizationComment
 from . import api
 from api_constants import *
 
@@ -23,10 +23,12 @@ def organization_comment_list():
     if organization:
         comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
         for comment in comment_list:
+            user = User.query.filter_by(id=comment.user_id).first()
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
-                'timestamp': str(comment.timestamp)
+                'timestamp': str(comment.timestamp),
+                'username': user.username
             }
             data['organization_comments'].append(comment_dict)
         data['status'] = SUCCESS

@@ -124,13 +124,14 @@ organization_comment_list
         page
     json:
         {"status": 0,
-         "organization_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+         "organization_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2000 for organization not exist, 5001 for parameter error
         organization_comments: a list of organization_comments
             comment
             stars
             timestamp
+            username
         
 class_list
 ---
@@ -228,13 +229,14 @@ class_comment_list
         page
     json:
         {"status": 0,
-         "class_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+         "class_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2001 for class not exist, 5001 for parameter error
         class_comments: a list of class_comments
             comment
             stars
             timestamp
+            username
             
 activity_list
 ---
@@ -330,13 +332,14 @@ activity_comment_list
         page
     json:
         {"status": 0,
-         "activity_comments": [{"comment": "", "timestamp": "", "stars": ""}]}
+         "activity_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2002 for activity not exist, 5001 for parameter error
         activity_comments: a list of activity_comments
             comment
             stars
             timestamp
+            username
             
 order_list
 ---
