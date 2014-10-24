@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>去哪学-机构课程详情页</title>
+  <title>去哪学-机构后台中心-我的课程</title>
  <link href="../static/css/znx.min.css" rel="stylesheet" media="screen">
   <link href="../static/css/main.css" rel="stylesheet"/>
   <script src="../static/js/jquery.js" type="text/javascript"></script>
@@ -58,7 +58,7 @@
     <li class="active"><a href="#" class="aandli"><img src="../static/images/set1.png"/>我的课程</a></li>
        <li><a href="#" class="aandli"><img src="../static/images/set2.png"/>课程设置</a></li>
           <li><a href="#" class="aandli"><img src="../static/images/set3.png"/>我的订单</a></li>
-           <li><a href="#" class="aandli"><img src="../static/images/set3.png"/>我的活动</a></li>
+            <li><a href="#" class="aandli"><img src="../static/images/set3.png"/>我的活动</a></li>
              <li><a href="#" class="aandli"><img src="../static/images/set4.png"/>活动设置</a></li> 
                <li><a href="#" class="aandli"><img src="../static/images/set5.png"/>账号设置</a></li>   
             
@@ -66,14 +66,14 @@
     
     </div>
     <div class="myuserright">
-    <h3><span>活动列表</span><a href="#"><img src="../static/images/addact.png"/>添加活动</a></h3>
+    <h3><span>课程列表</span><a href="#"><img src="../static/images/addact.png"/>添加课程</a></h3>
     <ul class="unstyled" id="actlistul">
     <li>
 
     <div class="actleft"><img src="../static/images/actpic.png"/></div>
     <div class="actright" >
     <div class="actrighttop">
-    <h4>活动名称活动名称</h4>
+    <h4>魔奇英语进阶班</h4>
     <div class="actrighta">
     <a><button class="btn-edit">编辑</button></a>
     <a class="deleclass" id="myclass1" ><button class="btn-det">删除</button></a>
@@ -91,7 +91,7 @@
     <div class="actleft"><img src="../static/images/actpic.png"/></div>
     <div class="actright" >
     <div class="actrighttop">
-    <h4>活动名称活动名称</h4>
+    <h4>魔奇英语进阶班</h4>
     <div class="actrighta">
     <a><button class="btn-edit">编辑</button></a>
     <a  id="myclass2" class="deleclass"><button class="btn-det">删除</button></a>
@@ -183,10 +183,10 @@ $(function(){
 		$(".deleclass").click(function(){
 			var id=$(this).attr("id");
 			//alert(id);
-			var r=confirm("删除课程？");
+			var r=confirm("删除活动？");
 			if (r==true)
   {
-		alert("你删除的课程是"+id);
+		alert("你删除的活动是"+id);
   }
 		else
   {
