@@ -5,18 +5,23 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(UserMixin, db.Model):
-    # TODO: replace Boolean with BOOLEAN
     __tablename__ = 'users'
+    # id
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, index=True)
-    email = db.Column(db.String(64), unique=True, index=True, nullable=True)
-    email_confirmed = db.Column(db.Boolean, default=False)
-    cellphone = db.Column(db.String(11), unique=True, index=True)
-    password_hash = db.Column(db.String(128))
-    member_since = db.Column(db.TIMESTAMP)
-    # TODO: last_login redis
-    # last_login = db.Column(db.TIMESTAMP)
-    identity = db.Column(db.CHAR(44))
+    # 用户名 4-16 Unicode
+    username = db.Column(db.Unicode(48), nullable=False)
+    # 邮箱
+    email = db.Column(db.String(64), nullable=False)
+    # 邮箱确认
+    is_email_confirmed = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 手机号
+    mobile = db.Column(db.CHAR(11), nullable=False)
+    # 哈希后的密码
+    password_hash = db.Column('password', db.String(128), nullable=False)
+    # 注册时间
+    created = db.Column(db.Integer, nullable=False)
+    # 移动端标识
+    identity = db.Column(db.String(64), nullable=False)
 
     def get_id(self):
         return u'u'+unicode(self.id)
@@ -46,7 +51,7 @@ class User(UserMixin, db.Model):
             u = User(username=fake.user_name(),
                      email=fake.email(),
                      email_confirmed=True,
-                     cellphone=zh.phone_number(),
+                     mobile=zh.phone_number(),
                      password=fake.password(),
                      member_since=fake.date_time(),
                      last_login=fake.date_time(),
@@ -69,12 +74,18 @@ def load_user(user_id):
 
 class Register(db.Model):
     __tablename__ = 'registers'
+    # id
     id = db.Column(db.Integer, primary_key=True)
-    location = db.Column(db.Integer)
-    cellphone = db.Column(db.CHAR(11))
-    name = db.Column(db.Unicode(8))
-    need = db.Column(db.Unicode(64))
-    timestamp = db.Column(db.TIMESTAMP)
+    # 求学地址
+    location_id = db.Column(db.Integer, nullable=False)
+    # 手机号
+    mobile = db.Column(db.CHAR(11), nullable=False)
+    # 名字 4-16 Unicode
+    name = db.Column(db.Unicode(48), nullable=False)
+    # 需求 <=6 Unicode
+    need = db.Column(db.Unicode(18), nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
 
     @staticmethod
     def generate_fake(count=1000):
@@ -87,7 +98,7 @@ class Register(db.Model):
         seed()
         for i in range(count):
             u = Register(location=randint(1, location_count),
-                         cellphone=zh.phone_number(),
+                         mobile=zh.phone_number(),
                          name=unicode(zh.name()),
                          need=unicode(zh.job()),
                          timestamp=fake.date_time())
@@ -99,10 +110,14 @@ class Register(db.Model):
 class SiteComment(db.Model):
     __tablename__ = 'site_comments'
     id = db.Column(db.Integer, primary_key=True)
-    cellphone = db.Column(db.CHAR(11))
-    body = db.Column(db.UnicodeText)
-    timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean, default=False)
+    # 手机号码
+    mobile = db.Column(db.String(11), nullable=False)
+    # 留言信息 140 Unicode
+    body = db.Column(db.Unicode(420), nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 被关闭
+    is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     @staticmethod
     def generate_fake(count=1000):
@@ -113,7 +128,7 @@ class SiteComment(db.Model):
 
         seed()
         for i in range(count):
-            u = SiteComment(cellphone=zh.phone_number(),
+            u = SiteComment(mobile=zh.phone_number(),
                             body=zh.text(),
                             timestamp=fake.date_time())
 
@@ -124,25 +139,47 @@ class SiteComment(db.Model):
 class Organization(UserMixin, db.Model):
     __tablename__ = 'organizations'
     id = db.Column(db.Integer, primary_key=True)
-    cellphone = db.Column(db.CHAR(11))
-    password_hash = db.Column(db.String(128))
-    member_since = db.Column(db.TIMESTAMP)
-    type = db.Column(db.Integer)
-    name = db.Column(db.Unicode(256))
-    slogan = db.Column(db.Unicode(256))
-    contact = db.Column(db.Unicode(16))
-    address = db.Column(db.Unicode(512))
-    authorization = db.Column(db.CHAR(32))
-    photo = db.Column(db.CHAR(32))
-    profession = db.Column(db.Integer)
-    property_ = db.Column(db.Integer)
-    size = db.Column(db.Integer)
-    location = db.Column(db.Integer)
-    confirmed = db.Column(db.Boolean)
-    intro = db.Column(db.UnicodeText)
-    longitude = db.Column(db.Float)
-    latitude = db.Column(db.Float)
-    page_view = db.Column(db.Integer)
+    # 手机号
+    mobile = db.Column(db.CHAR(11), nullable=False)
+    # 哈希后的密码
+    password_hash = db.Column('password', db.String(128), nullable=False)
+    # 注册时间
+    created = db.Column(db.Integer, nullable=False)
+    # 类型
+    type_id = db.Column(db.Integer, default=0, nullable=False)
+    # 机构名 30Unicode
+    name = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 广告 30 Unicode
+    slogan = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 联系人 6 Unicode
+    contact = db.Column(db.Unicode(18), default=u'', nullable=False)
+    # 地址 40 Unicode
+    address = db.Column(db.Unicode(120), default=u'', nullable=False)
+    # 执照照片
+    authorization = db.Column(db.CHAR(36), default='', nullable=False)
+    # 门店照片
+    photo = db.Column(db.CHAR(36), default='', nullable=False)
+    # LOGO照片
+    logo = db.Column(db.CHAR(36), default='', nullable=False)
+    # 行业
+    profession_id = db.Column(db.Integer, default=0, nullable=False)
+    # 类别
+    property_id = db.Column(db.Integer, default=0, nullable=False)
+    # 规模
+    size_id = db.Column(db.Integer, default=0, nullable=False)
+    # 区域
+    location_id = db.Column(db.Integer, default=0, nullable=False)
+    # 是否被认证
+    is_confirmed = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 介绍 140 Unicode
+    intro = db.Column(db.Unicode(420), default=u'', nullable=False)
+    # 附近交通 30 Unicode
+    traffic = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 移动端 经纬度
+    longitude = db.Column(db.Float, default=0.0, nullable=False)
+    latitude = db.Column(db.Float, default=0.0, nullable=False)
+    # 页面浏览量
+    page_view = db.Column(db.Integer, default=0, nullable=False)
 
     def get_comments(self):
         return OrganizationComment.query.\
@@ -160,7 +197,7 @@ class Organization(UserMixin, db.Model):
         return 'o'+unicode(self.id)
 
     def get_name(self):
-        return self.name or self.cellphone
+        return self.name or self.mobile
 
     @property
     def password(self):
@@ -187,7 +224,7 @@ class Organization(UserMixin, db.Model):
 
         seed()
         for i in range(count):
-            u = Organization(cellphone=zh.phone_number(),
+            u = Organization(mobile=zh.phone_number(),
                              password=fake.password(),
                              member_since=fake.date_time(),
                              type=randint(1, type_count),
@@ -212,12 +249,18 @@ class Organization(UserMixin, db.Model):
 class OrganizationComment(db.Model):
     __tablename__ = 'organization_comments'
     id = db.Column(db.Integer, primary_key=True)
-    organization_id = db.Column(db.Integer)
-    user_id = db.Column(db.Integer)
-    stars = db.Column(db.Integer)
-    body = db.Column(db.UnicodeText)
-    timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean, default=False)
+    # 机构id
+    organization_id = db.Column(db.Integer, nullable=False)
+    # 用户id
+    user_id = db.Column(db.Integer, nullable=False)
+    # 评价
+    stars = db.Column(db.SMALLINT, nullable=False)
+    # 评价内容 140 Unicode
+    body = db.Column(db.Unicode(420), nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 被关闭
+    is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     def get_user(self):
         return User.query.get(self.user_id)
@@ -247,18 +290,30 @@ class OrganizationComment(db.Model):
 class Class(db.Model):
     __tablename__ = 'classes'
     id = db.Column(db.Integer, primary_key=True)
-    organization_id = db.Column(db.Integer)
-    name = db.Column(db.Unicode(256))
-    age_id = db.Column(db.Integer)
-    price = db.Column(db.Integer)
-    consult_time = db.Column(db.Unicode(128))
-    start_time = db.Column(db.TIMESTAMP)
-    end_time = db.Column(db.TIMESTAMP)
-    try_ = db.Column(db.Boolean)
-    timestamp = db.Column(db.TIMESTAMP)
-    intro = db.Column(db.UnicodeText)
-    closed = db.Column(db.Boolean, default=False)
-    page_view = db.Column(db.Integer)
+    # 机构id
+    organization_id = db.Column(db.Integer, nullable=False)
+    # 课程名字 30 Unicode
+    name = db.Column(db.Unicode(90), nullable=False)
+    # 年龄
+    age_id = db.Column(db.Integer, nullable=False)
+    # 价格
+    price = db.Column(db.Integer, nullable=False)
+    # 咨询时间 20 Unicode
+    consult_time = db.Column(db.Unicode(60), nullable=False)
+    # 是否可以免费试听
+    is_tastable = db.Column(db.BOOLEAN, nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 滚动开班
+    is_round = db.Column(db.BOOLEAN, nullable=False)
+    # 天数
+    days = db.Column(db.Integer, nullable=False)
+    # 课程简介 140 Unicode
+    intro = db.Column(db.Unicode(420), nullable=False)
+    # 关闭
+    is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 浏览量
+    page_view = db.Column(db.Integer, default=0, nullable=False)
 
     def get_comment_count(self):
         return ClassComment.query.filter_by(class_id=self.id).count()
@@ -298,12 +353,18 @@ class ClassComment(db.Model):
     # TODO：confirm joined.
     __tablename__ = 'classes_comments'
     id = db.Column(db.Integer, primary_key=True)
-    class_id = db.Column(db.Integer)
-    user_id = db.Column(db.Integer)
-    stars = db.Column(db.Integer)
-    body = db.Column(db.UnicodeText)
-    timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean, default=False)
+    # 课程
+    class_id = db.Column(db.Integer, nullable=False)
+    # 用户
+    user_id = db.Column(db.Integer, nullable=False)
+    # 评价
+    stars = db.Column(db.SMALLINT, nullable=False)
+    # 评价内容 140 Unicode
+    body = db.Column(db.Unicode(420), nullable=False)
+    # 评价时间
+    created = db.Column(db.Integer, nullable=False)
+    # 被关闭
+    is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     @staticmethod
     def generate_fake(count=20):
@@ -330,8 +391,10 @@ class ClassComment(db.Model):
 class ClassTime(db.Model):
     __tablename__ = 'class_time'
     id = db.Column(db.Integer, primary_key=True)
-    class_id = db.Column(db.Integer)
-    time_id = db.Column(db.Integer)
+    # 课程
+    class_id = db.Column(db.Integer, nullable=False)
+    # 时间
+    time_id = db.Column(db.Integer, nullable=False)
 
     @staticmethod
     def generate_fake():
@@ -351,16 +414,27 @@ class ClassTime(db.Model):
 class Activity(db.Model):
     __tablename__ = 'activities'
     id = db.Column(db.Integer, primary_key=True)
-    organization_id = db.Column(db.Integer)
-    name = db.Column(db.Unicode(256))
-    age_id = db.Column(db.Integer)
-    price = db.Column(db.Integer)
-    start_time = db.Column(db.TIMESTAMP)
-    end_time = db.Column(db.TIMESTAMP)
-    timestamp = db.Column(db.TIMESTAMP)
-    intro = db.Column(db.UnicodeText)
-    closed = db.Column(db.Boolean, default=False)
-    page_view = db.Column(db.Integer)
+    # 机构
+    organization_id = db.Column(db.Integer, nullable=False)
+    # 活动名字 30 Unicode
+    name = db.Column(db.Unicode(90), nullable=False)
+    # 年龄
+    age_id = db.Column(db.Integer, nullable=False)
+    # 价格
+    price = db.Column(db.Integer, nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 起始时间
+    start_time = db.Column(db.Integer, nullable=False)
+    end_time = db.Column(db.Integer, nullable=False)
+    # 活动简介 140 Unicode
+    intro = db.Column(db.Unicode(420), nullable=False)
+    # 图片
+    photo = db.Column(db.CHAR(36), default='', nullable=False)
+    # 关闭
+    is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 浏览量
+    page_view = db.Column(db.Integer, default=0, nullable=False)
 
     def get_comment_count(self):
         return ActivityComment.query.filter_by(activity_id=self.id).count()
@@ -397,12 +471,18 @@ class Activity(db.Model):
 class ActivityComment(db.Model):
     __tablename__ = 'activity_comments'
     id = db.Column(db.Integer, primary_key=True)
-    activity_id = db.Column(db.Integer)
-    user_id = db.Column(db.Integer)
-    stars = db.Column(db.Integer)
-    body = db.Column(db.UnicodeText)
-    timestamp = db.Column(db.TIMESTAMP)
-    disabled = db.Column(db.Boolean, default=False)
+    # 活动
+    activity_id = db.Column(db.Integer, nullable=False)
+    # 用户
+    user_id = db.Column(db.Integer, nullable=False)
+    # 评价
+    stars = db.Column(db.SMALLINT, nullable=False)
+    # 评价内容 140 Unicode
+    body = db.Column(db.Unicode(420), nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 关闭
+    is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     @staticmethod
     def generate_fake(count=20):
@@ -432,17 +512,34 @@ class ActivityComment(db.Model):
 class ClassOrder(db.Model):
     __tablename__ = 'class_orders'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    class_id = db.Column(db.Integer)
-    time = db.Column(db.TIMESTAMP)
-    name = db.Column(db.Unicode(24))
-    age = db.Column(db.Integer)
-    sex = db.Column(db.Boolean)
-    cellphone = db.Column(db.CHAR(11))
-    address = db.Column(db.Unicode(128))
-    timestamp = db.Column(db.TIMESTAMP)
-    remark = db.Column(db.Unicode(300))
-    canceled = db.Column(db.Boolean, default=False)
+    # 用户
+    user_id = db.Column(db.Integer, nullable=False)
+    # 课程
+    class_id = db.Column(db.Integer, nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 试听时间
+    time = db.Column(db.Integer, nullable=False)
+    # 听课人 6 Unicode
+    name = db.Column(db.Unicode(18), nullable=False)
+    # 年龄 10 Unicode
+    age = db.Column(db.Unicode(30), nullable=False)
+    # 性别
+    sex = db.Column(db.BOOLEAN, nullable=False)
+    # 手机号
+    mobile = db.Column(db.CHAR(11), nullable=False)
+    # email
+    email = db.Column(db.String(64), nullable=False)
+    # 地址 40 Unicode
+    address = db.Column(db.Unicode(120), nullable=False)
+    # 校区 20 Unicode
+    campus = db.Column(db.Unicode(60), nullable=False)
+    # 备注 100 Unicode
+    remark = db.Column(db.Unicode(300), nullable=False)
+    # 取消
+    is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 提交订单
+    is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     @staticmethod
     def generate_fake(count=100):
@@ -463,7 +560,7 @@ class ClassOrder(db.Model):
                     name=zh.name(),
                     age=randint(1, 10),
                     sex=True,
-                    cellphone=zh.phone_number(),
+                    mobile=zh.phone_number(),
                     address=zh.address(),
                     timestamp=fake.date_time(),
                     remark=zh.text())
@@ -474,17 +571,32 @@ class ClassOrder(db.Model):
 class ActivityOrder(db.Model):
     __tablename__ = 'activity_orders'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    activity_id = db.Column(db.Integer)
-    time = db.Column(db.TIMESTAMP)
-    name = db.Column(db.Unicode(24))
-    age = db.Column(db.Integer)
-    sex = db.Column(db.Boolean)
-    cellphone = db.Column(db.CHAR(11))
-    address = db.Column(db.Unicode(128))
-    timestamp = db.Column(db.TIMESTAMP)
-    remark = db.Column(db.Unicode(300))
-    canceled = db.Column(db.Boolean)
+    # 用户
+    user_id = db.Column(db.Integer, nullable=False)
+    # 活动
+    activity_id = db.Column(db.Integer, nullable=False)
+    # 创建时间
+    created = db.Column(db.Integer, nullable=False)
+    # 时间
+    time = db.Column(db.Integer, nullable=False)
+    # 姓名 6 Unicode
+    name = db.Column(db.Unicode(18), nullable=False)
+    # 年龄 10 Unicode
+    age = db.Column(db.Unicode(30), nullable=False)
+    # 性别
+    sex = db.Column(db.BOOLEAN, nullable=False)
+    # 手机号
+    mobile = db.Column(db.CHAR(11), nullable=False)
+    # email
+    email = db.Column(db.String(64), nullable=False)
+    # 地址
+    address = db.Column(db.Unicode(120), nullable=False)
+    # 备注
+    remark = db.Column(db.Unicode(300), nullable=False)
+    # 取消
+    is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
+    # 提交订单
+    is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
 
     @staticmethod
     def generate_fake(count=100):
@@ -505,7 +617,7 @@ class ActivityOrder(db.Model):
                     name=zh.name(),
                     age=randint(1, 10),
                     sex=True,
-                    cellphone=zh.phone_number(),
+                    mobile=zh.phone_number(),
                     address=zh.address(),
                     timestamp=fake.date_time(),
                     remark=zh.text())
@@ -516,7 +628,8 @@ class ActivityOrder(db.Model):
 class Time(db.Model):
     __tablename__ = 'times'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.Unicode(16))
+    # 上课时间 6 Unicode
+    time = db.Column(db.Unicode(18), nullable=False)
 
     @staticmethod
     def generate():
@@ -533,7 +646,8 @@ class Time(db.Model):
 class Type(db.Model):
     __tablename__ = 'types'
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.Unicode(16))
+    # 类型 6 Unicode
+    type = db.Column(db.Unicode(18), nullable=False)
 
     @staticmethod
     def generate():
@@ -547,7 +661,8 @@ class Type(db.Model):
 class Profession(db.Model):
     __tablename__ = 'professions'
     id = db.Column(db.Integer, primary_key=True)
-    profession = db.Column(db.Unicode(16))
+    # 行业 8 Unicode
+    profession = db.Column(db.Unicode(24), nullable=False)
 
     @staticmethod
     def generate():
@@ -560,7 +675,8 @@ class Profession(db.Model):
 class Property(db.Model):
     __tablename__ = 'properties'
     id = db.Column(db.Integer, primary_key=True)
-    property = db.Column(db.Unicode(16))
+    # 类别 6 Unicode
+    property = db.Column(db.Unicode(18), nullable=False)
 
     @staticmethod
     def generate():
@@ -574,7 +690,8 @@ class Property(db.Model):
 class Size(db.Model):
     __tablename__ = 'sizes'
     id = db.Column(db.Integer, primary_key=True)
-    size = db.Column(db.Unicode(16))
+    # 规模 6 Unicode
+    size = db.Column(db.Unicode(18), nullable=False)
 
     @staticmethod
     def generate():
@@ -589,7 +706,8 @@ class Size(db.Model):
 class Age(db.Model):
     __tablename__ = 'ages'
     id = db.Column(db.Integer, primary_key=True)
-    age = db.Column(db.Unicode(64))
+    # 适应年龄 10 Unicode
+    age = db.Column(db.Unicode(30), nullable=False)
 
     @staticmethod
     def generate():
@@ -604,8 +722,9 @@ class Age(db.Model):
 class Location(db.Model):
     __tablename__ = 'locations'
     id = db.Column(db.Integer, primary_key=True)
-    city = db.Column(db.Unicode(6))
-    district = db.Column(db.Unicode(9))
+    city_id = db.Column(db.Integer, nullable=False)
+    # 区县 4
+    district = db.Column(db.Unicode(12), nullable=False)
 
     @staticmethod
     def generate():
@@ -614,6 +733,11 @@ class Location(db.Model):
         db.session.add(Location(city=u'北京', district=u'海淀区'))
         db.session.commit()
 
+class City(db.Model):
+    __tablename__ = 'cities'
+    id = db.Column(db.Integer, primary_key=True)
+    # 城市 5 Unicode
+    city = db.Column(db.Unicode(15), nullable=False)
 
 def generate_helper_data():
     Location.generate()
