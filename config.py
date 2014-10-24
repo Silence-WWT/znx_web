@@ -21,7 +21,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'mysql://dev:devpassword@localhost/znx?charset=utf8'
+        'mysql+pymysql://dev:devpassword@localhost/znx?charset=utf8'
     PHOTO_DIR = os.path.join(basedir, 'photos')
 
 

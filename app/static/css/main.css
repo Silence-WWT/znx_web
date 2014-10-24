@@ -1458,7 +1458,7 @@ margin: 50px 20px;}
 margin:0 10px;
 color:#fff;}
 #myuserindex ul li{
-margin-bottom:10px;}
+margin-bottom:0px;}
 #myuserindex ul li a.outa{
 background: #6A6A6A;
 color: #fff;
@@ -1524,7 +1524,7 @@ padding: 0 10px 13px;}
 	border-bottom:1px solid #F0F0F0;}
 	#actlistul{
 	margin: 0px;
-padding-bottom: 50px;}
+padding-bottom: 0px;}
 	#actlistul > li > div.actleft > img{
 		float:left;}
 		#actlistul > li > div.actright{
@@ -1592,4 +1592,10 @@ margin: 5px 21px;}
 		}
 	.tablelist .table th,.tablelist .table td{
 		padding: 10px 30px;}
-		
+		#actlistul  li .actright p.spanli{
+			float: left;
+width: 100%;
+margin-left: 0px;
+margin-bottom: 3px;}
+#myuserindex > div.myuserpic > ul > li:nth-child(1){
+	margin-bottom:10px;}
