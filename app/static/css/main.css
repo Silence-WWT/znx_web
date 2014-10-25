@@ -1604,7 +1604,7 @@ margin-bottom: 3px;}
 		background:#fff; 
 		border:1px solid #DCD4C9;
 		margin-top:50px;
-		height:780px;}
+		height:auto;}
 			#aboutus .leftabout{
 				width:270px;
 				float:left;}
@@ -1700,4 +1700,40 @@ text-align: center;
         input[disabled]{
             color:#727272 ;
         }
-
+        #abouttalk{
+            float: left;
+background-color: #FFF;
+width: 729px;
+color: #4B5660;
+padding: 10px 60px;
+min-height: 679px;
+        }
+        #abouttalk h2{
+            font-size: 18px;
+color: #000;
+margin-bottom: 4px;
+font-weight: 700;
+        }
+      #abouttalk h3 {
+    font-size: 16px;
+    line-height: 25px;
+    color: #F90;
+    margin-top: 30px;
+    font-weight: 700;
+}
+ #abouttalk p.foreword {
+    color: #333;
+    font-size: 16px;
+    line-height: 25px;
+}
+#abouttalk  ul.link li {
+    line-height: 35px;
+    border-bottom: 1px dashed #CCC;
+    padding-bottom: 0px;
+}
+#abouttalk  ul.link li h3 {
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 400;
+}
