@@ -38,7 +38,7 @@ class RegistrationForm(Form):
             raise ValidationError(u'邮箱已经被注册')
 
     def validate_cellphone(self, field):
-        if User.query.filter_by(cellphone=field.data).first():
+        if User.query.filter_by(mobile=field.data).first():
             raise ValidationError(u'手机号已经被注册')
 
     def validate_confirmed(self, field):

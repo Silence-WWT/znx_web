@@ -18,7 +18,8 @@ def login():
     user_form = LoginForm()
     org_form = OrgLoginForm()
     if user_form.validate_on_submit():
-        user = User.query.filter_by(username=user_form.username.data).first()
+        user = User.query.filter_by(username=user_form.username.data).first()\
+        or User.query.filter_by(mobile=user_form.username.data).first()
         if user is not None and user.verify_password(user_form.password.data):
             login_user(user, user_form.remember_me.data)
             return redirect(request.args.get('next') or url_for('main.index'))
@@ -37,6 +38,7 @@ def register():
                     username=form.username.data,
                     mobile=form.cellphone.data,
                     password=form.password.data,
+                    identity='0'*64,
                     created=time.time())
         db.session.add(user)
         db.session.commit()
