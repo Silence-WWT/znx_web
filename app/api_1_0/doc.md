@@ -4,20 +4,20 @@ Android API
 register
 ----
     URL:
-        /api/v1.0/register?&password=&cellphone=&identity=&email=
+        /api/v1.0/register?&password=&mobile=&identity=&email=
     method:
         get
     parameters:
         password
-        cellphone
+        mobile
         email
-        identity: cellphone + uuid + 0
+        identity: mobile + uuid + 0
     json:
-        {"status": 0, "user": {"username": "", "cellphone": "", "identity": "", "email": ""}}
+        {"status": 0, "user": {"username": "", "mobile": "", "identity": "", "email": ""}}
         
-        status: 0 for success, 1002 for existing cellphone, 1004 for existing username, 5000 for SQL exception
+        status: 0 for success, 1002 for existing mobile, 1004 for existing username, 5000 for SQL exception
         username
-        cellphone
+        mobile
         identity
         email
         
@@ -30,14 +30,14 @@ login
     parameters:
         username
         password
-        identity: cellphone + uuid + 0
+        identity: mobile + uuid + 0
     json:
         {"status": 0,
-         "user": {"username": "", "cellphone": "", "email": "", "identity": ""}}
+         "user": {"username": "", "mobile": "", "email": "", "identity": ""}}
              
         status: 0 for success, 1000 for login failed
-        username: if login fail, username, cellphone, email, identity won't return
-        cellphone
+        username: if login fail, username, mobile, email, identity won't return
+        mobile
         email
         identity
         
@@ -82,7 +82,7 @@ organization_detail
     json:
         {"status": 0,
          "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "address": "",
-            "cellphone": "", "comments_count": "", "stars": ""}}
+            "mobile": "", "comments_count": "", "stars": "", "traffic": ""}}
          
         status: 0 for success, 2000 for organization not exist
         organization
@@ -93,9 +93,10 @@ organization_detail
             photo: url of photo
             intro
             address
-            cellphone
+            mobile
             comments_count
             stars: a float number for stars
+            traffic
     
 organization_comment
 ---
@@ -124,13 +125,13 @@ organization_comment_list
         page
     json:
         {"status": 0,
-         "organization_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
+         "organization_comments": [{"comment": "", "created": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2000 for organization not exist, 5001 for parameter error
         organization_comments: a list of organization_comments
             comment
             stars
-            timestamp
+            created
             username
         
 class_list
@@ -166,7 +167,7 @@ class_detail
     json:
         {"status": 0,
          "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "try": "", "consult_time": "",
-            "start_time": "", "end_time": "", "comments_count": "", "course_count": ""}}
+            "comments_count": "", "course_count": ""}}
         
         status: 0 for success, 2001 for class not exist
         class: a dict of class
@@ -185,14 +186,14 @@ class_detail
 class_sign_up
 ---
     URL:
-        /api/v1.0/class_sign_up?class=&username=&name=&cellphone=&age=&sex=&address=&remark=&email=&time=
+        /api/v1.0/class_sign_up?class=&username=&name=&mobile=&age=&sex=&address=&remark=&email=&time=
     method:
         get
     parameters:
         class: id of class
         username
         name
-        cellphone
+        mobile
         age
         sex
         address
@@ -231,13 +232,13 @@ class_comment_list
         page
     json:
         {"status": 0,
-         "class_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
+         "class_comments": [{"comment": "", "created": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2001 for class not exist, 5001 for parameter error
         class_comments: a list of class_comments
             comment
             stars
-            timestamp
+            created
             username
             
 activity_list
@@ -291,14 +292,14 @@ activity_detail
 activity_sign_up
 ---
     URL:
-        /api/v1.0/activity_sign_up?class=&username=&name=&cellphone=&age=&sex=&address=&remark=&email=
+        /api/v1.0/activity_sign_up?class=&username=&name=&mobile=&age=&sex=&address=&remark=&email=
     method:
         get
     parameters:
         class: id of class
         username
         name
-        cellphone
+        mobile
         age
         sex
         address
@@ -336,62 +337,62 @@ activity_comment_list
         page
     json:
         {"status": 0,
-         "activity_comments": [{"comment": "", "timestamp": "", "stars": "", "username": ""}]}
+         "activity_comments": [{"comment": "", "created": "", "stars": "", "username": ""}]}
         
         status: 0 for success, 2002 for activity not exist, 5001 for parameter error
         activity_comments: a list of activity_comments
             comment
             stars
-            timestamp
+            created
             username
             
 order_list
 ---
     URL:
-        /api/v1.0/order_list?username=&cellphone=&page=
+        /api/v1.0/order_list?username=&mobile=&page=
     method:
         get
     parameters:
         username
-        cellphone
+        mobile
         page
     json:
         {"status": 0,
-         "orders": [{"class_order_id": "", "timestamp": "", "class_name": "", "org_name": ""},
-            {"activity_order_id": "", "timestamp": "", "activity_name", "", "org_name": ""}]}
+         "orders": [{"class_order_id": "", "created": "", "class_name": "", "org_name": ""},
+            {"activity_order_id": "", "created": "", "activity_name", "", "org_name": ""}]}
          
          status: 0 for success, 1003 for user not exist
          class_order_id/activity_order_id
          class_name/activity_name
-         timestamp
+         created
          org_name
          
 order_detail
 ---
     URL:
-        /api/v1.0/order_list?username=&cellphone=&class_order=&activity_order=
+        /api/v1.0/order_list?username=&mobile=&class_order=&activity_order=
     method:
         get
     parameters:
         username
-        cellphone
+        mobile
         class_order/activity_order
     json:
         {"status": 0,
-         "class": [{"time": "", "timestamp": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "cellphone": "", "address": "", "remark": ""}],
-         "activity": [{"timestamp": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "cellphone": "", "address": "", "remark": ""}]}
+         "class": [{"time": "", "created": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
+             "mobile": "", "address": "", "remark": ""}],
+         "activity": [{"created": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
+             "mobile": "", "address": "", "remark": ""}]}
          
         status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
         class/activity
-        timestamp: timestamp of order
+        created: created of order
         time: ONLY included in classes, the try time of class
         class_name/activity_name
         name: user's name
         age
         sex
-        cellphone
+        mobile
         address: user's address
         remark: user's remark of a class or activity
     
@@ -404,24 +405,24 @@ requirement_list
     parameters:
         page
     json:
-        {"status": 0, "registers": [{"name": "", "cellphone": "", "need": "", "time": ""}]}
+        {"status": 0, "registers": [{"name": "", "mobile": "", "need": "", "time": ""}]}
         
         status: 0 for success, 5001 for parameter error
         registers: a list of registers
             name
-            cellphone
+            mobile
             need
             time
 
 requirement_sign_up
 ---
     URL:
-        /api/v1.0/requirement_sign_up?name=&cellphone=&need=&page=
+        /api/v1.0/requirement_sign_up?name=&mobile=&need=&page=
     method:
         get
     parameters:
         username
-        cellphone
+        mobile
         need
         page
     json:

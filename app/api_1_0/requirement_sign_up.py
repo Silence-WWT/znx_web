@@ -5,7 +5,7 @@ from datetime import datetime
 from flask import request
 
 from app import db
-from ..models import Register, Location
+from ..models import Register, Location, City
 from . import api
 from api_constants import *
 
@@ -14,19 +14,19 @@ from api_constants import *
 def register_requirement():
     data = {}
     name = request.args.get('name')
-    cellphone = request.args.get('cellphone')
+    mobile = request.args.get('mobile')
     need = request.args.get('need')
-    city = request.args.get('city')
+    city = City.query.filter_by(city=request.args.get('city')).first()
     district = request.args.get('district')
-    location = Location.query.filter(city=city, district=district).first()
-    timestamp = datetime.now()
-    if name and cellphone and need and location:
+    location = Location.query.filter_by(city_id=city.id, district=district).first()
+    created = datetime.now()
+    if name and mobile and need and location:
         register = Register(
             name=name,
-            cellphone=cellphone,
+            mobile=mobile,
             need=need,
             location=location.id,
-            timestamp=timestamp
+            created=created
         )
         try:
             db.session.add(register)

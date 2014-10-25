@@ -27,7 +27,7 @@ def organization_comment_list():
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
-                'timestamp': str(comment.timestamp),
+                'created': str(comment.created),
                 'username': user.username
             }
             data['organization_comments'].append(comment_dict)

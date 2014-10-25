@@ -23,11 +23,10 @@ def class_detail():
             'price': class_.price,
             'intro': class_.intro,
             'consult_time': class_.consult_time,
-            'start_time': str(class_.start_time),
-            'end_time': str(class_.end_time),
-            'try': class_.try_,
+            'is_round': class_.is_round,
+            'try': class_.is_tastable,
             'comments_count': comments_count,
-            'course_count': ''  # 总课时，等待数据库更新
+            'course_count': class_.days
         }
         data['status'] = SUCCESS
     else:

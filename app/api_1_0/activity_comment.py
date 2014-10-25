@@ -25,7 +25,7 @@ def activity_comment():
             user_id=user.id,
             stars=stars,
             body=comment,
-            timestamp=datetime.now()
+            created=datetime.now()
         )
         try:
             db.session.add(activity_comment_)

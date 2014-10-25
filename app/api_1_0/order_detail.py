@@ -12,9 +12,9 @@ from api_constants import *
 def order_detail():
     data = {}
     username = request.args.get('username')
-    cellphone = request.args.get('cellphone')
+    mobile = request.args.get('mobile')
     class_order_id = request.args.get('class_order')
-    user = User.query.filter_by(username=username, cellphone=cellphone).first()
+    user = User.query.filter_by(username=username, mobile=mobile).first()
     if user:
         if class_order_id:
             order = ClassOrder.query.filter_by(id=class_order_id).first()
@@ -28,11 +28,11 @@ def order_detail():
             data['status'] = ACCESS_RESTRICTED
             return json.dumps(data)
         order_dict = {
-            'timestamp': str(order.timestamp),
+            'created': str(order.created),
             'name': order.name,
             'age': order.age,
             'sex': order.sex,
-            'cellphone': order.cellphone,
+            'mobile': order.mobile,
             'address': order.address,
             'remark': order.remark
         }

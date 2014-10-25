@@ -24,12 +24,12 @@ def requirement_list():
             last_name = register.name[:1]
         else:
             last_name = register.name[:2]
-        cellphone = register.cellphone[:3]
+        mobile = register.mobile[:3]
         register_dict = {
             'name': last_name + u'同学',
-            'cellphone': cellphone + '*' * 8,
+            'mobile': mobile + '*' * 8,
             'need': register.need,
-            'time': str(register.timestamp)
+            'time': str(register.created)
         }
         data['registers'].append(register_dict)
     data['status'] = SUCCESS
