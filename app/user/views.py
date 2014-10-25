@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import datetime
+import time
+from random import randint
 from . import user
 from .. import db
 from .forms import LoginForm, RegistrationForm
@@ -7,7 +8,8 @@ from ..models import User
 from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
 from flask.ext.login import login_user
-from flask import redirect, url_for, render_template, flash, request
+from flask import redirect, url_for, render_template, flash, request, jsonify
+from ..utils.captcha import send_captcha
 
 
 @user.route('/login', methods=['POST'])
@@ -16,7 +18,8 @@ def login():
     user_form = LoginForm()
     org_form = OrgLoginForm()
     if user_form.validate_on_submit():
-        user = User.query.filter_by(username=user_form.username.data).first()
+        user = User.query.filter_by(username=user_form.username.data).first()\
+        or User.query.filter_by(mobile=user_form.username.data).first()
         if user is not None and user.verify_password(user_form.password.data):
             login_user(user, user_form.remember_me.data)
             return redirect(request.args.get('next') or url_for('main.index'))
@@ -33,9 +36,10 @@ def register():
         # TODO: add username
         user = User(email=form.email.data,
                     username=form.username.data,
-                    cellphone=form.cellphone.data,
+                    mobile=form.cellphone.data,
                     password=form.password.data,
-                    member_since=datetime.datetime.now())
+                    identity='',
+                    created=time.time())
         db.session.add(user)
         db.session.commit()
         # token = user.generate_confirmation_token()
@@ -45,3 +49,13 @@ def register():
         #flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
     return render_template('user_regiter_py.html', form=form)
+
+@user.route('/send_sms', methods=['post'])
+def send_sms():
+    # TODO: add csrf and mobile check.
+    # TODO: return 200 401
+    mobile = request.values.get('mobile', '', type=str)
+    #if mobile:
+    #    send_captcha('user', mobile)
+    return 'ok', 200
+

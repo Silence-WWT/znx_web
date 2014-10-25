@@ -21,7 +21,7 @@ class RegistrationForm(Form):
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
 
     def validate_cellphone(self, field):
-        if Organization.query.filter_by(cellphone=field.data).first():
+        if Organization.query.filter_by(mobile=field.data).first():
             raise ValidationError('Cellphone already registered.')
 
 

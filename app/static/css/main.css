@@ -441,7 +441,7 @@ MARGIN: -3px 4px 0px;
 #organregform .form-horizontal {
     margin-left:60px;
 }
-#organregform .form-control {
+#organregform .form-control,#myactset .form-control,#myclassset .form-control{
     width: 320px;
     height: 40px;
     padding: 0;
@@ -453,12 +453,12 @@ MARGIN: -3px 4px 0px;
     margin-left:20px;
     color:#FF2424;
 }
-#organregform .form-control .form-control {
+#organregform .form-control .form-control,#myactset .form-control .form-control,#myclassset .form-control .form-control{
     margin-left: -10px;
     width: 330px;
     height: 42px;
 }
-#organregform .control-label {
+#organregform .control-label ,#myactset .control-label,#myclassset .control-label{
     line-height:40px;
     height:40px;
     font-size:18px;
@@ -870,7 +870,7 @@ MARGIN: -3px 4px 0px;
 }
 #myorgan .headdes .organmoredec span i{
 	margin:5px;}
-#myorgan .headdes .organmoredec organplace img{
+#myorgan .headdes .organmoredec .organplace img{
 	margin:4px;}
 #myorgan .headdes .organmoredec span img {
     margin: 8px 4px;
@@ -1227,13 +1227,14 @@ margin: -91px 100px;
 	}
 	#organregall>.container>.attendtitle{
 		width:200px;}
-		#datetimepicker >.form-control {
+		#datetimepicker >.form-control,#datetimepicker1 >.form-control,#datetimepicker2 >.form-control {
 			width:283px;}
-			#datetimepicker span.add-on{
+			#datetimepicker span.add-on,#datetimepicker1 span.add-on,#datetimepicker2 span.add-on{
 				margin: 0px;
-height: 18px;
+height: 20px;
 padding: 10px;
 cursor:pointer;}
+
 .form-control-more{
 	margin-left: 23px;
 width: 331px;
@@ -1448,4 +1449,291 @@ background:url("../images/userbeijing.png");
 height:150px;}
 #myuserindex > div > img{
 width:100px;
+float:left;
 margin: 25px 0px 25px 50px;}
+#myuserindex > div.myuserpic > ul{
+float: left;
+margin: 50px 20px;}
+#myuserindex ul li a.username{
+margin:0 10px;
+color:#fff;}
+#myuserindex ul li{
+margin-bottom:0px;}
+#myuserindex ul li a.outa{
+background: #6A6A6A;
+color: #fff;
+padding: 5px;}
+#myuser{
+	background:#fff;
+	padding:20px;
+	width: 1160px;}
+#myuser > div.myuserleft{
+	width: 225px;
+	float: left;
+height: 336px;
+border:1px solid #F0F0F0;}
+#myuser > div.myuserleft ul{
+	margin:0px;
+	width:100%;}
+#myuser .myuserleft ul li{
+	border-bottom:1px solid #f0f0f0;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	
+	margin-bottom:0px;
+	cursor:pointer;
+	background:#fff;
+	}
+	
+	#myuser .myuserleft ul li a{
+		margin-left:65px;
+		color:#000;}
+		#myuser .myuserleft ul li.active{
+		background:#00B98D;
+		color:#fff;}
+		#myuser .myuserleft ul li a img{
+			margin-right:10px;}
+		#myuser .myuserleft ul li:hover{
+			background:#00B98D;
+			}
+			#myuser > div.myuserright{
+				float: left;
+width: 900px;
+margin-left: 26px;
+border: 1px solid #F0F0F0;}
+				#myuser > div.myuserright > h3{
+background: none repeat scroll 0% 0% #F0F0F0;
+margin-top: 0px;
+padding-left: 30px;
+font-size: 24px;
+font-weight: normal;
+color: #000;
+padding-top: 10px;
+padding-bottom: 7px;
+border-bottom: 1px solid #D6D6D6;}
+#myuser > div.myuserright > h3 span{
+	line-height: 44px;
+border-bottom: 2px solid #00B98D;
+/* padding-bottom: 17px; */
+width: 240px;
+padding: 0 10px 13px;}
+#actlistul > li{
+	height:160px;
+	padding:34px 54px;
+	border-bottom:1px solid #F0F0F0;}
+	#actlistul{
+	margin: 0px;
+padding-bottom: 0px;}
+	#actlistul > li > div.actleft > img{
+		float:left;}
+		#actlistul > li > div.actright{
+			float:left;}
+			#actlistul > li > div.actright > div > h4{
+				float:left;
+				
+font-size: 18px;
+color: #000;}
+				#actlistul > li > div.actright {
+					width: 620px;
+padding-left: 10px;}
+					#actlistul > li > div.actright > div > a{
+						float:left;}
+						.btn-edit,.btn-det{
+							border: 0;
+color: #FFF;
+padding: 5px 15px;
+border-radius: 4px;
+outline:none;}
+.btn-edit{
+	background:#00B98D;}
+	.btn-det{
+	background:#FD8F6A;}
+	#actlistul .actright .actrighta{
+		float:right;}
+		
+#actlistul > li > div.actright .actrighttop{
+	height:40px;}
+	#actlistul > li > div.actright > h5{
+	color: #000;
+/* font-weight: normal; */
+border-bottom: 1px dotted #D9D9D9;
+padding: 4px 0 3px;
+margin-top: 4px;}
+#actlistul > li > div.actright > p{
+	font-size:12px;}
+#actlistul > li > div.actright > span{
+	font-size: 18px;
+color: #00B98D;}
+#actlistul > li > div.actright > span > small{
+	font-size: 80%;
+color: #000;}
+#myuser > div.myuserright > h3 > a{
+	float: right;
+margin-right: 30px;
+font-size: 14px;
+color: #000;
+outline:none;}
+#myuser > div.myuserright > h3 > a > img{
+	margin: -4px 2px 0;}
+	#myactset,#myclassset{
+		padding: 50px 120px;}
+		#myactset .btn-next,#myclassset .btn-next{
+			width: 340px;
+margin: 37px 0px;}
+#myclassset label.radio:nth-child(2){
+	float: left;
+margin: 5px 21px;}
+#myclassset label{
+	float:left;
+	}
+	.tablelist .table{
+		margin-bottom:0px;
+		}
+	.tablelist .table th,.tablelist .table td{
+		padding: 10px 30px;}
+		#actlistul  li .actright p.spanli{
+			float: left;
+width: 100%;
+margin-left: 0px;
+margin-bottom: 3px;}
+#myuserindex > div.myuserpic > ul > li:nth-child(1){
+	margin-bottom:10px;}
+	
+	#aboutus{
+		background:#fff; 
+		border:1px solid #DCD4C9;
+		margin-top:50px;
+		height:auto;}
+			#aboutus .leftabout{
+				width:270px;
+				float:left;}
+				#aboutus .rightabout{
+					float:left;}
+					
+			#aboutus .leftabout #myTab{
+				background:#F4F2EE;
+				margin:0px;
+				height:780px;
+				}	
+				#aboutus .leftabout #myTab li{
+					height:54px;
+					border-bottom:1px solid #E2E1DD;
+					
+					line-height:54px;
+					cursor:pointer;
+					}	
+					#aboutus .leftabout li a{
+						color:#000;}
+				#aboutus .leftabout #myTab li a{
+					    
+    display: block;
+    outline: none;
+    text-decoration: none;
+    float: right;
+    padding-right: 110px;
+}
+					#aboutus .leftabout #myTab li a:hover{
+						color:#00B98D;}
+						#aboutus .leftabout #myTab li img{margin-right:10px;}
+						#aboutus .leftabout #myTab li:first-child{
+							padding-left:50px;}
+#aboutus .leftabout #myTab li.active {
+	border-right:1px solid #fff;
+	background:#fff;
+	}
+	#aboutus .leftabout #myTab li.active a{
+		color:#00B98D;
+		}
+		#aboutknow,#aboutnew,#aboutrule,#aboutjoin{
+			padding: 40px 50px;
+float: left;
+width: 827px;}
+		#aboutknow	.titleabout{
+			width: 500px;
+margin: 49px 0px 0px 252px;}
+		#aboutknow .titleabout>h3{
+			width:360px;
+			float:left;
+			margin-top: 1px;}
+			#aboutknow .titleabout>small{
+				float: left;
+margin: -7px 10px;
+font-size: 14px;
+color: #A6A6A6;}
+		#aboutknow	.titleabout > img{
+			float:left;
+			margin-right: 10px;
+			height: 67px;}
+			#aboutknow .aboutknowp p{
+				text-indent: 2em;}
+				#regmessage{
+width: 128px;
+
+}
+#aboutknow > div.aboutknowp > p{
+	font-size:16px;
+	line-height:24px;}
+	#aboutknow > .aboutknowp{
+		margin-top:20px;}
+		#aboutnew > h4{
+			border-bottom: 1px solid #D8D8D8;
+height: 40px;
+line-height: 40px;
+font-size:24px;}
+#aboutnew > ul{
+	margin-top:30px;
+	color:#727272;
+	font-size:16px;}
+	#aboutnew > ul>li{
+		line-height:28px;}
+		#aboutnew > ul>li>a{
+			color:#727272;}
+        #smsinfo{
+   color: #FF2424;
+float: right;
+margin-right: 83px;
+margin-bottom: -20px;
+width: 160px;
+text-align: center;
+         }
+        input[disabled]{
+            color:#727272 ;
+        }
+        #abouttalk{
+            float: left;
+background-color: #FFF;
+width: 729px;
+color: #4B5660;
+padding: 10px 60px;
+min-height: 679px;
+        }
+        #abouttalk h2{
+            font-size: 18px;
+color: #000;
+margin-bottom: 4px;
+font-weight: 700;
+        }
+      #abouttalk h3 {
+    font-size: 16px;
+    line-height: 25px;
+    color: #F90;
+    margin-top: 30px;
+    font-weight: 700;
+}
+ #abouttalk p.foreword {
+    color: #333;
+    font-size: 16px;
+    line-height: 25px;
+}
+#abouttalk  ul.link li {
+    line-height: 35px;
+    border-bottom: 1px dashed #CCC;
+    padding-bottom: 0px;
+}
+#abouttalk  ul.link li h3 {
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 400;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>去哪学-机构后台中心-课程设置</title>
+<link href="../static/css/znx.min.css" rel="stylesheet" media="screen">
+  <link href="../static/css/main.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+  <script src="../static/js/jquery.js" type="text/javascript"></script>
+  <script src="../static/js/znx.min.js" type="text/javascript"></script>
+   <script src="../static/js/bootstrap-datetimepicker.min.js" type="text/javascript" ></script>
+ 
+<meta charset="utf-8">
+</head>
+<body>
+<div id="wrap">
+<div class="navbar navbar-static-top" id="headnav">
+    <div class="navbar-inner ">
+      <div class="container">
+        <a class="brand" href="#"><img src="../static/images/phonelogo.png"/>手机版在哪学</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav pull-right">
+            <li ><a href="login_choose.html"><img src="../static/images/man.png"/>登录</a></li>
+            <li><a href="#reg">注册</a></li>
+            <li><a href="#myznx">我的在哪学</a></li>
+             <li><span><img src="../static/images/telelogo.png"/>400-91-910</span></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <div class="mainuserhead">
+  <div class="container head" id="userindexhead">
+  <div id="header">
+  <img src="../static/images/logo.png" class="logopic"/>
+  </div>
+ <div class="titleright">
+ 
+     <h1>用户中心</h1>
+
+ </div>
+      <div class="indexright"><img src="../static/images/returnhome.png"><a href="index.html">回到首页</a></div>
+
+  </div>
+</div>
+<div class="container" id="myuserindex">
+<div class="myuserpic ">
+    <img src="../static/images/userhead.png " class="img-circle"/>
+    <ul class="unstyled">
+        <li>
+           <a class="username" href="#">用户名</a>
+        </li>
+         <li>
+           <a href="#" class="outa">退出登录</a>
+        </li>
+    </ul>
+</div>
+    <div class="container" id="myuser">
+    <div class="myuserleft">
+    <ul class="unstyled">
+    <li class="active"><a href="#" class="aandli"><img src="../static/images/set1.png"/>我的课程</a></li>
+  <li ><a href="#" class="aandli"><img src="../static/images/set3.png"/>我的活动</a></li>
+          <li><a href="#" class="aandli"><img src="../static/images/set3.png"/>订单列表</a></li>
+          
+            
+    </ul>
+    
+    </div>
+    <div class="myuserright">
+    <h3><span>课程编辑</span></h3>
+    <div id="myclassset">
+                <form class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">课程名称</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control"  value="课程名称"/> 
+ 
+                        </div>
+                    </div>
+                   
+                    <div class="control-group">
+                        <label class="control-label" >适应年龄</label>
+                    
+                             <select class="form-control-more">
+                                <option>10岁以下</option>
+                                <option>10-12岁</option>
+                                
+                            </select>
+ 
+                      
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >价格</label>
+                            <div class="controls">
+                          <input type="text"  class="form-control" value="价格"/>
+                        </div>
+                    </div>
+                      <div class="control-group">
+                        <label class="control-label" >总课时</label>
+                            <div class="controls">
+                          <input type="text"  class="form-control" value="总课时"/>
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label" >咨询时间</label>
+                        <div class="controls">
+                            <input type="text"  class="form-control" value="咨询时间" />
+ 
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" >上课时间</label>
+                        <div class="controls">
+                            <div id="datetimepicker1" class="input-append date">
+      <input type="text" class="form-control shortinput"/>
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+      </span>
+    </div> 
+    </div>
+    </div>
+     
+                      <div class="control-group">
+                       <label class="control-label">是否支持试听</label>
+                        <div class="controls">
+                         <label class="radio">
+<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>支持
+</label>
+<label class="radio">
+<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+不支持
+</label>
+ 
+                        </div>
+</div>
+ 
+                      
+                        
+                     <div class="control-group">
+                        <label class="control-label">课程简介</label>
+                        <div class="controls">
+                            <textarea rows="4" class="form-textarea" ></textarea> 
+ 
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button type="submit" class="btn-next">发布</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+    </div>
+</div>
+<div   id="footer">
+<div class="container">
+<div class="row">
+<div class="span3">
+<h3>帮助中心</h3>
+<ul class="unstyled">
+<li><a href="#">平台流程</a></li>
+</ul>
+</div>
+<div class="span3">
+ <h3>服务支持</h3>
+<ul class="unstyled">
+<li><a href="#">意见反馈</a></li>
+
+</ul>
+</div>
+<div class="span3">  
+ <h3>关于在哪学</h3>
+<ul class="unstyled">
+<li><a href="#">了解我们</a></li>
+<li><a href="#">联系我们</a></li>
+ <li><a href="#">加入我们</a></li>
+ <li><a href="#">活动公告</a></li>
+ <li><a href="#">活动公告</a></li>
+</ul></div>
+<div class="span3"><h3>关注我们</h3>
+<ul class="unstyled">
+<li><a href="#">官方微信</a></li>
+<li><a href="#">官方微博</a></li>
+</ul></div>
+<div class="span3" id="footerlogo" style="border:0px;">
+<a href="#">
+<img src="../static/images/footerlogo.png"/>
+</a>
+</div>
+</div>
+</div>
+<div id="footeradd" class="container" style="height:32px;border: 0px;" >
+<div class="footerlink">
+<ul class="unstyled inline">
+友情链接：
+<li><a href="#">360导航</a></li>
+<li><a href="#">2345导航</a></li>
+<li><a href="#">火狐主页</a></li>
+<li><a href="#">百度视频</a></li>
+<li><a href="#">我赢职场</a></li>
+<li><a href="#">华考范文网</a></li>
+<li><a href="#">高考咨询会</a></li>
+<li><a href="#">一诺留学</a></li></ul>
+</div>
+<span>
+Copyright@2014 - 2015 在哪学版权所有. 京公网安备11010802015210号 | 京ICP证14027590号
+</span>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
+<script src="../static/js/user.js" type="text/javascript" ></script>
+<script type="text/javascript">
+$(function(){
+	
+	$("#myuser .myuserleft ul li").hover(function(){
+		$(this).find('.aandli').css('color','#fff');
+		},function(){
+		$(this).find('.aandli').css('color','#000');
+	
+			})
+			$("#myuser .myuserleft ul li.active a").css('color','#fff');
+		
+	})
+	$(function(){
+		$(".deleclass").click(function(){
+			var id=$(this).attr("id");
+			//alert(id);
+			var r=confirm("删除课程？");
+			if (r==true)
+  {
+		alert("你删除的课程是"+id);
+  }
+		else
+  {
+  //alert("You pressed Cancel!");
+  }
+
+			
+			})
+		
+		})
+		</script>
+
+	<script>
+ $('#datetimepicker1').datetimepicker({
+		format: 'yyyy/MM/dd hh:mm',
+        language: 'ch',
+        pickDate: true,
+        pickTime: true,
+        hourStep: 1,
+        minuteStep: 15,
+        secondStep: 30,
+        inputMask: true
+      });
+	   $('#datetimepicker2').datetimepicker({
+		format: 'yyyy/MM/dd hh:mm',
+        language: 'ch',
+        pickDate: true,
+        pickTime: true,
+        hourStep: 1,
+        minuteStep: 15,
+        secondStep: 30,
+        inputMask: true
+      });
+	  
+	  
+
+
+</script>
