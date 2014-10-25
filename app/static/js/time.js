@@ -24,7 +24,9 @@ function time(o) {
 			var mobile=$("#inputPhone").val();
 			var isMobile=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/; //手机号码验证规则
 			var moblieurl=$("#mobileurl").val();
+
 			//alert(moblieurl);
+
 			if(isMobile.test(mobile)){
 			   $.ajax({
                     type: "POST", //用POST方式传输
