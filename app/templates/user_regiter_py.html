@@ -36,7 +36,7 @@
                         <label class="control-label" for="inputVerCode">验证码</label>
                         <div class="controls">
                             <input type="text" id="inputVerCode" class="form-control">
-                            <button class="btn-myred" id="regmessage">免费获取验证码</button>
+                            <input class="btn-myred" id="regmessage" onclick="sendMessage();"  value="免费获取验证码"/>
                              <input id="mobileurl" value="{{ url_for('user.send_sms') }}"  type="hidden"/>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <label class="control-label" for="inputEmail">邮箱</label>
                         <div class="controls">
                             <input type="text" id="inputEmail" class="form-control" name="{{ form.email.name }}"> <span></span>
- 
+
                         </div>
                     </div>
                     <div class="control-group">
