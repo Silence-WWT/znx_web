@@ -318,11 +318,25 @@ class Class(db.Model):
     # 浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
 
+    def get_org(self):
+        return Organization.query.get(self.organization_id)
+
     def get_comment_count(self):
         return ClassComment.query.filter_by(class_id=self.id).count()
 
+    def get_comments(self):
+        return ClassComment.query.filter_by(class_id=self.id).all()
+
     def get_age(self):
         return Age.query.get(self.age_id).age
+
+    def get_time(self):
+        classtimes = ClassTime.query.filter_by(class_id=self.id).all()
+        class_time = unicode()
+        for classtime in classtimes:
+            class_time += Time.query.get(classtime.time_id).time
+        return class_time
+
 
     @staticmethod
     def generate_fake(count=20):
@@ -368,6 +382,9 @@ class ClassComment(db.Model):
     created = db.Column(db.Integer, nullable=False)
     # 被关闭
     is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
+
+    def get_user(self):
+        return User.query.get(self.user_id)
 
     @staticmethod
     def generate_fake(count=20):
