@@ -166,7 +166,7 @@ class_detail
     json:
         {"status": 0,
          "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "try": "", "consult_time": "",
-            "start_time": "", "end_time": ""}}
+            "start_time": "", "end_time": "", "comments_count": "", "course_count": ""}}
         
         status: 0 for success, 2001 for class not exist
         class: a dict of class
@@ -179,6 +179,8 @@ class_detail
             consult_time
             start_time
             end_time
+            comments_count
+            course_count
     
 class_sign_up
 ---
@@ -270,7 +272,8 @@ activity_detail
         activity: id of activity
     json:
         {"status": 0,
-         "activity": {"id": "", "name": "", "age": "", "price": "", "intro": "", "start_time": "", "end_time": ""}}
+         "activity": {"id": "", "name": "", "age": "", "price": "", "intro": "", "start_time": "", "end_time": "",
+            "comments_count": ""}}
         
         status: 0 for success, 2002 fot activity not exist
         activity: a dict of activity
@@ -283,6 +286,7 @@ activity_detail
             consult_time
             start_time
             end_time
+            comments_count
 
 activity_sign_up
 ---

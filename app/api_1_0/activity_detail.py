@@ -3,7 +3,7 @@ import json
 
 from flask import request
 
-from ..models import Activity, Age
+from ..models import Activity, ActivityComment, Age
 from . import api
 from api_constants import *
 
@@ -15,6 +15,7 @@ def activity_detail():
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
         age = Age.query.filter_by(id=activity.age_id).first()
+        comments_count = ActivityComment.query.filter_by(activity_id=activity.id).count()
         data['activity'] = {
             'id': activity.id,
             'name': activity.name,
@@ -23,6 +24,7 @@ def activity_detail():
             'intro': activity.intro,
             'start_time': str(activity.start_time),
             'end_time': str(activity.end_time),
+            'comments_count': comments_count
         }
         data['status'] = SUCCESS
     else:
