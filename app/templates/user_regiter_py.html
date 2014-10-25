@@ -36,7 +36,8 @@
                         <label class="control-label" for="inputVerCode">验证码</label>
                         <div class="controls">
                             <input type="text" id="inputVerCode" class="form-control">
-                            <button class="btn-myred">免费获取验证码</button>
+                            <button class="btn-myred" id="regmessage">免费获取验证码</button>
+                             <input id="mobileurl" value="www.baidu.com"  type="hidden"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -179,3 +180,6 @@
         </div>
     </div>
       {% endblock content %}
+        {% block inscript %}
+      <script src="{{ url_for('static', filename='js/time.js') }}" type="text/javascript" ></script>
+     {% endblock inscript %}
