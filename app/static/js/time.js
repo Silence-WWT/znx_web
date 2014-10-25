@@ -17,7 +17,7 @@ function sendMessage() {
 			url: messageurl, //目标地址
 			data: "mobile=" + mobilephone,
 			error: function (data) {
-           alert(data);
+           //alert(data);
            },
 		success: function (data){
             alert(data);
