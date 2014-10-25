@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import datetime
+import time
+from random import randint
 from . import user
 from .. import db
 from .forms import LoginForm, RegistrationForm
@@ -8,6 +9,7 @@ from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
 from flask.ext.login import login_user
 from flask import redirect, url_for, render_template, flash, request
+from ..utils.captcha import send_captcha
 
 
 @user.route('/login', methods=['POST'])
@@ -33,9 +35,9 @@ def register():
         # TODO: add username
         user = User(email=form.email.data,
                     username=form.username.data,
-                    cellphone=form.cellphone.data,
+                    mobile=form.cellphone.data,
                     password=form.password.data,
-                    member_since=datetime.datetime.now())
+                    created=time.time())
         db.session.add(user)
         db.session.commit()
         # token = user.generate_confirmation_token()
@@ -45,3 +47,12 @@ def register():
         #flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('main.index'))
     return render_template('user_regiter_py.html', form=form)
+
+@user.route('/send_sms', methods=['post'])
+def send_sms():
+    # TODO: add csrf and mobile check.
+    mobile = request.args.get('mobile', '', type=str)
+    if mobile:
+        send_captcha('user', mobile)
+    return 'OK', 200
+
