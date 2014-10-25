@@ -5,7 +5,7 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type,\
-    Profession, Property, Size, Location, Class, Activity
+    Profession, Property, Size, Location, Class, Activity, City
 from .forms import RegistrationForm, DetailForm, CertificationForm, LoginForm
 from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
@@ -67,10 +67,12 @@ def detail():
     locations = Location.query.all()
     location_dict = dict()
     for location in locations:
-        if location.city not in location_dict.keys():
-            location_dict[location.city] = set()
-        location_dict[location.city].add((location.id,
+        city = City.query.get(location.city_id).city
+        if city not in location_dict.keys():
+            location_dict[city] = set()
+        location_dict[city].add((location.id,
                                           location.district))
+        # TODO: correct choose form.
     form.location = location_dict
     if form.validate_on_submit():
         current_user.type = form.type_id.data
