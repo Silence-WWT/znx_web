@@ -5,7 +5,10 @@ function sendMessage() {
 	curCount = count;
 	var mobilephone=$("#inputPhone").val();//手机号码
     var messageurl=$("#mobileurl").val();
-	if(mobilephone != ""){
+
+    var isMobile=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+    //alert(isMobile.test(mobilephone));
+	if(isMobile.test(mobilephone)){
 		//设置button效果，开始计时
 		$("#regmessage").attr("disabled", "true");
 		$("#regmessage").val("请在" + curCount + "秒内输入验证码");
@@ -17,14 +20,15 @@ function sendMessage() {
 			url: messageurl, //目标地址
 			data: "mobile=" + mobilephone,
 			error: function (data) {
-           //alert(data);
+          $("#smsinfo").html("验证码发送失败,请重试！");
            },
 		success: function (data){
-            alert(data);
+            $("#smsinfo").html("验证码发送成功！");
+            $("#smsinfo").css('color','#00B98D');
            }
 		});
 	}else{
-		//alert("手机号码不能为空！");
+		 $("#smsinfo").html("手机号码格式不正确哦！");
 	}
 }
 //timer处理函数

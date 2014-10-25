@@ -870,7 +870,7 @@ MARGIN: -3px 4px 0px;
 }
 #myorgan .headdes .organmoredec span i{
 	margin:5px;}
-#myorgan .headdes .organmoredec organplace img{
+#myorgan .headdes .organmoredec .organplace img{
 	margin:4px;}
 #myorgan .headdes .organmoredec span img {
     margin: 8px 4px;
@@ -1689,4 +1689,15 @@ font-size:24px;}
 		line-height:28px;}
 		#aboutnew > ul>li>a{
 			color:#727272;}
+        #smsinfo{
+   color: #FF2424;
+float: right;
+margin-right: 83px;
+margin-bottom: -20px;
+width: 160px;
+text-align: center;
+         }
+        input[disabled]{
+            color:#727272 ;
+        }
 
