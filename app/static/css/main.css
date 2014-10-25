@@ -1645,7 +1645,7 @@ margin-bottom: 3px;}
 	#aboutus .leftabout #myTab li.active a{
 		color:#00B98D;
 		}
-		#aboutknow{
+		#aboutknow,#aboutnew,#aboutrule,#aboutjoin{
 			padding: 40px 50px;
 float: left;
 width: 827px;}
@@ -1671,4 +1671,22 @@ color: #A6A6A6;}
 width: 150px;
 
 }
+#aboutknow > div.aboutknowp > p{
+	font-size:16px;
+	line-height:24px;}
+	#aboutknow > .aboutknowp{
+		margin-top:20px;}
+		#aboutnew > h4{
+			border-bottom: 1px solid #D8D8D8;
+height: 40px;
+line-height: 40px;
+font-size:24px;}
+#aboutnew > ul{
+	margin-top:30px;
+	color:#727272;
+	font-size:16px;}
+	#aboutnew > ul>li{
+		line-height:28px;}
+		#aboutnew > ul>li>a{
+			color:#727272;}
 
