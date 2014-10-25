@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-机构入住{% endblock title %}
+ {% block navbar %}
+ {% include 'headmore.html' %}
+    {% endblock navbar %}
+    {% block content %}
+    
+    
+  <div class="container" id="aboutus">
+    <div class="leftabout">
+    <ul class="unstyled" id="myTab">
+<li ><img src="{{ url_for('static', filename='images/about.png') }}"/>关于在哪学</li>
+<li class="active"><a href="#aboutknow">了解我们</a></li>
+<li><a href="#abouttalk">联系我们</a></li>
+<li><a href="#aboutjoin">加入我们</a></li>
+<li><a href="#aboutrule">网站条款</a></li>
+<li><a href="#aboutnew">网站公告</a></li>
+</ul>
+
+    </div>
+    <div class="rightabout">
+    <div class="tab-content">
+
+<div class="tab-pane active" id="aboutknow">
+<div class="titleabout"><img src="{{ url_for('static', filename='images/aboutwho.png') }}"><h3>我们是谁？做什么？</h3>
+<small>Who we are?   What we do？</small>
+</div>
+<div class="clearboth"></div>
+<div class="aboutknowp">
+<p>
+在哪学网（www.znx.com）创立于2014年6月，是一家专注于学习服务的创新科技企业，主要由来自知名教育
+机构的领军人物和百度、阿里、新浪、搜狐等著名互联网公司的顶尖人才组建。
+</p>
+<p>
+跟谁学致力于打造人人乐用的学习服务平台，通过更高效、更智能、更精准地匹配师生资源，为老师及学生提供
+多种增值服务和学习工具，全力创建一个专业、简单、智能、安全的高品质学习服务的第三方平台，让学习变得
+更加容易、平等和高效。在让跟谁学成为一种生活方式的同时，跟谁学也在全力打造更富活力、更加健康的教育
+生态圈，以实现全行业乃至全产业链的共赢。
+</p>
+<p>
+通过移动互联网让教与学变得“更平等、更便捷、更高效”是跟谁学的使命。我们会秉持“用户第一、诚信、简
+单、极致、创新”12字核心价值观，与您一起，共同学习，快速成长！
+</p>
+</div>
+
+</div>
+<div class="tab-pane" id="abouttalk">
+    <h2>联系我们</h2>
+    <p class="foreword">欢迎各界人士与我们联系，洽谈合作。</p>
+    <p class="foreword">联系电话：010-82826826</p>
+    <ul class="link unstyled">
+        <li>
+            <h3>总裁邮箱</h3>
+            <p class="business">Email：<a href="mailto:chenxiangdong@znx.com">chenxiangdong@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>机构合作</h3>
+            <p class="business">Email：<a href="mailto:ic@znx.com">ic@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>商务合作</h3>
+            <p class="business">Email：<a href="mailto:bd@znx.com">bd@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>广告合作</h3>
+            <p class="business">Email：<a href="mailto:ad@znx.com">ad@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>媒体采访</h3>
+            <p class="business">Email：<a href="mailto:pr@znx.com">pr@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>投资融资</h3>
+            <p class="business">Email：<a href="mailto:if@znx.com">if@znx.com</a>
+            </p>
+        </li>
+        <li>
+            <h3>友情链接</h3>
+            <p class="business">Email：<a href="mailto:link@znx.com">link@znx.com</a>
+            </p>
+        </li>
+    </ul>
+</div>
+<div class="tab-pane" id="aboutjoin">加入我们</div>
+<div class="tab-pane" id="aboutrule">网站条款</div>
+<div class="tab-pane" id="aboutnew">
+<h4>活动公告</h4>
+<ul>
+<li><a href="#">【2014-10-12】在哪学1.0版本上线</a></li>
+<li><a href="#">【2014-10-13】在哪学1.0版本上线</a></li>
+<li><a href="#">【2014-10-14】在哪学1.0版本上线</a></li>
+<li><a href="#">【2014-10-15】在哪学1.0版本上线</a></li>
+<li><a href="#">【2014-10-13】在哪学1.0版本上线</a></li>
+<li><a href="#">【2014-10-14】在哪学1.0版本上线</a></li>
+
+</ul>
+</div>
+</div>
+    </div>
+
+    </div>
+ {% endblock content %}
+
