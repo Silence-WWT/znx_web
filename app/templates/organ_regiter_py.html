@@ -40,6 +40,7 @@
                         <div class="controls">
                             <input type="text" id="{{ form.captcha.id }}" class="form-control" name="{{ form.captcha.name }}">
                             <button class="btn-myred">免费获取验证码</button>
+
                             {%- if form.captcha.errors %}
                                 {%- for error in form.cellphone.errors %}
                                     <p class="help-block">{{error}}</p>
