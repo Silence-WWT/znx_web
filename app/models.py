@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 from . import db, login_manager
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -50,11 +51,10 @@ class User(UserMixin, db.Model):
         for i in range(count):
             u = User(username=fake.user_name(),
                      email=fake.email(),
-                     email_confirmed=True,
+                     is_email_confirmed=True,
                      mobile=zh.phone_number(),
                      password=fake.password(),
-                     member_since=fake.date_time(),
-                     last_login=fake.date_time(),
+                     created=time.mktime(fake.date_time().timetuple()),
                      identity=fake.password(44)
                      )
 
@@ -97,11 +97,11 @@ class Register(db.Model):
 
         seed()
         for i in range(count):
-            u = Register(location=randint(1, location_count),
+            u = Register(location_id=randint(1, location_count),
                          mobile=zh.phone_number(),
                          name=unicode(zh.name()),
-                         need=unicode(zh.job()),
-                         timestamp=fake.date_time())
+                         need=unicode(zh.name()),
+                         created=time.mktime(fake.date_time().timetuple()))
 
             db.session.add(u)
             db.session.commit()
@@ -129,8 +129,8 @@ class SiteComment(db.Model):
         seed()
         for i in range(count):
             u = SiteComment(mobile=zh.phone_number(),
-                            body=zh.text(),
-                            timestamp=fake.date_time())
+                            body=u'很好',
+                            created=time.mktime(fake.date_time().timetuple()))
 
             db.session.add(u)
             db.session.commit()
@@ -226,19 +226,22 @@ class Organization(UserMixin, db.Model):
         for i in range(count):
             u = Organization(mobile=zh.phone_number(),
                              password=fake.password(),
-                             member_since=fake.date_time(),
-                             type=randint(1, type_count),
+                             created=time.mktime(fake.date_time().timetuple()),
+                             type_id=randint(1, type_count),
                              name=zh.company(),
+                             slogan=u'学技术到蓝翔',
                              contact=zh.name(),
                              address=zh.address(),
-                             authorization='1'*32,
-                             photo='1'*32,
-                             profession=randint(1, profession_count),
-                             property_=randint(1, property_count),
-                             size=randint(1, size_count),
-                             location=randint(1, location_count),
-                             confirmed=True,
+                             authorization='1'*36,
+                             photo='1'*36,
+                             logo='1'*36,
+                             profession_id=randint(1, profession_count),
+                             property_id=randint(1, property_count),
+                             size_id=randint(1, size_count),
+                             location_id=randint(1, location_count),
+                             is_confirmed=True,
                              intro=zh.text(),
+                             traffic=u'太白南路',
                              longitude=zh.longitude(),
                              latitude=zh.latitude(),
                              page_view=randint(0, 10000))
@@ -282,9 +285,9 @@ class OrganizationComment(db.Model):
                     user_id=randint(1, user_count),
                     stars=randint(1, 5),
                     body=zh.text(),
-                    timestamp=fake.date_time())
+                    created=time.mktime(fake.date_time().timetuple()))
                 db.session.add(u)
-                db.session.commit()
+            db.session.commit()
 
 
 class Class(db.Model):
@@ -334,16 +337,16 @@ class Class(db.Model):
         for organization_id in range(1, organization_count+1):
             for i in range(count):
                 u = Class(organization_id=organization_id,
-                          name=zh.text(),
+                          name=u'课程名字',
                           age_id=randint(1, age_count),
                           price=randint(0, 100000),
-                          consult_time=zh.sentence(),
-                          start_time=fake.date_time(),
-                          end_time=fake.date_time(),
-                          try_=True,
-                          timestamp=fake.date_time(),
+                          consult_time=unicode(zh.words()),
+                          is_tastable=True,
+                          is_round=True,
+                          days=randint(10,20),
+                          created=time.mktime(fake.date_time().timetuple()),
                           intro=zh.text(),
-                          closed=False,
+                          is_closed=False,
                           page_view=randint(1, 10000))
                 db.session.add(u)
                 db.session.commit()
@@ -382,8 +385,8 @@ class ClassComment(db.Model):
                     class_id=class_id,
                     user_id=randint(1, user_count),
                     stars=randint(1, 5),
-                    body=zh.text(),
-                    timestamp=fake.date_time())
+                    body=unicode((zh.text())),
+                    created=fake.unix_time())
                 db.session.add(u)
             db.session.commit()
 
@@ -455,14 +458,14 @@ class Activity(db.Model):
         for organization_id in range(1, organization_count+1):
             for i in range(count):
                 u = Activity(organization_id=organization_id,
-                             name=zh.text(),
+                             name=zh.word(),
                              age_id=randint(1, age_count),
                              price=randint(0, 100000),
-                             start_time=fake.date_time(),
-                             end_time=fake.date_time(),
-                             timestamp=fake.date_time(),
+                             start_time=fake.unix_time(),
+                             end_time=fake.unix_time(),
+                             created=fake.unix_time(),
                              intro=zh.text(),
-                             closed=False,
+                             is_closed=False,
                              page_view=randint(1, 10000))
                 db.session.add(u)
                 db.session.commit()
@@ -500,8 +503,8 @@ class ActivityComment(db.Model):
                     activity_id=activity_id,
                     user_id=randint(1, user_count),
                     stars=randint(1, 5),
-                    body=zh.text(),
-                    timestamp=fake.date_time())
+                    body=unicode((zh.text())),
+                    created=fake.unix_time())
                 db.session.add(u)
             db.session.commit()
 
@@ -556,14 +559,16 @@ class ClassOrder(db.Model):
                 u = ClassOrder(
                     class_id=class_id,
                     user_id=randint(1, user_count),
-                    time=fake.date_time(),
+                    created=fake.unix_time(),
                     name=zh.name(),
-                    age=randint(1, 10),
+                    age=unicode(randint(1, 10)),
                     sex=True,
                     mobile=zh.phone_number(),
+                    email=zh.email(),
                     address=zh.address(),
-                    timestamp=fake.date_time(),
-                    remark=zh.text())
+                    campus=u'通天苑校区',
+                    remark=u'备注',
+                    time=fake.unix_time())
                 db.session.add(u)
             db.session.commit()
 
@@ -613,13 +618,14 @@ class ActivityOrder(db.Model):
                 u = ActivityOrder(
                     activity_id=activity_id,
                     user_id=randint(1, user_count),
-                    time=fake.date_time(),
+                    time=fake.unix_time(),
+                    created=fake.unix_time(),
+                    email=fake.email(),
                     name=zh.name(),
-                    age=randint(1, 10),
+                    age=unicode(randint(1, 10)),
                     sex=True,
                     mobile=zh.phone_number(),
                     address=zh.address(),
-                    timestamp=fake.date_time(),
                     remark=zh.text())
                 db.session.add(u)
             db.session.commit()
@@ -728,9 +734,15 @@ class Location(db.Model):
 
     @staticmethod
     def generate():
-        db.session.add(Location(city=u'西安', district=u'雁塔区'))
-        db.session.add(Location(city=u'西安', district=u'长安区'))
-        db.session.add(Location(city=u'北京', district=u'海淀区'))
+        beijing =City(city=u'北京')
+        xian =City(city=u'西安')
+        db.session.add(beijing)
+        db.session.add(xian)
+        db.session.commit()
+
+        db.session.add(Location(city_id=xian.id, district=u'雁塔区'))
+        db.session.add(Location(city_id=xian.id, district=u'长安区'))
+        db.session.add(Location(city_id=beijing.id, district=u'海淀区'))
         db.session.commit()
 
 class City(db.Model):
@@ -749,18 +761,20 @@ def generate_helper_data():
     Time.generate()
 
 
-def generate_fake_data():
+def generate_fake_data(org_num=50, org_comment=30,
+                       class_num=10, class_order=10, class_com=10,
+                       act_num=10, act_order=10, act_com=10):
     Register.generate_fake()
     SiteComment.generate_fake()
     User.generate_fake()
-    Organization.generate_fake()
-    OrganizationComment.generate_fake()
-    Class.generate_fake()
-    ClassComment.generate_fake()
-    ClassOrder.generate_fake()
+    Organization.generate_fake(org_num)
+    OrganizationComment.generate_fake(org_comment)
+    Class.generate_fake(class_num)
+    ClassComment.generate_fake(class_com)
+    ClassOrder.generate_fake(class_order)
 
     ClassTime.generate_fake()
 
-    Activity.generate_fake()
-    ActivityComment.generate_fake()
-    ActivityOrder.generate_fake()
+    Activity.generate_fake(act_num)
+    ActivityComment.generate_fake(act_com)
+    ActivityOrder.generate_fake(act_order)
