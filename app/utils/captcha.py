@@ -25,6 +25,6 @@ def send_sms(number, content):
               'account': 'cf_znx',
               'password': 'znx123',
               'mobile': number,
-              'content': u'您的验证码是：【%s】。请不要把验证码泄露给别人' % content}
+              'content': u'您的验证码是：【%s】。请不要把验证码泄露给其他人。' % content}
     r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query)
     return r

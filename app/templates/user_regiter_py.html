@@ -37,7 +37,7 @@
                         <div class="controls">
                             <input type="text" id="inputVerCode" class="form-control">
                             <button class="btn-myred" id="regmessage">免费获取验证码</button>
-                             <input id="mobileurl" value="www.baidu.com"  type="hidden"/>
+                             <input id="mobileurl" value="{{ url_for('user.send_sms') }}"  type="hidden"/>
                         </div>
                     </div>
                     <div class="control-group">

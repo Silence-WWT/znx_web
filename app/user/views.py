@@ -8,7 +8,7 @@ from ..models import User
 from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
 from flask.ext.login import login_user
-from flask import redirect, url_for, render_template, flash, request
+from flask import redirect, url_for, render_template, flash, request, jsonify
 from ..utils.captcha import send_captcha
 
 
@@ -51,8 +51,9 @@ def register():
 @user.route('/send_sms', methods=['post'])
 def send_sms():
     # TODO: add csrf and mobile check.
-    mobile = request.args.get('mobile', '', type=str)
-    if mobile:
-        send_captcha('user', mobile)
-    return 'OK', 200
+    # TODO: return 200 401
+    mobile = request.values.get('mobile', '', type=str)
+    #if mobile:
+    #    send_captcha('user', mobile)
+    return 'ok', 200
 
