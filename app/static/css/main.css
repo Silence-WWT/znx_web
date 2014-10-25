@@ -1599,3 +1599,74 @@ margin-left: 0px;
 margin-bottom: 3px;}
 #myuserindex > div.myuserpic > ul > li:nth-child(1){
 	margin-bottom:10px;}
+	
+	#aboutus{
+		background:#fff; 
+		border:1px solid #DCD4C9;
+		margin-top:50px;
+		height:780px;}
+			#aboutus .leftabout{
+				width:270px;
+				float:left;}
+				#aboutus .rightabout{
+					float:left;}
+					
+			#aboutus .leftabout #myTab{
+				background:#F4F2EE;
+				margin:0px;
+				height:780px;
+				}	
+				#aboutus .leftabout #myTab li{
+					height:54px;
+					border-bottom:1px solid #E2E1DD;
+					
+					line-height:54px;
+					cursor:pointer;
+					}	
+					#aboutus .leftabout li a{
+						color:#000;}
+				#aboutus .leftabout #myTab li a{
+					    
+    display: block;
+    outline: none;
+    text-decoration: none;
+    float: right;
+    padding-right: 110px;
+}
+					#aboutus .leftabout #myTab li a:hover{
+						color:#00B98D;}
+						#aboutus .leftabout #myTab li img{margin-right:10px;}
+						#aboutus .leftabout #myTab li:first-child{
+							padding-left:50px;}
+#aboutus .leftabout #myTab li.active {
+	border-right:1px solid #fff;
+	background:#fff;
+	}
+	#aboutus .leftabout #myTab li.active a{
+		color:#00B98D;
+		}
+		#aboutknow{
+			padding: 40px 50px;
+float: left;
+width: 827px;}
+		#aboutknow	.titleabout{
+			width: 500px;
+margin: 49px 0px 0px 252px;}
+		#aboutknow .titleabout>h3{
+			width:360px;
+			float:left;
+			margin-top: 1px;}
+			#aboutknow .titleabout>small{
+				float: left;
+margin: -7px 10px;
+font-size: 14px;
+color: #A6A6A6;}
+		#aboutknow	.titleabout > img{
+			float:left;
+			margin-right: 10px;
+			height: 67px;}
+			#aboutknow .aboutknowp p{
+				text-indent: 2em;}
+				#regmessage{
+width: 150px;
+cursor:pointer;}
