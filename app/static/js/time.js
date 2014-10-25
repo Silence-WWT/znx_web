@@ -18,7 +18,6 @@ function messagetime(o) {
         }
     }
 	
-	$(function(){
 		$("#regmessage").click(function(){
 			
 			var mobile=$("#inputPhone").val();
@@ -43,6 +42,5 @@ function messagetime(o) {
                 });	
 				
 			}
-		
+            return false;
 			})
-		})
