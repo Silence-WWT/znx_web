@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
+import time
 from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type,\
     Profession, Property, Size, Location, Class, Activity
 from .forms import RegistrationForm, DetailForm, CertificationForm, LoginForm
-from ..user.forms import  LoginForm as UserLoginForm
+from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
 from flask import redirect, url_for, render_template,\
     flash, current_app, request
@@ -17,7 +18,11 @@ def login():
     user_form = UserLoginForm()
     org_form = LoginForm()
     if org_form.validate_on_submit():
-        org = Organization.query.filter_by(cellphone=org_form.cellphone.data).first()
+        org = Organization.query.filter_by(
+            mobile=org_form.cellphone.data
+        ).first() or Organization.query.filter_by(
+            name=org_form.cellphone.data).first()
+
         if org is not None and org.verify_password(user_form.password.data):
             login_user(org, user_form.remember_me.data)
             return redirect(request.args.get('next') or url_for('main.index'))
@@ -31,8 +36,9 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        organization = Organization(cellphone=form.cellphone.data,
-                            password=form.password.data)
+        organization = Organization(mobile=form.cellphone.data,
+                            password=form.password.data,
+                            created=time.time())
         db.session.add(organization)
         db.session.commit()
         # token = user.generate_confirmation_token()

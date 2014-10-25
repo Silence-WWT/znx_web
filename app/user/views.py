@@ -38,7 +38,7 @@ def register():
                     username=form.username.data,
                     mobile=form.cellphone.data,
                     password=form.password.data,
-                    identity='0'*64,
+                    identity='',
                     created=time.time())
         db.session.add(user)
         db.session.commit()
