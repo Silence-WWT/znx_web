@@ -45,7 +45,7 @@ filter_organization
 ---
     URL:
         /api/v1.0/filter_organization?city=&district=&page=
-        /api/v1.0/filter_organization?profession=&page=  
+        /api/v1.0/filter_organization?city=&profession=&page=  
         /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
     method:
         get
@@ -81,8 +81,8 @@ organization_detail
         organization: id of organization
     json:
         {"status": 0,
-         "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "address": "",
-            "mobile": "", "comments_count": "", "stars": "", "traffic": ""}}
+         "organization": {"id": "", "name": "", "city": "", "district": "", "photo": "", "logo": "", "intro": "",
+            "address": "", "mobile": "", "comments_count": "", "stars": "", "traffic": ""}}
          
         status: 0 for success, 2000 for organization not exist
         organization
@@ -91,6 +91,7 @@ organization_detail
             city
             district
             photo: url of photo
+            logo: url of logo
             intro
             address
             mobile
@@ -145,7 +146,7 @@ class_list
         page
     json:
         {"status": 0,
-         "classes": [{"id": "", "name": "", "age": "", "price": "", "start_time": "", "end_time": ""}]}
+         "classes": [{"id": "", "name": "", "age": "", "price": "", "days": ""}]}
         
         status: 0 for success
         classes: a list of classes
@@ -153,8 +154,7 @@ class_list
             name
             age
             price
-            start_time
-            end_time
+            days
     
 class_detail
 ---
@@ -166,8 +166,8 @@ class_detail
         class: id of class
     json:
         {"status": 0,
-         "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "try": "", "consult_time": "",
-            "comments_count": "", "course_count": ""}}
+         "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "is_tastable": "", "consult_time": "",
+            "comments_count": "", "days": ""}}
         
         status: 0 for success, 2001 for class not exist
         class: a dict of class
@@ -176,12 +176,12 @@ class_detail
             age
             price
             intro
-            try
+            is_tastable
             consult_time
             start_time
             end_time
             comments_count
-            course_count
+            days
     
 class_sign_up
 ---
@@ -199,7 +199,7 @@ class_sign_up
         address
         remark
         email
-        time: YYYY-mm-dd
+        time: seconds since 1970
     json:
         {"status": 0}
         
@@ -283,7 +283,7 @@ activity_detail
             age
             price
             intro
-            try
+            is_tastable
             consult_time
             start_time
             end_time
@@ -387,7 +387,7 @@ order_detail
         status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
         class/activity
         created: created of order
-        time: ONLY included in classes, the try time of class
+        time: ONLY included in classes, the taste time of class
         class_name/activity_name
         name: user's name
         age

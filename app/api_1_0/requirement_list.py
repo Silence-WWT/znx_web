@@ -29,7 +29,7 @@ def requirement_list():
             'name': last_name + u'同学',
             'mobile': mobile + '*' * 8,
             'need': register.need,
-            'time': str(register.created)
+            'time': register.created
         }
         data['registers'].append(register_dict)
     data['status'] = SUCCESS

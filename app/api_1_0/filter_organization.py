@@ -44,16 +44,20 @@ def filter_organization():
         org_query = Organization.query
 
     if city and district:
-        location = Location.query.filter_by(city_id=city.id, district=district).frist()
+        location = Location.query.filter_by(city_id=city.id, district=district).first()
         if location:
             org_list = org_query.filter_by(location_id=location.id).paginate(page, PER_PAGE, False).items
         else:
             data['status'] = CITY_NOT_EXIST
             return json.dumps(data)
-    elif profession:
+    elif city and profession:
         profession = Profession.query.filter_by(profession=profession).first()
         if profession:
-            org_list = org_query.filter_by(profession_id=profession.id).paginate(page, PER_PAGE, False).items
+            location_list = Location.query.filter_by(city_id=city.id)
+            location_id_list = [location.id for location in location_list]
+            org_list = org_query.filter(Organization.profession_id == profession.id,
+                                        Organization.location_id.in_(location_id_list))\
+                .paginate(page, PER_PAGE, False).items
         else:
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
@@ -61,8 +65,8 @@ def filter_organization():
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
     for org in org_list:
-        location = Location.query.filter_by(id=org.location).first()
-        city = City.query.get(id=location.city_id)
+        location = Location.query.get(org.location_id)
+        city = City.query.get(location.city_id)
         org_dict = {
             'id': org.id,
             'name': org.name,
