@@ -138,7 +138,10 @@ def add_course():
     course_form=CourseForm()
     course_form.create_choices()
     if course_form.validate_on_submit():
-        print course_form
+        course = course_form.create_course()
+        db.session.add(course)
+        db.session.commit()
+        return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html', form=course_form)
 
 
