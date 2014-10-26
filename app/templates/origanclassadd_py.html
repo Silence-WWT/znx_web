@@ -19,6 +19,8 @@
     <h3><span>增加课程</span></h3>
     <div id="myclassset">
                 <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
                     <div class="control-group">
                         <label class="control-label">课程名称</label>
                         <div class="controls">
@@ -61,6 +63,7 @@
 <input type="radio" name="{{ form.is_tastable.name }}"  value="0">
 不支持
 </label>
+
                         </div>
 </div>
 
@@ -71,7 +74,7 @@
                                 <input type="radio" name="{{ form.is_round.name }}" value="1" checked/>支持
                             </label>
                             <label class="radio">
-                                <input type="radio" name="{{ form.is_round.name }}" value="1"/>
+                                <input type="radio" name="{{ form.is_round.name }}" value="0"/>
                                 不支持
                             </label>
 
