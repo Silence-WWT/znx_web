@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import uuid
+import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField
+    TextAreaField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Type
-
+from ..models import Organization, Type, Age, Class
+from flask.ext.login import current_user
 
 class RegistrationForm(Form):
     cellphone = StringField('cellphone',
@@ -50,3 +51,46 @@ class LoginForm(Form):
     cellphone = StringField(validators=[DataRequired(), Length(11, 11)])
     password = PasswordField(validators=[DataRequired()])
     remember_me = BooleanField()
+
+class CourseForm(Form):
+    name = StringField('name')
+    age_id = SelectField('age_id', coerce=int)
+    price = StringField('price')
+    consult_time = StringField('consult_time')
+    days = StringField('days')
+    # TODO: days int
+    is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
+                             coerce=int)
+    is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')],
+                          coerce=int)
+    intro = TextAreaField('intro')
+    # TODO: add class time.
+
+    def create_choices(self):
+        ages = Age.query.all()
+        self.age_id.choices = [(age.id, age.age) for age in ages]
+
+    def create_course(self):
+        # TODO: check is org not user.
+        # TODO: class time.
+        course = Class(organization_id=current_user.id,
+                       name=self.name.data,
+                       age_id=self.age_id.data,
+                       price=self.price.data,
+                       consult_time=self.consult_time.data,
+                       is_tastable=bool(self.is_tastable.data),
+                       is_round=bool(self.is_round.data),
+                       days=int(self.days.data),
+                       intro=self.intro.data,
+                       created=time.time())
+        return course
+
+
+
+class ActivityForm(Form):
+    name = StringField()
+    age_id = SelectField(coerce=int)
+    price = StringField()
+    start_time = StringField()
+    end_time = StringField()
+    intro = StringField()

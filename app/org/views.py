@@ -11,7 +11,7 @@ from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
 from flask import redirect, url_for, render_template,\
     flash, current_app, request
-
+from ..utils.query import get_location
 
 @org.route('/login', methods=['POST'])
 def login():
@@ -53,6 +53,7 @@ def register():
 
 
 @org.route('/detail', methods=['GET', 'POST'])
+@login_required
 def detail():
     form = DetailForm()
     form.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
@@ -64,28 +65,21 @@ def detail():
                             for t in Size.query.all()]
     form.location_id.choices = [(t.id, t.district)
                                 for t in Location.query.all()]
-    locations = Location.query.all()
-    location_dict = dict()
-    for location in locations:
-        city = City.query.get(location.city_id).city
-        if city not in location_dict.keys():
-            location_dict[city] = set()
-        location_dict[city].add((location.id,
-                                          location.district))
         # TODO: correct choose form.
-    form.location = location_dict
+    form.location = get_location()
     if form.validate_on_submit():
-        current_user.type = form.type_id.data
+        current_user.type_id = form.type_id.data
         current_user.name = form.name.data
-        current_user.profession = form.profession_id.data
-        current_user.property_ = form.property_id.data
-        current_user.size = form.size_id.data
+        current_user.profession_id = form.profession_id.data
+        current_user.property_id = form.property_id.data
+        current_user.size_id = form.size_id.data
         current_user.contact = form.contact.data
-        current_user.location = form.location_id.data
+        current_user.location_id = form.location_id.data
         current_user.address = form.address.data
         current_user.intro = form.intro.data
         db.session.add(current_user)
         db.session.commit()
+        print form.location_id.data
         # token = user.generate_confirmation_token()
         # TODO: Add token.
         # TODO: add macro in template for errors.
@@ -138,3 +132,23 @@ def home(id):
                            org=org,
                            classes=classes,
                            activities=activities)
+from .forms import CourseForm
+@org.route('/course/add', methods=['GET', 'POST'])
+def add_course():
+    course_form=CourseForm()
+    course_form.create_choices()
+    if course_form.validate_on_submit():
+        course = course_form.create_course()
+        db.session.add(course)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('origanclassadd_py.html', form=course_form)
+
+@org.route('/course/list')
+def course_list():
+    courses = Class.query.filter_by(organization_id=current_user.id).all()
+    return render_template('origanclasslist_py.html', courses=courses)
+
+@org.route('/activity/add')
+def add_activity():
+    return render_template('origanactadd_py.html')

@@ -36,7 +36,7 @@
     <div class="actrighttop">
     <h4>魔奇英语进阶班</h4>
     <div class="actrighta">
-   <a><button class="btn-edit">详细</button></a>
+   <a><button class="btn-edit">订单详情</button></a>
     <a class="deleclass" id="myclass1" ><button class="btn-det">删除</button></a>
     </div>
     </div>
@@ -57,16 +57,7 @@
     {% block inscript %}
    <script type="text/javascript">
 $(function(){
-	
-	$("#myuser .myuserleft ul li").hover(function(){
-		$(this).find('.aandli').css('color','#fff');
-		},function(){
-		$(this).find('.aandli').css('color','#000');
-	
-			})
-			$("#myuser .myuserleft ul li.active a").css('color','#fff');
-		
-	})
+
 	$(function(){
 		$(".deleclass").click(function(){
 			var id=$(this).attr("id");

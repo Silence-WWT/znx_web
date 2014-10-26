@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-机构后台中心-增加活动{% endblock title %}
+{% block title %}去哪学-机构后台中心-增加活动{% endblock title %}
  {% block navbar %}
  {% include 'headuser.html' %}
     {% endblock navbar %}
@@ -15,9 +15,7 @@
     </ul>
     </div>
     <div class="myuserright">
-    <h3><span>活动设置</span></h3>
-    <div class="myuserright">
-    <h3><span>活动设置</span></h3>
+    <h3><span>增加活动</span></h3>
     <div id="myactset">
                 <form class="form-horizontal">
                     <div class="control-group">
@@ -94,12 +92,13 @@
     </div>
     </div>
     </div>
-</div>
+
 {% endblock content %}
     {% block inscript %}
     <link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
       <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
      <script type="text/javascript">
+
 $('#datetimepicker1').datetimepicker({
 		format: 'yyyy/MM/dd hh:mm',
         language: 'ch',
