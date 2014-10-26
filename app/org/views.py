@@ -132,10 +132,14 @@ def home(id):
                            org=org,
                            classes=classes,
                            activities=activities)
+
+
 from .forms import CourseForm
+
+
 @org.route('/course/add', methods=['GET', 'POST'])
 def add_course():
-    course_form=CourseForm()
+    course_form = CourseForm()
     course_form.create_choices()
     if course_form.validate_on_submit():
         course = course_form.create_course()
@@ -144,11 +148,29 @@ def add_course():
         return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html', form=course_form)
 
+
 @org.route('/course/list')
 def course_list():
     courses = Class.query.filter_by(organization_id=current_user.id).all()
     return render_template('origanclasslist_py.html', courses=courses)
 
-@org.route('/activity/add')
+
+from .forms import ActivityForm
+
+
+@org.route('/activity/add', methods=['GET', 'POST'])
 def add_activity():
-    return render_template('origanactadd_py.html')
+    form = ActivityForm()
+    form.create_choices()
+    if form.validate_on_submit():
+        activity = form.create_activity()
+        db.session.add(activity)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('origanactadd_py.html', form=form)
+
+
+@org.route('/activity/list')
+def activity_list():
+    activities = Activity.query.filter_by(organization_id=current_user.id).all()
+    return render_template('origanactlist_py.html', activities=activities)
