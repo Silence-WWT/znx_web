@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>机构发布活动信息引导</title>
+  <title>机构筛选页</title>
   <link href="../static/css/znx.min.css" rel="stylesheet" media="screen">
   <link href="../static/css/main.css" rel="stylesheet"/>
     <script src="../static/js/jquery.js" type="text/javascript"></script>
@@ -157,7 +157,7 @@
                     </li>
                     <li><a href="#">平台流程</a>
                     </li>
-                    <li class="act"><a href="#">机构入驻</a>
+                    <li ><a href="#">机构入驻</a>
                     </li>
                 </ul>
             </div>
@@ -166,70 +166,303 @@
         
         
     </div>
-    <div class="container"><img src="../static/images/origanleadpic.png"/></div>
-    <div class="container" id="lead">
-    
-    <div id="myCarousel" class="carousel slide">
-    <div class=" container" id="cartop">
-  <ul class="carousel-indicators anothercar">
-    <li data-target="#myCarousel" data-slide-to="0" class="active carli">
-   <div class="carleft"><img src="../static/images/lead1.png" /><h3>机构注册</h3></div>
-   <div class="carright"><img src="../static/images/hr.png" /></div>
+   <div class="container" id="origanselect">
+       <div class="selecttop">
+           <h3>机构筛选，找到<span>“日语”</span>相关机构 <span>5</span> 个</h3>
+           <dl>
+               <dt>机构类别</dt>
+               <dd><ul class="unstyled inline">
+                   <li class="active"><a href="#">全部</a></li>
+                   <li><a href="#">幼儿早教</a></li>
+                   <li><a href="#">少儿培训</a></li>
+                   <li><a href="#">少儿才艺</a></li>
+                   </ul>
+               </dd>
+           </dl>
+           <br>
+           <dl>
+               <dt>所在区域</dt>
+               <dd>
+                   <ul class="unstyled inline">
+                       <li class="active"><a href="#">全部</a></li>
+                       <li><a href="#">朝阳区</a></li>
+                       <li><a href="#">海定区</a></li>
+                       <li><a href="#">昌平区</a></li>
+                       <li><a href="#">西城区</a></li>
+                       <li><a href="#">海定区</a></li>
+                       <li><a href="#">昌平区</a></li>
+                   </ul>
+               </dd>
+           </dl>
+       </div>
+<div class="selectbottom" id="selectbottom">
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">全部</a></li>
+    <li><a href="#tab2" data-toggle="tab">评论数</a></li>
+    <li><a href="#tab3" data-toggle="tab">浏览数</a></li>
+    <li><a href="#tab4" data-toggle="tab">报名数</a></li>
+</ul>
+<div class="tab-content" id="selectul">
+
+    <div class="tab-pane active" id="tab1">
+<ul class="unstyled">
+    <li>
+        <div class="selepic">
+            <img src="../static/images/selectpic.png" class="img-circle"/>
+        </div>
+        <div class="seledet">
+        <h3><span>蓝翔技校1</span><img src="../static/images/selectren.png"/> </h3>
+         <p>---学技术就到山东蓝翔高级技工学校</p>
+           <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+        </div>
+        <div class="selectscore">
+            <ul class="unstyled inline">
+                <li>
+                    <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                        <span>4分</span>
+                    </div>
+                 </li>
+                <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+            </ul>
+
+        </div>
     </li>
-    <li data-target="#myCarousel" data-slide-to="1" class="carli"> <div class="carleft"><img src="../static/images/lead2.png" /><h3>发布课程信息</h3></div>
-      <div class="carright"><img src="../static/images/hr.png" /></div></li>
-    <li data-target="#myCarousel" data-slide-to="2" class="carli"> <div class="carleft"><img src="../static/images/lead3.png" /><h3>发布活动信息</h3></div>
-      <div class="carright"><img src="../static/images/hr.png" /></div></li>
-      <li data-target="#myCarousel" data-slide-to="3" class="carlilast"> <div class="carleft"><img src="../static/images/lead4.png" /><h3>成功入驻</h3></div></li>
-  </ul>
-  </div>
-  <!-- Carousel items -->
-  <div class="carousel-inner">
-    <div class="active item">
-    <div class="itemcontent">
-    <h1>1发布活动信息</h1>
-    <div class="itemcontentdown">
-    <img src="../static/images/origanlead1.png"/>
-    <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动
-生成一个机构页面，机构可以在平台上更新机构的信息。</p>
+    <li>
+    <div class="selepic">
+        <img src="../static/images/selectpic.png" class="img-circle"/>
     </div>
+    <div class="seledet">
+        <h3><span>蓝翔技校</span><img src="../static/images/selectren.png"/> </h3>
+        <p>---学技术就到山东蓝翔高级技工学校</p>
+        <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
     </div>
+    <div class="selectscore">
+        <ul class="unstyled inline">
+            <li>
+                <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                    <span>4分</span>
+                </div>
+            </li>
+            <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+            <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+            <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+        </ul>
+
     </div>
-    <div class="item">
-    <div class="itemcontent">
-    <h1>2发布活动信息</h1>
-    <div class="itemcontentdown">
-    <img src="../static/images/origanlead1.png"/>
-    <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动
-生成一个机构页面，机构可以在平台上更新机构的信息。</p>
-    </div>
-    </div></div>
-    <div class="item"><div class="itemcontent">
-    <h1>3发布活动信息</h1>
-    <div class="itemcontentdown">
-    <img src="../static/images/origanlead1.png"/>
-    <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动
-生成一个机构页面，机构可以在平台上更新机构的信息。</p>
-    </div>
-    </div></div>
-     <div class="item"><div class="itemcontent">
-    <h1>4发布活动信息</h1>
-    <div class="itemcontentdown">
-    <img src="../static/images/origanlead1.png"/>
-    <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动
-生成一个机构页面，机构可以在平台上更新机构的信息。</p>
-    </div>
-    </div></div>
-  </div>
-  <!-- Carousel nav -->
-  <a class="carousel-control left" href="#myCarousel" data-slide="prev" id="arr1">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next" id="arr2">&rsaquo;</a>
+</li>
+</ul>
 </div>
+<div class="tab-pane" id="tab2">
+    <ul class="unstyled">
+        <li>
+            <div class="selepic">
+                <img src="../static/images/selectpic.png" class="img-circle"/>
+            </div>
+            <div class="seledet">
+                <h3><span>蓝翔技校2</span><img src="../static/images/selectren.png"/> </h3>
+                <p>---学技术就到山东蓝翔高级技工学校</p>
+                <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+            </div>
+            <div class="selectscore">
+                <ul class="unstyled inline">
+                    <li>
+                        <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                            <span>4分</span>
+                        </div>
+                    </li>
+                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                    <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                    <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+                </ul>
+
+            </div>
+        </li><li>
+        <div class="selepic">
+            <img src="../static/images/selectpic.png" class="img-circle"/>
+        </div>
+        <div class="seledet">
+            <h3><span>蓝翔技校</span><img src="../static/images/selectren.png"/> </h3>
+            <p>---学技术就到山东蓝翔高级技工学校</p>
+            <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+        </div>
+        <div class="selectscore">
+            <ul class="unstyled inline">
+                <li>
+                    <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                        <span>4分</span>
+                    </div>
+                </li>
+                <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+            </ul>
+
+        </div>
+    </li>
+    </ul>
+</div>
+<div class="tab-pane" id="tab3">
+    <ul class="unstyled">
+        <li>
+            <div class="selepic">
+                <img src="../static/images/selectpic.png" class="img-circle"/>
+            </div>
+            <div class="seledet">
+                <h3><span>蓝翔技校3</span><img src="../static/images/selectren.png"/> </h3>
+                <p>---学技术就到山东蓝翔高级技工学校</p>
+                <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+            </div>
+            <div class="selectscore">
+                <ul class="unstyled inline">
+                    <li>
+                        <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                            <span>4分</span>
+                        </div>
+                    </li>
+                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                    <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                    <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+                </ul>
+
+            </div>
+        </li><li>
+        <div class="selepic">
+            <img src="../static/images/selectpic.png" class="img-circle"/>
+        </div>
+        <div class="seledet">
+            <h3><span>蓝翔技校</span><img src="../static/images/selectren.png"/> </h3>
+            <p>---学技术就到山东蓝翔高级技工学校</p>
+            <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+        </div>
+        <div class="selectscore">
+            <ul class="unstyled inline">
+                <li>
+                    <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                        <span>4分</span>
+                    </div>
+                </li>
+                <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+            </ul>
+
+        </div>
+    </li>
+    </ul>
+</div>
+    <div class="tab-pane" id="tab4">
+        <ul class="unstyled">
+            <li>
+                <div class="selepic">
+                    <img src="../static/images/selectpic.png" class="img-circle"/>
+                </div>
+                <div class="seledet">
+                    <h3><span>蓝翔技校4</span><img src="../static/images/selectren.png"/> </h3>
+                    <p>---学技术就到山东蓝翔高级技工学校</p>
+                    <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+                </div>
+                <div class="selectscore">
+                    <ul class="unstyled inline">
+                        <li>
+                            <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                                <span>4分</span>
+                            </div>
+                        </li>
+                        <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                        <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                        <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+                    </ul>
+
+                </div>
+            </li><li>
+            <div class="selepic">
+                <img src="../static/images/selectpic.png" class="img-circle"/>
+            </div>
+            <div class="seledet">
+                <h3><span>蓝翔技校</span><img src="../static/images/selectren.png"/> </h3>
+                <p>---学技术就到山东蓝翔高级技工学校</p>
+                <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+            </div>
+            <div class="selectscore">
+                <ul class="unstyled inline">
+                    <li>
+                        <div class="revinp">
+				<span class="level">
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_solid" ></i>
+					<i class="level_hollow" ></i>
+				</span>
+                            <span>4分</span>
+                        </div>
+                    </li>
+                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：1233</span></li>
+                    <li><span class="organtalk"><i class="icon-comment"></i>评论：3</span><br/></li>
+                    <li><span class="organtalk"><i class="icon-plus"></i>报名：30</span><br/></li>
+                </ul>
+
+            </div>
+        </li>
+        </ul>
     </div>
-    
-    
-    
-    
+</div>
+    <div class="asklearn"></div>
+</div>
+</div>
+       </div>
     <div id="footer">
         <div class="container">
             <div class="row">
@@ -309,7 +542,7 @@ Copyright@2014 - 2015 在哪学版权所有. 京公网安备11010802015210号 | 
 </span>
  </div>
         </div>
-    </div>
+
 </div>
 </body>
 </html>

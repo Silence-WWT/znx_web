@@ -943,7 +943,7 @@ MARGIN: -3px 4px 0px;
     border-top:0px;
 }
 #organthree .tabbable .nav-tabs>.active>a, #organthree .tabbable .nav-tabs>.active>a:focus {
-    border-bottom:2px solid #00B98D;
+    border-bottom:3px solid #00B98D;
     border-right:0;
     border-left:0;
 }
@@ -1804,4 +1804,117 @@ font-weight: 700;
 }
 #myorderdet > div.myorderxq > ul > li> dl > dd > ul> li.longli{
     width: 400px;
+}
+#origanselect >.selecttop{
+    background: #fff;
+    padding: 20px 40px 40px;
+    margin: 25px 0;
+    border: 1px solid #ECE9E2;
+}
+#origanselect >.selecttop>h3{
+     border-bottom: 1px solid #D6D6D6;
+     font-size: 16px;
+ }
+#origanselect >.selecttop>h3>span{
+    color: #FD8F6A;
+}
+#origanselect >.selecttop dt{
+    float: left;
+    color: #727272;
+}
+#origanselect >.selecttop dd{
+    float: left;
+}
+#origanselect >.selecttop dd ul li{
+    padding: 0 10px;
+}
+#origanselect >.selecttop dd ul li.active{
+    background: #FD8F6A;
+    border-radius: 5px;
+}
+#origanselect >.selecttop dd ul li.active a{
+    color: #fff;
+}
+#origanselect > div.selectbottom > div > ul > li > a{
+    width: 80px;
+    padding: 15px 50px;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+    font-size: 18px;
+    border: 0;
+}
+#origanselect > div.selectbottom > div > ul{
+    margin: 0px;
+}
+#origanselect > div.selectbottom > div > ul > li{
+    border-left: 1px solid #d6d6d6;
+}
+#origanselect > div.selectbottom > div > ul > li:first-child{
+    border-left: 1px solid #fff;
+}
+#origanselect > div.selectbottom > div > ul > li.active{
+    border-bottom: 3px solid #00B98D;
+}
+#selectbottom .tabbable{
+    float: left;
+    width: 780px;
+    background:#fff;
+    border: 1px solid #ECE9E2;
+}
+#selectul>.tab-pane> ul >li{
+    padding: 15px 40px 25px;
+    height: 140px;
+    color: #727272;
+    border-bottom: 1px solid #D6D6D6;
+}
+#selectul .selepic  img{
+    float: left;
+    margin-right: 20px;
+}
+#selectul .seledet{
+    float: left;
+    margin-left: 20px;
+    width: 500px;
+}
+#tab1 > ul > li > div.seledet > h3 > img,#tab2 > ul > li > div.seledet > h3 > img,
+#tab3 > ul > li > div.seledet > h3 > img,#tab4 > ul > li > div.seledet > h3 > img{
+    float: right;
+}
+#tab1 > ul > li > div.seledet > h3 > span,#tab2 > ul > li > div.seledet > h3 > span,
+#tab4 > ul > li > div.seledet > h3 > span,#tab3 > ul > li > div.seledet > h3 > span{
+    font-size: 24px;
+    font-weight: normal;
+}
+#tab1 > ul > li > div.seledet > p,
+#tab2 > ul > li > div.seledet > p,
+#tab3 > ul > li > div.seledet > p,
+#tab4 > ul > li > div.seledet > p{
+    font-size: 16px;
+
+}
+#tab1 > ul > li > div.selectscore,#tab2 > ul > li > div.selectscore
+,#tab3 > ul > li > div.selectscore,#tab4 > ul > li > div.selectscore{
+    float: left;
+    width:500px;
+    margin: 12px -130px;
+}
+#tab1 > ul > li > div.selectscore > ul > li > span,#tab2 > ul > li > div.selectscore > ul > li > span,
+#tab4> ul > li > div.selectscore > ul > li > span,#tab3 > ul > li > div.selectscore > ul > li > span{
+    margin-right: 10px;
+}
+#tab1 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,#tab3 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,
+#tab2 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,#tab4 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp{
+    margin: 11px 0 -4px;
+}
+#tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span,#tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
+#tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span,#tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span{
+    margin-left: 36px;
+}
+#tab1 > ul > li > div.seledet > span > i,#tab1 > ul > li > div.selectscore > ul > li > span > i,
+#tab2 > ul > li > div.seledet > span > i,#tab2 > ul > li > div.selectscore > ul > li > span > i,
+#tab3 > ul > li > div.seledet > span > i,#tab3 > ul > li > div.selectscore > ul > li > span > i,
+#tab4 > ul > li > div.seledet > span > i,#tab4 > ul > li > div.selectscore > ul > li > span > i
+{
+    margin: 2px 4px;
 }
