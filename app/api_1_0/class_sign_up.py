@@ -15,7 +15,7 @@ def class_sign_up():
     data = {}
     class_id = request.args.get('class')
     username = request.args.get('username')
-    cellphone = request.args.get('cellphone')
+    mobile = request.args.get('mobile')
     name = request.args.get('name')
     age = request.args.get('age')
     sex = request.args.get('sex')
@@ -26,12 +26,12 @@ def class_sign_up():
 
     class_ = Class.query.filter_by(id=class_id).first()
     user = User.query.filter_by(username=username).first()
-    if class_ and user and name and age and cellphone and sex and address and remark and time:
+    if class_ and user and name and age and mobile and sex and address and remark and time:
         class_order = ClassOrder(
             class_id=class_id,
             user_id=user.id,
             name=name,
-            cellphone=cellphone,
+            mobile=mobile,
             age=age,
             sex=sex,
             # email=email,
@@ -39,7 +39,7 @@ def class_sign_up():
             address=address,
             remark=remark,
             time=datetime.strptime(time, '%Y-%m-%d'),
-            timestamp=datetime.now()
+            created=datetime.now()
         )
         try:
             db.session.add(class_order)

@@ -4,7 +4,7 @@ import math
 
 from flask import request
 
-from ..models import Organization, Profession, Location
+from ..models import Organization, Profession, Location, City
 from . import api
 from api_constants import *
 
@@ -19,7 +19,7 @@ def filter_organization():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
-    city = request.args.get('city')
+    city = City.query.filter_by(city=request.args.get('city')).first()
     district = request.args.get('district')
     profession = request.args.get('profession')
     distance = request.args.get('distance')
@@ -44,16 +44,16 @@ def filter_organization():
         org_query = Organization.query
 
     if city and district:
-        location = Location.query.filter_by(city=city, district=district).frist()
+        location = Location.query.filter_by(city_id=city.id, district=district).frist()
         if location:
-            org_list = org_query.filter_by(location=location.id).paginate(page, PER_PAGE, False).items
+            org_list = org_query.filter_by(location_id=location.id).paginate(page, PER_PAGE, False).items
         else:
             data['status'] = CITY_NOT_EXIST
             return json.dumps(data)
     elif profession:
         profession = Profession.query.filter_by(profession=profession).first()
         if profession:
-            org_list = org_query.filter_by(profession=profession.id).paginate(page, PER_PAGE, False).items
+            org_list = org_query.filter_by(profession_id=profession.id).paginate(page, PER_PAGE, False).items
         else:
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
@@ -62,10 +62,11 @@ def filter_organization():
         return json.dumps(data)
     for org in org_list:
         location = Location.query.filter_by(id=org.location).first()
+        city = City.query.get(id=location.city_id)
         org_dict = {
             'id': org.id,
             'name': org.name,
-            'city': location.city,
+            'city': city.city,
             'district': location.district,
             'photo': org.photo,
             'intro': org.intro,

@@ -11,17 +11,17 @@ from api_constants import *
 @api.route('/login')
 def login():
     data = {}
-    cellphone = request.args.get('cellphone')
+    mobile = request.args.get('mobile')
     password = request.args.get('password')
     identity = request.args.get('identity')
-    user = User.query.filter_by(cellphone=cellphone).first()
+    user = User.query.filter_by(mobile=mobile).first()
     if user is not None and user.verify_password(password):
         if user.identity != identity and identity:
             user.identity = identity
         data['status'] = SUCCESS
         data['user'] = {
             'username': user.username,
-            'cellphone': user.cellphone,
+            'mobile': user.mobile,
             'email': user.email,
             'identity': user.identity
         }

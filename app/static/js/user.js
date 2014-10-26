@@ -2,8 +2,6 @@ $(function(){$('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
 });})
-
-	 
 	  $(function () {
 		  
     $("#navorgan").click(function () {
@@ -18,7 +16,6 @@ $(function(){$('#myTab a').click(function (e) {
     })
  
 })
-
 $(function () {
     var ok1 = false;
     var ok2 = false;
@@ -52,7 +49,6 @@ $(function () {
         }
  
     });
- 
     //验证密码
     $('input[name="password"]').focus(function () {
         // $(this).next().text('密码应该为6-20位之间');

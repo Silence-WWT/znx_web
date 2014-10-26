@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from datetime import datetime
 
 from flask import request
 
@@ -14,21 +15,22 @@ def register():
     data = {}
     username = request.args.get('username')
     password = request.args.get('password')
-    cellphone = request.args.get('cellphone')
+    mobile = request.args.get('mobile')
     identity = request.args.get('identity')
     email = request.args.get('email')
-    if User.query.filter_by(cellphone=cellphone).first():
+    if User.query.filter_by(mobile=mobile).first():
         data['status'] = CELLPHONE_EXIST
         return json.dumps(data)
     elif User.query.filter_by(username=username).first():
         data['status'] = USERNAME_EXIST
         return json.dumps(data)
-    if username and password and cellphone:
+    if username and password and mobile:
         user = User(
             username=username,
             password=password,
-            cellphone=cellphone,
-            identity=identity
+            mobile=mobile,
+            identity=identity,
+            created=datetime.now()
         )
         if email:
             user.email = email
@@ -42,7 +44,7 @@ def register():
             data['status'] = SUCCESS
             data['user'] = {
                 'username': username,
-                'cellphone': cellphone,
+                'mobile': mobile,
                 'identity': identity,
                 'email': email
             }

@@ -3,7 +3,7 @@ import json
 
 from flask import request
 
-from ..models import Class, Age
+from ..models import Class, ClassComment, Age
 from . import api
 from api_constants import *
 
@@ -15,6 +15,7 @@ def class_detail():
     class_ = Class.query.filter_by(id=class_id).first()
     if class_:
         age = Age.query.filter_by(id=class_.age_id).first()
+        comments_count = ClassComment.query.filter_by(class_id=class_.id).count()
         data['class'] = {
             'id': class_.id,
             'name': class_.name,
@@ -22,9 +23,10 @@ def class_detail():
             'price': class_.price,
             'intro': class_.intro,
             'consult_time': class_.consult_time,
-            'start_time': str(class_.start_time),
-            'end_time': str(class_.end_time),
-            'try': class_.try_,
+            'is_round': class_.is_round,
+            'try': class_.is_tastable,
+            'comments_count': comments_count,
+            'course_count': class_.days
         }
         data['status'] = SUCCESS
     else:
