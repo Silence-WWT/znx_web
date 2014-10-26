@@ -3,12 +3,13 @@ import uuid
 import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField, RadioField
+    TextAreaField, BooleanField, RadioField, DateTimeField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Type, Age, Class
+from ..models import Organization, Type, Age, Class, Activity
 from flask.ext.login import current_user
+
 
 class RegistrationForm(Form):
     cellphone = StringField('cellphone',
@@ -52,6 +53,7 @@ class LoginForm(Form):
     password = PasswordField(validators=[DataRequired()])
     remember_me = BooleanField()
 
+
 class CourseForm(Form):
     name = StringField('name')
     age_id = SelectField('age_id', coerce=int)
@@ -86,11 +88,28 @@ class CourseForm(Form):
         return course
 
 
-
 class ActivityForm(Form):
-    name = StringField()
-    age_id = SelectField(coerce=int)
-    price = StringField()
-    start_time = StringField()
-    end_time = StringField()
-    intro = StringField()
+    name = StringField('name')
+    age_id = SelectField('age_id', coerce=int)
+    price = StringField('prince')
+    start_time = DateTimeField('start_time', format='%Y/%m/%d %H:%M')
+    end_time = DateTimeField('end_time', format='%Y/%m/%d %H:%M')
+    intro = TextAreaField('intro')
+
+    def create_choices(self):
+        ages = Age.query.all()
+        self.age_id.choices = [(age.id, age.age) for age in ages]
+
+    def create_activity(self):
+        activity = Activity(organization_id=current_user.id,
+                            name=self.name.data,
+                            age_id=self.age_id.data,
+                            price=int(self.price.data),
+                            created=time.time(),
+                            start_time=time.mktime(
+                                self.start_time.data.timetuple()),
+                            end_time=time.mktime(
+                                self.end_time.data.timetuple()),
+                            intro=self.intro.data)
+        return activity
+
