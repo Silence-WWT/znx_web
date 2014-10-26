@@ -462,6 +462,15 @@ class Activity(db.Model):
     def get_age(self):
         return Age.query.get(self.age_id).age
 
+    def get_comments(self):
+        return ActivityComment.query.filter_by(activity_id=self.id).all()
+
+    def get_org(self):
+        return Organization.query.get(self.organization_id)
+
+    def get_time(self):
+        return time.ctime(self.start_time)+'~'+time.ctime(self.end_time)
+
     @staticmethod
     def generate_fake(count=20):
         from faker import Factory
@@ -503,6 +512,9 @@ class ActivityComment(db.Model):
     created = db.Column(db.Integer, nullable=False)
     # 关闭
     is_disabled = db.Column(db.BOOLEAN, default=False, nullable=False)
+
+    def get_user(self):
+        return User.query.get(self.user_id)
 
     @staticmethod
     def generate_fake(count=20):
