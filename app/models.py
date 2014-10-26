@@ -599,8 +599,6 @@ class ActivityOrder(db.Model):
     activity_id = db.Column(db.Integer, nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
-    # 时间
-    time = db.Column(db.Integer, nullable=False)
     # 姓名 6 Unicode
     name = db.Column(db.Unicode(18), nullable=False)
     # 年龄 10 Unicode
@@ -635,7 +633,6 @@ class ActivityOrder(db.Model):
                 u = ActivityOrder(
                     activity_id=activity_id,
                     user_id=randint(1, user_count),
-                    time=fake.unix_time(),
                     created=fake.unix_time(),
                     email=fake.email(),
                     name=zh.name(),
