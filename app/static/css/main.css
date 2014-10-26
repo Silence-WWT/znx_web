@@ -1835,7 +1835,7 @@ font-weight: 700;
 #origanselect >.selecttop dd ul li.active a{
     color: #fff;
 }
-#origanselect > div.selectbottom > div > ul > li > a{
+#origanselect > div.selectbottom > div.tabbable > ul.nav-tabs > li > a{
     width: 80px;
     padding: 15px 50px;
     text-align: center;
@@ -1843,6 +1843,7 @@ font-weight: 700;
     color: #000;
     font-size: 18px;
     border: 0;
+    outline: none;
 }
 #origanselect > div.selectbottom > div > ul{
     margin: 0px;
@@ -1923,11 +1924,55 @@ font-weight: 700;
     width: 360px;
     margin-left: 30px;
     border: 1px solid #ECE9E2;
+    color:#727272;
 
+}
+#selectasklearn{
+    margin-top: 30px;
 }
 #origanselect > div.asklearn > h3{
     color: #fff;
     background: #00B98D;
     font-weight: normal;
     font-size: 18px;
+    margin: 0px;
+    padding-left: 20px;
+}
+#selectasklearn .control-label{
+    float: left;
+    width: 100px;
+    line-height: 30px;
+}
+#selectasklearn .form-control-more,#selectasklearn .form-control,#selectasklearn,.form-textarea{
+    width: 180px;
+    float: left;
+    margin-left: 10px;
+}
+#selectasklearn .form-horizontal .controls{
+    margin-left:100px;
+}
+#selectasklearn .form-control-more{
+    height: 32px;
+    width: 195px;
+    font-size: 14px;
+
+}
+#selectasklearn .seleaskbtn{
+    margin: -4px 10px;
+    height: 40px;
+    width: 200px;
+    border-radius: 5px;
+}
+#selectul .myselectlist{
+    margin: 40px 0;
+}
+#selectul .myselectlist ul li a{
+    color: #000;
+    padding: 10px 15px;
+}
+#selectul .pagination ul > .active > a,#selectul .pagination ul > .active > span{
+    background: #00B98D;
+}
+#selectul .myselectlist>ul>li.active a{
+   color:#fff;
 }
