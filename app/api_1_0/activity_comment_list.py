@@ -27,7 +27,7 @@ def activity_comment_list():
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
-                'created': str(comment.created),
+                'created': comment.created,
                 'username': user.username
             }
             data['activity_comments'].append(comment_dict)

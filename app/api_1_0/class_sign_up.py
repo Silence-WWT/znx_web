@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from datetime import datetime
+from time import time as time_now
 
 from flask import request
 
@@ -26,7 +26,7 @@ def class_sign_up():
 
     class_ = Class.query.filter_by(id=class_id).first()
     user = User.query.filter_by(username=username).first()
-    if class_ and user and name and age and mobile and sex and address and remark and time:
+    if class_ and user and name and age and mobile and sex and address and time and email:
         class_order = ClassOrder(
             class_id=class_id,
             user_id=user.id,
@@ -34,12 +34,12 @@ def class_sign_up():
             mobile=mobile,
             age=age,
             sex=sex,
-            # email=email,
-            # TODO: 数据库class_orders表暂无email字段
+            email=email,
             address=address,
             remark=remark,
-            time=datetime.strptime(time, '%Y-%m-%d'),
-            created=datetime.now()
+            time=time,
+            campus=u'',
+            created=time_now()
         )
         try:
             db.session.add(class_order)

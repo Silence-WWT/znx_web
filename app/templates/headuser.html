@@ -5,7 +5,9 @@
   </div>
  <div class="titleright">
  
-     <h1>用户中心</h1>
+     <h1> {% block userfrom %}
+         机构后台中心
+         {% endblock userfrom %}</h1>
 
  </div>
       <div class="indexright"><img src="{{ url_for('static', filename='images/returnhome.png') }}"><a href="index.html">回到首页</a></div>
