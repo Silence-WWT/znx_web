@@ -50,3 +50,18 @@ class LoginForm(Form):
     cellphone = StringField(validators=[DataRequired(), Length(11, 11)])
     password = PasswordField(validators=[DataRequired()])
     remember_me = BooleanField()
+
+class AddCourseForm(Form):
+    name = StringField()
+    age_id = SelectField(coerce=int)
+    price = StringField()
+    consult_time = StringField()
+    is_tastable = BooleanField()
+
+class ActivityForm(Form):
+    name = StringField()
+    age_id = SelectField()
+    price = StringField()
+    start_time = StringField()
+    end_time = StringField()
+    intro = StringField()
