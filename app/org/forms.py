@@ -6,7 +6,9 @@ from wtforms import StringField, PasswordField, SelectField,\
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Type
+from ..models import Organization, Type, Age
+
+
 class RegistrationForm(Form):
     cellphone = StringField('cellphone',
                             validators=[
@@ -58,6 +60,11 @@ class CourseForm(Form):
     is_tastable = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
     is_round = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
     intro = TextAreaField()
+
+    def create_choices(self):
+        ages = Age.query.all()
+        self.age_id.choices = [(age.id, age.age) for age in ages]
+
 
 
 class ActivityForm(Form):
