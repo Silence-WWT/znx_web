@@ -27,14 +27,14 @@
     
     </div>
     <div class="myuserright">
-    <h3><span>课程列表</span><a href="#"><img src="{{ url_for('static', filename='images/addact.png') }}"/>添加课程</a></h3>
+    <h3><span>课程列表</span><a href="{{ url_for('org.add_course') }}"><img src="{{ url_for('static', filename='images/addclass.png') }}"/></a></h3>
     <ul class="unstyled" id="actlistul">
         {% for course in courses %}
     <li>
     <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
     <div class="actright" >
     <div class="actrighttop">
-    <h4>{{ course.name }}</h4>
+    <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>
     <div class="actrighta">
     <a><button class="btn-edit">编辑</button></a>
     <a class="deleclass" id="myclass1" ><button class="btn-det">删除</button></a>
