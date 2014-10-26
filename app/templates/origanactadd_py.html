@@ -17,11 +17,13 @@
     <div class="myuserright">
     <h3><span>增加活动</span></h3>
     <div id="myactset">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
                     <div class="control-group">
                         <label class="control-label">活动名称</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  /> 
+                            <input type="text" name="{{ form.name.name }}"  class="form-control"  />
  
                         </div>
                     </div>
@@ -29,14 +31,14 @@
                     <div class="control-group">
                         <label class="control-label" >面向人群</label>
                         <div class="controls">
-                            <input type="text"  class="form-control" />
- 
+                            {{ form.age_id(class="form-control") }}
+
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >收费标准</label>
                             <div class="controls">
-                          <input type="text"  class="form-control"/>
+                          <input type="text" name="{{ form.price.name }}"  class="form-control"/>
                         </div>
                     </div>
                       <div class="control-group">
@@ -56,7 +58,7 @@
                         <label class="control-label" >活动开始时间</label>
                         <div class="controls">
                             <div id="datetimepicker1" class="input-append date">
-      <input type="text" class="form-control shortinput"/>
+      <input type="text" name="{{ form.start_time.name }}" class="form-control shortinput"/>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -67,7 +69,7 @@
                         <label class="control-label" >活动结束时间</label>
                         <div class="controls">
                             <div id="datetimepicker2" class="input-append date">
-      <input type="text" class="form-control shortinput"/>
+      <input type="text" name="{{ form.end_time.name }}" class="form-control shortinput"/>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -80,7 +82,7 @@
                      <div class="control-group">
                         <label class="control-label">活动简介</label>
                         <div class="controls">
-                            <textarea rows="4" class="form-textarea" ></textarea> 
+                            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea" ></textarea>
  
                         </div>
                     </div>
