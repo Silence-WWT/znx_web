@@ -27,24 +27,26 @@
     
     </div>
     <div class="myuserright">
-    <h3><span>活动列表</span><a href="#"><img src="{{ url_for('static', filename='images/addact.png') }}"/>添加活动</a></h3>
+    <h3><span>活动列表</span><a href="{{ url_for('org.add_activity') }}"><img src="{{ url_for('static', filename='images/addact.png') }}"/></a></h3>
     <ul class="unstyled" id="actlistul">
+        {% for activity in activities %}
     <li>
     <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
     <div class="actright" >
     <div class="actrighttop">
-    <h4>活动名称活动名称</h4>
+    <h4><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h4>
     <div class="actrighta">
     <a><button class="btn-edit">编辑</button></a>
     <a class="deleclass" id="myclass1" ><button class="btn-det">删除</button></a>
    
     </div>
     </div>
-    <span><small>学费</small>￥1888</span>
+    <span><small>学费</small>￥{{ activity.price }}</span>
     <h5>活动简介</h5>
-    <p>魔奇英语，是由鼎盛·彼昂教育集团推出的全新儿童英语品牌，15年专注于2——12岁儿童英语教育，是国内专业从事儿童教育类产品研发、生产、销售、教学、服务一体化的新型产业化教育机构。</p>
+    <p>{{ activity.intro }}</p>
     </div>
     </li>
+        {% endfor %}
     </ul>
     </div>
     </div>
