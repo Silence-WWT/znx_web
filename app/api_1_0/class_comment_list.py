@@ -27,7 +27,7 @@ def class_comment_list():
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
-                'created': str(comment.created),
+                'created': comment.created,
                 'username': user.username
             }
             data['class_comments'].append(comment_dict)

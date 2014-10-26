@@ -24,9 +24,9 @@ def class_detail():
             'intro': class_.intro,
             'consult_time': class_.consult_time,
             'is_round': class_.is_round,
-            'try': class_.is_tastable,
+            'is_tastable': class_.is_tastable,
             'comments_count': comments_count,
-            'course_count': class_.days
+            'days': class_.days
         }
         data['status'] = SUCCESS
     else:

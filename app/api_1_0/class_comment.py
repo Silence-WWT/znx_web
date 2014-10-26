@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from datetime import datetime
+from time import time as time_now
 
 from flask import request
 
@@ -25,7 +25,7 @@ def class_comment():
             user_id=user.id,
             stars=stars,
             body=comment,
-            created=datetime.now()
+            created=time_now()
         )
         try:
             db.session.add(class_comment_)

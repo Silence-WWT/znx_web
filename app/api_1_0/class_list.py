@@ -27,8 +27,7 @@ def class_list():
             'name': class_.name,
             'age': age.age,
             'price': class_.price,
-            'start_time': str(class_.start_time),
-            'end_time': str(class_.end_time)
+            'days': class_.days
         }
         data['classes'].append(class_dict)
     data['status'] = SUCCESS
