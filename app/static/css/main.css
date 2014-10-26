@@ -1753,13 +1753,15 @@ font-weight: 700;
     padding: 20px 50px 50px;
 }
 #myorderdet .havenottalk{
-    border:2px solid #FF8F67;
-    background:#F8F2EF;
+    border: 2px solid #FF8F67;
+    background: #F8F2EF;
+    text-align: center;
+    padding: 15px;
 }
 #myorderdet .havenottalk h3{
     color: #000;
     font-size: 18px;
-    text-align: center;
+
 }
 #myorderdet .havenottalk .btn-talk{
     color: #fff;
@@ -1774,4 +1776,26 @@ font-weight: 700;
 #myclassset .checkbox{
     margin-right: 10px;
     margin-top: 5px;
+}
+#myorderdet > div.myorderxq > h3{
+    font-size: 18px;
+
+}
+#myorderdet > div.myorderxq > ul > li{
+    border-bottom: 1px solid #E2E0DB;
+    padding: 20px 0 10px;
+}
+#myorderdet > div.myorderxq > ul > li> dl > dd{
+    margin-left: 0px;
+    margin-top: 10px;
+}
+#myorderdet > div.myorderxq > ul > li> dl > dd > ul{
+    margin-bottom: 8px;
+    margin-left: -5px;
+}
+#myorderdet > div.myorderxq > ul > li> dl > dd > ul> li{
+    width: 180px;
+}
+#myorderdet > div.myorderxq > ul > li> dl > dd > ul> li.longli{
+    width: 400px;
 }
