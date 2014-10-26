@@ -34,7 +34,7 @@ def order_list():
             org = Organization.query.get(class_.organization_id)
             class_dict = {
                 'class_order_id': class_order.id,
-                'created': str(class_order.created),
+                'created': class_order.created,
                 'class_name': class_.name,
                 'org_name': org.name,
             }
@@ -44,7 +44,7 @@ def order_list():
             org = Organization.query.get(activity.organization_id)
             activity_dict = {
                 'activity_order_id': activity_order.id,
-                'created': str(activity_order.created),
+                'created': activity_order.created,
                 'activity_name': activity.name,
                 'org_name': org.name,
             }

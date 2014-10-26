@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from datetime import datetime
+from time import time as time_now
 
 from flask import request
 
@@ -30,10 +30,10 @@ def register():
             password=password,
             mobile=mobile,
             identity=identity,
-            created=datetime.now()
+            email=email,
+            is_email_confirmed=False,
+            created=time_now()
         )
-        if email:
-            user.email = email
         try:
             db.session.add(user)
             db.session.commit()

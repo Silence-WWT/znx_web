@@ -28,7 +28,7 @@ def order_detail():
             data['status'] = ACCESS_RESTRICTED
             return json.dumps(data)
         order_dict = {
-            'created': str(order.created),
+            'created': order.created,
             'name': order.name,
             'age': order.age,
             'sex': order.sex,

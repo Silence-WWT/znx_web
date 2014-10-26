@@ -25,6 +25,7 @@ def organization_detail():
             'id': organization.id,
             'name': organization.name,
             'photo': organization.photo,
+            'logo': organization.logo,
             'city': city.city,
             'district': location.district,
             'intro': organization.intro,
