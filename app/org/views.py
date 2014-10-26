@@ -136,6 +136,7 @@ from .forms import CourseForm
 @org.route('/course/add')
 def add_course():
     course_form=CourseForm()
+    course_form.create_choices()
     return render_template('origanclassadd_py.html', form=course_form)
 
 
