@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from datetime import datetime
+from time import time as time_now
 
 from flask import request
 
@@ -25,9 +25,9 @@ def activity_sign_up():
 
     activity = Activity.query.filter_by(id=activity_id).first()
     user = User.query.filter_by(username=username).first()
-    if activity and user and name and age and mobile and sex and address and remark:
+    if activity and user and name and age and mobile and sex and address:
         activity_order = ActivityOrder(
-            class_id=activity_id,
+            activity_id=activity_id,
             user_id=user.id,
             name=name,
             mobile=mobile,
@@ -36,7 +36,9 @@ def activity_sign_up():
             email=email,
             address=address,
             remark=remark,
-            created=datetime.now()
+            created=time_now(),
+            is_submitted=True,
+            is_canceled=False
         )
         try:
             db.session.add(activity_order)

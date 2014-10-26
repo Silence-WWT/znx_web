@@ -27,8 +27,8 @@ def activity_list():
             'name': activity.name,
             'age': age.age,
             'price': activity.price,
-            'start_time': str(activity.start_time),
-            'end_time': str(activity.end_time)
+            'start_time': activity.start_time,
+            'end_time': activity.end_time
         }
         data['activities'].append(activity_dict)
     data['status'] = SUCCESS

@@ -22,8 +22,8 @@ def activity_detail():
             'age': age.age,
             'price': activity.price,
             'intro': activity.intro,
-            'start_time': str(activity.start_time),
-            'end_time': str(activity.end_time),
+            'start_time': activity.start_time,
+            'end_time': activity.end_time,
             'comments_count': comments_count
         }
         data['status'] = SUCCESS
