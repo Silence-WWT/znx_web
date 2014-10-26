@@ -18,78 +18,50 @@
     <div class="myuserright">
     <h3><span>增加课程</span></h3>
     <div id="myclassset">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
                     <div class="control-group">
                         <label class="control-label">课程名称</label>
                         <div class="controls">
-                            <input type="text"  class="form-control" /> 
+                            <input type="text"  name="{{ form.name.name }}" class="form-control" />
  
                         </div>
                     </div>
                    
                     <div class="control-group">
                         <label class="control-label" >适应年龄</label>
-                    
-                             <select class="form-control-more">
-                                <option>10岁以下</option>
-                                <option>10-12岁</option>
-                                
-                            </select>
- 
-                      
+
+                        {{ form.age_id(class="form-control-more") }}
+
                     </div>
                     <div class="control-group">
                         <label class="control-label" >价格</label>
                             <div class="controls">
-                          <input type="text"  class="form-control" />
+                          <input type="text" name="{{ form.price.name }}" class="form-control" />
                         </div>
                     </div>
                       <div class="control-group">
                         <label class="control-label" >总课时</label>
                             <div class="controls">
-                          <input type="text"  class="form-control" />
+                          <input type="text" name="{{ form.days.name }}" class="form-control" />
                         </div>
                     </div>
                      <div class="control-group">
                         <label class="control-label" >咨询时间</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  />
+                            <input type="text" name="{{ form.consult_time.name }}" class="form-control"  />
  
                         </div>
                         </div>
 
-                        <div class="control-group">
-                        <label class="control-label" >课程开始时间</label>
-                        <div class="controls">
-                            <div id="datetimepicker1" class="input-append date">
-      <input type="text" class="form-control shortinput"/>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-      </span>
-    </div> 
-    </div>
-    </div>
-     <div class="control-group">
-                        <label class="control-label" >课程结束时间</label>
-                        <div class="controls">
-                            <div id="datetimepicker2" class="input-append date">
-      <input type="text" class="form-control shortinput"/>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-      </span>
-    </div> 
- 
-                        </div>
-                  </div>
-     
+
                       <div class="control-group">
                        <label class="control-label">是否支持试听</label>
                         <div class="controls">
                          <label class="radio">
-<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>支持
+<input type="radio" name="{{ form.is_tastable.name }}" id="optionsRadios1" value="1" checked>支持
 </label>
 <label class="radio">
-<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+<input type="radio" name="{{ form.is_tastable.name }}" id="optionsRadios2" value="0">
 不支持
 </label>
  
@@ -101,7 +73,7 @@
                      <div class="control-group">
                         <label class="control-label">课程简介</label>
                         <div class="controls">
-                            <textarea rows="4" class="form-textarea" ></textarea> 
+                            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea" ></textarea>
  
                         </div>
                     </div>
@@ -110,6 +82,7 @@
                     </div>
                 </form>
             </div>
+    </div>
     </div>
 </div>
 {% endblock content %}

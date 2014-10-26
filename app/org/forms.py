@@ -2,7 +2,7 @@
 import uuid
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField
+    TextAreaField, BooleanField, RadioField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
@@ -51,16 +51,20 @@ class LoginForm(Form):
     password = PasswordField(validators=[DataRequired()])
     remember_me = BooleanField()
 
-class AddCourseForm(Form):
+class CourseForm(Form):
     name = StringField()
     age_id = SelectField(coerce=int)
     price = StringField()
     consult_time = StringField()
-    is_tastable = BooleanField()
+    days = StringField()
+    is_tastable = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
+    is_round = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
+    intro = TextAreaField()
+
 
 class ActivityForm(Form):
     name = StringField()
-    age_id = SelectField()
+    age_id = SelectField(coerce=int)
     price = StringField()
     start_time = StringField()
     end_time = StringField()

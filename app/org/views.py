@@ -132,10 +132,11 @@ def home(id):
                            org=org,
                            classes=classes,
                            activities=activities)
-
+from .forms import CourseForm
 @org.route('/course/add')
 def add_course():
-    return render_template('origanclassadd_py.html')
+    course_form=CourseForm()
+    return render_template('origanclassadd_py.html', form=course_form)
 
 
 @org.route('/activity/add')
