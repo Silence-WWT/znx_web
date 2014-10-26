@@ -99,17 +99,6 @@
       <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
      <script type="text/javascript">
 
-         $(function(){
-
-             $("#myuser .myuserleft ul li").hover(function(){
-                 $(this).find('.aandli').css('color','#fff');
-             },function(){
-                 $(this).find('.aandli').css('color','#000');
-
-             })
-             $("#myuser .myuserleft ul li.active a").css('color','#fff');
-
-         })
 $('#datetimepicker1').datetimepicker({
 		format: 'yyyy/MM/dd hh:mm',
         language: 'ch',
