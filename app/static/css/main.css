@@ -1585,9 +1585,12 @@ outline:none;}
 		#myactset .btn-next,#myclassset .btn-next{
 			width: 340px;
 margin: 37px 0px;}
-#myclassset label.radio:nth-child(2){
+#myclassset .controls label.radio{
 	float: left;
 margin: 10px 21px;}
+.controls>.radio:first-child{
+    padding: 0px;
+}
 #myclassset label{
 	float:left;
 	}
