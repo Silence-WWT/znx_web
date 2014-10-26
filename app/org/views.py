@@ -133,10 +133,12 @@ def home(id):
                            classes=classes,
                            activities=activities)
 from .forms import CourseForm
-@org.route('/course/add')
+@org.route('/course/add', methods=['GET', 'POST'])
 def add_course():
     course_form=CourseForm()
     course_form.create_choices()
+    if course_form.validate_on_submit():
+        print course_form
     return render_template('origanclassadd_py.html', form=course_form)
 
 

@@ -52,14 +52,14 @@ class LoginForm(Form):
     remember_me = BooleanField()
 
 class CourseForm(Form):
-    name = StringField()
-    age_id = SelectField(coerce=int)
-    price = StringField()
-    consult_time = StringField()
-    days = StringField()
-    is_tastable = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
-    is_round = RadioField(choices=[(1, 'yes'), (0, 'no')], coerce=int)
-    intro = TextAreaField()
+    name = StringField('name')
+    age_id = SelectField('age_id', coerce=int)
+    price = StringField('price')
+    consult_time = StringField('consult_time')
+    days = StringField('days')
+    is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')], coerce=int)
+    is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')], coerce=int)
+    intro = TextAreaField('intro')
 
     def create_choices(self):
         ages = Age.query.all()
