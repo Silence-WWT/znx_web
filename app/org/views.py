@@ -168,3 +168,9 @@ def add_activity():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('origanactadd_py.html', form=form)
+
+
+@org.route('/activity/list')
+def activity_list():
+    activities = Activity.query.filter_by(organization_id=current_user.id).all()
+    return render_template('origanactlist_py.html', activities=activities)
