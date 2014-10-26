@@ -41,12 +41,12 @@ login
         email
         identity
         
-filter_organization
+organization_filter
 ---
     URL:
-        /api/v1.0/filter_organization?city=&district=&page=
-        /api/v1.0/filter_organization?city=&profession=&page=  
-        /api/v1.0/filter_organization?distance=&latitude=&longitude=&page=
+        /api/v1.0/organization_filter?city=&district=&page=
+        /api/v1.0/organization_filter?city=&profession=&page=  
+        /api/v1.0/organization_filter?distance=&latitude=&longitude=&page=
     method:
         get
     parameters:
@@ -367,34 +367,60 @@ order_list
          created
          org_name
          
-order_detail
+class_order_detail
 ---
     URL:
-        /api/v1.0/order_list?username=&mobile=&class_order=&activity_order=
+        /api/v1.0/order_list?username=&mobile=&class_order=
     method:
         get
     parameters:
         username
         mobile
-        class_order/activity_order
+        class_order
     json:
         {"status": 0,
          "class": [{"time": "", "created": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "mobile": "", "address": "", "remark": ""}],
-         "activity": [{"created": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
              "mobile": "", "address": "", "remark": ""}]}
          
         status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
-        class/activity
-        created: created of order
-        time: ONLY included in classes, the taste time of class
-        class_name/activity_name
-        name: user's name
-        age
-        sex
+        activity
+            created: created time of this order
+            time: the taste time of class
+            class_name
+            name: user's name
+            age
+            sex
+            mobile
+            email
+            address: user's address
+            remark: user's remark of this class
+    
+activity_order_detail
+---
+    URL:
+        /api/v1.0/order_list?username=&mobile=&activity_order=
+    method:
+        get
+    parameters:
+        username
         mobile
-        address: user's address
-        remark: user's remark of a class or activity
+        activity_order
+    json:
+        {"status": 0,
+         "activity": [{"created": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
+             "mobile": "", "email": "", "address": "", "remark": ""}]}
+         
+        status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
+        activity
+            created: created time of this order
+            activity_name
+            name: user's name
+            age
+            sex
+            mobile
+            email
+            address: user's address
+            remark: user's remark of this activity
     
 requirement_list
 ---
@@ -417,14 +443,15 @@ requirement_list
 requirement_sign_up
 ---
     URL:
-        /api/v1.0/requirement_sign_up?name=&mobile=&need=&page=
+        /api/v1.0/requirement_sign_up?name=&mobile=&need=&city=&district=
     method:
         get
     parameters:
         username
         mobile
         need
-        page
+        city
+        district
     json:
         {"status": 0}
         
