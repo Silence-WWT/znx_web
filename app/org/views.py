@@ -144,6 +144,10 @@ def add_course():
         return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html', form=course_form)
 
+@org.route('/course/list')
+def course_list():
+    courses = Class.query.filter_by(organization_id=current_user.id).all()
+    return render_template('origanclasslist_py.html', courses=courses)
 
 @org.route('/activity/add')
 def add_activity():
