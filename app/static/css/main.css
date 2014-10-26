@@ -1495,7 +1495,10 @@ border:1px solid #F0F0F0;}
 		color:#000;}
 		#myuser .myuserleft ul li.active{
 		background:#00B98D;
-		color:#fff;}
+		}
+#myuser .myuserleft ul li.active a{
+    color: #fff;
+}
 		#myuser .myuserleft ul li a img{
 			margin-right:10px;}
 		#myuser .myuserleft ul li:hover{
