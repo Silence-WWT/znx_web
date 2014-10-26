@@ -19,11 +19,13 @@
                 </li>
             </ul>
             <div id="organregform">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
                     <div class="control-group">
                         <label class="control-label">试听课程</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  value="小熊亲子班" readonly/> 
+                            <input type="text"  class="form-control"  value="{{ course.name }}" readonly/>
  
                         </div>
                     </div>
@@ -31,7 +33,7 @@
                     <div class="control-group">
                         <label class="control-label" >所属校区</label>
                         <div class="controls">
-                            <input type="text"  class="form-control" value="小小运动北京天通苑中心"  readonly/>
+                            <input type="text"  class="form-control" name="{{ form.campus.name }}" />
  
                         </div>
                     </div>
@@ -39,7 +41,7 @@
                         <label class="control-label" for="inputConfirmPassword">试听时间</label>
                         <div class="controls">
                             <div id="datetimepicker" class="input-append date">
-      <input type="text" class="form-control shortinput"></input>
+      <input type="text" name="{{ form.time.name }}" class="form-control shortinput"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
