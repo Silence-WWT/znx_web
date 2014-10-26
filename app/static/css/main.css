@@ -1587,7 +1587,7 @@ outline:none;}
 margin: 37px 0px;}
 #myclassset label.radio:nth-child(2){
 	float: left;
-margin: 5px 21px;}
+margin: 10px 21px;}
 #myclassset label{
 	float:left;
 	}
@@ -1770,4 +1770,8 @@ font-weight: 700;
     text-align: center;
     border: 0;
     outline: none;
+}
+#myclassset .checkbox{
+    margin-right: 10px;
+    margin-top: 5px;
 }

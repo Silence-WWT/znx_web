@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-机构后台中心-增加课程{% endblock title %}
+{% block title %}去哪学-机构后台中心-增加课程{% endblock title %}
  {% block navbar %}
  {% include 'headuser.html' %}
     {% endblock navbar %}
@@ -49,26 +49,51 @@
                         <label class="control-label" >咨询时间</label>
                         <div class="controls">
                             <input type="text" name="{{ form.consult_time.name }}" class="form-control"  />
- 
                         </div>
                         </div>
-
-
                       <div class="control-group">
                        <label class="control-label">是否支持试听</label>
                         <div class="controls">
                          <label class="radio">
-<input type="radio" name="{{ form.is_tastable.name }}" id="optionsRadios1" value="1" checked>支持
+<input type="radio" name="{{ form.is_tastable.name }}"  value="1" checked>支持
 </label>
 <label class="radio">
-<input type="radio" name="{{ form.is_tastable.name }}" id="optionsRadios2" value="0">
+<input type="radio" name="{{ form.is_tastable.name }}"  value="0">
 不支持
 </label>
- 
                         </div>
 </div>
- 
-                      
+
+                    <div class="control-group">
+                        <label class="control-label" >滚动开班</label>
+                        <div class="controls">
+                            <label class="radio">
+                                <input type="radio" name="{{ form.is_round.name }}" value="1" checked/>支持
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="{{ form.is_round.name }}" value="1"/>
+                                不支持
+                            </label>
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >上课时间</label>
+                        <div class="controls">
+                            <label class="checkbox inline">
+                                <input type="checkbox" value="option1"> 周一
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" value="option2"> 周二
+                            </label>
+                            <label class="checkbox inline">
+                                <input type="checkbox" value="option3"> 周三
+                            </label>
+
+
+
+                        </div>
+                    </div>
                         
                      <div class="control-group">
                         <label class="control-label">课程简介</label>
