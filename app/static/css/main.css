@@ -1918,3 +1918,7 @@ font-weight: 700;
 {
     margin: 2px 4px;
 }
+#origanselect > div.asklearn{
+    float: left;
+    width: 360px;
+}
