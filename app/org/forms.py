@@ -7,8 +7,6 @@ from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from ..models import Organization, Type
-
-
 class RegistrationForm(Form):
     cellphone = StringField('cellphone',
                             validators=[

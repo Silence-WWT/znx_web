@@ -1741,3 +1741,33 @@ font-weight: 700;
     margin-top: 10px;
     font-weight: 400;
 }
+.form-required {
+    margin-right: 5px;
+}
+.form-required:before {
+    content: "*";
+    color: #FD8F6A;
+    margin-left: 5px;
+}
+#myorderdet{
+    padding: 20px 50px 50px;
+}
+#myorderdet .havenottalk{
+    border:2px solid #FF8F67;
+    background:#F8F2EF;
+}
+#myorderdet .havenottalk h3{
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+}
+#myorderdet .havenottalk .btn-talk{
+    color: #fff;
+    background: #FD8F6A;
+    font-size: 20px;
+    width: 200px;
+    padding: 8px 40px;
+    text-align: center;
+    border: 0;
+    outline: none;
+}
