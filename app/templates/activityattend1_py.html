@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}在哪学-机构注册-账号注册{% endblock title %}
  {% block navbar %}
- {% include 'headl.html' %}
+ {% include 'headless.html' %}
     {% endblock navbar %}
     {% block content %}
     
@@ -18,11 +18,13 @@
                 </li>
             </ul>
             <div id="organregform">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
                     <div class="control-group">
                         <label class="control-label">真实姓名</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  placeholder="请输入真实姓名"/> 
+                            <input type="text" name="{{ form.name.name }}" class="form-control"  placeholder="请输入真实姓名"/>
  
                         </div>
                     </div>
@@ -30,15 +32,15 @@
                     <div class="control-group">
                         <label class="control-label" >年龄</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  placeholder="输入宝宝年龄"/>
+                            <input type="text" name="{{ form.age.name }}"  class="form-control"  placeholder="输入宝宝年龄"/>
  
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label" >性别</label>
-                        <select class="form-control-more">
-                                <option>男</option>
-                                <option>女</option>
+                        <select name="{{ form.sex.name }}" class="form-control-more">
+                                <option value="1">男</option>
+                                <option value="0">女</option>
                                 
                             </select>
                         </div>
@@ -46,14 +48,14 @@
                      <div class="control-group">
                         <label class="control-label" >联系电话</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  />
+                            <input type="text" name="{{ form.cellphone.name }}"  class="form-control"  />
  
                         </div>
                     </div>
                          <div class="control-group">
                         <label class="control-label" >联系地址</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  placeholder="请输入联系地址"/>
+                            <input type="text" name="{{ form.address.name }}" class="form-control"  placeholder="请输入联系地址"/>
  
                         </div>
                     </div>
