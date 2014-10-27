@@ -26,16 +26,16 @@
     <div class="navbar navbar-static-top" id="headnav">
         <div class="navbar-inner ">
             <div class="container">
-                <a class="brand" href="#">
+                <a class="brand" href="{{ url_for('main.download') }}">
                     <img src="{{ url_for('static', filename='images/phonelogo.png') }}">手机版在哪学</a>
 
                 <div class="nav-collapse collapse">
                     <ul class="nav pull-right">
                         {% if current_user.is_authenticated() %}
                         {% if current_user.is_org() %}
-                        <li><a href="{{ url_for('org.course_list') }}">{{current_user.get_name()}}</a>的在哪学</li>
+                        <li><a href="{{ url_for('org.course_list') }}"><span>{{current_user.get_name()}}</span>的在哪学</a></li>
                         {% else %}
-                        <li><a href="{{ url_for('user.home') }}">{{current_user.get_name()}}</a>的在哪学</li>
+                        <li><a href="{{ url_for('user.home') }}"><span>{{current_user.get_name()}}</span>的在哪学</a></li>
                         {% endif %}
                         <li style="color: #E2E1DE;">|</li>
                         <li><a href="{{ url_for('main.logout') }}">登出</a>

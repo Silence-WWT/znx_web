@@ -9,10 +9,10 @@
         <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>
         <ul class="unstyled">
             <li>
-                <a class="username" href="#">用户名</a>
+                <a class="username" href="#">{{current_user.get_name()}}</a>
             </li>
             <li>
-                <a href="#" class="outa">退出登录</a>
+                <a href="{{ url_for('main.logout') }}" class="outa">退出登录</a>
             </li>
         </ul>
     </div>

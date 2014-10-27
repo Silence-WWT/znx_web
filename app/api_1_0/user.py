@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
+from xml.dom import minidom
 from time import time as time_now
+from random import randint
+from urllib2 import urlopen
 
 from flask import request
 
@@ -18,10 +21,7 @@ def register():
     mobile = request.args.get('mobile')
     identity = request.args.get('identity')
     email = request.args.get('email')
-    if User.query.filter_by(mobile=mobile).first():
-        data['status'] = CELLPHONE_EXIST
-        return json.dumps(data)
-    elif User.query.filter_by(username=username).first():
+    if User.query.filter_by(username=username).first():
         data['status'] = USERNAME_EXIST
         return json.dumps(data)
     if username and password and mobile:
@@ -48,6 +48,8 @@ def register():
                 'identity': identity,
                 'email': email
             }
+    else:
+        data['status'] = PARAMETER_ERROR
     return json.dumps(data)
 
 
@@ -70,4 +72,28 @@ def login():
         }
     else:
         data['status'] = LOGIN_FAILED
+    return json.dumps(data)
+
+
+@api.route('/mobile_confirm')
+def mobile_confirm():
+    data = {}
+    mobile = request.args.get('mobile')
+    if User.query.filter_by(mobile=mobile).first():
+        data['status'] = CELLPHONE_EXIST
+    elif mobile:
+        verify_code = randint(100000, 999999)
+        content = MESSAGE_API_CONTENT.format(verify_code=verify_code)
+        message_url = MESSAGE_API_URL.format(account=MESSAGE_API_ACCOUNT, password=MESSAGE_API_PASSWORD,
+                                             mobile=mobile, content=content)
+        response = urlopen(message_url.encode('utf8')).read()
+        doc = minidom.parseString(response)
+        code = doc.getElementsByTagName('code')[0].firstChild.nodeValue
+        if code != MESSAGE_API_SUCCESS:
+            data['status'] = MESSAGE_CONFIRM_FAIL
+        else:
+            data['status'] = SUCCESS
+            data['verify_code'] = verify_code
+    else:
+        data['status'] = PARAMETER_ERROR
     return json.dumps(data)
