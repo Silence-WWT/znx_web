@@ -454,11 +454,13 @@ MARGIN: -3px 4px 0px;
     padding-left:10px;
 	background: #fff;
 }
-#age_id{
-    width:340px;
+#myactset  select.form-control{
+    width: 336px;
+    height: 43px;
 }
 #myactset .form-textarea{
     width:320px;
+    margin-left: 0px;
 }
 #organregform span {
     margin-left:20px;
@@ -1986,4 +1988,7 @@ font-weight: 700;
 }
 #selectul .myselectlist>ul>li.active a{
    color:#fff;
+}
+#appdown{
+
 }
