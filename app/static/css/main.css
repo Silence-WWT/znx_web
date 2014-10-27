@@ -2614,7 +2614,7 @@ input[disabled] {
     line-height: 30px;
 }
 
-#selectasklearn .form-control-more, #selectasklearn .form-control, #selectasklearn, .form-textarea {
+#selectasklearn .form-control-more, #selectasklearn .form-control, #selectasklearn .form-textarea {
     width: 180px;
     float: left;
     margin-left: 10px;
