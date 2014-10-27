@@ -1278,6 +1278,7 @@ body {
     display: inline-block;
     width: 15px;
     height: 15px;
+    margin-top: 2px;
 }
 
 .level .level_solid {
@@ -1421,6 +1422,8 @@ body {
 
 #myComment .modal-body {
     padding: 10px 15px 0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #niming span {
