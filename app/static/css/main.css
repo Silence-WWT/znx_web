@@ -1194,6 +1194,7 @@ body {
     line-height: 40px;
     padding-left: 20px;
     font-weight: normal;
+    white-space: normal;
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dd {
