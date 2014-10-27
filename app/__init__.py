@@ -7,6 +7,7 @@ from flask.ext.mail import Mail
 from flask.ext.rq import RQ
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
+from .filter import stars
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -28,6 +29,8 @@ def create_app(config_name):
     rq.init_app(app)
     login_manager.init_app(app)
     debug_tool_bar.init_app(app)
+
+    app.jinja_env.filters['stars'] = stars
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
