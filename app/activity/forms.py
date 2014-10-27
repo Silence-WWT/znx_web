@@ -42,8 +42,8 @@ class CommentForm(Form):
     stars = IntegerField('stars')
     body = TextAreaField('body')
 
-    def create_class_comment(self, id):
-        comment = ActivityComment(class_id=id,
+    def create_activity_comment(self, id):
+        comment = ActivityComment(activity_id=id,
                                   user_id=current_user.id,
                                   stars=self.stars.data,
                                   body=self.body.data,

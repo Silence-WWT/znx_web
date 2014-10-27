@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
 from . import activity
 from .. import db
-from .forms import DetailForm, ConfirmForm
+from .forms import DetailForm, ConfirmForm, CommentForm
 from ..models import Activity, ActivityOrder
 from flask import render_template, redirect, url_for, abort
 from flask.ext.login import current_user
 
 
-@activity.route('/home/<int:id>')
+@activity.route('/home/<int:id>', methods=['GET', 'POST'])
 def home(id):
     activity = Activity.query.get_or_404(id)
-    return render_template('organact_py.html', activity=activity)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = form.create_activity_comment(id)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('.home', id=id))
+    return render_template('organact_py.html', activity=activity, form=form)
 
 
 @activity.route('/taste/<int:id>', methods=['GET', 'POST'])
