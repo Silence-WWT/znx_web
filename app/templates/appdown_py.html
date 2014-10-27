@@ -16,3 +16,11 @@
 </div>
 <hr class="longhr"/>
 {% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    $(function(){
+        $("#navbar ul.nav li:first-child").removeClass('act');
+        $("#navbar ul.nav li:last-child").addClass('act');
+    })
+</script>
+{% endblock inscript %}
