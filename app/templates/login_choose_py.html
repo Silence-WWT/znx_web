@@ -2,93 +2,107 @@
 {% block title %}在哪学-注册选择{% endblock title %}、
 {% block tophead %}
 {% endblock tophead %}
- {% block navbar %}
- {% include 'headless.html' %}
-    {% endblock navbar %}
-    {% block content %}
-    <div id="organregall">
-        <div class="container">
-            <div class="logingift">
-                <img src="{{ url_for('static', filename='images/phone6.png') }}">
-            </div>
-            <div class="login" id="twologin">
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#userLogin">用户登录</a>
-                    </li>
-                    <li class=""><a href="#organLogin">机构登录</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                
-                    <div class="tab-pane active" id="userLogin">
-                      <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
-                                 {{ user_form.hidden_tag() }}
-                                 {{ wtf.form_errors(user_form) }}
+{% block navbar %}
+{% include 'headless.html' %}
+{% endblock navbar %}
+{% block content %}
+<div id="organregall">
+    <div class="container">
+        <div class="logingift">
+            <img src="{{ url_for('static', filename='images/phone6.png') }}">
+        </div>
+        <div class="login" id="twologin">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#userLogin">用户登录</a>
+                </li>
+                <li class=""><a href="#organLogin">机构登录</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="userLogin">
+                    <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
+                        {{ user_form.hidden_tag() }}
+                        {{ wtf.form_errors(user_form) }}
                         <div class="control-group">
-                           
-                                <div class="controls">
-                                    <input type="text" id="inputUsername" class="form-control" name="{{ user_form.username.name }}" placeholder="手机号/用户名">
-                                </div>
+
+                            <div class="controls">
+                                <input type="text" id="inputUsername" class="form-control"
+                                       name="{{ user_form.username.name }}" placeholder="手机号/用户名">
+                            </div>
                         </div>
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="password" id="inputPassword" class="form-control last-control" name="{{ user_form.password.name }}" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control"
+                                       name="{{ user_form.password.name }}" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->
                         <div class="controls">
                             <label class="checkbox" id="rememberme">
-                                <input type="checkbox" name="{{ user_form.remember_me.name }}">记住我</label> <span><a href="#">短信登录</a></span>
- 
+                                <input type="checkbox" name="{{ user_form.remember_me.name }}">记住我</label> <span><a
+                                href="#">短信登录</a></span>
+
                         </div>
                         <div class="controls">
                             <button type="submit" class="btn-long1" id="organLoginSubmit">登录</button>
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
- 
-                            <div class="form-right"><a class="form-signup" href="user_regiter.html">免费注册</a><a href="#" class="form-feedback" target="_blank" style="color:#000;"><span class="fengge">|</span>意见反馈</a>
+
+                            <div class="form-right"><a class="form-signup" href="user_regiter.html">免费注册</a><a href="#"
+                                                                                                               class="form-feedback"
+                                                                                                               target="_blank"
+                                                                                                               style="color:#000;"><span
+                                    class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
-                           </form> 
-                    </div>
-                 
-                    <!--userLogin-->
-                    <div class="tab-pane" id="organLogin">
+                    </form>
+                </div>
+
+                <!--userLogin-->
+                <div class="tab-pane" id="organLogin">
                     <form class="form-horizontal" action="{{ url_for('org.login') }}" method="post">
                         {{ org_form.hidden_tag() }}
                         {{ wtf.form_errors(org_form) }}
                         <div class="control-group">
-                            
-                                <div class="controls">
-                                    <input type="text" id="inputUsername" class="form-control" name="{{ org_form.cellphone.name }}" placeholder="手机号/机构名称">
-                                </div>
+
+                            <div class="controls">
+                                <input type="text" id="inputUsername" class="form-control"
+                                       name="{{ org_form.cellphone.name }}" placeholder="手机号/机构名称">
+                            </div>
                         </div>
                         <!--control-group-->
                         <div class="control-group">
                             <div class="controls">
-                                <input type="password" id="inputPassword" class="form-control last-control" name="{{ org_form.password.name }}" placeholder="请输入密码">
+                                <input type="password" id="inputPassword" class="form-control last-control"
+                                       name="{{ org_form.password.name }}" placeholder="请输入密码">
                             </div>
                         </div>
                         <!--control-group-->
                         <div class="controls">
                             <label class="checkbox" id="rememberme">
-                                <input type="checkbox" name="{{ org_form.remember_me.name }}">记住我</label> <span><a href="#">短信登录</a></span>
- 
+                                <input type="checkbox" name="{{ org_form.remember_me.name }}">记住我</label> <span><a
+                                href="#">短信登录</a></span>
+
                         </div>
                         <div class="controls">
                             <button type="submit" class="btn-long1" id="organLoginSubmit">登录</button>
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
- 
-                            <div class="form-right"><a class="form-signup" href="organ_regiter.html">免费注册</a><a href="#" class="form-feedback" target="_blank" style="color:#000;"><span class="fengge">|</span>意见反馈</a>
+
+                            <div class="form-right"><a class="form-signup" href="organ_regiter.html">免费注册</a><a href="#"
+                                                                                                                class="form-feedback"
+                                                                                                                target="_blank"
+                                                                                                                style="color:#000;"><span
+                                    class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
-                         </form>
-                    </div>
-                    
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
-      {% endblock content %}
+</div>
+{% endblock content %}

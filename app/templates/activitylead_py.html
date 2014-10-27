@@ -1,10 +1,10 @@
-{% extends "layout.html" %} 
+{% extends "layout.html" %}
 {% block title %}在哪学-机构发布活动信息引导
-{% endblock title %} 
-{% block navbar %} 
-{% include 'headmore.html' %} 
+{% endblock title %}
+{% block navbar %}
+{% include 'headmore.html' %}
 {% endblock navbar %}
- {% block content %}
+{% block content %}
 <div class="container">
     <img src="{{ url_for('static', filename='images/origanleadpic.png') }}">
 </div>
@@ -15,6 +15,7 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active carli">
                     <div class="carleft">
                         <img src="{{ url_for('static', filename='images/lead1.png') }}">
+
                         <h3>机构注册</h3>
                     </div>
                     <div class="carright">
@@ -24,6 +25,7 @@
                 <li data-target="#myCarousel" data-slide-to="1" class="carli">
                     <div class="carleft">
                         <img src="{{ url_for('static', filename='images/lead2.png') }}">
+
                         <h3>发布课程信息</h3>
                     </div>
                     <div class="carright">
@@ -33,6 +35,7 @@
                 <li data-target="#myCarousel" data-slide-to="2" class="carli">
                     <div class="carleft">
                         <img src="{{ url_for('static', filename='images/lead3.png') }}">
+
                         <h3>发布活动信息</h3>
                     </div>
                     <div class="carright">
@@ -42,6 +45,7 @@
                 <li data-target="#myCarousel" data-slide-to="3" class="carlilast">
                     <div class="carleft">
                         <img src="{{ url_for('static', filename='images/lead4.png') }}">
+
                         <h3>成功入驻</h3>
                     </div>
                 </li>
@@ -51,47 +55,51 @@
         <div class="carousel-inner">
             <div class="active item">
                 <div class="itemcontent">
-                     <h1>1发布活动信息</h1>
- 
+                    <h1>1发布活动信息</h1>
+
                     <div class="itemcontentdown">
                         <img src="{{ url_for('static', filename='images/origanlead1.png') }}">
+
                         <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动 生成一个机构页面，机构可以在平台上更新机构的信息。</p>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="itemcontent">
-                     <h1>2发布活动信息</h1>
- 
+                    <h1>2发布活动信息</h1>
+
                     <div class="itemcontentdown">
                         <img src="{{ url_for('static', filename='images/origanlead1.png') }}">
+
                         <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动 生成一个机构页面，机构可以在平台上更新机构的信息。</p>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="itemcontent">
-                     <h1>3发布活动信息</h1>
- 
+                    <h1>3发布活动信息</h1>
+
                     <div class="itemcontentdown">
                         <img src="{{ url_for('static', filename='images/origanlead1.png') }}">
+
                         <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动 生成一个机构页面，机构可以在平台上更新机构的信息。</p>
                     </div>
                 </div>
             </div>
             <div class="item">
                 <div class="itemcontent">
-                     <h1>4发布活动信息</h1>
- 
+                    <h1>4发布活动信息</h1>
+
                     <div class="itemcontentdown">
                         <img src="{{ url_for('static', filename='images/origanlead1.png') }}">
+
                         <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动 生成一个机构页面，机构可以在平台上更新机构的信息。</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Carousel nav --> <a class="carousel-control left" href="#myCarousel" data-slide="prev" id="arr1">‹</a>
- <a class="carousel-control right" href="#myCarousel" data-slide="next" id="arr2">›</a>
- 
+        <a class="carousel-control right" href="#myCarousel" data-slide="next" id="arr2">›</a>
+
     </div>
 </div>{% endblock content %}

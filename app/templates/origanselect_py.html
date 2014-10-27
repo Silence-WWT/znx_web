@@ -1,20 +1,21 @@
 {% extends "layout.html" %}
 {% block title %}在哪学-机构筛选页{% endblock title %}
- {% block navbar %}
- {% include 'headmore.html' %}
-    {% endblock navbar %}
-    {% block content %}
+{% block navbar %}
+{% include 'headmore.html' %}
+{% endblock navbar %}
+{% block content %}
 <div class="container" id="origanselect">
 <div class="selecttop">
     <h3>机构筛选，找到<span>“日语”</span>相关机构 <span>5</span> 个</h3>
     <dl>
         <dt>机构类别</dt>
-        <dd><ul class="unstyled inline">
-            <li class="active"><a href="#">全部</a></li>
-            <li><a href="#">幼儿早教</a></li>
-            <li><a href="#">少儿培训</a></li>
-            <li><a href="#">少儿才艺</a></li>
-        </ul>
+        <dd>
+            <ul class="unstyled inline">
+                <li class="active"><a href="#">全部</a></li>
+                <li><a href="#">幼儿早教</a></li>
+                <li><a href="#">少儿培训</a></li>
+                <li><a href="#">少儿才艺</a></li>
+            </ul>
         </dd>
     </dl>
     <br>
@@ -34,209 +35,218 @@
     </dl>
 </div>
 <div class="selectbottom" id="selectbottom">
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">全部</a></li>
-    <li><a href="#tab2" data-toggle="tab">评论数</a></li>
-    <li><a href="#tab3" data-toggle="tab">浏览数</a></li>
-    <li><a href="#tab4" data-toggle="tab">报名数</a></li>
-</ul>
-<div class="tab-content" id="selectul">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">全部</a></li>
+            <li><a href="#tab2" data-toggle="tab">评论数</a></li>
+            <li><a href="#tab3" data-toggle="tab">浏览数</a></li>
+            <li><a href="#tab4" data-toggle="tab">报名数</a></li>
+        </ul>
+        <div class="tab-content" id="selectul">
 
-<div class="tab-pane active" id="tab1">
-    <ul class="unstyled">
-        <li>
-            <div class="selepic">
-                <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
-            </div>
-            <div class="seledet">
-                <h3><span>{{机构名}}</span><img src="{{ url_for('static', filename='images/selectren.png') }}"/> </h3>
-                <p>---{{机构二级标语}}</p>
-                <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
-            </div>
-            <div class="selectscore">
-                <ul class="unstyled inline">
+            <div class="tab-pane active" id="tab1">
+                <ul class="unstyled">
                     <li>
-                        <div class="revinp">
+                        <div class="selepic">
+                            <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                        </div>
+                        <div class="seledet">
+                            <h3><span>{{机构名}}</span><img
+                                    src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
+
+                            <p>---{{机构二级标语}}</p>
+                            <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
+                        </div>
+                        <div class="selectscore">
+                            <ul class="unstyled inline">
+                                <li>
+                                    <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
-                            <span>{{评分}}分</span>
+                                        <span>{{评分}}分</span>
+                                    </div>
+                                </li>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
+                                <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
+                            </ul>
+
                         </div>
                     </li>
-                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
-                    <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
-                    <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
+
                 </ul>
-
+                <div class="pagination pagination-centered pagination-large myselectlist">
+                    <ul>
+                        <li><a href="#">《</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">》</a></li>
+                    </ul>
+                </div>
             </div>
-        </li>
-
-    </ul>
-    <div class="pagination pagination-centered pagination-large myselectlist">
-        <ul>
-            <li><a href="#">《</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">》</a></li>
-        </ul>
-    </div>
-</div>
-<div class="tab-pane" id="tab2">
-    <ul class="unstyled">
-        <li>
-            <div class="selepic">
-                <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
-            </div>
-            <div class="seledet">
-                <h3><span>{{机构名}}</span><img src="{{ url_for('static', filename='images/selectren.png') }}"/> </h3>
-                <p>---{{机构二级标语}}</p>
-                <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
-            </div>
-            <div class="selectscore">
-                <ul class="unstyled inline">
+            <div class="tab-pane" id="tab2">
+                <ul class="unstyled">
                     <li>
-                        <div class="revinp">
+                        <div class="selepic">
+                            <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                        </div>
+                        <div class="seledet">
+                            <h3><span>{{机构名}}</span><img
+                                    src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
+
+                            <p>---{{机构二级标语}}</p>
+                            <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
+                        </div>
+                        <div class="selectscore">
+                            <ul class="unstyled inline">
+                                <li>
+                                    <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
-                            <span>{{评分}}分</span>
+                                        <span>{{评分}}分</span>
+                                    </div>
+                                </li>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
+                                <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
+                            </ul>
+
                         </div>
                     </li>
-                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
-                    <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
-                    <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
                 </ul>
-
+                <div class="pagination pagination-centered pagination-large myselectlist">
+                    <ul>
+                        <li><a href="#">《</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">》</a></li>
+                    </ul>
+                </div>
             </div>
-        </li>
-    </ul>
-    <div class="pagination pagination-centered pagination-large myselectlist">
-        <ul>
-            <li><a href="#">《</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">》</a></li>
-        </ul>
-    </div>
-</div>
-<div class="tab-pane" id="tab3">
-    <ul class="unstyled">
-        <li>
-            <div class="selepic">
-                <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
-            </div>
-            <div class="seledet">
-                <h3><span>{{机构名}}</span><img src="{{ url_for('static', filename='images/selectren.png') }}"/> </h3>
-                <p>---{{机构二级标语}}</p>
-                <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
-            </div>
-            <div class="selectscore">
-                <ul class="unstyled inline">
+            <div class="tab-pane" id="tab3">
+                <ul class="unstyled">
                     <li>
-                        <div class="revinp">
+                        <div class="selepic">
+                            <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                        </div>
+                        <div class="seledet">
+                            <h3><span>{{机构名}}</span><img
+                                    src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
+
+                            <p>---{{机构二级标语}}</p>
+                            <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
+                        </div>
+                        <div class="selectscore">
+                            <ul class="unstyled inline">
+                                <li>
+                                    <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
-                            <span>{{评分}}分</span>
+                                        <span>{{评分}}分</span>
+                                    </div>
+                                </li>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
+                                <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
+                            </ul>
+
                         </div>
                     </li>
-                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
-                    <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
-                    <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
                 </ul>
-
+                <div class="pagination pagination-centered pagination-large myselectlist">
+                    <ul>
+                        <li><a href="#">《</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">》</a></li>
+                    </ul>
+                </div>
             </div>
-        </li>
-    </ul>
-    <div class="pagination pagination-centered pagination-large myselectlist">
-        <ul>
-            <li><a href="#">《</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">》</a></li>
-        </ul>
-    </div>
-</div>
-<div class="tab-pane" id="tab4">
-    <ul class="unstyled">
-        <li>
-            <div class="selepic">
-                <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
-            </div>
-            <div class="seledet">
-                <h3><span>{{机构名}}</span><img src="{{ url_for('static', filename='images/selectren.png') }}"/> </h3>
-                <p>---{{机构二级标语}}</p>
-                <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
-            </div>
-            <div class="selectscore">
-                <ul class="unstyled inline">
+            <div class="tab-pane" id="tab4">
+                <ul class="unstyled">
                     <li>
-                        <div class="revinp">
+                        <div class="selepic">
+                            <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                        </div>
+                        <div class="seledet">
+                            <h3><span>{{机构名}}</span><img
+                                    src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
+
+                            <p>---{{机构二级标语}}</p>
+                            <span class="organplace"><i class=" icon-map-marker"></i>{{机构地址}}</span>
+                        </div>
+                        <div class="selectscore">
+                            <ul class="unstyled inline">
+                                <li>
+                                    <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
-                            <span>{{评分}}分</span>
+                                        <span>{{评分}}分</span>
+                                    </div>
+                                </li>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
+                                <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
+                            </ul>
+
                         </div>
                     </li>
-                    <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{浏览数}}</span></li>
-                    <li><span class="organtalk"><i class="icon-comment"></i>评论：{{评论数}}</span><br/></li>
-                    <li><span class="organtalk"><i class="icon-plus"></i>报名：{{报名数}}</span><br/></li>
                 </ul>
-
+                <div class="pagination pagination-centered pagination-large myselectlist">
+                    <ul>
+                        <li><a href="#">《</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">》</a></li>
+                    </ul>
+                </div>
             </div>
-        </li>
-    </ul>
-    <div class="pagination pagination-centered pagination-large myselectlist">
-        <ul>
-            <li><a href="#">《</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">》</a></li>
-        </ul>
+        </div>
     </div>
-</div>
-</div>
-</div>
 
 </div>
 <div class="asklearn">
 
-    <h3 >快速帮你找到培训机构</h3>
+    <h3>快速帮你找到培训机构</h3>
 
     <div id="selectasklearn">
         <form class="form-horizontal">
 
             <div class="control-group">
-                <label class="control-label" >你在哪里</label>
+                <label class="control-label">你在哪里</label>
+
                 <div class="controls">
                     <select class="form-control-more">
                         <option>全国</option>
@@ -248,24 +258,27 @@
             </div>
             <div class="control-group">
                 <label class="control-label">你的姓名</label>
+
                 <div class="controls">
-                    <input type="text"  class="form-control"  />
+                    <input type="text" class="form-control"/>
 
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" >你的手机号</label>
+                <label class="control-label">你的手机号</label>
+
                 <div class="controls">
-                    <input type="text"  class="form-control" />
+                    <input type="text" class="form-control"/>
 
                 </div>
             </div>
 
             <div class="control-group">
                 <label class="control-label">想学什么</label>
+
                 <div class="controls">
-                    <textarea rows="3" class="form-textarea" ></textarea>
+                    <textarea rows="3" class="form-textarea"></textarea>
 
                 </div>
             </div>
@@ -277,4 +290,4 @@
 
 </div>
 </div>
- {% endblock content %}
+{% endblock content %}

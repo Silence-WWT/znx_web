@@ -1,93 +1,102 @@
 {% extends "layout.html" %}
 {% block title %}去哪学-机构活动详情页 {% endblock title %}
- {% block navbar %}
- {% include 'head.html' %}
-    {% endblock navbar %}
-    {% block content %}
+{% block navbar %}
+{% include 'head.html' %}
+{% endblock navbar %}
+{% block content %}
 <div class="container" id="myorgan">
-<div class="classdet" id="classdet">
-<div class="classnamepic">
-<img src="{{ url_for('static', filename='images/classname.png') }}"/></div>
-<div class="picright">
-<h3>{{ activity.name }}</h3><div class="revinp">
+    <div class="classdet" id="classdet">
+        <div class="classnamepic">
+            <img src="{{ url_for('static', filename='images/classname.png') }}"/></div>
+        <div class="picright">
+            <h3>{{ activity.name }}</h3>
+
+            <div class="revinp">
 				<span class="level">
-             	    <i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+             	    <i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
                     <span>4分</span>
 				</span>
-			</div>
-            
+            </div>
 
-<ul class="unstyled">
-<li>
-<span class="organview"><i class="icon-eye-open"></i>1233</span>
-<span class="organtalk"><i class="icon-comment"></i>3</span><br/>
-</li>
-<li class="firstli">适合年龄：{{ activity.get_age() }}</li>
-<li>上课时间：{{ activity.get_time() }}</li>
-</ul>
+
+            <ul class="unstyled">
+                <li>
+                    <span class="organview"><i class="icon-eye-open"></i>1233</span>
+                    <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+                </li>
+                <li class="firstli">适合年龄：{{ activity.get_age() }}</li>
+                <li>上课时间：{{ activity.get_time() }}</li>
+            </ul>
+        </div>
+        <div class="threesmall">
+            <span><i class=" icon-star"></i>收藏</span>
+            <span><i class="  icon-share"></i>分享</span>
+            <span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"
+                                                              data-toggle="modal">纠错</a></span>
+        </div>
+        <div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mywrongLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="mywrongLabel">我要纠错</h3>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal"/>
+                <div class="control-group">
+                    <h4>请留言</h4>
+                    <textarea rows="5" class="form-textarea" id="wrongtext"></textarea>
+
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-next nomargin" type="submit">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <a href="#">
+        <button class="attendbtn"></button>
+    </a>
+
 </div>
-<div class="threesmall">
-<span><i class=" icon-star"></i>收藏</span>
-<span><i class="  icon-share"></i>分享</span>
-<span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"  data-toggle="modal">纠错</a></span>
-</div>
-<div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mywrongLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="mywrongLabel">我要纠错</h3>
-  </div>
-  <div class="modal-body">
- <form action="#" method="post" class="form-horizontal"/>
- <div class="control-group">
-             <h4>请留言</h4>
-                          <textarea rows="5" class="form-textarea" id="wrongtext"></textarea> 
-                         
+
+<div class="container" id="organthree">
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+            <div class="organallknow">
+                <dl class="dl-horizontal">
+                    <dt>活动简介</dt>
+                    <dd>
+                        <div id="boxmore">{{ activity.intro }}</div>
+                    </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>附近交通</dt>
+                    <dd><p class="organplace">{{ activity.get_org().traffic }}</p></dd>
+                </dl>
+                <dl class="dl-horizontal">
+
+                    <dt>评论（{{ activity.get_comment_count() }}）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img
+                            src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+                    <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h3 id="myCommentLabel">写评价，攒人品！</h3>
                         </div>
- </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn-next nomargin" type="submit">提交</button>
-  </div>
-</div>
-</div>
+                        <div class="modal-body">
+                            <form action="#" method="post" class="form-horizontal"/>
+                            <div class="control-group">
+                                <label class="control-label">总体评价</label>
 
-<a href="#" ><button  class="attendbtn" ></button></a>
-
-</div>
-
-<div class="container" id="organthree"> 
-  
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-     <div class="organallknow">
-     <dl class="dl-horizontal">
-  <dt>活动简介</dt>
-  <dd>
-      <div id="boxmore">{{ activity.intro }}</div>
-  </dd>
-</dl>
-<dl class="dl-horizontal">
-  <dt>附近交通</dt>
-  <dd><p class="organplace">{{ activity.get_org().traffic }}</p></dd>
-</dl>
-<dl class="dl-horizontal">
-
-  <dt>评论（{{ activity.get_comment_count() }}）<span id="icommnet"><a href="#myComment" role="button"  data-toggle="modal"><img src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
-  <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myCommentLabel">写评价，攒人品！</h3>
-  </div>
-  <div class="modal-body">
- <form action="#" method="post" class="form-horizontal"/>
- <div class="control-group">
-                        <label class="control-label" >总体评价</label>
-                        <div class="controls">
-                            <div class="revinp">
+                                <div class="controls">
+                                    <div class="revinp">
 				<span class="level">
 					<i class="level_hollow" cjmark=""></i>
 					<i class="level_hollow" cjmark=""></i>
@@ -95,78 +104,72 @@
 					<i class="level_hollow" cjmark=""></i>
 					<i class="level_hollow" cjmark=""></i>
 				</span>
-				<span class="revgrade">未评分</span><input type="hidden" name="scorenum" id="scorenum" value="0"/>
-			</div>
-
+                                        <span class="revgrade" id="scoreno">请评分</span>
+                                        <input type="hidden" name="scorenum" id="scorenum" value="0"/>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="control-group">
+                                    <h4>写评价</h4>
+                                    <textarea rows="5" class="form-textarea" id="Commenttext"></textarea>
+                                    <b id="commentnum"></b>
+                                </div>
+                            </div>
                         </div>
-                        <br>
-                       <div class="control-group">
-                        <h4>写评价</h4>
-                          <textarea rows="5" class="form-textarea" id="Commenttext"></textarea> 
-                          <b id="commentnum"></b>
+                        <div class="modal-footer">
+                            <button class="btn-next nomargin" type="submit"  id="scorebtn">提交</button>
                         </div>
+                        </form>
                     </div>
- </form>
-  </div>
-  <div class="modal-footer">
-  <span id="niming">
-   <input type="checkbox">匿名登录</span>
-    <button class="btn-next nomargin" type="submit">提交</button>
-  </div>
-</div>
-  <dd>
-  <ul class="unstyled" id="usertest">
-      {% for comment in activity.get_comments() %}
- <li>
-  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
-  <span class="text-center">{{ comment.get_user().username }}</span>
-  </div>
-  <div class="righttest" >
-  <div class="popover right" id="usercomment1">
-            <div class="arrow"></div>
-            <h3 class="popover-title">></h3>
-            <div class="popover-content">
-             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
+                    <dd>
+                        <ul class="unstyled" id="usertest">
+                            {% for comment in activity.get_comments() %}
+                            <li>
+                                <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}"
+                                                           class="img-circle"/>
+                                    <span class="text-center">{{ comment.get_user().username }}</span>
+                                </div>
+                                <div class="righttest">
+                                    <div class="popover right" id="usercomment1">
+                                        <div class="arrow"></div>
+                                        <h3 class="popover-title">></h3>
+
+                                        <div class="popover-content">
+                                            <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
 
             <span><div class="revinp">
 				<span class="level">
-                <b>评价：</b>		<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+                <b>评价：</b>		<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
 
-			</div></span>
+            </div></span>
 
-         </div>
-             <div class="commment">
-             <p>{{ comment.body }}
-             </p>
+                                            </div>
+                                            <div class="commment">
+                                                <p>{{ comment.body }}
+                                                </p>
 
-             </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </dd>
+                </dl>
+
+                <!-- Modal -->
+
             </div>
-          </div>
-  </div>
-  </li>
-      {% endfor %}
-  </ul>
-  </dd>
-</dl>
-
- 
-<!-- Modal -->
-
-     </div>
+        </div>
     </div>
-    
-     
-  </div>
-
-
 </div>
-
- {% endblock content %}
+{% endblock content %}
 
 
 

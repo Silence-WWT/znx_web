@@ -250,4 +250,25 @@ document.getElementById("Commenttext").focus();
  }
  
  chackTextarea(document.getElementById("Commenttext"),500,document.getElementById("commentnum"));
+function shake(o){
+    var $panel = $("#"+o);
+    box_left = ($(window).width() -  $panel.width()) / 2;
+    $panel.css({'left': box_left,'position':'absolute'});
+    for(var i=1; 4>=i; i++){
+        $panel.animate({left:box_left+(40-10*i)-360},10);
+        $panel.animate({left:box_left+1.1*(40-10*i)-360},10);
+    }
+}
+//评论时候必须评分
+$(function(){
 
+    $("#scorebtn").click(function(){
+        var scorenum=$("#scorenum").val();
+        if(scorenum==0)
+        {
+           // alert(scorenum);
+            shake('scoreno');
+            return false;
+        }
+    })
+})
