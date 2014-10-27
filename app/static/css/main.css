@@ -7,6 +7,9 @@
 }
 a:hover{
 	text-decoration:none;}
+.img{
+    outline: none;
+}
 #warp {
     color:#727272;
 }
@@ -325,8 +328,7 @@ width: 236px;
 outline: none;
 border: 0px;
 }
-#bigheadnav > div > div > div > ul > li:nth-child(3) > a{
-	color:#727272;}
+
 .nav li span img {
   /* height: 35px; */
 MARGIN: -3px 4px 0px;
@@ -758,6 +760,9 @@ MARGIN: -3px 4px 0px;
 #bigheadnav ul li a {
     color:#00B98D;
     cursor:pointer;
+}
+#bigheadnav ul li:last-child a{
+    color:#727272;
 }
 .bignavright ul li img {
     margin-bottom:5px;
