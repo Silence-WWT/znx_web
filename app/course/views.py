@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
 from . import course
-from .forms import TimeForm, DetailForm
+from .forms import TimeForm, DetailForm, CommentForm
 from ..models import Class, ClassOrder
 from .. import db
 from flask import render_template, redirect, url_for, abort
 from flask.ext.login import current_user
 
 
-@course.route('/home/<int:id>')
+@course.route('/home/<int:id>', methods=['GET', 'POST'])
 def home(id):
     course = Class.query.get_or_404(id)
-    return render_template('organclass_py.html', course=course)
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment=form.create_class_comment(id)
+        db.session.add(comment)
+        db.session.commit()
+        redirect(url_for('.home', id=id))
+    return render_template('organclass_py.html', course=course, form=form)
 
 
 @course.route('/taste/<int:id>', methods=['GET', 'POST'])
@@ -37,3 +43,5 @@ def detail(id):
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('classattend2_py.html', form=form)
+
+
