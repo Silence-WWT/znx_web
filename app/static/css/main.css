@@ -1989,6 +1989,26 @@ font-weight: 700;
 #selectul .myselectlist>ul>li.active a{
    color:#fff;
 }
+#appdown .iosdown,#appdown .andorid{
+    width: 206px;
+    height: 74px;
+    border: 0px;
+    outline: none;
+    position: relative;
+    top: 280px;
+    left: 350px;
+    margin-right: 3px;
+}
+#appdown .iosdown{
+    background: url("../images/iosdown.png");
+}
+#appdown .andorid{
+    background: url("../images/androiddown.png");
+}
 #appdown{
 
+    width:100%;
+    height: 600px;
+    margin: 0 auto;
+    background: url("../images/appdown.png");
 }
