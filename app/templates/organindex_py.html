@@ -1,135 +1,153 @@
-
 {% extends "layout.html" %}
 {% block title %}在哪学-机构个人主页{% endblock title %}
- {% block navbar %}
- {% include 'head.html' %}
-    {% endblock navbar %}
-    {% block content %}
+{% block navbar %}
+{% include 'head.html' %}
+{% endblock navbar %}
+{% block content %}
 <div class="container" id="myorgan">
 
 <div class="myhead">
-<div class="headtitle">
-<div class="organlogo"><img src="{{ url_for('static', filename='images/organlogo.png') }}" class="img-circle img-polaroid"/> </div>
-<div class="organname">
-<dl>
-  <dt><span>{{ org.name }}</span><address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{ url_for('org.home', id=org.id) }}</address></dt>
-  <dd>——{{ org.slogan }}</dd>
-</dl>
-</div>
-</div>
-<div class="headdes">
-<div class="organmoredec">
-<span class="organview"><i class="icon-eye-open"></i>1233</span>
-<span class="organtalk"><i class="icon-comment"></i>3</span><br/>
-<span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
-</div>
+    <div class="headtitle">
+        <div class="organlogo"><img src="{{ url_for('static', filename='images/organlogo.png') }}"
+                                    class="img-circle img-polaroid"/></div>
+        <div class="organname">
+            <dl>
+                <dt><span>{{ org.name }}</span>
+                <address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{ url_for('org.home',
+                    id=org.id) }}
+                </address>
+                </dt>
+                <dd>——{{ org.slogan }}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="headdes">
+        <div class="organmoredec">
+            <span class="organview"><i class="icon-eye-open"></i>1233</span>
+            <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+            <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+        </div>
 
-<div class="threesmall">
-<span><i class=" icon-star"></i>收藏</span>
-<span><i class="  icon-share"></i>分享</span>
-<span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"  data-toggle="modal">纠错</a></span>
-</div>
-<div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="mywrongLabel">我要纠错</h3>
-  </div>
-  <div class="modal-body">
- <form action="#" method="post" class="form-horizontal"/>
- <div class="control-group">
-             <h4>请留言</h4>
-                          <textarea rows="5" class="form-textarea" id="wrongtext"></textarea>
+        <div class="threesmall">
+            <span><i class=" icon-star"></i>收藏</span>
+            <span><i class="  icon-share"></i>分享</span>
+            <span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"
+                                                              data-toggle="modal">纠错</a></span>
+        </div>
+        <div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="mywrongLabel">我要纠错</h3>
+            </div>
+            <div class="modal-body">
+                <form action="#" method="post" class="form-horizontal"/>
+                <div class="control-group">
+                    <h4>请留言</h4>
+                    <textarea rows="5" class="form-textarea" id="wrongtext"></textarea>
 
-                        </div>
- </form>
-  </div>
-  <div class="modal-footer">
-    <button class="btn-next nomargin" type="submit">提交</button>
-  </div>
-</div>
-<div class="clearboth"></div>
-<div class="organtotal">
-<ul class="unstyled inline">
-<li class="organknown">
-<span><img src="{{ url_for('static', filename='images/organknow1.png') }}"/></span>
-<span><img src="{{ url_for('static', filename='images/organknow2.png') }}"/></span>
-<span><img src="{{ url_for('static', filename='images/organknow3.png') }}"/></span></br>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-next nomargin" type="submit">提交</button>
+            </div>
+        </div>
+        <div class="clearboth"></div>
+        <div class="organtotal">
+            <ul class="unstyled inline">
+                <li class="organknown">
+                    <span><img src="{{ url_for('static', filename='images/organknow1.png') }}"/></span>
+                    <span><img src="{{ url_for('static', filename='images/organknow2.png') }}"/></span>
+                    <span><img src="{{ url_for('static', filename='images/organknow3.png') }}"/></span></br>
 <span class="lastspan"><div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span>
 
-			</div></span>
-</li>
-<li><span>54</span>
-<p>报名总数（人）</p></li>
-<li><span>54</span>
-<p>精英老师（人）</p></li>
-<li class="lastli"><span>100%</span>
-<p>好评率</p></li>
-</ul>
-</div>
-<a href="#myzixun" role="button"  data-toggle="modal"><button class="zixunbtn" id="zixunbtn"></button></a>
-<div id="myzixun" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myzixunLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myzixunLabel"></h3>
-  </div>
-  <div class="modal-body">
- <div class="talk">
- <p class="badge badge-success italk">你好我想咨询一个事情</p>
- <p class="badge badge-success ytalk">你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？</p>
+</div></span>
+                </li>
+                <li><span>54</span>
 
- </div>
-  <textarea rows="5" class="form-textarea"></textarea>
-  </div>
-  <div class="modal-footer">
-    <button class="btn-next nomargin" type="submit">发送</button>
-  </div>
-</div>
-</div>
+                    <p>报名总数（人）</p></li>
+                <li><span>54</span>
+
+                    <p>精英老师（人）</p></li>
+                <li class="lastli"><span>100%</span>
+
+                    <p>好评率</p></li>
+            </ul>
+        </div>
+        <a href="#myzixun" role="button" data-toggle="modal">
+            <button class="zixunbtn" id="zixunbtn"></button>
+        </a>
+
+        <div id="myzixun" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myzixunLabel"
+             aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myzixunLabel"></h3>
+            </div>
+            <div class="modal-body">
+                <div class="talk">
+                    <p class="badge badge-success italk">你好我想咨询一个事情</p>
+
+                    <p class="badge badge-success ytalk">
+                        你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？</p>
+
+                </div>
+                <textarea rows="5" class="form-textarea"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-next nomargin" type="submit">发送</button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container" id="organthree">
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">机构简介</a></li>
-    <li><a href="#tab2" data-toggle="tab">课程信息</a></li>
-    <li><a href="#tab3" data-toggle="tab">活动</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-     <div class="organallknow">
-     <dl class="dl-horizontal">
-  <dt>机构简介</dt>
-  <dd>
-      <div>
-          <div id="boxmore">{{ org.intro }}
-          </div>
-          </div>
-</dd>
-</dl>
-<dl class="dl-horizontal">
-  <dt>附近交通</dt>
-  <dd><p class="organplace">{{ org.address }}</p></dd>
-</dl>
-<dl class="dl-horizontal">
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">机构简介</a></li>
+            <li><a href="#tab2" data-toggle="tab">课程信息</a></li>
+            <li><a href="#tab3" data-toggle="tab">活动</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab1">
+                <div class="organallknow">
+                    <dl class="dl-horizontal">
+                        <dt>机构简介</dt>
+                        <dd>
+                            <div>
+                                <div id="boxmore">{{ org.intro }}
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>附近交通</dt>
+                        <dd><p class="organplace">{{ org.address }}</p></dd>
+                    </dl>
+                    <dl class="dl-horizontal">
 
-  <dt>评论（34）<span id="icommnet"><a href="#myComment" role="button"  data-toggle="modal"><img src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
-  <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myCommentLabel">写评价，攒人品！</h3>
-  </div>
-  <div class="modal-body">
- <form action="#" method="post" class="form-horizontal"/>
- <div class="control-group">
-                        <label class="control-label" >总体评价</label>
-                        <div class="controls">
-                            <div class="revinp">
+                        <dt>评论（34）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img
+                                src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+                        <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myCommentLabel">写评价，攒人品！</h3>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" method="post" class="form-horizontal"/>
+                                <div class="control-group">
+                                    <label class="control-label">总体评价</label>
+
+                                    <div class="controls">
+                                        <div class="revinp">
 				<span class="level">
 					<i class="level_hollow" cjmark=""></i>
 					<i class="level_hollow" cjmark=""></i>
@@ -137,146 +155,157 @@
 					<i class="level_hollow" cjmark=""></i>
 					<i class="level_hollow" cjmark=""></i>
 				</span>
-				<span class="revgrade">未评分</span><input type="hidden" name="scorenum" id="scorenum" value="5"/>
-			</div>
+                                            <span class="revgrade">未评分</span>
+                                            <input type="hidden" name="scorenum" id="scorenum" value="5"/>
+                                        </div>
 
+                                    </div>
+                                    <br>
+
+                                    <div class="control-group">
+                                        <h4>写评价</h4>
+                                        <textarea rows="5" class="form-textarea" id="Commenttext"></textarea>
+                                        <b id="commentnum"></b>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn-next nomargin" type="submit">提交</button>
+                            </div>
+                            </form>
                         </div>
-                        <br>
-                       <div class="control-group">
-                        <h4>写评价</h4>
-                          <textarea rows="5" class="form-textarea" id="Commenttext"></textarea>
-                          <b id="commentnum"></b>
-                        </div>
-                    </div>
- </form>
-  </div>
-  <div class="modal-footer">
-  <span id="niming">
-    <button class="btn-next nomargin" type="submit">提交</button>
-  </div>
-</div>
-  <dd>
-  <ul class="unstyled" id="usertest">
-      {% for comment in org.get_comments() %}
-  <li>
-  <div class="leftuser"><img src="{{ url_for('static', filename='images/userpic.png') }}" class="img-circle"/>
-  <span class="text-center">{{ comment.get_user().username }}</span>
-  </div>
-  <div class="righttest" >
-  <div class="popover right" id="usercomment1">
-            <div class="arrow"></div>
-            <div class="popover-content">
-             <div class="commentin"><span><img src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
+                        <dd>
+                            <ul class="unstyled" id="usertest">
+                                {% for comment in org.get_comments() %}
+                                <li>
+                                    <div class="leftuser"><img
+                                            src="{{ url_for('static', filename='images/userpic.png') }}"
+                                            class="img-circle"/>
+                                        <span class="text-center">{{ comment.get_user().username }}</span>
+                                    </div>
+                                    <div class="righttest">
+                                        <div class="popover right" id="usercomment1">
+                                            <div class="arrow"></div>
+                                            <div class="popover-content">
+                                                <div class="commentin"><span><img
+                                                        src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
 
             <span><div class="revinp">
 				<span class="level">
-                <b>评价：</b>		<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+                <b>评价：</b>		<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
                     {{ comment.stars }}
 				</span>
-            <span>{{ comment.timestamp }}</span>
+                <span>{{ comment.timestamp }}</span>
 
-			</div></span>
+            </div></span>
 
-         </div>
-             <div class="commment">
-             <p>{{comment.body}}
-             </p>
+                                                </div>
+                                                <div class="commment">
+                                                    <p>{{comment.body}}
+                                                    </p>
 
-             </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </dd>
+                    </dl>
+
+
+                    <!-- Modal -->
+
+                </div>
             </div>
-          </div>
-  </div>
-  </li>
-      {% endfor %}
+            <div class="tab-pane" id="tab2">
+                <div id="organclass">
+                    <ul class="unstyled">
+                        {% for class in org.get_classes() %}
+                        <li>
+                            <div class="classleft">
+                                <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
 
-  </ul>
-  </dd>
-</dl>
-
-
-<!-- Modal -->
-
-     </div>
-    </div>
-    <div class="tab-pane" id="tab2">
-    <div id="organclass">
-   <ul class="unstyled">
-       {% for class in org.get_classes()  %}
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>{{ class.name }}</h3>
-   <br>
+                                <div class="classtest">
+                                    <h3>{{ class.name }}</h3>
+                                    <br>
    <span> <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span><b>{{ class.get_comment_count() }}</b>
    </div>
    </span>
-           <span>适合年龄：{{ class.get_age() }}</span>
-           <span>总课时：{# TODO: 课时 #}</span>
+                                    <span>适合年龄：{{ class.get_age() }}</span>
+                                    <span>总课时：{# TODO: 课时 #}</span>
 
-   </div>
-       </div>
-   <div class="classright">
-   <span>￥{{ class.price }}</span>
-   <a href="{{ url_for('course.home', id=class.id) }}"><button class=" btn-myred">查看详情</button></a></div>
-   </li>
-        {% endfor %}
-   </ul>
-   </div>
-    </div>
-     <div class="tab-pane" id="tab3">
-      <div id="organplay">
-   <ul class="unstyled">
-       {% for activity in org.get_activities()  %}
-   <li>
-   <div class="classleft">
-   <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-   <div class="classtest">
-   <h3>{{ activity.name }}</h3>
-   <br>
+                                </div>
+                            </div>
+                            <div class="classright">
+                                <span>￥{{ class.price }}</span>
+                                <a href="{{ url_for('course.home', id=class.id) }}">
+                                    <button class=" btn-myred">查看详情</button>
+                                </a></div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab3">
+                <div id="organplay">
+                    <ul class="unstyled">
+                        {% for activity in org.get_activities() %}
+                        <li>
+                            <div class="classleft">
+                                <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
+
+                                <div class="classtest">
+                                    <h3>{{ activity.name }}</h3>
+                                    <br>
    <span> <div class="revinp">
 				<span class="level">
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_solid" ></i>
-					<i class="level_hollow" ></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_solid"></i>
+					<i class="level_hollow"></i>
 				</span><b>{{ activity.get_comment_count() }}</b>
-       </div>
+   </div>
    </span>
-           <span>适合年龄：{{ activity.get_age() }}</span>
-           <span>总课时： {# TODO #}</span>
+                                    <span>适合年龄：{{ activity.get_age() }}</span>
+                                    <span>总课时： {# TODO #}</span>
 
-   </div>
-   <div class="classright">
-   <span>￥{{ activity.price }}</span>
-   <a href="#" ><button class=" btn-myred">查看详情</button></a></div>
-   </div>
-   </li>
-       {% endfor %}
+                                </div>
+                                <div class="classright">
+                                    <span>￥{{ activity.price }}</span>
+                                    <a href="#">
+                                        <button class=" btn-myred">查看详情</button>
+                                    </a></div>
+                            </div>
+                        </li>
+                        {% endfor %}
 
-   </ul>
-   </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 </div>
 
 
 </div>
- {% endblock content %}
+{% endblock content %}
 
 
 

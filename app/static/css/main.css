@@ -1538,26 +1538,32 @@ border-bottom: 2px solid #00B98D;
 /* padding-bottom: 17px; */
 width: 240px;
 padding: 0 10px 13px;}
-#actlistul > li{
+#myuser > div.myuserright > h4{
+    margin: 40px 79px 2px;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 10px;
+    width: 80px;
+}
+#actlistul > li,#actlistul2 > li{
 	height:160px;
 	padding:34px 54px;
 	border-bottom:1px solid #F0F0F0;}
-	#actlistul{
+	#actlistul,#actlistul2{
 	margin: 0px;
 padding-bottom: 0px;}
-	#actlistul > li > div.actleft > img{
+	#actlistul > li > div.actleft > img,#actlistul2 > li > div.actleft > img{
 		float:left;}
-		#actlistul > li > div.actright{
+		#actlistul > li > div.actright,#actlistul2 > li > div.actright{
 			float:left;}
-			#actlistul > li > div.actright > div > h4{
+			#actlistul > li > div.actright > div > h4,#actlistul2 > li > div.actright > div > h4{
 				float:left;
 				
 font-size: 18px;
 color: #000;}
-				#actlistul > li > div.actright {
+				#actlistul > li > div.actright ,#actlistul2 > li > div.actright {
 					width: 620px;
 padding-left: 10px;}
-					#actlistul > li > div.actright > div > a{
+					#actlistul > li > div.actright > div > a,#actlistul2 > li > div.actright > div > a{
 						float:left;}
 						.btn-edit,.btn-det{
 							border: 0;
@@ -1569,23 +1575,23 @@ outline:none;}
 	background:#00B98D;}
 	.btn-det{
 	background:#FD8F6A;}
-	#actlistul .actright .actrighta{
+	#actlistul .actright .actrighta,#actlistul2 .actright .actrighta{
 		float:right;}
 		
-#actlistul > li > div.actright .actrighttop{
+#actlistul > li > div.actright .actrighttop,#actlistul2 > li > div.actright .actrighttop{
 	height:40px;}
-	#actlistul > li > div.actright > h5{
+	#actlistul > li > div.actright > h5,#actlistul2 > li > div.actright > h5{
 	color: #000;
 /* font-weight: normal; */
 border-bottom: 1px dotted #D9D9D9;
 padding: 4px 0 3px;
 margin-top: 4px;}
-#actlistul > li > div.actright > p{
+#actlistul > li > div.actright > p,#actlistul2 > li > div.actright > p{
 	font-size:12px;}
-#actlistul > li > div.actright > span{
+#actlistul > li > div.actright > span,#actlistul2 > li > div.actright > span{
 	font-size: 18px;
 color: #00B98D;}
-#actlistul > li > div.actright > span > small{
+#actlistul > li > div.actright > span > small,#actlistul2 > li > div.actright > span > small{
 	font-size: 80%;
 color: #000;}
 #myuser > div.myuserright > h3 > a{
@@ -1615,7 +1621,7 @@ margin: 10px 21px;}
 		}
 	.tablelist .table th,.tablelist .table td{
 		padding: 10px 30px;}
-		#actlistul  li .actright p.spanli{
+		#actlistul  li .actright p.spanli,#actlistul2  li .actright p.spanli{
 			float: left;
 width: 100%;
 margin-left: 0px;
