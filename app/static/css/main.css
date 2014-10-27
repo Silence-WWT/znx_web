@@ -1967,6 +1967,7 @@ body {
 #myuserindex ul li a.username {
     margin: 0 10px;
     color: #fff;
+    cursor: default;
 }
 
 #myuserindex ul li {
