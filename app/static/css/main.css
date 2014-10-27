@@ -2055,7 +2055,8 @@ body {
     margin: 40px 79px 2px;
     border-bottom: 1px solid #D6D6D6;
     padding: 10px;
-    width: 80px;
+    width: 72px;
+    font-weight: normal;
 }
 
 #actlistul > li, #actlistul2 > li {
