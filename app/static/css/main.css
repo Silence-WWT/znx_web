@@ -454,6 +454,12 @@ MARGIN: -3px 4px 0px;
     padding-left:10px;
 	background: #fff;
 }
+#age_id{
+    width:340px;
+}
+#myactset .form-textarea{
+    width:320px;
+}
 #organregform span {
     margin-left:20px;
     color:#FF2424;
