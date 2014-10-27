@@ -85,7 +85,9 @@
     <h3 id="myCommentLabel">写评价，攒人品！</h3>
   </div>
   <div class="modal-body">
- <form action="#" method="post" class="form-horizontal"/>
+ <form action="" method="post" class="form-horizontal">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_errors(form) }}
  <div class="control-group">
                         <label class="control-label" >总体评价</label>
                         <div class="controls">
@@ -97,14 +99,14 @@
 					<i class="level_hollow" cjmark=""></i>
 					<i class="level_hollow" cjmark=""></i>
 				</span>
-				<span class="revgrade">未评分</span><input type="hidden" name="scorenum" id="scorenum" value="0"/>
+				<span class="revgrade">未评分</span><input type="hidden" name="{{ form.stars.name }}" id="scorenum" value="0"/>
 			</div>
 
                         </div>
                         <br>
                        <div class="control-group">
                         <h4>写评价</h4>
-                          <textarea rows="5" class="form-textarea" id="Commenttext"></textarea> 
+                          <textarea rows="5" name="{{ form.body.name }}" class="form-textarea" id="Commenttext"></textarea>
                           <b id="commentnum"></b>
                         </div>
                     </div>

@@ -46,6 +46,8 @@ class CommentForm(Form):
     stars = IntegerField('stars')
     body = TextAreaField('body')
 
+    # TODO: validate body text.
+
     def create_class_comment(self, id):
         comment = ClassComment(class_id=id,
                                user_id=current_user.id,
