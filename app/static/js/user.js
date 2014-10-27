@@ -197,6 +197,7 @@ $(function(){
 			list.eq(i).attr('class','level_hollow');
 		}
 		$(this).parent().next().html(degree[num+1]);
+        $("#scorenum").val(num+1);
 
 	})
 	//点击星星
@@ -210,6 +211,7 @@ $(function(){
 			mark.prop('checked',false);mark.prop('disabled',true);	
 		}else{
 			mark.val(num);
+            $("#scorenum").val(num+1);
 			mark.prop('checked',true);mark.prop('disabled',false);	
 		}
 	})
@@ -221,6 +223,7 @@ $(function(){
 			smark.find('span.revgrade').html('未评分');
 			smark.find('i').attr('class','level_hollow');
 			smark.val(6);
+            $("#scorenum").val(num+1);
 		}
 	})
 	
