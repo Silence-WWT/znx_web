@@ -2,27 +2,27 @@
 {% block title %}在哪学-注册选择{% endblock title %}
 {% block tophead %}
 {% endblock tophead %}
- {% block navbar %}
- {% include 'headless.html' %}
-    {% endblock navbar %}
-    {% block content %}
-    <div id="tworeg">
-        <div class="container">
-            <ul class="unstyled inline">
-                <li>
-                    <img src="{{ url_for('static', filename='images/userreg.png') }}">
-                    <a href="{{ url_for('user.register') }}">
-                        <button class="btn-userreg" type="submit"></button>
-                    </a>
-                </li>
-                <li>
-                    <img src="{{ url_for('static', filename='images/organreg.png') }}">
-                    <a href="{{ url_for('org.register') }}">
-                        <button class="btn-organrreg" type="submit"></button>
-                    </a>
-                </li>
-            </ul>
-             
-        </div>
+{% block navbar %}
+{% include 'headless.html' %}
+{% endblock navbar %}
+{% block content %}
+<div id="tworeg">
+    <div class="container">
+        <ul class="unstyled inline">
+            <li>
+                <img src="{{ url_for('static', filename='images/userreg.png') }}">
+                <a href="{{ url_for('user.register') }}">
+                    <button class="btn-userreg" type="submit"></button>
+                </a>
+            </li>
+            <li>
+                <img src="{{ url_for('static', filename='images/organreg.png') }}">
+                <a href="{{ url_for('org.register') }}">
+                    <button class="btn-organrreg" type="submit"></button>
+                </a>
+            </li>
+        </ul>
+
     </div>
-      {% endblock content %}
+</div>
+{% endblock content %}

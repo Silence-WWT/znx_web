@@ -1,16 +1,19 @@
 <div class="mainuserhead">
-  <div class="container head" id="userindexhead">
-  <div id="header">
-  <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic"/>
-  </div>
- <div class="titleright">
- 
-     <h1> {% block userfrom %}
-         机构后台中心
-         {% endblock userfrom %}</h1>
+    <div class="container head" id="userindexhead">
+        <div id="header">
+            <a class="bigbrand" href="{{ url_for('main.index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic">
+            </a>
+        </div>
+        <div class="titleright">
 
- </div>
-      <div class="indexright"><img src="{{ url_for('static', filename='images/returnhome.png') }}"><a href="index.html">回到首页</a></div>
+            <h1>
+                机构后台中心
+              </h1>
 
-  </div>
+        </div>
+        <div class="indexright"><img src="{{ url_for('static', filename='images/returnhome.png') }}"><a
+                href="{{ url_for('main.index') }}">回到首页</a></div>
+
+    </div>
 </div>

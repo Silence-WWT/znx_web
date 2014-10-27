@@ -1,73 +1,89 @@
 {% extends "layout.html" %}
 {% block title %}在哪学-机构注册－上传资质证明{% endblock title %}
-         {% block tophead %}
-     {% endblock tophead %}
- {% block navbar %}
- {% include 'headless.html' %}
-    {% endblock navbar %}
-    {% block content %}
-    <div id="organregall">
-        <div class="container">
-             
-<h3>机构注册</h3>
- 
-            <ul class="breadcrumb">
-                <li><a href="{{ url_for('org.register') }}">1、账号注册</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
-                </li>
-                <li><a href="{{ url_for('org.detail') }}">2、填写详细信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
-                </li>
-                <li class="active"><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
-                </li>
-            </ul>
-            <div id="organregform">
+{% block tophead %}
+{% endblock tophead %}
+{% block navbar %}
+{% include 'headless.html' %}
+{% endblock navbar %}
+{% block content %}
+<div id="organregall">
+    <div class="container">
+
+        <h3>机构注册</h3>
+
+        <ul class="breadcrumb">
+            <li><a href="{{ url_for('org.register') }}">1、账号注册</a> <span class="divider"><img
+                    src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+            </li>
+            <li><a href="{{ url_for('org.detail') }}">2、填写详细信息</a> <span class="divider"><img
+                    src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+            </li>
+            <li class="active"><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
+            </li>
+        </ul>
+        <div id="organregform">
             <form action="" method="POST" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
                 {{ wtf.form_errors(form) }}
                 <div class="upload1">
-                     
-<h3 id="about-header1">上传营业执照</h3>
- 
+
+                    <h3 id="about-header1">上传营业执照</h3>
+
                     <ul class="inline unstyled">
                         <li>
-                             
-<h3>参考案例</h3>
- 
+
+                            <h3>参考案例</h3>
+
                             <div class="anlipic">
                                 <img src="{{ url_for('static', filename='images/anli1.jpg') }}" class="img-polaroid">
                             </div>
                         </li>
                         <li>
-                            <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadorginpic').click();return false;">上传本地照片</button>
-<input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display:none"></h3><h3>
-<div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}" class="img-polaroid"></div>
-</h3></li>
-</ul>
+                            <h3>我的
+                                <button type="submit" class="btn-next anotherbtn"
+                                        onclick="document.getElementById('uploadorginpic').click();return false;">上传本地照片
+                                </button>
+                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic"
+                                       style="display:none"></h3>
+                            <h3>
+                                <div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}"
+                                                          class="img-polaroid"></div>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+                <div class="upload2">
+                    <h3 id="about-header2">上传门店照片</h3>
+
+                    <ul class="inline unstyled">
+                        <li>
+
+                            <h3>参考案例</h3>
+
+                            <div class="anlipic">
+                                <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
+                            </div>
+                        </li>
+                        <li>
+                            <h3>我的
+                                <button type="submit" class="btn-next anotherbtn"
+                                        onclick="document.getElementById('uploadshoppic').click(); return false;">上传本地照片
+                                </button>
+                                <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
+                            </h3>
+                            <h3>
+                                <div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}"
+                                                          class="img-polaroid"></div>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="btn-next btn-final">完成</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-<div style="clear:both;"></div>
-<div class="upload2">
-<h3 id="about-header2">上传门店照片</h3>
- 
-                            <ul class="inline unstyled">
-                                <li>
-                                     
-<h3>参考案例</h3>
- 
-                                    <div class="anlipic">
-                                        <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
-                                    </div>
-                                </li>
-                                <li>
-                                    <h3>我的 <button type="submit" class="btn-next anotherbtn" onclick="document.getElementById('uploadshoppic').click(); return false;">上传本地照片</button>
-<input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none"></h3><h3>
-<div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}" class="img-polaroid"></div>
-</h3></li>
-</ul>
-</div>
-<div class="controls">
- <button type="submit" class="btn-next btn-final">完成</button>
- </div>
-                </form>
-</div>
-</div>
-</div>
-      {% endblock content %}
+{% endblock content %}

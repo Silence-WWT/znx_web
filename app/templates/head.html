@@ -1,44 +1,46 @@
-
 <div class="mainhead">
-        <div class="container head" id="contenthead">
-            <div id="header">
+    <div class="container head" id="contenthead">
+        <div id="header">
+            <a class="bigbrand" href="{{ url_for('main.index') }}">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic">
-            </div>
-            <div class="city">
-                <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    北京
-    <span class="caret"></span>
-  </a>
- 
-                    <ul class="dropdown-menu" id="citylist">
-                        <li><a href="#">西安</a>
-                        </li>
-                        <li><a href="#">厦门</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="headsearch" id="headsearch">
-                <form class="form-search">
-                    <div class="input-append">
-                        <input type="text" class="search" placeholder="搜索你要找的培训机构">
-                        <button type="submit" class="btn btn-success">搜索</button>
-                    </div>
-                </form>
-                <ul id="searchkey" class="inline unstyled">
-                    <li><a href="#">幼儿早教</a>
+            </a>
+        </div>
+        <div class="city">
+            <div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                北京
+                <span class="caret"></span>
+            </a>
+
+                <ul class="dropdown-menu" id="citylist">
+                    <li><a href="#">西安</a>
                     </li>
-                    <li><a href="#">幼儿才艺</a>
-                    </li>
-                    <li><a href="#">幼儿培训</a>
+                    <li><a href="#">厦门</a>
                     </li>
                 </ul>
             </div>
-            <div class="acte">
-                <a href="#">
-                    <img src="{{ url_for('static', filename='images/actvit.png') }}">
-                </a>
-            </div>
         </div>
-        
+        <div class="headsearch" id="headsearch">
+            <form class="form-search">
+                <div class="input-append">
+                    <input type="text" class="search" placeholder="搜索你要找的培训机构">
+                    <button type="submit" class="btn btn-success">搜索</button>
+                </div>
+            </form>
+            <ul id="searchkey" class="inline unstyled">
+                <li><a href="#">幼儿早教</a>
+                </li>
+                <li><a href="#">幼儿才艺</a>
+                </li>
+                <li><a href="#">幼儿培训</a>
+                </li>
+            </ul>
+        </div>
+        <div class="acte">
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/actvit.png') }}">
+            </a>
+        </div>
     </div>
+
+</div>
+<hr class="longhr"/>

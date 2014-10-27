@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-app下载
+{% endblock title %}
+{% block navbar %}
+{% include 'headmore.html' %}
+{% endblock navbar %}
+{% block content %}
+
+<div id="appdown">
+    <a>
+        <button class="iosdown"></button>
+    </a>
+    <a>
+        <button class="andorid"></button>
+    </a>
+</div>
+<hr class="longhr"/>
+{% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    $(function(){
+        $("#navbar ul.nav li:first-child").removeClass('act');
+        $("#navbar ul.nav li:last-child").addClass('act');
+    })
+</script>
+{% endblock inscript %}

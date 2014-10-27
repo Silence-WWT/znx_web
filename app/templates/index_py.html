@@ -1,221 +1,219 @@
 {% extends "layout.html" %}
 {% block title %}在哪学-首页{% endblock title %}
- {% block navbar %}
- {% include 'headmore.html' %}
-    {% endblock navbar %}
-    {% block content %}
-   <div class="container" id="contentright">
-        <div class="row">
-            <div class="span3"></div>
-            <div class="span5" id="piclist">
-                <div id="myCarousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                        <div class="active item">
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/01.png') }}">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/02.png') }}">
-                            </a>
-                        </div>
-                        <div class="item">
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/03.png') }}">
-                            </a>
-                        </div>
+{% block navbar %}
+{% include 'headmore.html' %}
+{% endblock navbar %}
+{% block content %}
+<div class="container" id="contentright">
+    <div class="row">
+        <div class="span3"></div>
+        <div class="span5" id="piclist">
+            <div id="myCarousel" class="carousel slide">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/01.png') }}">
+                        </a>
                     </div>
-                    <!-- Carousel nav --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
- <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
- 
+                    <div class="item">
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/02.png') }}">
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/03.png') }}">
+                        </a>
+                    </div>
                 </div>
-                <div id="organlistpic">
-                    <ul class="inline-block unstyled">
-                        <li>
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/04.png') }}">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/05.png') }}">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="{{ url_for('static', filename='images/06.png') }}">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <!-- Carousel nav --> <a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">›</a>
+
             </div>
-            <div class="span4" id="asklearn">
-<span>求学信息登记<img src="{{ url_for('static', filename='images/hot.png') }}"></span>
- 
-                <ul class="unstyled">
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
+            <div id="organlistpic">
+                <ul class="inline-block unstyled">
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/04.png') }}">
+                        </a>
                     </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/05.png') }}">
+                        </a>
                     </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604.</span>
+                    <li>
+                        <a href="#">
+                            <img src="{{ url_for('static', filename='images/06.png') }}">
+                        </a>
                     </li>
                 </ul>
-                <a href="#" class="abtn">
-                    <button type="submit" class="btn-qxdj"></button>
-                </a>
             </div>
         </div>
-    </div>
-    <div id="floor1">
-        <div class="container">
-             
-<h3>幼儿早教</h3>
- 
-            <div class="clearboth"></div>
-            <ul class="inline unstyled">
+        <div class="span4" id="asklearn">
+            <span>求学信息登记<img src="{{ url_for('static', filename='images/hot.png') }}"></span>
+
+            <ul class="unstyled">
+                {% for register in registers %}
                 <li>
-                    <div class="floorpic">
-                        <a href="#">
-                            <img src="{{ url_for('static', filename='images/floorpic1.png') }}">
-                        </a>
-                    </div>
-                    <div class="floordec">
-<span>机构名称</span>
- 
-<address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
- 
-                    </div>
+                    <span>{{ register.get_date() }}</span><span>{{ register.name }}</span><span>{{ register.mobile }}</span>
                 </li>
-                <li>
-                    <div class="floorpic">
-                        <a href="#">
-                            <img src="{{ url_for('static', filename='images/floorpic2.png') }}">
-                        </a>
-                    </div>
-                    <div class="floordec">
-<span>机构名称</span>
- 
-<address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
- 
-                    </div>
-                </li>
-                <li>
-                    <div class="floorpic">
-                        <a href="#">
-                            <img src="{{ url_for('static', filename='images/floorpic3.png') }}">
-                        </a>
-                    </div>
-                    <div class="floordec">
-<span>机构名称</span>
- 
-<address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
- 
-                    </div>
-                </li>
-                <li>
-                    <div class="floorpic">
-                        <a href="#">
-                            <img src="{{ url_for('static', filename='images/floorpic4.png') }}">
-                        </a>
-                    </div>
-                    <div class="floordec">
-<span>机构名称</span>
- 
-<address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
- 
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
+            <a href="{{ url_for('.learn') }}" class="abtn">
+                <button type="submit" class="btn-qxdj"></button>
+            </a>
         </div>
     </div>
-    <div id="floor2">
-        <div class="container">
-             
-<h3>平台交流</h3>
- 
-            <ul class="inline unstyled">
-                <li>
-                    <div class="picstep">
-                        <a href="">
-                            <img src="{{ url_for('static', filename='images/step1.png') }}">
-                        </a>
-                        <div class="stepcont">
-<span>1、搜索机构</span>
- 
-                            <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
-                        </div>
-                    </div>
-                    <div class="arrstep">
-                        <img src="{{ url_for('static', filename='images/steparr.png') }}">
-                    </div>
-                </li>
-                <li>
-                    <div class="picstep">
-                        <a href="">
-                            <img src="{{ url_for('static', filename='images/step2.png') }}">
-                        </a>
-                        <div class="stepcont">
-<span>2、寻找课程</span>
- 
-                            <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
-                        </div>
-                    </div>
-                    <div class="arrstep">
-                        <img src="{{ url_for('static', filename='images/steparr.png') }}">
-                    </div>
-                </li>
-                <li>
-                    <div class="picstep">
-                        <a href="">
-                            <img src="{{ url_for('static', filename='images/step3.png') }}">
-                        </a>
-                        <div class="stepcont">
-<span>3、预约报名</span>
- 
-                            <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
-                        </div>
-                    </div>
-                    <div class="arrstep">
-                        <img src="{{ url_for('static', filename='images/steparr.png') }}">
-                    </div>
-                </li>
-                <li>
-                    <div class="picstep">
-                        <a href="">
-                            <img src="{{ url_for('static', filename='images/step4.png') }}">
-                        </a>
-                        <div class="stepcont">
-<span>4、机构评价</span>
- 
-                            <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+</div>
+<div id="floor1">
+    <div class="container">
+
+        <h3>幼儿早教</h3>
+
+        <div class="clearboth"></div>
+        <ul class="inline unstyled">
+            <li>
+                <div class="floorpic">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename='images/floorpic1.png') }}">
+                    </a>
+                </div>
+                <div class="floordec">
+                    <span>机构名称</span>
+
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
+
+                </div>
+            </li>
+            <li>
+                <div class="floorpic">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename='images/floorpic2.png') }}">
+                    </a>
+                </div>
+                <div class="floordec">
+                    <span>机构名称</span>
+
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
+
+                </div>
+            </li>
+            <li>
+                <div class="floorpic">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename='images/floorpic3.png') }}">
+                    </a>
+                </div>
+                <div class="floordec">
+                    <span>机构名称</span>
+
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
+
+                </div>
+            </li>
+            <li>
+                <div class="floorpic">
+                    <a href="#">
+                        <img src="{{ url_for('static', filename='images/floorpic4.png') }}">
+                    </a>
+                </div>
+                <div class="floordec">
+                    <span>机构名称</span>
+
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
+
+                </div>
+            </li>
+        </ul>
     </div>
-      {% endblock content %}
-        {% block inscript %}
-        <script type="text/javascript">	
-$("#iconcheck").hide();
-$(function(){
-	$("#navorgan").click(function(){
-	$("#allnav").css('display','block');
-	return false;
-	})
-	})
+</div>
+<div id="floor2">
+    <div class="container">
+
+        <h3>平台交流</h3>
+
+        <ul class="inline unstyled">
+            <li>
+                <div class="picstep">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/step1.png') }}">
+                    </a>
+
+                    <div class="stepcont">
+                        <span>1、搜索机构</span>
+
+                        <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
+                    </div>
+                </div>
+                <div class="arrstep">
+                    <img src="{{ url_for('static', filename='images/steparr.png') }}">
+                </div>
+            </li>
+            <li>
+                <div class="picstep">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/step2.png') }}">
+                    </a>
+
+                    <div class="stepcont">
+                        <span>2、寻找课程</span>
+
+                        <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
+                    </div>
+                </div>
+                <div class="arrstep">
+                    <img src="{{ url_for('static', filename='images/steparr.png') }}">
+                </div>
+            </li>
+            <li>
+                <div class="picstep">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/step3.png') }}">
+                    </a>
+
+                    <div class="stepcont">
+                        <span>3、预约报名</span>
+
+                        <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
+                    </div>
+                </div>
+                <div class="arrstep">
+                    <img src="{{ url_for('static', filename='images/steparr.png') }}">
+                </div>
+            </li>
+            <li>
+                <div class="picstep">
+                    <a href="">
+                        <img src="{{ url_for('static', filename='images/step4.png') }}">
+                    </a>
+
+                    <div class="stepcont">
+                        <span>4、机构评价</span>
+
+                        <p>在种类丰富的机构中，您可以 按照多种条件进行筛选（地理 位置）等。找到心仪等培训机 构，总有一些适合您。</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    $("#allnav").css('display', 'block');
+    $("#iconcheck").hide();
+    $(function () {
+        $("#navorgan").click(function () {
+            $("#allnav").css('display', 'block');
+            return false;
+        })
+    })
 </script>
-     {% endblock inscript %}
+{% endblock inscript %}

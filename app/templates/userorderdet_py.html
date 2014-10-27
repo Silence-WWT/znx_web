@@ -1,39 +1,42 @@
 {% extends "layout.html" %}
 {% block title %}>去哪学-用户中心-订单详情{% endblock title %}
- {% block navbar %}
- {% include 'headuser.html' %}
+{% block navbar %}
+{% include 'headuser.html' %}
 {% block userfrom %}
 用户中心
 {% endblock userfrom %}
-    {% endblock navbar %}
-    {% block content %}
+{% endblock navbar %}
+{% block content %}
 
 
-  
 <div class="container" id="myuserindex">
-<div class="myuserpic ">
-    <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>
-    <ul class="unstyled">
-        <li>
-           <a class="username" href="#">用户名</a>
-        </li>
-         <li>
-           <a href="#" class="outa">退出登录</a>
-        </li>
-    </ul>
-</div>
-    <div class="container" id="myuser">
-    <div class="myuserleft">
-    <ul class="unstyled">
-    <li class="active"><a href="#" class="aandli"><img src="{{ url_for('static', filename='images/set1.png') }}"/>我的订单</a></li>             
-    </ul>
+    <div class="myuserpic ">
+        <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>
+        <ul class="unstyled">
+            <li>
+                <a class="username" href="#">{{current_user.get_name()}}</a>
+            </li>
+            <li>
+                <a href="#" class="outa">退出登录</a>
+            </li>
+        </ul>
     </div>
+    <div class="container" id="myuser">
+        <div class="myuserleft">
+            <ul class="unstyled">
+                <li class="active"><a href="#" class="aandli"><img
+                        src="{{ url_for('static', filename='images/set1.png') }}"/>我的订单</a></li>
+            </ul>
+        </div>
         <div class="myuserright">
             <h3><span>订单详情</span></h3>
+
             <div id="myorderdet">
                 <div class="havenottalk">
                     <h3>订单交易成功，但是还未写评价哦，请给机构评价。</h3>
-                    <a><button class="btn-talk text-center">立即评价</button> </a>
+                    <a>
+                        <button class="btn-talk text-center">立即评价</button>
+                    </a>
                 </div>
                 <div class="myorderxq">
                     <ul class="unstyled">
@@ -41,6 +44,7 @@
                             <dl>
                                 <dt>课程信息:</dt>
                                 <dd><p>课程名称：小虫亲子班</p>
+
                                     <p>试听时间：2014/12/01</p>
                                 </dd>
                             </dl>
@@ -68,6 +72,7 @@
                                 <dt>订单信息:</dt>
                                 <dd><p>订单编号：201412112312
                                 </p>
+
                                     <p> 成交时间：2014-10-12</p>
                                 </dd>
                             </dl>
@@ -82,5 +87,5 @@
 </div>
 
 {% endblock content %}
-    {% block inscript %}
-     {% endblock inscript %}
+{% block inscript %}
+{% endblock inscript %}

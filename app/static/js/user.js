@@ -197,6 +197,7 @@ $(function(){
 			list.eq(i).attr('class','level_hollow');
 		}
 		$(this).parent().next().html(degree[num+1]);
+        $("#scorenum").val(num+1);
 
 	})
 	//点击星星
@@ -210,6 +211,7 @@ $(function(){
 			mark.prop('checked',false);mark.prop('disabled',true);	
 		}else{
 			mark.val(num);
+            $("#scorenum").val(num+1);
 			mark.prop('checked',true);mark.prop('disabled',false);	
 		}
 	})
@@ -221,6 +223,7 @@ $(function(){
 			smark.find('span.revgrade').html('未评分');
 			smark.find('i').attr('class','level_hollow');
 			smark.val(6);
+            $("#scorenum").val(num+1);
 		}
 	})
 	
@@ -247,4 +250,25 @@ document.getElementById("Commenttext").focus();
  }
  
  chackTextarea(document.getElementById("Commenttext"),500,document.getElementById("commentnum"));
+function shake(o){
+    var $panel = $("#"+o);
+    box_left = ($(window).width() -  $panel.width()) / 2;
+    $panel.css({'left': box_left,'position':'absolute'});
+    for(var i=1; 4>=i; i++){
+        $panel.animate({left:box_left+(40-10*i)-360},10);
+        $panel.animate({left:box_left+1.1*(40-10*i)-360},10);
+    }
+}
+//评论时候必须评分
+$(function(){
 
+    $("#scorebtn").click(function(){
+        var scorenum=$("#scorenum").val();
+        if(scorenum==0)
+        {
+           // alert(scorenum);
+            shake('scoreno');
+            return false;
+        }
+    })
+})

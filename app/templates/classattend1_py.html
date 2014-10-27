@@ -1,66 +1,73 @@
 {% extends "layout.html" %}
 {% block title %}在哪学-免费试听课程报名-课程信息{% endblock title %}
- {% block navbar %}
- {% include 'head.html' %}
-    {% endblock navbar %}
-    {% block content %}
-    
-    <div id="organregall">
-        <div class="container">
-             
-<h3 class="attendtitle">免费试听课程报名</h3>
- 
-            <ul class="breadcrumb">
-                <li class="active"><a href="#">1、课程信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
-                </li>
-                <li><a href="#">2、个人信息</a>  <span class="divider"><img src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
-                </li>
-                <li><a href="#">3、提交订单</a>
-                </li>
-            </ul>
-            <div id="organregform">
-                <form class="form-horizontal">
-                    <div class="control-group">
-                        <label class="control-label">试听课程</label>
-                        <div class="controls">
-                            <input type="text"  class="form-control"  value="小熊亲子班" readonly/> 
- 
-                        </div>
+{% block navbar %}
+{% include 'head.html' %}
+{% endblock navbar %}
+{% block content %}
+
+<div id="organregall">
+    <div class="container">
+
+        <h3 class="attendtitle">免费试听课程报名</h3>
+
+        <ul class="breadcrumb">
+            <li class="active"><a href="#">1、课程信息</a> <span class="divider"><img
+                    src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+            </li>
+            <li><a href="#">2、个人信息</a> <span class="divider"><img
+                    src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
+            </li>
+            <li><a href="#">3、提交订单</a>
+            </li>
+        </ul>
+        <div id="organregform">
+            <form class="form-horizontal" method="post">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_errors(form) }}
+                <div class="control-group">
+                    <label class="control-label">试听课程</label>
+
+                    <div class="controls">
+                        <input type="text" class="form-control" value="{{ course.name }}" readonly/>
+
                     </div>
-                   
-                    <div class="control-group">
-                        <label class="control-label" >所属校区</label>
-                        <div class="controls">
-                            <input type="text"  class="form-control" value="小小运动北京天通苑中心"  readonly/>
- 
-                        </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">所属校区</label>
+
+                    <div class="controls">
+                        <input type="text" class="form-control" name="{{ form.campus.name }}"/>
+
                     </div>
-                    <div class="control-group">
-                        <label class="control-label" for="inputConfirmPassword">试听时间</label>
-                        <div class="controls">
-                            <div id="datetimepicker" class="input-append date">
-      <input type="text" class="form-control shortinput"></input>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputConfirmPassword">试听时间</label>
+
+                    <div class="controls">
+                        <div id="datetimepicker" class="input-append date">
+                            <input type="text" name="{{ form.time.name }}" class="form-control shortinput"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
-    </div> 
- 
                         </div>
+
                     </div>
-                    <div class="controls">
-                        <button type="submit" class="btn-next">下一步</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="controls">
+                    <button type="submit" class="btn-next">下一步</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 {% endblock content %}
-    {% block inscript %}
-    <link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
-      <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript" ></script>
-     <script type="text/javascript">
- $('#datetimepicker').datetimepicker({
-		format: 'yyyy/MM/dd hh:mm',
+{% block inscript %}
+<link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
+<script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $('#datetimepicker').datetimepicker({
+        format: 'yyyy/MM/dd hh:mm',
         language: 'ch',
         pickDate: true,
         pickTime: true,
@@ -68,6 +75,6 @@
         minuteStep: 15,
         secondStep: 30,
         inputMask: true
-      });  
+    });
 </script>
-     {% endblock inscript %}
+{% endblock inscript %}

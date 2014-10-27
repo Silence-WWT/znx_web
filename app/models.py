@@ -30,6 +30,9 @@ class User(UserMixin, db.Model):
     def get_name(self):
         return self.username
 
+    def is_org(self):
+        return False
+
     @property
     def password(self):
         raise AttributeError('password is not a readable attribute')
@@ -77,7 +80,7 @@ class Register(db.Model):
     # id
     id = db.Column(db.Integer, primary_key=True)
     # 求学地址
-    location_id = db.Column(db.Integer, nullable=False)
+    city_id = db.Column(db.Integer, nullable=False)
     # 手机号
     mobile = db.Column(db.CHAR(11), nullable=False)
     # 名字 4-16 Unicode
@@ -87,17 +90,21 @@ class Register(db.Model):
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
 
+    def get_date(self):
+        return time.strftime('[%m-%d]', time.localtime(self.created))
+
+
     @staticmethod
     def generate_fake(count=1000):
         from faker import Factory
         from random import seed, randint
         fake = Factory.create()
         zh = Factory.create('zh-CN')
-        location_count = Location.query.count()
+        city_count = City.query.count()
 
         seed()
         for i in range(count):
-            u = Register(location_id=randint(1, location_count),
+            u = Register(location_id=randint(1, city_count),
                          mobile=zh.phone_number(),
                          name=unicode(zh.name()),
                          need=unicode(zh.name()),
@@ -195,6 +202,9 @@ class Organization(UserMixin, db.Model):
 
     def get_id(self):
         return 'o'+unicode(self.id)
+
+    def is_org(self):
+        return True
 
     def get_name(self):
         return self.name or self.mobile
@@ -629,6 +639,9 @@ class ActivityOrder(db.Model):
     is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 提交订单
     is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
+
+    def get_activity(self):
+        return Activity.query.get(self.activity_id)
 
     @staticmethod
     def generate_fake(count=100):

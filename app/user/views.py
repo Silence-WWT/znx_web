@@ -4,10 +4,10 @@ from random import randint
 from . import user
 from .. import db
 from .forms import LoginForm, RegistrationForm
-from ..models import User
+from ..models import User, ActivityOrder, ClassOrder
 from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
-from flask.ext.login import login_user
+from flask.ext.login import login_user, current_user
 from flask import redirect, url_for, render_template, flash, request, jsonify
 from ..utils.captcha import send_captcha
 
@@ -58,4 +58,16 @@ def send_sms():
     #if mobile:
     #    send_captcha('user', mobile)
     return 'ok', 200
+
+
+@user.route('/home')
+def home():
+    activity_orders = ActivityOrder.query.filter_by(user_id=current_user.id).\
+        order_by(ActivityOrder.created.desc()).all()
+    class_orders = ClassOrder.query.filter_by(user_id=current_user.id)
+    # TODO: add class order, activity order. delete order.
+
+    return render_template('userorderlist_py.html',
+                           activity_orders=activity_orders,
+                           class_orders=class_orders)
 
