@@ -104,7 +104,7 @@ class Register(db.Model):
 
         seed()
         for i in range(count):
-            u = Register(location_id=randint(1, city_count),
+            u = Register(city_id=randint(1, city_count),
                          mobile=zh.phone_number(),
                          name=unicode(zh.name()),
                          need=unicode(zh.name()),

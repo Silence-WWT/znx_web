@@ -6,7 +6,8 @@ from . import org
 from .. import db
 from ..models import Organization, Type,\
     Profession, Property, Size, Location, Class, Activity, City
-from .forms import RegistrationForm, DetailForm, CertificationForm, LoginForm
+from .forms import RegistrationForm, DetailForm, \
+    CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
 from flask import redirect, url_for, render_template,\
@@ -123,11 +124,17 @@ def certification():
     return render_template('organ_regiter3_py.html', form=form)
 
 
-@org.route('/home/<int:id>')
+@org.route('/home/<int:id>', methods=['GET', 'POST'])
 def home(id):
     org = Organization.query.get_or_404(id)
     classes = Class.query.filter_by(organization_id=id).all()
     activities = Activity.query.filter_by(organization_id=id).all()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = form.create_organization_comment(id)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('org.home'))
     return render_template('organindex_py.html',
                            org=org,
                            classes=classes,
