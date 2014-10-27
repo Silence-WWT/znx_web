@@ -2,7 +2,9 @@
 <div class="mainhead">
         <div class="container head" id="contenthead">
             <div id="header">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic">
+                <a class="bigbrand" href="{{ url_for('main.index') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic">
+                </a>
             </div>
             <div class="city">
                 <div class="btn-group"> <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
