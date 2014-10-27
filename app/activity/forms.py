@@ -2,8 +2,9 @@
 import time
 from flask.ext.wtf import Form
 from flask.ext.login import current_user
-from wtforms import DateTimeField, StringField, SelectField, TextAreaField
-from ..models import ActivityOrder
+from wtforms import DateTimeField, StringField,\
+    SelectField, TextAreaField, IntegerField
+from ..models import ActivityOrder, ActivityComment
 
 
 class DetailForm(Form):
@@ -35,3 +36,16 @@ class DetailForm(Form):
 
 class ConfirmForm(Form):
     remark = TextAreaField()
+
+
+class CommentForm(Form):
+    stars = IntegerField('stars')
+    body = TextAreaField('body')
+
+    def create_class_comment(self, id):
+        comment = ActivityComment(class_id=id,
+                                  user_id=current_user.id,
+                                  stars=self.stars.data,
+                                  body=self.body.data,
+                                  created=time.time())
+        return comment

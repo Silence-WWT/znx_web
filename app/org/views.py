@@ -25,7 +25,7 @@ def login():
 
         if org is not None and org.verify_password(user_form.password.data):
             login_user(org, user_form.remember_me.data)
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('.course_list'))
         flash(u'用户名密码错误')
     return render_template('login_choose_py.html',
                            user_form=user_form,

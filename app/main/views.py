@@ -49,3 +49,8 @@ def learn():
         return redirect(url_for('main.index'))
 
     return render_template('asklearn_py.html', form=form)
+
+
+@main.route('/download')
+def download():
+    return render_template('appdown_py.html')

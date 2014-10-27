@@ -2,8 +2,9 @@
 import time
 from flask.ext.wtf import Form
 from flask.ext.login import current_user
-from wtforms import DateTimeField, StringField, SelectField
-from ..models import ClassOrder
+from wtforms import DateTimeField, StringField, \
+    SelectField, IntegerField, TextAreaField
+from ..models import ClassOrder, ClassComment
 
 class TimeForm(Form):
     time = DateTimeField('time', format='%Y/%m/%d %H:%M')
@@ -40,4 +41,16 @@ class DetailForm(Form):
         order.address = self.address.data
         return order
 
+
+class CommentForm(Form):
+    stars = IntegerField('stars')
+    body = TextAreaField('body')
+
+    def create_class_comment(self, id):
+        comment = ClassComment(class_id=id,
+                               user_id=current_user.id,
+                               stars=self.stars.data,
+                               body=self.body.data,
+                               created=time.time())
+        return comment
 
