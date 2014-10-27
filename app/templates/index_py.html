@@ -60,20 +60,12 @@
 <span>求学信息登记<img src="{{ url_for('static', filename='images/hot.png') }}"></span>
  
                 <ul class="unstyled">
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
+                    {% for register in registers %}
+                    <li><span>{{ register.get_date() }}</span><span>{{ register.name }}</span><span>{{ register.mobile }}</span>
                     </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604</span>
-                    </li>
-                    <li><span>[09-30]</span><span>李同学</span><span>188xxxx6604.</span>
-                    </li>
+                    {% endfor %}
                 </ul>
-                <a href="#" class="abtn">
+                <a href="{{ url_for('.learn') }}" class="abtn">
                     <button type="submit" class="btn-qxdj"></button>
                 </a>
             </div>

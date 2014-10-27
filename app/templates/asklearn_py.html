@@ -10,20 +10,18 @@
 <h3 class="asklearntitle"><img src="{{ url_for('static', filename='images/asklearn.png') }}"/>让专业培训顾问帮你选课</h3>
  
             <div id="asklearnform">
-                <form class="form-horizontal">
-                
+                <form class="form-horizontal" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form) }}
+
                  <div class="control-group">
                         <label class="control-label" >你在哪里</label>
-                        <select class="form-control-more">
-                                <option>西安</option>
-                                 <option>北京</option>
-                                  <option>厦门</option>
-                            </select>
+                            {{ form.city_id(class="form-control-more") }}
                         </div>
                     <div class="control-group">
                         <label class="control-label">你的姓名</label>
                         <div class="controls">
-                            <input type="text"  class="form-control"  /> 
+                            <input type="text" name="{{ form.name.name }}" class="form-control"  />
  
                         </div>
                     </div>
@@ -31,7 +29,7 @@
                     <div class="control-group">
                         <label class="control-label" >你的手机号</label>
                         <div class="controls">
-                            <input type="text"  class="form-control" />
+                            <input type="text" name="{{ form.mobile.name }}"  class="form-control" />
  
                         </div>
                     </div>
@@ -39,7 +37,7 @@
                   <div class="control-group">
                         <label class="control-label">想学什么</label>
                         <div class="controls">
-                            <textarea rows="4" class="form-textarea" ></textarea> 
+                            <textarea rows="4" name="{{ form.need.name }}" class="form-textarea" ></textarea>
  
                         </div>
                         </div>
