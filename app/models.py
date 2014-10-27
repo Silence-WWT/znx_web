@@ -630,6 +630,9 @@ class ActivityOrder(db.Model):
     # 提交订单
     is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
 
+    def get_activity(self):
+        return Activity.query.get(self.activity_id)
+
     @staticmethod
     def generate_fake(count=100):
         from faker import Factory

@@ -29,24 +29,26 @@
     <h3><span>我的订单</span></h3>
    
          <ul class="unstyled" id="actlistul">
+             {% for activity_order in activity_orders %}
+                 {% set activity = activity_order.get_activity() %}
     <li>
 
     <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
     <div class="actright" >
     <div class="actrighttop">
-    <h4>魔奇英语进阶班</h4>
+    <h4>{{ activity.name }}</h4>
     <div class="actrighta">
    <a><button class="btn-edit">订单详情</button></a>
     <a class="deleclass" id="myclass1" ><button class="btn-det">删除</button></a>
     </div>
     </div>
-   <p class="spanli">费用:免费试听</p>
+   <p class="spanli">费用:{{ activity.price }}</p>
     <p class="spanli">订单类型：活动</p>
-    <p class="spanli">开始时间：2014-10-10 19:00</p>
-    <p class="spanli">结束时间：2014-10-20 19:00</p>
+    <p class="spanli">开始结束时间：{{ activity.get_time() }}</p>
      <p class="spanli">地点：西安电子科技大学</p>
     </div>
     </li>
+             {% endfor %}
         
     </ul> 
     </div>
