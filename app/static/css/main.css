@@ -2305,7 +2305,8 @@ body {
 }
 
 #regmessage {
-    width: 128px;
+    width: 162px;
+    text-align: center;
 
 }
 
@@ -2342,7 +2343,7 @@ body {
 #smsinfo {
     color: #FF2424;
     float: right;
-    margin-right: 83px;
+    margin-right: 66px;
     margin-bottom: -20px;
     width: 160px;
     text-align: center;

@@ -36,10 +36,13 @@ $(function () {
  
     });
     //验证手机
-    $('input[name="phoneNumber"]').focus(function () {
+    $('input[name="cellphone"]').focus(function () {
         // $(this).next().text('');
     }).blur(function () {
-        if ($(this).val().length == 11) {
+        var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
+        //alert(isMobile.test(mobilephone));
+        var  phonenum=$(this).val();
+        if (isMobile.test(phonenum)) {
             $(this).next().text('');
             //$(this).next().css('color','#00B98D');
             ok1 = true;
@@ -100,7 +103,6 @@ $(function () {
     });
  
 });
-
 function show(){ 
 var box = document.getElementById("boxmore"); 
 var text = box.innerHTML; 
@@ -186,9 +188,9 @@ $(function(){
 		var num = $(this).index();
 		var pmark = $(this).parents('.revinp');
 		var mark = pmark.prevAll('input');
-	
+
 		if(mark.prop('checked')) return false;
-		
+
 		var list = $(this).parent().find('i');
 		for(var i=0;i<=num;i++){
 			list.eq(i).attr('class','level_solid');
@@ -205,7 +207,7 @@ $(function(){
 		var num = $(this).index();
 		var pmark = $(this).parents('.revinp');
 		var mark = pmark.prevAll('input');
-		
+
 		if(mark.prop('checked')){
 			mark.val('');
 			mark.prop('checked',false);mark.prop('disabled',true);	
