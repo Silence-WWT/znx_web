@@ -202,7 +202,7 @@ class Organization(UserMixin, db.Model):
             filter_by(organization_id=self.id).all()
 
     def get_id(self):
-        return 'o'+unicode(self.id)
+        return u'o'+unicode(self.id)
 
     def is_org(self):
         return True

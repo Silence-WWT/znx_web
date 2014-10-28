@@ -3,12 +3,15 @@ import time
 from random import randint
 from . import user
 from .. import db
+from flask.ext.principal import identity_changed, Identity
 from .forms import LoginForm, RegistrationForm
 from ..models import User, ActivityOrder, ClassOrder
+from ..permission import anonymous_permission, user_permission
 from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
 from flask.ext.login import login_user, current_user
-from flask import redirect, url_for, render_template, flash, request, jsonify
+from flask import redirect, url_for, render_template, flash, \
+    request, current_app
 from ..utils.captcha import send_captcha
 
 
@@ -20,8 +23,12 @@ def login():
     if user_form.validate_on_submit():
         user = User.query.filter_by(username=user_form.username.data).first()\
         or User.query.filter_by(mobile=user_form.username.data).first()
+
         if user is not None and user.verify_password(user_form.password.data):
             login_user(user, user_form.remember_me.data)
+            identity_changed.send(current_app._get_current_object(),
+                                  identity=Identity(user.get_id()))
+
             return redirect(request.args.get('next') or url_for('main.index'))
         flash(u'用户名密码错误')
     return render_template('login_choose_py.html',
@@ -30,6 +37,7 @@ def login():
 
 
 @user.route('/register', methods=['GET', 'POST'])
+@anonymous_permission.require()
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -61,6 +69,7 @@ def send_sms():
 
 
 @user.route('/home')
+@user_permission.require()
 def home():
     activity_orders = ActivityOrder.query.filter_by(user_id=current_user.id).\
         order_by(ActivityOrder.created.desc()).all()

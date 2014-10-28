@@ -5,14 +5,17 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.mail import Mail
 from flask.ext.rq import RQ
+from flask.ext.principal import Principal
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
 from .filter import stars
+from .permission import config_identity
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 mail = Mail()
 rq = RQ()
+principal = Principal()
 login_manager = LoginManager()
 debug_tool_bar = DebugToolbarExtension()
 login_manager.session_protection = 'strong'
@@ -29,6 +32,9 @@ def create_app(config_name):
     rq.init_app(app)
     login_manager.init_app(app)
     debug_tool_bar.init_app(app)
+    principal.init_app(app)
+
+    config_identity(app)
 
     app.jinja_env.filters['stars'] = stars
 

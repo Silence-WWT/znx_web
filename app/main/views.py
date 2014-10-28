@@ -3,7 +3,9 @@ from . import main
 from .. import db
 from .forms import RegisterForm, SiteCommentForm
 from flask.ext.login import login_required, logout_user
-from flask import redirect, url_for, render_template, flash
+from flask.ext.principal import identity_changed, AnonymousIdentity
+from flask import redirect, url_for, \
+    render_template, flash, session, current_app
 from ..user.forms import LoginForm as UserLoginForm
 from ..org.forms import LoginForm as OrgLoginForm
 from ..models import City, Register
@@ -22,7 +24,11 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out.')
+    for key in ('identity.name', 'identity.auth_type'):
+        session.pop(key, None)
+    identity_changed.send(current_app._get_current_object(),
+                          identity=AnonymousIdentity())
+    flash(u'您已经登出')
     return redirect(url_for('main.index'))
 
 

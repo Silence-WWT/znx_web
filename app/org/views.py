@@ -10,9 +10,11 @@ from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
+from flask.ext.principal import identity_changed, Identity
 from flask import redirect, url_for, render_template,\
     flash, current_app, request
 from ..utils.query import get_location
+from ..permission import org_permission, anonymous_permission, user_permission
 
 @org.route('/login', methods=['POST'])
 def login():
@@ -26,6 +28,8 @@ def login():
 
         if org is not None and org.verify_password(user_form.password.data):
             login_user(org, user_form.remember_me.data)
+            identity_changed.send(current_app._get_current_object(),
+                                  identity=Identity(org.get_id()))
             return redirect(request.args.get('next') or url_for('.course_list'))
         flash(u'用户名密码错误')
     return render_template('login_choose_py.html',
@@ -34,6 +38,7 @@ def login():
 
 
 @org.route('/register', methods=['GET', 'POST'])
+@anonymous_permission.require()
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -54,7 +59,7 @@ def register():
 
 
 @org.route('/detail', methods=['GET', 'POST'])
-@login_required
+@org_permission.require()
 def detail():
     form = DetailForm()
     form.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
@@ -92,6 +97,7 @@ def detail():
 
 
 @org.route('/certification', methods=['GET', 'POST'])
+@org_permission.require()
 def certification():
     form = CertificationForm()
     if form.validate_on_submit():
@@ -131,10 +137,11 @@ def home(id):
     activities = Activity.query.filter_by(organization_id=id).all()
     form = CommentForm()
     if form.validate_on_submit():
-        comment = form.create_organization_comment(id)
-        db.session.add(comment)
-        db.session.commit()
-        return redirect(url_for('org.home', id=id))
+        if user_permission.can():
+            comment = form.create_organization_comment(id)
+            db.session.add(comment)
+            db.session.commit()
+            return redirect(url_for('org.home', id=id))
     return render_template('organindex_py.html',
                            org=org,
                            classes=classes,
@@ -145,6 +152,7 @@ from .forms import CourseForm
 
 
 @org.route('/course/add', methods=['GET', 'POST'])
+@org_permission.require()
 def add_course():
     course_form = CourseForm()
     course_form.create_choices()
@@ -157,6 +165,7 @@ def add_course():
 
 
 @org.route('/course/list')
+@org_permission.require()
 def course_list():
     courses = Class.query.filter_by(organization_id=current_user.id).all()
     return render_template('origanclasslist_py.html', courses=courses)
@@ -166,6 +175,7 @@ from .forms import ActivityForm
 
 
 @org.route('/activity/add', methods=['GET', 'POST'])
+@org_permission.require()
 def add_activity():
     form = ActivityForm()
     form.create_choices()
@@ -178,12 +188,14 @@ def add_activity():
 
 
 @org.route('/activity/list')
+@org_permission.require()
 def activity_list():
     activities = Activity.query.filter_by(organization_id=current_user.id).all()
     return render_template('origanactlist_py.html', activities=activities)
 
 
 @org.route('/orders')
+@org_permission.require()
 @login_required
 def order_list():
     id = current_user.id
