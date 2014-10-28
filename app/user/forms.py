@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms import ValidationError
 from ..models import User
+from ..utils.validator import Captcha
 
 
 # TODO: add telephone number.
@@ -21,8 +22,8 @@ class RegistrationForm(Form):
                             validators=[
                                 DataRequired(u'必填'),
                                 Length(11, 11, u'手机号码不符合规范')])
-    email = StringField('Email', validators=[Length(1, 64),
-                                             Email()])
+    captcha = StringField('cpatcha', validators=[Captcha('user', 'cellphone')])
+    email = StringField('Email', validators=[Email()])
     password = PasswordField('Password', validators=[
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
@@ -32,10 +33,6 @@ class RegistrationForm(Form):
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError(u'用户名已经被占用')
-
-    def validate_email(self, field):
-        if User.query.filter_by(email=field.data).first():
-            raise ValidationError(u'邮箱已经被注册')
 
     def validate_cellphone(self, field):
         if User.query.filter_by(mobile=field.data).first():

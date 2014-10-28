@@ -55,8 +55,8 @@ def send_sms():
     # TODO: add csrf and mobile check.
     # TODO: return 200 401
     mobile = request.values.get('mobile', '', type=str)
-    #if mobile:
-    #    send_captcha('user', mobile)
+    if mobile:
+        send_captcha('user', mobile)
     return 'ok', 200
 
 
