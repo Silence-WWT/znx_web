@@ -58,7 +58,7 @@ def download():
 
 @main.route('/join')
 def join():
-    return render_template('platformlead_py.html.html')
+    return render_template('platformlead_py.html')
 
 
 @main.route('/workflow')
