@@ -1965,6 +1965,7 @@ body {
 #myuserindex > div.myuserpic > ul {
     float: left;
     margin: 50px 20px;
+    text-align: center;
 }
 
 #myuserindex ul li a.username {
