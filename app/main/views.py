@@ -59,6 +59,3 @@ def download():
 @main.route('/workflow')
 def workflow():
     return render_template('origanlead_py.html')
-@main.route('/platform')
-def workflow():
-    return render_template('platformlead_py.html')
