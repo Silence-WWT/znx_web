@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-留言建议{% endblock title %}
+{% block tophead %}
+{% endblock tophead %}
+{% block navbar %}
+{% include 'headless.html' %}
+{% endblock navbar %}
+{% block content %}
+<div class="container" id="guestbook">
+    <form class="form-horizontal" method="post">
+        <h3><img src="{{ url_for('static', filename='images/proposal.png') }}"/></h3>
+
+        <div class="controls">
+            <textarea rows="8" class="form-textarea"></textarea>
+        </div>
+        <div class="controls"><input type="text" placeholder="QQ号/邮箱/手机号" class="form-control longqq"/></div>
+        <div class="controls">
+            <span>这个很重要，方便我们第一时间联系你，帮你及时解决问题！</span>
+        </div>
+        <div class="controls">
+            <button type="submit" class="btn-next guestbtn">写好了，提交</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+{% block inscript %}
+
+<script type="text/javascript">
+
+    var currentShowCity = 0;
+    $(document).ready(function () {
+        $("#city").change(function () {
+            $("#city option").each(function (i, o) {
+                if ($(this).attr("selected")) {
+
+                    $(".district").hide();
+                    $(".district").eq(i).show();
+                    currentShowCity = i;
+                }
+            });
+        });
+        $("#city").change();
+    });
+</script>
+{% endblock inscript %}

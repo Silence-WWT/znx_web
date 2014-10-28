@@ -106,6 +106,7 @@ body {
 
 #headnav {
     height: 40px;
+    border: 1px solid #EFEEED;
 }
 
 #headnav .navbar-inner {
@@ -293,7 +294,7 @@ body {
 }
 
 #navbar ul {
-    margin: 0px 30px;
+    margin: -2px 30px;
     font-size: 18px;
 }
 
@@ -928,6 +929,7 @@ body {
     height: 112px;
     box-shadow: none;
     background: #fff;
+    border: 0px;
 }
 
 #bigheadnav .bigbrand {
@@ -2701,4 +2703,38 @@ input[disabled] {
     padding: 10px;
     width: 72px;
     font-weight: normal;
+}
+#guestbook{
+    background: #fff;
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+#guestbook .form-horizontal .controls{
+    margin: 0px;
+}
+#guestbook .form-horizontal .controls textarea{
+    width: 660px;
+    resize: none;
+}
+#guestbook .form-horizontal .controls .longqq{
+    height: 40px;
+    font-size: 20px;
+    width: 660px;
+    margin: 20px 0px 5px;
+}
+#guestbook .form-horizontal .controls span{
+    color: #FF7F73;
+}
+#guestbook .form-horizontal .controls .guestbtn{
+    background: #FD8F6A;
+    width: 335px;
+    border-radius: 5px;
+    margin: 20px 0px 40px;
+}
+.footerhr{
+    margin: 0px;
+    border-bottom: 1px solid #E7E3DC;
+    border-top: 1px solid #DBD4C8;
 }
