@@ -583,6 +583,9 @@ class ClassOrder(db.Model):
     # 提交订单
     is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
 
+    def get_class(self):
+        return Class.query.get(self.class_id)
+
     @staticmethod
     def generate_fake(count=100):
         from faker import Factory

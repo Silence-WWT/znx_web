@@ -49,14 +49,14 @@
             <h3><span>我的订单</span></h3>
             <h4>课程订单</h4>
             <ul class="unstyled" id="actlistul">
-                {% for activity_order in activity_orders %}
-                {% set activity = activity_order.get_activity() %}
+                {% for class_order in class_orders %}
+                {% set class = class_order.get_class() %}
                 <li>
 
                     <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
                     <div class="actright">
                         <div class="actrighttop">
-                            <h4>{{ activity.name }}</h4>
+                            <h4>{{ class.name }}</h4>
 
                             <div class="actrighta">
                                 <a>
@@ -67,9 +67,9 @@
                                 </a>
                             </div>
                         </div>
-                        <p class="spanli">费用:{{ activity.price }}</p>
+                        <p class="spanli">费用:{{ class.price }}</p>
 
-                        <p class="spanli">开始结束时间：{{ activity.get_time() }}</p>
+                        <p class="spanli">时间：{{ class.get_time() }}</p>
 
                         <p class="spanli">地点：西安电子科技大学</p>
                     </div>
