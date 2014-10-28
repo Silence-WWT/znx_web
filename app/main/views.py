@@ -54,3 +54,8 @@ def learn():
 @main.route('/download')
 def download():
     return render_template('appdown_py.html')
+
+
+@main.route('/workflow')
+def workflow():
+    return render_template('origanlead_py.html')
