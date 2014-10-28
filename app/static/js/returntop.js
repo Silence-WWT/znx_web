@@ -6,7 +6,7 @@
         $.fn.goup.defaultOpts = {
             appear: 200,
             scrolltime: 800,
-            imgsrc: "../images/top_arrow.png",
+            imgsrc: "../static/images/top_arrow.png",
             width: 90,
             place: "bottom-right",
             fadein: 500,
@@ -49,23 +49,23 @@
             });
             if (opts.place === "top-right") goup.css({
                 "top": "2%",
-                "right": "2%"
+                "right": "1%"
             });
             else if (opts.place === "top-left") goup.css({
                 "top": "2%",
-                "left": "2%"
+                "left": "1%"
             });
             else if (opts.place === "bottom-right") goup.css({
                 "bottom": "2%",
-                "right": "2%"
+                "right": "1%"
             });
             else if (opts.place === "bottom-left") goup.css({
                 "bottom": "2%",
-                "left": "2%"
+                "left": "1%"
             });
             else goup.css({
                     "bottom": "2%",
-                    "right": "2%"
+                    "right": "1%"
                 })
         })
     }
@@ -77,7 +77,7 @@ $(document).ready(function() {
         width: "40px",
         scrolltime: 800,
         appear: 600,
-        imgsrc: '../images/top_arrow.png',
+        imgsrc: '../static/images/top_arrow.png',
         place: "bottom-right",
         fadein: 300,
         fadeout: 500,
