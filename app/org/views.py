@@ -4,7 +4,7 @@ import time
 from uuid import uuid4
 from . import org
 from .. import db
-from ..models import Organization, Type,\
+from ..models import Organization, Type, ClassOrder, ActivityOrder,\
     Profession, Property, Size, Location, Class, Activity, City
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
@@ -184,5 +184,15 @@ def activity_list():
 
 
 @org.route('/orders')
-def orders():
-    return render_template('origanactlist_py.html', activities=activities)
+@login_required
+def order_list():
+    id = current_user.id
+    class_orders = ClassOrder.query.filter(ClassOrder.class_id.in_(
+        db.session.query(Class.id).filter(Class.organization_id==id)
+    ))
+
+    activity_orders = ActivityOrder.query.filter(ActivityOrder.activity_id.in_(
+        db.session.query(Activity.id).filter(Activity.organization_id==id)
+    ))
+    return render_template('origanorderlist_py.html', class_orders=class_orders,
+                           activity_orders=activity_orders)

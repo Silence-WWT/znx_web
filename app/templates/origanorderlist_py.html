@@ -43,46 +43,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for class_order in class_orders %}
+                    {% set class = class_order.get_class() %}
                     <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
+                        <td>{{ class_order.id }}</td>
+                        <td>{{ class.name }}</td>
+                        <td>{{ class_order.name }}</td>
+                        <td>{{ class.price }}</td>
+                        <td>{{ class_order.mobile }}</td>
                         <td><a href="#">操作</a></td>
                     </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>已下单</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
                 <h4>活动订单</h4>
@@ -98,46 +69,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>已下单</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
+                    {% for activity_order in activity_orders %}
+                        {% set activity = activity_order.get_activity() %}
+                        <tr>
+                            <td>{{ activity_order.id }}</td>
+                            <td>{{ activity.name }}</td>
+                            <td>{{ activity_order.name }}</td>
+                            <td>{{ activity.price }}</td>
+                            <td>{{ activity_order.mobile }}</td>
+                            <td><a href="#">操作</a></td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
