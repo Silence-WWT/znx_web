@@ -1972,6 +1972,7 @@ body {
 
 #myuserindex ul li {
     margin-bottom: 0px;
+    text-align: center;
 }
 
 #myuserindex ul li a.outa {
@@ -2690,4 +2691,11 @@ input[disabled] {
     height: 600px;
     margin: 0 auto;
     background: url("../images/appdown.png");
+}
+#myuser > div.myuserright > div.tablelist > h4{
+    margin: 20px 28px 20px;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 10px;
+    width: 72px;
+    font-weight: normal;
 }
