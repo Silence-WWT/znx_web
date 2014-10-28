@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-机构后台中心-我的活动{% endblock title %}
+{% block title %}去哪学-机构后台中心-我的活动{% endblock title %}
 {% block navbar %}
 {% include 'headuser.html' %}
 {% endblock navbar %}
@@ -12,7 +12,7 @@
                 <a class="username" href="#">{{current_user.get_name()}}</a>
             </li>
             <li>
-                <a href="#" class="outa">退出登录</a>
+                <a href="{{ url_for('main.logout') }}" class="outa">退出登录</a>
             </li>
         </ul>
     </div>

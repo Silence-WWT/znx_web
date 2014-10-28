@@ -3,11 +3,11 @@ import uuid
 import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField, RadioField, DateTimeField
+    TextAreaField, BooleanField, RadioField, DateTimeField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Type, Age, Class, Activity
+from ..models import Organization, Age, Class, Activity, OrganizationComment
 from flask.ext.login import current_user
 
 
@@ -113,3 +113,15 @@ class ActivityForm(Form):
                             intro=self.intro.data)
         return activity
 
+
+class CommentForm(Form):
+    stars = IntegerField('stars')
+    body = TextAreaField('body')
+
+    def create_organization_comment(self, id):
+        comment = OrganizationComment(organization_id=id,
+                                  user_id=current_user.id,
+                                  stars=self.stars.data,
+                                  body=self.body.data,
+                                  created=time.time())
+        return comment

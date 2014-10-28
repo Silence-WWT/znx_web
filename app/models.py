@@ -104,7 +104,7 @@ class Register(db.Model):
 
         seed()
         for i in range(count):
-            u = Register(location_id=randint(1, city_count),
+            u = Register(city_id=randint(1, city_count),
                          mobile=zh.phone_number(),
                          name=unicode(zh.name()),
                          need=unicode(zh.name()),
@@ -582,6 +582,12 @@ class ClassOrder(db.Model):
     is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 提交订单
     is_submitted = db.Column(db.BOOLEAN, default=False, nullable=False)
+
+    def get_class(self):
+        return Class.query.get(self.class_id)
+
+    def get_time(self):
+        return time.ctime(self.time)
 
     @staticmethod
     def generate_fake(count=100):

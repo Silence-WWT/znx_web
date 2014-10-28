@@ -6,7 +6,7 @@ function sendMessage() {
 	var mobilephone=$("#inputPhone").val();//手机号码
     var messageurl=$("#mobileurl").val();
 
-    var isMobile=/^(?:13\d|15\d|18\d)\d{5}(\d{3}|\*{3})$/;
+    var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
     //alert(isMobile.test(mobilephone));
 	if(isMobile.test(mobilephone)){
 		//设置button效果，开始计时

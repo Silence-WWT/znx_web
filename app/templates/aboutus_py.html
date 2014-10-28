@@ -35,7 +35,7 @@
                     </p>
 
                     <p>
-                        跟谁学致力于打造人人乐用的学习服务平台，通过更高效、更智能、更精准地匹配师生资源，为老师及学生提供
+                        在哪学致力于打造人人乐用的学习服务平台，通过更高效、更智能、更精准地匹配师生资源，为老师及学生提供
                         多种增值服务和学习工具，全力创建一个专业、简单、智能、安全的高品质学习服务的第三方平台，让学习变得
                         更加容易、平等和高效。在让跟谁学成为一种生活方式的同时，跟谁学也在全力打造更富活力、更加健康的教育
                         生态圈，以实现全行业乃至全产业链的共赢。
@@ -56,9 +56,9 @@
                 <p class="foreword">联系电话：010-82826826</p>
                 <ul class="link unstyled">
                     <li>
-                        <h3>总裁邮箱</h3>
+                        <h3>CEO邮箱</h3>
 
-                        <p class="business">Email：<a href="mailto:chenxiangdong@znx.com">chenxiangdong@znx.com</a>
+                        <p class="business">Email：<a href="mailto:liaojingbin@znx.com">liaojingbin@znx.com</a>
                         </p>
                     </li>
                     <li>
@@ -118,4 +118,37 @@
 
 </div>
 {% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    function getUrlParam(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r!=null) return unescape(r[2]); return null; //返回参数值
+        }
+$(function(){
+    var hostll=getUrlParam('about');
+    switch(hostll)
+    {
+        case '1':
 
+            $('#myTab li:eq(1) a').tab('show');
+            break;
+        case '2':
+            $('#myTab li:eq(2) a').tab('show');
+            break;
+        case '3':
+            $('#myTab li:eq(3) a').tab('show');
+            break;
+        case '4':
+            $('#myTab li:eq(4) a').tab('show');
+            break;
+        case '5':
+            $('#myTab li:eq(5) a').tab('show');
+            break;
+        default:
+            $('#myTab li:eq(0) a').tab('show');
+    }
+})
+</script>
+{% endblock inscript %}

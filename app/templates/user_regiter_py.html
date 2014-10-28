@@ -39,7 +39,7 @@
                     <label class="control-label" for="inputVerCode"><i class="form-required"></i>验证码</label>
 
                     <div class="controls">
-                        <input type="text" id="inputVerCode" class="form-control">
+                        <input type="text" name="{{ form.captcha.name }}" id="inputVerCode" class="form-control">
                         <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
                         <input id="mobileurl" value="{{ url_for('user.send_sms') }}" type="hidden"/>
 
@@ -89,7 +89,7 @@
                         <h2><a name="top"></a></h2>
 
                         <p class="foreword">
-                            欢迎访问在哪学！在哪学网站（genshuixue.com）及相应的手机应用软件由北京百家互联科技有限公司负责运营，致力于打造人人乐用的学习服务平台，让教与学更平等、更便捷、更高效。</p>
+                            欢迎访问在哪学！在哪学网站（znx.com)致力于打造人人乐用的学习服务平台，让教与学更平等、更便捷、更高效。</p>
                         <br>
 
                         <p class="foreword">

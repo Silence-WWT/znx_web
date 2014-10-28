@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}在哪学-机构入住{% endblock title %}
+{% block title %}在哪学-平台流程{% endblock title %}
 {% block navbar %}
 {% include 'headmore.html' %}
 {% endblock navbar %}
@@ -31,7 +31,7 @@
                 <li data-target="#myCarousel" data-slide-to="3" class="carlilast">
                     <div class="carleft"><img src="{{ url_for('static', filename='images/lead4.png') }}"/>
 
-                        <h3>机构评价</h3></div>
+                        <h3>成功入驻</h3></div>
                 </li>
             </ul>
         </div>
@@ -71,11 +71,11 @@
             </div>
             <div class="item">
                 <div class="itemcontent">
-                    <h1>成功入驻</h1>
+                    <h1>机构评价</h1>
 
                     <div class="itemcontentdown">
                         <img src="{{ url_for('static', filename='images/origanlead4.png') }}"/>
-                        <p>经过上面几步，你已经成功入驻本系统。</p>
+                        <p>参加课程或者活动后，对机构进行评价，帮助其他寻找合适机构的⽤用户做参考。</p>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,8 @@
 {% block inscript %}
 <script type="text/javascript">
     $(function(){
-        $("#navbar ul.nav li:nth-child(2)").addClass('act');
+
+        $("#navbar ul.nav li:nth-child(3)").addClass('act');
     })
 </script>
 {% endblock inscript %}

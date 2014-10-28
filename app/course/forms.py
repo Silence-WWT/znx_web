@@ -42,6 +42,10 @@ class DetailForm(Form):
         return order
 
 
+class ConfirmForm(Form):
+    remark = TextAreaField()
+
+
 class CommentForm(Form):
     stars = IntegerField('stars')
     body = TextAreaField('body')

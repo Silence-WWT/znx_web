@@ -137,7 +137,7 @@
 <div id="floor2">
     <div class="container">
 
-        <h3>平台交流</h3>
+        <h3>平台流程</h3>
 
         <ul class="inline unstyled">
             <li>
@@ -214,6 +214,9 @@
             $("#allnav").css('display', 'block');
             return false;
         })
+    })
+    $(function(){
+        $("#navbar ul.nav li:first-child").addClass('act');
     })
 </script>
 {% endblock inscript %}

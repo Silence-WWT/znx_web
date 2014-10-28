@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-机构后台中心-订单列表{% endblock title %}
+{% block title %}去哪学-机构后台中心-订单列表{% endblock title %}
 {% block navbar %}
 {% include 'headuser.html' %}
 {% endblock navbar %}
@@ -12,7 +12,7 @@
                 <a class="username" href="#">{{current_user.get_name()}}</a>
             </li>
             <li>
-                <a href="#" class="outa">退出登录</a>
+                <a href="{{ url_for('main.logout') }}" class="outa">退出登录</a>
             </li>
         </ul>
     </div>
@@ -30,6 +30,7 @@
             <h3><span>订单列表(5)</span></h3>
 
             <div class="tablelist">
+                <h4>课程订单</h4>
                 <table class="table table-hover">
                     <thead>
                     <tr>
@@ -42,46 +43,43 @@
                     </tr>
                     </thead>
                     <tbody>
+                    {% for class_order in class_orders %}
+                    {% set class = class_order.get_class() %}
                     <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
+                        <td>{{ class_order.id }}</td>
+                        <td>{{ class.name }}</td>
+                        <td>{{ class_order.name }}</td>
+                        <td>{{ class.price }}</td>
+                        <td>{{ class_order.mobile }}</td>
                         <td><a href="#">操作</a></td>
                     </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <h4>活动订单</h4>
+                <table class="table table-hover">
+                    <thead>
                     <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>已下单</td>
-                        <td><a href="#">操作</a></td>
+                        <th>订单号</th>
+                        <th>订单名</th>
+                        <th>用户名</th>
+                        <th>金额</th>
+                        <th>联系电话</th>
+                        <th>操作</th>
                     </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
-                    <tr>
-                        <td>2014102931131</td>
-                        <td>小学英语强化班</td>
-                        <td>汤威</td>
-                        <td>400</td>
-                        <td>15029269197</td>
-                        <td><a href="#">操作</a></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for activity_order in activity_orders %}
+                        {% set activity = activity_order.get_activity() %}
+                        <tr>
+                            <td>{{ activity_order.id }}</td>
+                            <td>{{ activity.name }}</td>
+                            <td>{{ activity_order.name }}</td>
+                            <td>{{ activity.price }}</td>
+                            <td>{{ activity_order.mobile }}</td>
+                            <td><a href="#">操作</a></td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
