@@ -22,12 +22,14 @@
             </li>
         </ul>
         <div id="organregform">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post">
+            {{ form.hidden_tag() }}
+            {{ wtf.form_errors(form) }}
                 <div class="control-group">
                     <label class="control-label">真实姓名</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="原宥"/>
+                        <input type="text" class="form-control" value="{{ order.name }}"/>
 
                     </div>
                 </div>
@@ -36,7 +38,7 @@
                     <label class="control-label">年龄</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="3岁"/>
+                        <input type="text" class="form-control" value="{{ order.age }}"/>
 
                     </div>
                 </div>
@@ -44,14 +46,21 @@
                     <label class="control-label">学员性别</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="男"/>
+                        <select class="form-control">
+                            {% if order.sex %}
+                                <option value="1">男</option>
+                            {% else %}
+                                <option value="0">女</option>
+                            {% endif %}
+
+                        </select>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label">联系电话</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="150292917283"/>
+                        <input type="text" class="form-control" value="{{ order.mobile }}"/>
 
                     </div>
                 </div>
@@ -59,7 +68,7 @@
                     <label class="control-label">电子邮箱</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="3435677@qq.com"/>
+                        <input type="text" class="form-control" value=""/>
 
                     </div>
                 </div>
@@ -67,7 +76,7 @@
                     <label class="control-label">课程名称</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="小熊亲子班"/>
+                        <input type="text" class="form-control" value="{{ course.name }}"/>
 
                     </div>
                 </div>
@@ -75,7 +84,7 @@
                     <label class="control-label">试听时间</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="2014/11/10"/>
+                        <input type="text" class="form-control" value="{{ order.get_time() }}"/>
 
                     </div>
                 </div>
@@ -83,7 +92,7 @@
                     <label class="control-label">备注</label>
 
                     <div class="controls">
-                        <textarea rows="4" class="form-textarea" placeholder="请填写你期望开设的课程"></textarea>
+                        <textarea rows="4" name="{{ form.remark.name }}" class="form-textarea" placeholder="请填写你期望开设的课程"></textarea>
 
                     </div>
                 </div>

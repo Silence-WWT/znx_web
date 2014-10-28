@@ -586,6 +586,9 @@ class ClassOrder(db.Model):
     def get_class(self):
         return Class.query.get(self.class_id)
 
+    def get_time(self):
+        return time.ctime(self.time)
+
     @staticmethod
     def generate_fake(count=100):
         from faker import Factory

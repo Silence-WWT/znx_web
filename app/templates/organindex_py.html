@@ -279,12 +279,12 @@
    </div>
    </span>
                                     <span>适合年龄：{{ activity.get_age() }}</span>
-                                    <span>总课时： {# TODO #}</span>
+                                    <span>总课时： {{ activity.get_time() }}</span>
 
                                 </div>
                                 <div class="classright">
                                     <span>￥{{ activity.price }}</span>
-                                    <a href="#">
+                                    <a href="{{ url_for('activity.home', id=activity.id) }}">
                                         <button class=" btn-myred">查看详情</button>
                                     </a></div>
                             </div>
