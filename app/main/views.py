@@ -56,6 +56,11 @@ def download():
     return render_template('appdown_py.html')
 
 
+@main.route('/join')
+def join():
+    return render_template('platformlead_py.html.html')
+
+
 @main.route('/workflow')
 def workflow():
     return render_template('origanlead_py.html')
