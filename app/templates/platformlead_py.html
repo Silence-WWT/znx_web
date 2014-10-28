@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-机构入住{% endblock title %}
+{% block navbar %}
+{% include 'headmore.html' %}
+{% endblock navbar %}
+{% block content %}
+<div class="container"><img src="{{ url_for('static', filename='images/origanleadpic.png') }}"/></div>
+<div class="container" id="lead">
+
+    <div id="myCarousel" class="carousel slide">
+        <div class=" container" id="cartop">
+            <ul class="carousel-indicators anothercar">
+                <li data-target="#myCarousel" data-slide-to="0" class="active carli">
+                    <div class="carleft"><img src="{{ url_for('static', filename='images/lead1.png') }}"/>
+
+                        <h3>机构注册</h3></div>
+                    <div class="carright"><img src="{{ url_for('static', filename='images/hr.png') }}"/></div>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="1" class="carli">
+                    <div class="carleft"><img src="{{ url_for('static', filename='images/lead2.png') }}"/>
+
+                        <h3>发布课程信息</h3></div>
+                    <div class="carright"><img src="{{ url_for('static', filename='images/hr.png') }}"/></div>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="2" class="carli">
+                    <div class="carleft"><img src="{{ url_for('static', filename='images/lead3.png') }}"/>
+
+                        <h3>发布活动信息</h3></div>
+                    <div class="carright"><img src="{{ url_for('static', filename='images/hr.png') }}"/></div>
+                </li>
+                <li data-target="#myCarousel" data-slide-to="3" class="carlilast">
+                    <div class="carleft"><img src="{{ url_for('static', filename='images/lead4.png') }}"/>
+
+                        <h3>机构评价</h3></div>
+                </li>
+            </ul>
+        </div>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+                <div class="itemcontent">
+                    <h1>机构注册</h1>
+
+                    <div class="itemcontentdown">
+                        <img src="{{ url_for('static', filename='images/origanlead1.png') }}"/>
+
+                        <p>根据网站引导完成注册，填写机构资料，资料填写完成后，系统会自动生成一个机构页⾯。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="itemcontent">
+                    <h1>发布课程信息</h1>
+
+                    <div class="itemcontentdown">
+                        <img src="{{ url_for('static', filename='images/origanlead2.png') }}"/>
+
+                        <p>发布机构的课程，填写详细的课程信息，让用户更好的选择课程。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="itemcontent">
+                    <h1>发布活动信息</h1>
+
+                    <div class="itemcontentdown">
+                        <img src="{{ url_for('static', filename='images/origanlead3.png') }}"/>
+                        <p>发布机构的活动，填写详细的活动信息，让用户更好的选择活动。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="itemcontent">
+                    <h1>机构评价</h1>
+
+                    <div class="itemcontentdown">
+                        <img src="{{ url_for('static', filename='images/origanlead4.png') }}"/>
+                        <p>参加课程或者活动后，对机构进⾏行评价，帮助其他寻找合适机构的⽤用户做参考。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev" id="arr1">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next" id="arr2">&rsaquo;</a>
+    </div>
+</div>
+{% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    $(function(){
+        $("#navbar ul.nav li:first-child").removeClass('act');
+        $("#navbar ul.nav li:nth-child(3)").addClass('act');
+    })
+</script>
+{% endblock inscript %}
