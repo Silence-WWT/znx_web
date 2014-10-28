@@ -1970,7 +1970,7 @@ body {
     cursor: default;
 }
 
-#myuserindex ul li {
+#myuserindex .myuserleft ul li {
     margin-bottom: 0px;
     text-align: center;
 }
@@ -2004,15 +2004,16 @@ body {
     width: 100%;
     height: 40px;
     line-height: 40px;
-
     margin-bottom: 0px;
     cursor: pointer;
     background: #fff;
 }
 
 #myuser .myuserleft ul li a {
-    margin-left: 65px;
     color: #000;
+    display: block;
+    width: 225px;
+    height: 40px;
 }
 
 #myuser .myuserleft ul li.active {
@@ -2127,14 +2128,15 @@ body {
 
 #actlistul > li > div.actright > h5, #actlistul2 > li > div.actright > h5 {
     color: #000;
-    /* font-weight: normal; */
     border-bottom: 1px dotted #D9D9D9;
-    padding: 4px 0 3px;
-    margin-top: 4px;
+    padding: 4px 0px 3px;
+    margin-top: 10px;
+    text-align: left;
 }
 
 #actlistul > li > div.actright > p, #actlistul2 > li > div.actright > p {
     font-size: 12px;
+    text-align: left;
 }
 
 #actlistul > li > div.actright > span, #actlistul2 > li > div.actright > span {
