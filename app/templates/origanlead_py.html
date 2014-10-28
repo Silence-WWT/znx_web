@@ -92,3 +92,11 @@
     </div>
 </div>
 {% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    $(function(){
+        $("#navbar ul.nav li:first-child").removeClass('act');
+        $("#navbar ul.nav li:nth-child(3)").addClass('act');
+    })
+</script>
+{% endblock inscript %}
