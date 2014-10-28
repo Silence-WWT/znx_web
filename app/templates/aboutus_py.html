@@ -118,4 +118,37 @@
 
 </div>
 {% endblock content %}
+{% block inscript %}
+<script type="text/javascript">
+    function getUrlParam(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r!=null) return unescape(r[2]); return null; //返回参数值
+        }
+$(function(){
+    var hostll=getUrlParam('about');
+    switch(hostll)
+    {
+        case '1':
 
+            $('#myTab li:eq(1) a').tab('show');
+            break;
+        case '2':
+            $('#myTab li:eq(2) a').tab('show');
+            break;
+        case '3':
+            $('#myTab li:eq(3) a').tab('show');
+            break;
+        case '4':
+            $('#myTab li:eq(4) a').tab('show');
+            break;
+        case '5':
+            $('#myTab li:eq(5) a').tab('show');
+            break;
+        default:
+            $('#myTab li:eq(0) a').tab('show');
+    }
+})
+</script>
+{% endblock inscript %}
