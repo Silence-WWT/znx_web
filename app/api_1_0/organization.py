@@ -21,10 +21,19 @@ def organization_filter():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
-    city = City.query.filter_by(city=request.args.get('city')).first()
+    city = request.args.get('city')
     district = request.args.get('district')
     profession = request.args.get('profession')
     distance = request.args.get('distance')
+    if city:
+        city = City.query.filter_by(city=city.encode('utf8')).first()
+    else:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
+    if district:
+        district = district.encode('utf8')
+    if profession:
+        profession = profession.encode('utf8')
     if distance:
         try:
             distance = float(distance)
@@ -74,7 +83,7 @@ def organization_filter():
             'name': org.name,
             'city': city.city,
             'district': location.district,
-            'photo': org.photo,
+            'photo': '',
             'intro': org.intro,
         }
         data['organizations'].append(org_dict)
@@ -118,13 +127,17 @@ def organization_detail():
 @api.route('/organization_comment')
 def organization_comment():
     data = {}
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+        comment = request.args.get('comment').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     organization_id = request.args.get('organization')
-    comment = request.args.get('comment')
     stars = request.args.get('stars')
     user = User.query.filter_by(username=username).first()
     organization = Organization.query.filter_by(id=organization_id).first()
-    if user and organization and comment and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and organization and u'1' <= stars <= u'5' and len(stars) == 1:
         org_comment = OrganizationComment(
             organization_id=organization.id,
             user_id=user.id,
@@ -141,6 +154,8 @@ def organization_comment():
             data['status'] = SUCCESS
     elif not organization:
         data['status'] = ORGANIZATION_NOT_EXIST
+    elif not user:
+        data['status'] = USER_NOT_EXIST
     else:
         data['status'] = PARAMETER_ERROR
     return json.dumps(data)

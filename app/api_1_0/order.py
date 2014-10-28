@@ -12,7 +12,11 @@ from api_constants import *
 def order_list():
     data = {}
     mobile = request.args.get('mobile')
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     try:
         page = int(request.args.get('page'))
     except TypeError:
@@ -59,7 +63,11 @@ def order_list():
 @api.route('/class_order_detail')
 def class_order_detail():
     data = {}
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     mobile = request.args.get('mobile')
     class_order_id = request.args.get('class_order')
     user = User.query.filter_by(username=username, mobile=mobile).first()
@@ -93,7 +101,11 @@ def class_order_detail():
 @api.route('/activity_order_detail')
 def activity_order_detail():
     data = {}
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     mobile = request.args.get('mobile')
     activity_order_id = request.args.get('activity_order')
     user = User.query.filter_by(username=username, mobile=mobile).first()

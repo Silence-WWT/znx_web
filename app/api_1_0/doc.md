@@ -1,6 +1,19 @@
 Android API
 ====
 
+mobile_confirm
+---
+    URL:
+        /api/v1.0/mobile_confirm?mobile=
+    method:
+        get
+    parameters:
+        mobile
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 1002 for mobile exist, 5003 for message confirm fail
+
 register
 ----
     URL:
@@ -443,7 +456,7 @@ requirement_list
 requirement_sign_up
 ---
     URL:
-        /api/v1.0/requirement_sign_up?name=&mobile=&need=&city=&district=
+        /api/v1.0/requirement_sign_up?name=&mobile=&need=&city=
     method:
         get
     parameters:
@@ -451,16 +464,15 @@ requirement_sign_up
         mobile
         need
         city
-        district
     json:
         {"status": 0}
         
         status: 0 for success, 5000 for sql exception 5001 for parameter error
         
-get_location_profession
+get_district_profession
 ---
     URL:
-        /api/v1.0/get_location_profession?city=
+        /api/v1.0/get_district_profession?city=
     method:
         get
     parameters:

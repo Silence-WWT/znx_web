@@ -16,7 +16,11 @@ from api_constants import *
 @api.route('/register')
 def register():
     data = {}
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+    except AttributeError:
+        data['status'] = PARAMETER_ERROR
+        return json.dumps(data)
     password = request.args.get('password')
     mobile = request.args.get('mobile')
     identity = request.args.get('identity')
@@ -80,7 +84,7 @@ def mobile_confirm():
     data = {}
     mobile = request.args.get('mobile')
     if User.query.filter_by(mobile=mobile).first():
-        data['status'] = CELLPHONE_EXIST
+        data['status'] = MOBILE_EXIST
     elif mobile:
         verify_code = randint(100000, 999999)
         content = MESSAGE_API_CONTENT.format(verify_code=verify_code)

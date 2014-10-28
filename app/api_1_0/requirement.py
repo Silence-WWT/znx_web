@@ -5,7 +5,7 @@ from time import time as time_now
 from flask import request
 
 from app import db
-from ..models import Register, City, Location
+from ..models import Register, City
 from . import api
 from api_constants import *
 
@@ -41,21 +41,21 @@ def requirement_list():
 @api.route('/requirement_sign_up')
 def requirement_sign_up():
     data = {}
-    name = request.args.get('name')
+    try:
+        name = request.args.get('name').encode('utf8')
+        city = request.args.get('city').encode('utf8')
+        need = request.args.get('need').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     mobile = request.args.get('mobile')
-    need = request.args.get('need')
-    city = City.query.filter_by(city=request.args.get('city')).first()
-    district = request.args.get('district')
-    if city:
-        location = Location.query.filter_by(city_id=city.id, district=district).first()
-    else:
-        location = None
-    if name and mobile and need and location:
+    city = City.query.filter_by(city=city).first()
+    if name and mobile and need and city:
         register = Register(
             name=name,
             mobile=mobile,
             need=need,
-            location=location.id,
+            city_id=city.id,
             created=time_now()
         )
         try:
