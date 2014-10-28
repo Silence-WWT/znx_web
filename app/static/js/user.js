@@ -272,3 +272,31 @@ $(function(){
         }
     })
 })
+
+$(document).ready(function() {
+    $('#goup').goup();
+    $('#goup').goup({
+        width: "40px",
+        scrolltime: 800,
+        appear: 600,
+        imgsrc: '../images/top_arrow.png',
+        place: "bottom-right",
+        fadein: 300,
+        fadeout: 500,
+        opacity: "1"
+    });
+    var h = $(window).height();
+    $('#scroll a').click(function() {
+        $("html, body").animate({
+            scrollTop: h
+        }, 900);
+        return false;
+    });
+    $('#divheader').height(h);
+
+    var h6 = parseInt(h / 6);
+    $('#title').height(h6);
+    $('#twitter').height(h6);
+    $('#downloadbuttons').height(h6);
+    $('#scroll').height(h6);
+});
