@@ -71,9 +71,9 @@
     {% endfor %}
     {% endblock content %}
     {% block footer %}
+    <div id="goup"></div>
     <hr class="footerhr"/>
     <div id="footer">
-        <div id="goup"></div>
         <div class="container">
             <div class="row">
                 <div class="span3">
@@ -159,6 +159,7 @@ Copyright@2014 - 2015 跟谁学版权所有. 京公网安备11010802015210号 | 
         {% block scripts %}
         <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/znx.min.js') }}" type="text/javascript"></script>
+       <script src="{{ url_for('static', filename='js/returntop.js') }}" type="text/javascript"></script>
         <script src="{{ url_for('static', filename='js/user.js') }}" type="text/javascript"></script>
         {% endblock scripts %}
         {% block inscript %}

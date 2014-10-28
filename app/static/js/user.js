@@ -100,7 +100,6 @@ $(function () {
     });
  
 });
-
 function show(){ 
 var box = document.getElementById("boxmore"); 
 var text = box.innerHTML; 
@@ -186,9 +185,9 @@ $(function(){
 		var num = $(this).index();
 		var pmark = $(this).parents('.revinp');
 		var mark = pmark.prevAll('input');
-	
+
 		if(mark.prop('checked')) return false;
-		
+
 		var list = $(this).parent().find('i');
 		for(var i=0;i<=num;i++){
 			list.eq(i).attr('class','level_solid');
@@ -205,7 +204,7 @@ $(function(){
 		var num = $(this).index();
 		var pmark = $(this).parents('.revinp');
 		var mark = pmark.prevAll('input');
-		
+
 		if(mark.prop('checked')){
 			mark.val('');
 			mark.prop('checked',false);mark.prop('disabled',true);	
@@ -272,31 +271,3 @@ $(function(){
         }
     })
 })
-
-$(document).ready(function() {
-    $('#goup').goup();
-    $('#goup').goup({
-        width: "40px",
-        scrolltime: 800,
-        appear: 600,
-        imgsrc: '../images/top_arrow.png',
-        place: "bottom-right",
-        fadein: 300,
-        fadeout: 500,
-        opacity: "1"
-    });
-    var h = $(window).height();
-    $('#scroll a').click(function() {
-        $("html, body").animate({
-            scrollTop: h
-        }, 900);
-        return false;
-    });
-    $('#divheader').height(h);
-
-    var h6 = parseInt(h / 6);
-    $('#title').height(h6);
-    $('#twitter').height(h6);
-    $('#downloadbuttons').height(h6);
-    $('#scroll').height(h6);
-});
