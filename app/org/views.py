@@ -134,11 +134,11 @@ def home(id):
         comment = form.create_organization_comment(id)
         db.session.add(comment)
         db.session.commit()
-        return redirect(url_for('org.home'))
+        return redirect(url_for('org.home', id=id))
     return render_template('organindex_py.html',
                            org=org,
                            classes=classes,
-                           activities=activities)
+                           activities=activities, form=form)
 
 
 from .forms import CourseForm
