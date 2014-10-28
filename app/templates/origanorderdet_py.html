@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-用户中心-订单详情{% endblock title %}
+{% block title %}去哪学-用户中心-订单详情{% endblock title %}
 {% block navbar %}
 {% include 'headuser.html' %}
 {% endblock navbar %}
@@ -25,7 +25,7 @@
                 </li>
                 <li><a href="{{ url_for('org.activity_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set3.png') }}"/>我的活动</a>
                 </li>
-                <li class="active"><a href="{{ url_for('org.orders') }}" class="aandli"><img  src="{{ url_for('static', filename='images/set3.png') }}"/>我的订单</a></li>
+                <li class="active"><a href="{{ url_for('org.order_list') }}" class="aandli"><img  src="{{ url_for('static', filename='images/set3.png') }}"/>我的订单</a></li>
             </ul>
         </div>
         <div class="myuserright">
