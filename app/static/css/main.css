@@ -1680,6 +1680,7 @@ body {
 .itemcontentdown img {
     float: left;
     margin-right: 15px;
+    margin-top: -20px;
 }
 
 .itemcontentdown p {
