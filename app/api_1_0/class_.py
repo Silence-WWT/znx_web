@@ -23,7 +23,7 @@ def class_list():
     organization_id = request.args.get('organization')
     class_list_ = Class.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for class_ in class_list_:
-        age = Age.query.filter_by(id=class_.age_id).first()
+        age = Age.query.get(class_.age_id)
         class_dict = {
             'id': class_.id,
             'name': class_.name,
@@ -42,7 +42,7 @@ def class_detail():
     class_id = request.args.get('class')
     class_ = Class.query.filter_by(id=class_id).first()
     if class_:
-        age = Age.query.filter_by(id=class_.age_id).first()
+        age = Age.query.get(class_.age_id)
         comments_count = ClassComment.query.filter_by(class_id=class_.id).count()
         data['class'] = {
             'id': class_.id,
@@ -65,20 +65,26 @@ def class_detail():
 @api.route('/class_sign_up')
 def class_sign_up():
     data = {}
+    try:
+        username = request.args.get('username').encode('utf8')
+        address = request.args.get('address').encode('utf8')
+        name = request.args.get('name').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
+    remark = request.args.get('remark')
+    if remark:
+        remark = remark.encode('utf8')
     class_id = request.args.get('class')
-    username = request.args.get('username')
     mobile = request.args.get('mobile')
-    name = request.args.get('name')
     age = request.args.get('age')
     sex = request.args.get('sex')
     email = request.args.get('email')
-    address = request.args.get('address')
-    remark = request.args.get('remark')
     time = request.args.get('time')
 
     class_ = Class.query.filter_by(id=class_id).first()
     user = User.query.filter_by(username=username).first()
-    if class_ and user and name and age and mobile and sex and address and time and email:
+    if class_ and user and age and mobile and sex and time and email:
         class_order = ClassOrder(
             class_id=class_id,
             user_id=user.id,
@@ -108,13 +114,17 @@ def class_sign_up():
 @api.route('/class_comment')
 def class_comment():
     data = {}
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+        comment = request.args.get('comment').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     class_id = request.args.get('class')
-    comment = request.args.get('comment')
     stars = request.args.get('stars')
     user = User.query.filter_by(username=username).first()
     class_ = Class.query.filter_by(id=class_id).first()
-    if user and class_ and comment and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and class_ and u'1' <= stars <= u'5' and len(stars) == 1:
         class_comment_ = ClassComment(
             class_id=class_.id,
             user_id=user.id,
@@ -151,7 +161,7 @@ def class_comment_list():
     if class_:
         comment_list = ClassComment.query.filter_by(class_id=class_id).paginate(page, PER_PAGE, False).items
         for comment in comment_list:
-            user = User.query.filter_by(id=comment.user_id).first()
+            user = User.query.get(comment.user_id)
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,

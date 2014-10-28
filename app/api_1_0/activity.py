@@ -23,7 +23,7 @@ def activity_list():
     organization_id = request.args.get('organization')
     activity_list_ = Activity.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for activity in activity_list_:
-        age = Age.query.filter_by(id=activity.age_id).first()
+        age = Age.query.get(activity.age_id)
         activity_dict = {
             'id': activity.id,
             'name': activity.name,
@@ -43,7 +43,7 @@ def activity_detail():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
-        age = Age.query.filter_by(id=activity.age_id).first()
+        age = Age.query.get(activity.age_id)
         comments_count = ActivityComment.query.filter_by(activity_id=activity.id).count()
         data['activity'] = {
             'id': activity.id,
@@ -65,18 +65,24 @@ def activity_detail():
 def activity_sign_up():
     data = {}
     activity_id = request.args.get('activity')
-    username = request.args.get('username')
+    try:
+        username = request.args.get('username').encode('utf8')
+        name = request.args.get('name').encode('utf8')
+        address = request.args.get('address').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
+    remark = request.args.get('remark')
+    if remark:
+        remark = remark.encode('utf8')
     mobile = request.args.get('mobile')
-    name = request.args.get('name')
     age = request.args.get('age')
     sex = request.args.get('sex')
     email = request.args.get('email')
-    address = request.args.get('address')
-    remark = request.args.get('remark')
 
     activity = Activity.query.filter_by(id=activity_id).first()
     user = User.query.filter_by(username=username).first()
-    if activity and user and name and age and mobile and sex and address:
+    if activity and user and age and mobile and sex:
         activity_order = ActivityOrder(
             activity_id=activity_id,
             user_id=user.id,
@@ -106,13 +112,17 @@ def activity_sign_up():
 @api.route('/activity_comment')
 def activity_comment():
     data = {}
-    username = request.args.get('username')
     activity_id = request.args.get('activity')
-    comment = request.args.get('comment')
     stars = request.args.get('stars')
+    try:
+        username = request.args.get('username').encode('utf8')
+        comment = request.args.get('comment').encode('utf8')
+    except AttributeError:
+        data['status'] = LACK_OF_PARAMETER
+        return json.dumps(data)
     user = User.query.filter_by(username=username).first()
     activity = Activity.query.filter_by(id=activity_id).first()
-    if user and activity and comment and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and activity and u'1' <= stars <= u'5' and len(stars) == 1:
         activity_comment_ = ActivityComment(
             activity_id=activity.id,
             user_id=user.id,
@@ -149,7 +159,7 @@ def activity_comment_list():
     if activity:
         comment_list = ActivityComment.query.filter_by(activity_id=activity_id).paginate(page, PER_PAGE, False).items
         for comment in comment_list:
-            user = User.query.filter_by(id=comment.user_id).first()
+            user = User.query.get(comment.user_id)
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
