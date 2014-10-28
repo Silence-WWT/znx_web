@@ -118,6 +118,7 @@ class SiteComment(db.Model):
     __tablename__ = 'site_comments'
     id = db.Column(db.Integer, primary_key=True)
     # 手机号码
+    # TODO: 变更为手机号 qq号  邮箱 增加长度。
     mobile = db.Column(db.String(11), nullable=False)
     # 留言信息 140 Unicode
     body = db.Column(db.Unicode(420), nullable=False)

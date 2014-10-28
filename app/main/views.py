@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from . import main
 from .. import db
-from .forms import RegisterForm
+from .forms import RegisterForm, SiteCommentForm
 from flask.ext.login import login_required, logout_user
 from flask import redirect, url_for, render_template, flash
 from ..user.forms import LoginForm as UserLoginForm
@@ -69,3 +69,14 @@ def workflow():
 @main.route('/about_us')
 def about_us():
     return render_template('aboutus_py.html')
+
+
+@main.route('/report', methods=['GET', 'POST'])
+def report():
+    form = SiteCommentForm()
+    if form.validate_on_submit():
+        comment = form.create_comment()
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('guestbook_py.html', form=form)

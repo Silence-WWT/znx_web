@@ -4,7 +4,7 @@ from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField, \
     TextAreaField, BooleanField, RadioField, DateTimeField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
-from ..models import Register
+from ..models import Register, SiteComment
 
 
 class RegisterForm(Form):
@@ -20,3 +20,14 @@ class RegisterForm(Form):
                             need=self.need.data,
                             created=time.time())
         return register
+
+
+class SiteCommentForm(Form):
+    mobile = StringField()
+    body = TextAreaField()
+
+    def create_comment(self):
+        comment = SiteComment(mobile=self.mobile.data,
+                              body=self.body.data,
+                              created=time.time())
+        return comment
