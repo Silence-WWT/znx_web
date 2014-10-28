@@ -181,3 +181,8 @@ def add_activity():
 def activity_list():
     activities = Activity.query.filter_by(organization_id=current_user.id).all()
     return render_template('origanactlist_py.html', activities=activities)
+
+
+@org.route('/orders')
+def orders():
+    return render_template('origanactlist_py.html', activities=activities)
