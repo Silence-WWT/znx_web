@@ -64,3 +64,8 @@ def join():
 @main.route('/workflow')
 def workflow():
     return render_template('origanlead_py.html')
+
+
+@main.route('/about_us')
+def about_us():
+    return render_template('aboutus_py.html')
