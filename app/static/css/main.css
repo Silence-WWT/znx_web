@@ -2764,7 +2764,7 @@ input[disabled] {
 }
 #guestbook .form-horizontal .controls span{
     color: #FF7F73;
-    margin-left: -282px;
+    margin-left: -293px;
     font-size: 14px;
 }
 #guestbook .form-horizontal .controls .guestbtn{
@@ -2786,6 +2786,6 @@ input[disabled] {
     float: right;
 }
 #guestbook .form-horizontal .qqdiv {
-    margin: 10px 202px 32px;
+    margin: 10px 197px 32px;
     float: left;
 }
