@@ -403,7 +403,19 @@ body {
 }
 
 #asklearn ul li span {
-    margin-right: 20px;
+   margin:0 6px;
+    display: inline-block;
+}
+#asklearn ul li span:first-child{
+    width: 50px;
+}
+#asklearn ul li span:nth-child(2){
+    width: 60px;
+}
+#asklearn ul li span:nth-child(3){
+    width: 100px;
+    margin-right: 0px;
+
 }
 
 #asklearn .abtn {
