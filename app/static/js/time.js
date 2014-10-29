@@ -3,9 +3,8 @@ var count = 60; //间隔函数，1秒执行
 var curCount;//当前剩余秒数
 function sendMessage() {
 	curCount = count;
-	var mobilephone=$("#inputPhone").val();//手机号码
+	var mobilephone=$("#cellphone").val();//手机号码
     var messageurl=$("#mobileurl").val();
-
     var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
     //alert(isMobile.test(mobilephone));
 	if(isMobile.test(mobilephone)){
@@ -28,7 +27,7 @@ function sendMessage() {
            }
 		});
 	}else{
-		// $("#smsinfo").html("手机号码格式不正确哦！");
+		//$("#smsinfo").html("手机号码格式不正确哦！");
 	}
 }
 //timer处理函数

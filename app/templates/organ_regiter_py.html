@@ -45,8 +45,9 @@
                     <div class="controls">
                         <input type="text" id="{{ form.captcha.id }}" class="form-control"
                                name="{{ form.captcha.name }}">
-                        <button class="btn-myred">免费获取验证码</button>
-
+                        <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
+                        <input id="mobileurl" value="{{ url_for('org.send_sms') }}" type="hidden"/>
+                        <p id="smsinfo"></p>
                         {%- if form.captcha.errors %}
                         {%- for error in form.cellphone.errors %}
                         <p class="help-block">{{error}}</p>
@@ -88,3 +89,6 @@
     </div>
 </div>
 {% endblock content %}
+{% block inscript %}
+<script src="{{ url_for('static', filename='js/time.js') }}" type="text/javascript"></script>
+{% endblock inscript %}
