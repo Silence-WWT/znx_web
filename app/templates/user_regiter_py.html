@@ -23,26 +23,25 @@
                     <label class="control-label"><i class="form-required"></i>用户名</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.username.name }}" class="form-control" placeholder="请输入用户名 ">
+                        <input type="text" name="{{ form.username.name }}" class="form-control" placeholder="请输入用户名 "/>
                         <span></span>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputPhone"><i class="form-required"></i>手机号</label>
+                    <label class="control-label" ><i class="form-required"></i>手机号</label>
 
                     <div class="controls">
-                        <input type="text" id="inputPhone" class="form-control" name="{{ form.cellphone.name }}"
-                               placeholder="请输入有效手机号 "> <span></span>
+                        <input type="text" id="cellphone" class="form-control" name="{{ form.cellphone.name }}"
+                               placeholder="请输入有效手机号 "/> <span></span>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputVerCode"><i class="form-required"></i>验证码</label>
+                    <label class="control-label" ><i class="form-required"></i>验证码</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.captcha.name }}" id="inputVerCode" class="form-control">
+                        <input type="text" name="{{ form.captcha.name }}" id="inputVerCode" class="form-control"/>
                         <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
                         <input id="mobileurl" value="{{ url_for('user.send_sms') }}" type="hidden"/>
-
                         <p id="smsinfo"></p>
                     </div>
                 </div>
@@ -50,7 +49,7 @@
                     <label class="control-label" for="inputEmail">邮箱</label>
 
                     <div class="controls">
-                        <input type="text" id="inputEmail" class="form-control" name="{{ form.email.name }}">
+                        <input type="text" id="inputEmail" class="form-control" name="{{ form.email.name }}"/>
                         <span></span>
                     </div>
                 </div>
@@ -58,18 +57,19 @@
                     <label class="control-label"> <i class="form-required"></i>设置密码</label>
 
                     <div class="controls">
-                        <input type="password" id="password" name="{{ form.password.name }}" class="form-control">
+                        <input type="password" id="password" name="{{ form.password.name }}" class="form-control"/>
+                        <span></span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>确认密码</label>
 
                     <div class="controls">
-                        <input type="password" class="form-control" name="{{ form.password2.name }}"> <span></span>
+                        <input type="password" class="form-control" name="{{ form.password2.name }}"/> <span></span>
                     </div>
                 </div>
                 <div class="controls">
-                    <button type="submit" class="btn-long">同意以下协议并注册</button>
+                    <button type="submit" class="btn-long" id="userregbtn">同意以下协议并注册</button>
                 </div>
                 <div class="controls" id="checkrule">
                     <input type="checkbox" name="{{ form.confirmed.name }}" checked/>
