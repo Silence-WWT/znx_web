@@ -2757,10 +2757,10 @@ input[disabled] {
     resize: none;
 }
 #guestbook .form-horizontal .controls .longqq{
-    height: 40px;
+    height: 32px;
     font-size: 20px;
     width: 660px;
-    margin: 20px 0px 5px;
+    margin: 10px 0px 2px;
 }
 #guestbook .form-horizontal .controls span{
     color: #FF7F73;
@@ -2786,6 +2786,6 @@ input[disabled] {
     float: right;
 }
 #guestbook .form-horizontal .qqdiv {
-    margin: 16px 196px 32px;
+    margin: 10px 202px 32px;
     float: left;
 }
