@@ -8,7 +8,7 @@ from flask.ext.rq import RQ
 from flask.ext.principal import Principal
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
-from .filter import stars
+from .filter import stars, sex, get_date_time
 from .permission import config_identity
 
 bootstrap = Bootstrap()
@@ -37,6 +37,8 @@ def create_app(config_name):
     config_identity(app)
 
     app.jinja_env.filters['stars'] = stars
+    app.jinja_env.filters['sex'] = sex
+    app.jinja_env.filters['get_date_time'] = get_date_time
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

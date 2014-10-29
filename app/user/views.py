@@ -80,3 +80,9 @@ def home():
                            activity_orders=activity_orders,
                            class_orders=class_orders)
 
+# TODO: add access control.
+@user.route('/course/order/<int:id>')
+def course_order_detail(id):
+    class_order = ClassOrder.query.get_or_404(id)
+    return render_template('userorderdet_py.html', order=class_order)
+

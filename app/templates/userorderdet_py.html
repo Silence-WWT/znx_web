@@ -43,9 +43,9 @@
                         <li>
                             <dl>
                                 <dt>课程信息:</dt>
-                                <dd><p>课程名称：小虫亲子班</p>
+                                <dd><p>课程名称：{{ order.get_class().name }}</p>
 
-                                    <p>试听时间：2014/12/01</p>
+                                    <p>试听时间：{{ order.get_time() }}</p>
                                 </dd>
                             </dl>
                         </li>
@@ -54,14 +54,14 @@
                                 <dt>学员信息:</dt>
                                 <dd>
                                     <ul class="unstyled inline">
-                                        <li>姓名：小虫</li>
-                                        <li>性别：男</li>
-                                        <li class="longli">联系地址：海淀区方大国可达4单元403</li>
+                                        <li>姓名：{{ order.time }}</li>
+                                        <li>性别：{{ order.sex|sex }}</li>
+                                        <li class="longli">联系地址：{{ order.address }}</li>
                                     </ul>
                                     <ul class="unstyled inline">
-                                        <li>年龄：2</li>
-                                        <li>联系电话：15029269197</li>
-                                        <li class="longli">备注：学费能更优惠些不？</li>
+                                        <li>年龄：{{ order.age }}</li>
+                                        <li>联系电话：{{ order.mobile }}</li>
+                                        <li class="longli">备注：{{ order.remark }}</li>
                                     </ul>
 
                                 </dd>
@@ -70,10 +70,10 @@
                         <li>
                             <dl>
                                 <dt>订单信息:</dt>
-                                <dd><p>订单编号：201412112312
+                                <dd><p>订单编号：{{ order.id }}
                                 </p>
 
-                                    <p> 成交时间：2014-10-12</p>
+                                    <p> 成交时间：{{ order.created|get_date_time }}</p>
                                 </dd>
                             </dl>
                         </li>
