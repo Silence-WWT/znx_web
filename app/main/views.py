@@ -86,3 +86,7 @@ def report():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('guestbook_py.html', form=form)
+
+@main.route('/search')
+def search():
+    return render_template('origanselect_py.html')
