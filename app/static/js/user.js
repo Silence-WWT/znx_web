@@ -1,9 +1,12 @@
+//tab标签页默认开启控制
 $(function(){$('#myTab a').click(function (e) {
     e.preventDefault();
     $(this).tab('show');
-});})
-	  $(function () {
-		  
+    });
+})
+
+//在除首页的其他页面对于nav竖导航进行控制
+ $(function () {
     $("#navorgan").click(function () {
 	
       $("#allnav").toggle();
@@ -16,39 +19,40 @@ $(function(){$('#myTab a').click(function (e) {
     })
  
 })
+
+//用户注册控制表单验证
 $(function () {
     var ok1 = false;
     var ok2 = false;
     var ok3 = false;
     var ok4 = false;
+    var ok5 = false;
     // 验证用户名
     $('input[name="username"]').focus(function () {
-        // $(this).next().text('');
     }).blur(function () {
-        if ($(this).val() != '') {
+        var username=$(this).val();
+        var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;;
+        if (usernameok>=6 && usernameok <=64) {
             $(this).next().text('');
-            //$(this).next().css('color','#00B98D');
             ok1 = true;
-        } else {
+        } else if(usernameok==0){
             $(this).next().text('用户名不能为空');
-            //   $(this).next().css('color','#FF2424');
+        }else{
+            $(this).next().text('请输入正确长度的用户名');
         }
- 
     });
-    //验证手机
+    //验证手机号
     $('input[name="cellphone"]').focus(function () {
-        // $(this).next().text('');
     }).blur(function () {
         var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
-        //alert(isMobile.test(mobilephone));
         var  phonenum=$(this).val();
         if (isMobile.test(phonenum)) {
             $(this).next().text('');
-            //$(this).next().css('color','#00B98D');
-            ok1 = true;
-        } else {
-            $(this).next().text('手机号码输入格式错误哦!');
-            //$(this).next().css('color','#FF2424');
+            ok2 = true;
+        } else if(phonenum=="") {
+            $(this).next().text('手机号码不能为空');
+        }else{
+            $(this).next().text('请输入正确的手机号');
         }
  
     });
@@ -56,46 +60,48 @@ $(function () {
     $('input[name="password"]').focus(function () {
         // $(this).next().text('密码应该为6-20位之间');
     }).blur(function () {
-        if ($(this).val() != '') {
+        var password=$(this).val();
+         var passwordlenth=password.length;
+        if (passwordlenth >=6 && passwordlenth <=20) {
             $(this).next().text('');
-            ok2 = true;
-        } else {
-            $(this).next().text('密码不能为空');
-            //$(this).next().css('color','#FF2424');
+            ok3 = true;
+        } else{
+            $(this).next().text('请输入长度为6到20位的密码');
         }
  
     });
  
     //验证确认密码
-    $('input[name="confirmPassword"]').focus(function () {
-        // $(this).next().text('输入的确认密码要和上面的密码一致,规则也要相同');
+    $('input[name="password2"]').focus(function () {
     }).blur(function () {
         if ($(this).val() != '' && $(this).val() == $('input[name="password"]').val()) {
             $(this).next().text('');
-            ok3 = true;
+            ok4 = true;
         } else {
-            $(this).next().text('前后密码不一致哦！');
-            //$(this).next().css('color','#FF2424');
+            $(this).next().text('前后密码不一致');
         }
- 
     });
  //验证邮箱
     $('input[name="email"]').focus(function () {
         // $(this).next().text('请输入正确的EMAIL格式');
     }).blur(function () {
-        if ($(this).val().search(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/) == -1) {
-            $(this).next().text('请输入正确的EMAIL格式');
-            //$(this).next().css('color','#FF2424');
-        } else {
-            //$(this).next().text('输入成功');
-            ok4 = true;
+        var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+        var email=$(this).val();
+        if( myreg.test(email) || email=="")
+        {
+            $(this).next().text('');
+            ok5=true;
+        }
+        else{
+            $(this).next().text('请输入正确格式的邮箱');
         }
  
     });
- 
+
     //提交按钮,所有验证通过方可提交
-    $('#userRegSubmit').click(function () {
-        if (ok1 && ok2 && ok3 && ok4) {
+    $('#uerregbtn').click(function () {
+        if (ok1 && ok2 && ok3 && ok4 && ok5) {
+            alert("da");
             $('form').submit();
         } else {
             return false;
@@ -273,3 +279,4 @@ $(function(){
         }
     })
 })
+
