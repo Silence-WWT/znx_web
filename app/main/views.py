@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from . import main
 from .. import db
-from .forms import RegisterForm, SiteCommentForm
+from .forms import RegisterForm, SiteCommentForm, SearchForm
 from flask.ext.login import login_required, logout_user
 from flask.ext.principal import identity_changed, AnonymousIdentity
 from flask import redirect, url_for, \
     render_template, flash, session, current_app
 from ..user.forms import LoginForm as UserLoginForm
 from ..org.forms import LoginForm as OrgLoginForm
-from ..models import City, Register
+from ..models import City, Register, Organization
 
 
 @main.route('/login', methods=['GET'])
@@ -87,6 +87,24 @@ def report():
         return redirect(url_for('main.index'))
     return render_template('guestbook_py.html', form=form)
 
-@main.route('/search')
+@main.route('/search', methods=['GET', 'POST'])
 def search():
-    return render_template('origanselect_py.html')
+    form = SearchForm()
+    form.create_choices(1)
+    if form.validate_on_submit():
+        query = Organization.query
+        if form.type_id.data:
+            query=query.filter(Organization.type_id==form.type_id.data)
+        if form.profession_id.data:
+            query=query.filter(Organization.profession_id==form.profession_id.data)
+        if form.property_id.data:
+            query=query.filter(Organization.property_id==form.property_id.data)
+        if form.size_id.data:
+            query=query.filter(Organization.size_id==form.size_id.data)
+        if form.location_id.data:
+            query=query.filter(Organization.location_id==form.location_id.data)
+        if form.is_confirmed.data != -1:
+            query=query.filter(Organization.is_confirmed==bool(form.is_confirmed.data))
+        orgs = query.filter(Organization.name.like(u'%'+form.name.data+u'%')).all()
+        return render_template('origanselect_py.html', form=form, orgs=orgs)
+    return render_template('origanselect_py.html', form=form)

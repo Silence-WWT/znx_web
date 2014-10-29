@@ -34,6 +34,11 @@
         </dd>
     </dl>
 </div>
+{{ wtf.quick_form(form) }}
+{% for org in orgs %}
+    {{ org.name }}
+    <br/>
+{% endfor %}
 <div class="selectbottom" id="selectbottom">
     <div class="tabbable"> <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
