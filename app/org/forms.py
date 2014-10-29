@@ -9,6 +9,7 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from ..models import Organization, Age, Class, Activity, OrganizationComment
 from flask.ext.login import current_user
+from ..utils.validator import Captcha
 
 
 class RegistrationForm(Form):
@@ -17,7 +18,8 @@ class RegistrationForm(Form):
                                 DataRequired(u'必填'),
                                 Length(11, 11, u'手机号码不符合规范')])
     captcha = StringField('Captcha', validators=[DataRequired(u'必填'),
-                                                 Length(6, 6, u'验证码错误')])
+                                                 Length(6, 6, u'验证码错误'),
+                                                 Captcha('org', 'cellphone')])
     password = PasswordField('Password', validators=[
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])

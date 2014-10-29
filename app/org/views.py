@@ -15,6 +15,7 @@ from flask import redirect, url_for, render_template,\
     flash, current_app, request
 from ..utils.query import get_location
 from ..permission import org_permission, anonymous_permission, user_permission
+from ..utils.captcha import send_captcha
 
 @org.route('/login', methods=['POST'])
 def login():
@@ -57,6 +58,14 @@ def register():
         return redirect(url_for('main.index'))
     return render_template('organ_regiter_py.html', form=form)
 
+@org.route('/send_sms', methods=['post'])
+def send_sms():
+    # TODO: add csrf and mobile check.
+    # TODO: return 200 401
+    mobile = request.values.get('mobile', '', type=str)
+    if mobile:
+        send_captcha('org', mobile)
+    return 'ok', 200
 
 @org.route('/detail', methods=['GET', 'POST'])
 @org_permission.require()
