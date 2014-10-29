@@ -296,8 +296,20 @@ body {
 #navbar ul {
     margin: -2px 30px;
     font-size: 18px;
+    font-weight: normal;
 }
-
+#asklearn h4{
+    font-size: 16px;
+    margin: 12px 20px 0px;
+    border-bottom: 1px solid #ECECEC;
+    height: 26px;
+}
+#asklearn h4 span{
+    border-bottom: 2px solid #00B98D;
+    padding-bottom: 4px;
+    font-weight: normal;
+    color: #000;
+}
 .brand img {
     margin: -4px 5px 0px;
 }
@@ -394,28 +406,35 @@ body {
 }
 
 #asklearn ul {
-    padding: 10px 20px 1px;
-    margin-top: 10px;
+    padding: 0px 22px;
+    height:210px;
+    overflow: hidden;
 }
 
 #asklearn ul li {
-    margin-bottom: 10px;
-}
+    padding: 8px 0 6px;
+    border-bottom: 1px solid #ECECEC;
+    height: 55px;
 
-#asklearn ul li span {
-   margin:0 6px;
-    display: inline-block;
 }
-#asklearn ul li span:first-child{
+#asklearn ul li h5{
+    margin: 8px 0;
+    font-weight: normal;
+    color: #000;
+}
+#asklearn ul li p span{
+    color: #727272;
+    font-size: 12px;
+}
+#asklearn ul li p .regname{
+    margin-right: 10px;
     width: 50px;
-}
-#asklearn ul li span:nth-child(2){
-    width: 60px;
-}
-#asklearn ul li span:nth-child(3){
-    width: 100px;
-    margin-right: 0px;
+    display: inline-block;
 
+}
+#asklearn ul li p .regtime{
+    float: right;
+    margin-right: 2px;
 }
 
 #asklearn .abtn {

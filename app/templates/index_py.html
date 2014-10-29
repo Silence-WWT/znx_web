@@ -57,12 +57,12 @@
             </div>
         </div>
         <div class="span4" id="asklearn">
-            <span>求学信息登记<img src="{{ url_for('static', filename='images/hot.png') }}"></span>
-
+            <h4><span>求学信息登记</span><img src="{{ url_for('static', filename='images/hot.png') }}"></h4>
             <ul class="unstyled">
                 {% for register in registers %}
                 <li>
-                    <span>{{ register.get_date() }}</span><span>{{ register.name }}</span><span>{{ register.mobile }}</span>
+                    <h5>{{ register.need }}</h5>
+                   <p><span class="regname">{{ register.name }}</span><span class="regmob">{{ register.mobile }}</span><span class="regtime">{{ register.get_date() }}</span></p>
                 </li>
                 {% endfor %}
             </ul>
