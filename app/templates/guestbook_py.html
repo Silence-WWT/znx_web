@@ -19,9 +19,16 @@
         <div class="controls">
             <span>这个很重要，方便我们第一时间联系你，帮你及时解决问题！</span>
         </div>
-        <div class="controls">
+        <div class="controls qqdiv">
+            <a target="qqframe" href="http://shang.qq.com/wpa/qunwpa?idkey=86cb8c85f10f747ce52ed2d5c1cbe3b84b4a3bdf4459123f00b690ea75ecf9e1" id="qqbtn">
+                <img border="0" src="{{ url_for('static', filename='images/qqbtn.png') }}" alt="在哪学用户反馈群" title="在哪学用户反馈群">
+            </a>
+            <iframe name="qqframe" width="0" height="0" frameborder="0" src=""></iframe>
+        </div>
+        <div class="controls btndiv">
             <button type="submit" class="btn-next guestbtn">写好了，提交</button>
         </div>
+
     </form>
 </div>
 {% endblock content %}

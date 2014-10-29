@@ -263,7 +263,6 @@ function shake(o){
 }
 //评论时候必须评分
 $(function(){
-
     $("#scorebtn").click(function(){
         var scorenum=$("#scorenum").val();
         if(scorenum==0)

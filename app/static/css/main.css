@@ -816,12 +816,12 @@ body {
     color: #fff;
     text-align: center;
     background: #222;
-    border-radius: 0;
-    opacity: .3;
+    border-radius: 10px;
+    opacity: .2;
 }
 
 .carousel-control.right {
-    right: 5px;
+    right: 3px;
 }
 
 .btn-qudj {
@@ -2712,6 +2712,8 @@ input[disabled] {
     color: #000;
     font-size: 18px;
     margin-bottom: 50px;
+    margin-top: 50px;
+    border: 1px solid #ECE9E2;
 }
 #guestbook .form-horizontal .controls{
     margin: 0px;
@@ -2728,15 +2730,28 @@ input[disabled] {
 }
 #guestbook .form-horizontal .controls span{
     color: #FF7F73;
+    margin-left: -282px;
+    font-size: 14px;
 }
 #guestbook .form-horizontal .controls .guestbtn{
     background: #FD8F6A;
     width: 335px;
     border-radius: 5px;
-    margin: 20px 0px 40px;
+    margin: 20px 2px 40px;
 }
 .footerhr{
     margin: 0px;
     border-bottom: 1px solid #E7E3DC;
     border-top: 1px solid #DBD4C8;
+}
+#qqbtn{
+    margin: -16px 67px 0px;
+}
+#guestbook .form-horizontal .btndiv{
+    margin: -42px 259px 50px;
+    float: right;
+}
+#guestbook .form-horizontal .qqdiv {
+    margin: 16px 196px 32px;
+    float: left;
 }
