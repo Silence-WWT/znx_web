@@ -217,3 +217,16 @@ def order_list():
     ))
     return render_template('origanorderlist_py.html', class_orders=class_orders,
                            activity_orders=activity_orders)
+
+
+# TODO: add acl
+@org.route('/course/order/<int:id>')
+def course_order_detail(id):
+    class_order = ClassOrder.query.get_or_404(id)
+    return render_template('origanorderdet_py.html', order=class_order)
+
+
+@org.route('/activity/order/<int:id>')
+def activity_order_detail(id):
+    activity_order = ActivityOrder.query.get_or_404(id)
+    return render_template('user_activity_order_det_py.html', order=activity_order)
