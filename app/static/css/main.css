@@ -829,7 +829,10 @@ body {
     text-align: center;
     background: #222;
     border-radius: 10px;
-    opacity: .2;
+    opacity: .1;
+}
+.carousel-control:hover, .carousel-control:focus{
+    opacity: 0.5;
 }
 
 .carousel-control.right {
