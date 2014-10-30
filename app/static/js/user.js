@@ -27,8 +27,9 @@ $(function () {
     var ok3 = false;
     var ok4 = false;
     var ok5 = false;
+    var ok6 = false;
     // 验证用户名
-    $('input[name="username"]').focus(function () {
+    $('#username').focus(function () {
     }).blur(function () {
         var username=$(this).val();
         var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;;
@@ -42,7 +43,7 @@ $(function () {
         }
     });
     //验证手机号
-    $('input[name="cellphone"]').focus(function () {
+    $('#cellphone').focus(function () {
     }).blur(function () {
         var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
         var  phonenum=$(this).val();
@@ -56,13 +57,27 @@ $(function () {
         }
  
     });
+    //前端校验验证码长度
+    $('#inputVerCode').focus(function () {
+        // $(this).next().text('密码应该为6-20位之间');
+    }).blur(function () {
+        var code=$(this).val();
+        var iscode=/^\d{6}$/;
+        if (iscode.test(code)) {
+           $("#smsinfo").text("");
+            ok6 = true;
+        } else{
+            $("#smsinfo").text('请输入正确的验证码');
+        }
+
+    });
     //验证密码
-    $('input[name="password"]').focus(function () {
+    $('#password').focus(function () {
         // $(this).next().text('密码应该为6-20位之间');
     }).blur(function () {
         var password=$(this).val();
-         var passwordlenth=password.length;
-        if (passwordlenth >=6 && passwordlenth <=20) {
+         var passwordlength=password.length;
+        if (passwordlength >=6 && passwordlength <=20) {
             $(this).next().text('');
             ok3 = true;
         } else{
@@ -72,9 +87,9 @@ $(function () {
     });
  
     //验证确认密码
-    $('input[name="password2"]').focus(function () {
+    $('#password2').focus(function () {
     }).blur(function () {
-        if ($(this).val() != '' && $(this).val() == $('input[name="password"]').val()) {
+        if ($(this).val() != '' && $(this).val() == $('#password').val()) {
             $(this).next().text('');
             ok4 = true;
         } else {
@@ -82,7 +97,7 @@ $(function () {
         }
     });
  //验证邮箱
-    $('input[name="email"]').focus(function () {
+    $('#inputemail').focus(function () {
         // $(this).next().text('请输入正确的EMAIL格式');
     }).blur(function () {
         var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;

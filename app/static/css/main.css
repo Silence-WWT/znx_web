@@ -2627,8 +2627,8 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore, #tab2 > ul > li > div.selectscore, #tab3 > ul > li > div.selectscore, #tab4 > ul > li > div.selectscore {
     float: left;
-    width: 500px;
-    margin: 12px -130px;
+    width: 568px;
+    margin: 10px -130px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span, #tab2 > ul > li > div.selectscore > ul > li > span,
@@ -2643,14 +2643,14 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
 #tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span {
-    margin-left: 36px;
+    margin-left: 14px;
 }
 
 #tab1 > ul > li > div.seledet > span > i, #tab1 > ul > li > div.selectscore > ul > li > span > i,
 #tab2 > ul > li > div.seledet > span > i, #tab2 > ul > li > div.selectscore > ul > li > span > i,
 #tab3 > ul > li > div.seledet > span > i, #tab3 > ul > li > div.selectscore > ul > li > span > i,
 #tab4 > ul > li > div.seledet > span > i, #tab4 > ul > li > div.selectscore > ul > li > span > i {
-    margin: 2px 4px;
+    margin: 4px 4px 0px;
 }
 
 #origanselect > div.asklearn {
