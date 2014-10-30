@@ -8,8 +8,7 @@ from api_constants import *
 
 @api.route('/get_cities')
 def get_cities():
-    data = {'status': SUCCESS, 'cities': []}
+    data = {'status': SUCCESS}
     city_list = City.query.all()
-    for city in city_list:
-        data['cities'].append(city.city)
+    data['cities'] = [city.city for city in city_list]
     return json.dumps(data)
