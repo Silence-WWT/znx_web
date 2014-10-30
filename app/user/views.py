@@ -58,7 +58,7 @@ def register():
         return redirect(url_for('main.index'))
     return render_template('user_regiter_py.html', form=form)
 
-@user.route('/send_sms', methods=['post'])
+@user.route('/send_sms', methods=['POST'])
 def send_sms():
     # TODO: add csrf and mobile check.
     # TODO: return 200 401

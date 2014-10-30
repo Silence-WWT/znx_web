@@ -19,11 +19,11 @@ function sendMessage() {
 			url: messageurl, //目标地址
 			data: "mobile=" + mobilephone,
 			error: function (data) {
-         // $("#smsinfo").html("验证码发送失败,请重试！");
+           $("#smsinfo").html("验证码发送失败,请重试！");
            },
 		success: function (data){
-           // $("#smsinfo").html("验证码发送成功！");
-           // $("#smsinfo").css('color','#00B98D');
+            $("#smsinfo").html("验证码发送成功！");
+            $("#smsinfo").css('color','#00B98D');
            }
 		});
 	}else{
