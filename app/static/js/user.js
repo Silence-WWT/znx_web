@@ -262,7 +262,7 @@ $('#userregbtn').click(function () {
         return false;
     }
 });
-
+//显示全部
 function show() {
     var box = document.getElementById("boxmore");
     var text = box.innerHTML;
@@ -285,8 +285,6 @@ function show() {
     box.appendChild(newBox);
     box.appendChild(btn);
 }
-show();
-
 var degree = ['', '很差', '差', '中', '良', '优', '未评分'];
 //重新点评
 function addComment2(e, inid, opt, id) {
