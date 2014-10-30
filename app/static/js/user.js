@@ -42,11 +42,11 @@ $(function () {
             data: "username=" + username,
             error: function (data) {
                 $(this).next().text('用户名已经被注册');
-
+                alert(data);
             },
             success: function (data){
                 $(this).next().text('');
-                //alert(data);
+                alert(data);
             }
         });
     });
