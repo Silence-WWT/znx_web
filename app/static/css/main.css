@@ -2756,6 +2756,7 @@ input[disabled] {
 #guestbook .form-horizontal .controls textarea{
     width: 660px;
     resize: none;
+    font-size: 18px;
 }
 #guestbook .form-horizontal .controls .longqq{
     height: 32px;
