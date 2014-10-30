@@ -32,7 +32,9 @@ a:hover {
     text-decoration: none;
     color: #00B98D;
 }
-
+input:-webkit-autofill,input:-webkit-autofill:focus{
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 .active a {
     color: #00B98D;
 }
@@ -2805,3 +2807,4 @@ input[disabled] {
     margin: 10px 197px 32px;
     float: left;
 }
+
