@@ -32,7 +32,7 @@
                     <div class="controls">
                         {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入有效手机号") }}
                         <span>{{ helper.field_errors(form.cellphone) }}</span>
-                        <input type="hidden" src="{{ url_for('user.account') }}" id="userurl"/>
+                        <input type="hidden" value="{{ url_for('user.account') }}" id="userurl"/>
                     </div>
                 </div>
                 <div class="control-group">
