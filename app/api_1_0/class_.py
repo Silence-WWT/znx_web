@@ -40,7 +40,7 @@ def class_list():
 def class_detail():
     data = {'class': {}}
     class_id = request.args.get('class')
-    class_ = Class.query.get(class_id)
+    class_ = Class.query.filter_by(id=class_id).first()
     if class_:
         age = Age.query.get(class_.age_id)
         comments_count = ClassComment.query.filter_by(class_id=class_.id).count()
@@ -83,8 +83,8 @@ def class_sign_up():
     email = request.args.get('email')
     time = request.args.get('time')
 
-    class_ = Class.query.get(class_id)
-    user = User.query.get(user_id)
+    class_ = Class.query.filter_by(id=class_id).first()
+    user = User.query.filter_by(id=user_id).first()
     if class_ and user and age and mobile and sex and time and email:
         order_profile = OrderProfile(
             user_id=user_id,
@@ -130,7 +130,7 @@ def class_comment():
         return json.dumps(data)
     class_id = request.args.get('class')
     stars = request.args.get('stars')
-    user = User.query.get(user_id)
+    user = User.query.filter_by(id=user_id).first()
     class_ = Class.query.filter_by(id=class_id).first()
     if user and class_ and u'1' <= stars <= u'5' and len(stars) == 1:
         class_comment_ = ClassComment(
@@ -167,7 +167,9 @@ def class_comment_list():
     class_id = request.args.get('class')
     class_ = Class.query.filter_by(id=class_id).first()
     if class_:
-        comment_list = ClassComment.query.filter_by(class_id=class_id).paginate(page, PER_PAGE, False).items
+        comment_list = ClassComment.query.filter_by(class_id=class_id).\
+            order_by(-ClassComment.created).\
+            paginate(page, PER_PAGE, False).items
         for comment in comment_list:
             user = User.query.get(comment.user_id)
             comment_dict = {

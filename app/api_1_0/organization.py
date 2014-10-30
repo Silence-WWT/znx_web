@@ -95,7 +95,7 @@ def organization_filter():
 def organization_detail():
     data = {}
     organization_id = request.args.get('organization')
-    organization = Organization.query.get(organization_id)
+    organization = Organization.query.filter_by(id=organization_id).first()
     if organization:
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
@@ -135,8 +135,8 @@ def organization_comment():
         return json.dumps(data)
     organization_id = request.args.get('organization')
     stars = request.args.get('stars')
-    user = User.query.get(user_id)
-    organization = Organization.query.get(organization_id)
+    user = User.query.filter_by(id=user_id).first()
+    organization = Organization.query.filter_by(id=organization_id).first()
     if user and organization and u'1' <= stars <= u'5' and len(stars) == 1:
         org_comment = OrganizationComment(
             organization_id=organization.id,
@@ -172,9 +172,11 @@ def organization_comment_list():
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
     organization_id = request.args.get('organization')
-    organization = Organization.query.get(organization_id)
+    organization = Organization.query.filter_by(id=organization_id).first()
     if organization:
-        comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
+        comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).\
+            order_by(-OrganizationComment.created).\
+            paginate(page, PER_PAGE, False).items
         for comment in comment_list:
             user = User.query.get(comment.user_id)
             comment_dict = {
