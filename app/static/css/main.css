@@ -115,7 +115,7 @@ body {
 }
 
 #navbar .nav > li > a {
-    border-bottom: 2px solid #f5f5f5;
+    border-bottom: 2px solid #FFF;
     line-height: 20px;
     font-size: 16px;
     outline: none;
@@ -150,7 +150,7 @@ body {
     box-shadow: none;
     border: 1px solid #DEDEDE;
     outline: none;
-    padding: 3px 17px 2px 8px;
+    padding: 2px 17px 2px 8px;
     background: #F8F8F8;
 }
 #contenthead > div.city > div > a >.caret{
