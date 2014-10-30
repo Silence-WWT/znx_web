@@ -1373,6 +1373,7 @@ body {
 
 #usertest li .leftuser span {
     float: left;
+    margin-left: -15px;
 }
 
 #usercomment1, #usercomment2 {
