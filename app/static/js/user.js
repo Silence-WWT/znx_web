@@ -29,39 +29,58 @@ $(function () {
         var userurl=$("#userurl").val();
         var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;;
         if (usernameok>=6 && usernameok <=64) {
-            $(this).next().text('');
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "text", //数据格式:JSON
+                url: userurl, //目标地址
+                data: "username=" + username,
+                error: function (data) {
+                    $("#username").next().text('用户名已经被注册');
+                },
+                success: function (data){
+                    if(data == "false" ) {
+                        $("#username").next().text('用户名已经被注册');
+                    }else{
+                        $("#username").next().text('');
+                    }
+
+                }
+            });
+
         } else if(usernameok==0){
             $(this).next().text('用户名不能为空');
         }else{
             $(this).next().text('请输入正确长度的用户名');
         }
-        $.ajax({
-            type: "POST", //用POST方式传输
-            dataType: "text", //数据格式:JSON
-            url: userurl, //目标地址
-            data: "username=" + username,
-            error: function (data) {
-                $(this).next().text('用户名已经被注册');
-                alert(data);
-            },
-            success: function (data){
-                $(this).next().text('');
-                alert(data);
-            }
-        });
+
     });
     //验证手机号
     $('#cellphone').focus(function () {
     }).blur(function () {
         var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
         var  phonenum=$(this).val();
+        var userurl=$("#userurl").val();
         if (isMobile.test(phonenum)) {
-            $(this).next().text('');
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "text", //数据格式:JSON
+                url: userurl, //目标地址
+                data: "mobile=" + phonenum,
+                success: function (data){
+                    if(data == "false" ) {
+                        $("#cellphone").next().text('手机号已存在');
+                    }else{
+                        $("#cellphone").next().text('');
+                    }
+
+                }
+            });
         } else if(phonenum=="") {
             $(this).next().text('手机号码不能为空');
         }else{
             $(this).next().text('请输入正确的手机号');
         }
+
  
     });
     //前端校验验证码长度
@@ -126,11 +145,28 @@ $('#userregbtn').click(function () {
     var ok4 = false;
     var ok5 = false;
     var ok6 = false;
+    var ok7 = false;
     var username=$("#username").val();
     var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;
+    var userurl=$("#userurl").val();
     if (usernameok>=6 && usernameok <=64) {
-        $("#username").next().text('');
-        ok1 = true;
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "text", //数据格式:JSON
+            url: userurl, //目标地址
+            data: "username=" + username,
+            error: function (data) {
+                ok1 = false;
+            },
+            success: function (data){
+                if(data == "false" ) {
+                    ok1 = false;
+                }else{
+                    ok1=true;
+                }
+
+            }
+        });
     } else if(usernameok==0){
         $("#username").next().text('用户名不能为空');
     }else{
@@ -140,8 +176,23 @@ $('#userregbtn').click(function () {
     var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
     var  phonenum=$('#cellphone').val();
     if (isMobile.test(phonenum)) {
-        $('#cellphone').next().text('');
-        ok2 = true;
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "text", //数据格式:JSON
+            url: userurl, //目标地址
+            data: "mobile=" + phonenum,
+            error: function (data) {
+                ok2 = false;
+            },
+            success: function (data){
+                if(data == "false" ) {
+                    ok2 = false;
+                }else{
+                    ok2 = true;
+                }
+
+            }
+        });
     } else if(phonenum=="") {
         $('#cellphone').next().text('手机号码不能为空');
     }else{
@@ -156,7 +207,6 @@ $('#userregbtn').click(function () {
     } else{
         $("#smsinfo").text('请输入正确的验证码');
     }
-
     var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
     var email=$('#inputemail').val();
     if( myreg.test(email) || email=="")
@@ -181,6 +231,12 @@ $('#userregbtn').click(function () {
     } else {
         $('#password2').next().text('前后密码不一致');
     }
+    var usercheck=$("#usercheck").attr('checked');
+       if(usercheck=="checked"){
+           ok7=true;
+       }else{
+           $("#usercheck").next().text("请勾选用户注册协议");
+       }
    // alert(1);
     if (ok1 && ok2 && ok3 && ok4 && ok5 && ok6) {
         //alert(1);

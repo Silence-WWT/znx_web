@@ -24,6 +24,7 @@
                     <div class="controls">
                         {{ form.username(class="form-control", placeholder="请输入用户名", id="username") }}
                         <span>{{ helper.field_errors(form.username) }}</span>
+                        <input type="hidden" value="{{ url_for('user.account') }}" id="userurl"/>
                     </div>
                 </div>
                 <div class="control-group">
@@ -32,7 +33,6 @@
                     <div class="controls">
                         {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入有效手机号") }}
                         <span>{{ helper.field_errors(form.cellphone) }}</span>
-                        <input type="hidden" value="{{ url_for('user.account') }}" id="userurl"/>
                     </div>
                 </div>
                 <div class="control-group">
@@ -73,7 +73,7 @@
                     <button type="submit" class="btn-long" id="userregbtn" >同意以下协议并注册</button>
                 </div>
                 <div class="controls" id="checkrule">
-                    <input type="checkbox" name="{{ form.confirmed.name }}" checked/>
+                    <input type="checkbox" name="{{ form.confirmed.name }}" id="usercheck" checked="checked">
                     <a href="#myModal" role="button" data-toggle="modal">《在哪学用户注册协议》</a>
                     <span>{{ helper.field_errors(form.confirmed) }}</span>
                 </div>
