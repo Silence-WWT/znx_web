@@ -141,7 +141,6 @@ body {
 #contenthead .dropdown-toggle, #contenthead .dropdown-menu {
     background: #fff;
     border: 0px;
-    border-radius: 0px;
 }
 
 #contenthead .dropdown-toggle {
