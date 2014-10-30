@@ -16,41 +16,41 @@
             <hr>
         </div>
         <div id="organregform">
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal" action="" method="post" id="userregform" onclick="return false;">
                 {{ form.hidden_tag() }}
-                {{ wtf.form_errors(form) }}
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>用户名</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.username.name }}" class="form-control" placeholder="请输入用户名 "/>
-                        <span></span>
+                        {{ form.username(class="form-control", placeholder="请输入用户名", id="username") }}
+                        <span>{{ helper.field_errors(form.username) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" ><i class="form-required"></i>手机号</label>
 
                     <div class="controls">
-                        <input type="text" id="cellphone" class="form-control" name="{{ form.cellphone.name }}"
-                               placeholder="请输入有效手机号 "/> <span></span>
+                        {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入有效手机号") }}
+                        <span>{{ helper.field_errors(form.cellphone) }}</span>
+                        <input type="hidden" value="{{ url_for('user.account') }}" id="userurl"/>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" ><i class="form-required"></i>验证码</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.captcha.name }}" id="inputVerCode" class="form-control"/>
+                        {{ form.captcha(id="inputVerCode", class="form-control") }}
                         <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
                         <input id="mobileurl" value="{{ url_for('user.send_sms') }}" type="hidden"/>
-                        <p id="smsinfo"></p>
+                        <p id="smsinfo">{{ helper.field_errors(form.captcha) }}</p>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="inputEmail">邮箱</label>
 
                     <div class="controls">
-                        <input type="text" id="inputEmail" class="form-control" name="{{ form.email.name }}"/>
-                        <span></span>
+                        {{ form.email(id="inputemail", class="form-control") }}
+                        <span>{{ helper.field_errors(form.email) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -58,22 +58,24 @@
 
                     <div class="controls">
                         <input type="password" id="password" name="{{ form.password.name }}" class="form-control"/>
-                        <span></span>
+                        <span>{{ helper.field_errors(form.password) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>确认密码</label>
 
                     <div class="controls">
-                        <input type="password" class="form-control" name="{{ form.password2.name }}"/> <span></span>
+                        <input type="password" class="form-control" name="{{ form.password2.name }}" id="password2"/> <span></span>
+                        <span>{{ helper.field_errors(form.password2) }}</span>
                     </div>
                 </div>
                 <div class="controls">
-                    <button type="submit" class="btn-long" id="userregbtn">同意以下协议并注册</button>
+                    <button type="submit" class="btn-long" id="userregbtn" >同意以下协议并注册</button>
                 </div>
                 <div class="controls" id="checkrule">
                     <input type="checkbox" name="{{ form.confirmed.name }}" checked/>
                     <a href="#myModal" role="button" data-toggle="modal">《在哪学用户注册协议》</a>
+                    <span>{{ helper.field_errors(form.confirmed) }}</span>
                 </div>
             </form>
             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

@@ -24,18 +24,12 @@
         <div id="organregform">
             <form class="form-horizontal" action="" method="post">
                 {{ form.hidden_tag() }}
-                {{ wtf.form_errors(form) }}
                 <div class="control-group">
                     <label class="control-label" for="{{ form.cellphone.id }}"><i class="form-required"></i>手机号</label>
 
                     <div class="controls">
-                        <input type="text" id="{{ form.cellphone.id }}" class="form-control"
-                               name="{{ form.cellphone.name }}"> <span></span>
-                        {%- if form.cellphone.errors %}
-                        {%- for error in form.cellphone.errors %}
-                        <p class="help-block">{{error}}</p>
-                        {%- endfor %}
-                        {% endif %}
+                        {{ form.cellphone(class="form-control") }}
+                        <span>{{ helper.field_errors(form.cellphone) }}</span>
 
                     </div>
                 </div>
@@ -43,16 +37,10 @@
                     <label class="control-label" for="{{ form.captcha.id }}"><i class="form-required"></i>验证码</label>
 
                     <div class="controls">
-                        <input type="text" id="{{ form.captcha.id }}" class="form-control"
-                               name="{{ form.captcha.name }}">
+                        {{ form.captcha(class="form-control") }}
                         <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
                         <input id="mobileurl" value="{{ url_for('org.send_sms') }}" type="hidden"/>
-                        <p id="smsinfo"></p>
-                        {%- if form.captcha.errors %}
-                        {%- for error in form.cellphone.errors %}
-                        <p class="help-block">{{error}}</p>
-                        {%- endfor %}
-                        {% endif %}
+                        <p id="smsinfo">{{ helper.field_errors(form.captcha) }}</p>
                     </div>
                 </div>
                 <div class="control-group">
@@ -60,12 +48,8 @@
 
                     <div class="controls">
                         <input type="password" id="{{ form.password.id }}" name="{{ form.password.name }}"
-                               class="form-control"> <span></span>
-                        {%- if form.password.errors %}
-                        {%- for error in form.password.errors %}
-                        <p class="help-block">{{error}}</p>
-                        {%- endfor %}
-                        {% endif %}
+                               class="form-control">
+                        <span>{{ helper.field_errors(form.password) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -73,12 +57,8 @@
 
                     <div class="controls">
                         <input type="password" id="{{ form.password2.id }}" class="form-control"
-                               name="{{ form.password2.name }}"> <span></span>
-                        {%- if form.password2.errors %}
-                        {%- for error in form.password2.errors %}
-                        <p class="help-block">{{error}}</p>
-                        {%- endfor %}
-                        {% endif %}
+                               name="{{ form.password2.name }}">
+                        <span>{{ helper.field_errors(form.password2) }}</span>
                     </div>
                 </div>
                 <div class="controls">

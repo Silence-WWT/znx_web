@@ -115,7 +115,7 @@ body {
 }
 
 #navbar .nav > li > a {
-    border-bottom: 2px solid #f5f5f5;
+    border-bottom: 2px solid #FFF;
     line-height: 20px;
     font-size: 16px;
     outline: none;
@@ -150,7 +150,7 @@ body {
     box-shadow: none;
     border: 1px solid #DEDEDE;
     outline: none;
-    padding: 3px 17px 2px 8px;
+    padding: 2px 17px 2px 8px;
     background: #F8F8F8;
 }
 #contenthead > div.city > div > a >.caret{
@@ -2392,7 +2392,7 @@ body {
 #smsinfo {
     color: #FF2424;
     float: right;
-    margin-right: 66px;
+    margin-right: 98px;
     margin-bottom: -20px;
     width: 160px;
     text-align: center;
@@ -2627,8 +2627,8 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore, #tab2 > ul > li > div.selectscore, #tab3 > ul > li > div.selectscore, #tab4 > ul > li > div.selectscore {
     float: left;
-    width: 500px;
-    margin: 12px -130px;
+    width: 568px;
+    margin: 10px -130px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span, #tab2 > ul > li > div.selectscore > ul > li > span,
@@ -2643,14 +2643,14 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
 #tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span {
-    margin-left: 36px;
+    margin-left: 14px;
 }
 
 #tab1 > ul > li > div.seledet > span > i, #tab1 > ul > li > div.selectscore > ul > li > span > i,
 #tab2 > ul > li > div.seledet > span > i, #tab2 > ul > li > div.selectscore > ul > li > span > i,
 #tab3 > ul > li > div.seledet > span > i, #tab3 > ul > li > div.selectscore > ul > li > span > i,
 #tab4 > ul > li > div.seledet > span > i, #tab4 > ul > li > div.selectscore > ul > li > span > i {
-    margin: 2px 4px;
+    margin: 4px 4px 0px;
 }
 
 #origanselect > div.asklearn {

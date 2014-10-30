@@ -22,33 +22,41 @@ $(function(){$('#myTab a').click(function (e) {
 
 //用户注册控制表单验证
 $(function () {
-    var ok1 = false;
-    var ok2 = false;
-    var ok3 = false;
-    var ok4 = false;
-    var ok5 = false;
     // 验证用户名
-    $('input[name="username"]').focus(function () {
+    $('#username').focus(function () {
     }).blur(function () {
         var username=$(this).val();
+        var userurl=$("#userurl").val();
         var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;;
         if (usernameok>=6 && usernameok <=64) {
             $(this).next().text('');
-            ok1 = true;
         } else if(usernameok==0){
             $(this).next().text('用户名不能为空');
         }else{
             $(this).next().text('请输入正确长度的用户名');
         }
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "text", //数据格式:JSON
+            url: userurl, //目标地址
+            data: "username=" + username,
+            error: function (data) {
+                $(this).next().text('用户名已经被注册');
+                alert(data);
+            },
+            success: function (data){
+                $(this).next().text('');
+                alert(data);
+            }
+        });
     });
     //验证手机号
-    $('input[name="cellphone"]').focus(function () {
+    $('#cellphone').focus(function () {
     }).blur(function () {
         var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
         var  phonenum=$(this).val();
         if (isMobile.test(phonenum)) {
             $(this).next().text('');
-            ok2 = true;
         } else if(phonenum=="") {
             $(this).next().text('手机号码不能为空');
         }else{
@@ -56,33 +64,22 @@ $(function () {
         }
  
     });
-    //验证密码
-    $('input[name="password"]').focus(function () {
+    //前端校验验证码长度
+    $('#inputVerCode').focus(function () {
         // $(this).next().text('密码应该为6-20位之间');
     }).blur(function () {
-        var password=$(this).val();
-         var passwordlenth=password.length;
-        if (passwordlenth >=6 && passwordlenth <=20) {
-            $(this).next().text('');
-            ok3 = true;
+        var code=$(this).val();
+        var iscode=/^\d{6}$/;
+        if (iscode.test(code)) {
+            $("#smsinfo").text("");
         } else{
-            $(this).next().text('请输入长度为6到20位的密码');
+            $("#smsinfo").text('请输入正确的验证码');
         }
- 
+
     });
- 
-    //验证确认密码
-    $('input[name="password2"]').focus(function () {
-    }).blur(function () {
-        if ($(this).val() != '' && $(this).val() == $('input[name="password"]').val()) {
-            $(this).next().text('');
-            ok4 = true;
-        } else {
-            $(this).next().text('前后密码不一致');
-        }
-    });
- //验证邮箱
-    $('input[name="email"]').focus(function () {
+
+    //验证邮箱
+    $('#inputemail').focus(function () {
         // $(this).next().text('请输入正确的EMAIL格式');
     }).blur(function () {
         var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
@@ -90,30 +87,114 @@ $(function () {
         if( myreg.test(email) || email=="")
         {
             $(this).next().text('');
-            ok5=true;
         }
         else{
             $(this).next().text('请输入正确格式的邮箱');
         }
- 
+
+    });
+    //验证密码
+    $('#password').focus(function () {
+        // $(this).next().text('密码应该为6-20位之间');
+    }).blur(function () {
+        var password=$(this).val();
+        var passwordlength=password.length;
+        if (passwordlength >=6 && passwordlength <=20) {
+            $(this).next().text('');
+        } else{
+            $(this).next().text('请输入长度为6到20位的密码');
+        }
+
+    });
+    //验证确认密码
+    $('#password2').focus(function () {
+    }).blur(function () {
+        if ($(this).val() != '' && $(this).val() == $('#password').val()) {
+            $(this).next().text('');
+        } else {
+            $(this).next().text('前后密码不一致');
+        }
     });
 
     //提交按钮,所有验证通过方可提交
-    $('#uerregbtn').click(function () {
-        alert("da");
-        if (ok1 && ok2 && ok3 && ok4 && ok5) {
 
-            $('form').submit();
-        } else {
-            return false;
-        }
-    });
- 
+});
+$('#userregbtn').click(function () {
+    var ok1 = false;
+    var ok2 = false;
+    var ok3 = false;
+    var ok4 = false;
+    var ok5 = false;
+    var ok6 = false;
+    var username=$("#username").val();
+    var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;
+    if (usernameok>=6 && usernameok <=64) {
+        $("#username").next().text('');
+        ok1 = true;
+    } else if(usernameok==0){
+        $("#username").next().text('用户名不能为空');
+    }else{
+        $("#username").next().text('请输入正确长度的用户名');
+    }
+
+    var isMobile=/^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
+    var  phonenum=$('#cellphone').val();
+    if (isMobile.test(phonenum)) {
+        $('#cellphone').next().text('');
+        ok2 = true;
+    } else if(phonenum=="") {
+        $('#cellphone').next().text('手机号码不能为空');
+    }else{
+        $('#cellphone').next().text('请输入正确的手机号');
+    }
+
+    var code=$('#inputVerCode').val();
+    var iscode=/^\d{6}$/;
+    if (iscode.test(code)) {
+        $("#smsinfo").text("");
+        ok3 = true;
+    } else{
+        $("#smsinfo").text('请输入正确的验证码');
+    }
+
+    var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    var email=$('#inputemail').val();
+    if( myreg.test(email) || email=="")
+    {
+        $('#inputemail').next().text('');
+        ok4=true;
+    }
+    else{
+        $('#inputemail').next().text('请输入正确格式的邮箱');
+    }
+    var password=$('#password').val();
+    var passwordlength=password.length;
+    if (passwordlength >=6 && passwordlength <=20) {
+        $('#password').next().text('');
+        ok5=true;
+    } else{
+        $('#password').next().text('请输入长度为6到20位的密码');
+    }
+    if ($('#password2').val() != '' && $('#password2').val() == $('#password').val()) {
+        $('#password2').next().text('');
+        ok6=true;
+    } else {
+        $('#password2').next().text('前后密码不一致');
+    }
+   // alert(1);
+    if (ok1 && ok2 && ok3 && ok4 && ok5 && ok6) {
+        //alert(1);
+       $('#userregform').submit();
+
+    } else {
+       // alert(ok1 && ok2);
+        return false;
+    }
 });
 
-function show(){ 
-var box = document.getElementById("boxmore"); 
-var text = box.innerHTML; 
+function show(){
+var box = document.getElementById("boxmore");
+var text = box.innerHTML;
 var newBox = document.createElement("div"); 
 var btn = document.createElement("a");
 btn.className="amoremore"; 

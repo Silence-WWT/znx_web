@@ -2,7 +2,7 @@
 # TODO: mobile unicode 验证码 timefield: convert str time to epoch time.
 import redis
 from wtforms import Field
-from wtforms.validators import ValidationError
+from wtforms.validators import ValidationError, Email
 
 
 class Captcha(object):
@@ -19,3 +19,12 @@ class Captcha(object):
         redis_value = local_redis.get(key)
         if redis_value != field.data:
             raise ValidationError(self.message)
+
+
+class EmptyEmail(Email):
+    def __init__(self, message=None):
+        super(EmptyEmail, self).__init__(message)
+
+    def __call__(self, form, field):
+        if field.data:
+            super(EmptyEmail, self).__call__(form, field)
