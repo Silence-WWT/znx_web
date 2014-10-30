@@ -81,8 +81,8 @@ def activity_sign_up():
     sex = request.args.get('sex')
     email = request.args.get('email')
 
-    activity = Activity.query.get(activity_id)
-    user = User.query.get(user_id)
+    activity = Activity.query.filter_by(id=activity_id).first()
+    user = User.query.filter_by(id=user_id).first()
     if activity and user and age and mobile and sex:
         order_profile = OrderProfile(
             user_id=user_id,
@@ -128,8 +128,8 @@ def activity_comment():
     except AttributeError:
         data['status'] = LACK_OF_PARAMETER
         return json.dumps(data)
-    user = User.query.get(user_id)
-    activity = Activity.query.get(activity_id)
+    user = User.query.filter_by(id=user_id).first()
+    activity = Activity.query.filter_by(id=activity_id).first()
     if user and activity and u'1' <= stars <= u'5' and len(stars) == 1:
         activity_comment_ = ActivityComment(
             activity_id=activity.id,
@@ -165,7 +165,9 @@ def activity_comment_list():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
-        comment_list = ActivityComment.query.filter_by(activity_id=activity_id).paginate(page, PER_PAGE, False).items
+        comment_list = ActivityComment.query.filter_by(activity_id=activity_id).\
+            order_by(-ActivityComment.created).\
+            paginate(page, PER_PAGE, False).items
         for comment in comment_list:
             user = User.query.get(comment.user_id)
             comment_dict = {

@@ -125,7 +125,7 @@ def order_synchronize():
     data = {}
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    if not User.query.get(user_id):
+    if not User.query.filter_by(id=user_id).first():
         data['status'] = USER_NOT_EXIST
     else:
         order_profile_list = OrderProfile.query.filter_by(uuid=uuid, user_id='')
