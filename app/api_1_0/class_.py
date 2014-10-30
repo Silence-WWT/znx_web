@@ -40,7 +40,7 @@ def class_list():
 def class_detail():
     data = {'class': {}}
     class_id = request.args.get('class')
-    class_ = Class.query.filter_by(id=class_id).first()
+    class_ = Class.query.get(class_id)
     if class_:
         age = Age.query.get(class_.age_id)
         comments_count = ClassComment.query.filter_by(class_id=class_.id).count()
@@ -65,8 +65,9 @@ def class_detail():
 @api.route('/class_sign_up')
 def class_sign_up():
     data = {}
+    user_id = request.args.get('user_id')
+    uuid = request.args.get('uuid')
     try:
-        username = request.args.get('username').encode('utf8')
         address = request.args.get('address').encode('utf8')
         name = request.args.get('name').encode('utf8')
     except AttributeError:
@@ -82,12 +83,19 @@ def class_sign_up():
     email = request.args.get('email')
     time = request.args.get('time')
 
-    class_ = Class.query.filter_by(id=class_id).first()
-    user = User.query.filter_by(username=username).first()
+    class_ = Class.query.get(class_id)
+    user = User.query.get(user_id)
     if class_ and user and age and mobile and sex and time and email:
+        order_profile = OrderProfile(
+            user_id=user_id,
+            mobile_uuid=uuid,
+            web_uuid=''
+        )
+        db.session.add(order_profile)
+        db.session.commit()
         class_order = ClassOrder(
             class_id=class_id,
-            user_id=user.id,
+            order_profile_id=order_profile.id,
             name=name,
             mobile=mobile,
             age=age,
@@ -114,15 +122,15 @@ def class_sign_up():
 @api.route('/class_comment')
 def class_comment():
     data = {}
+    user_id = request.args.get('user_id')
     try:
-        username = request.args.get('username').encode('utf8')
         comment = request.args.get('comment').encode('utf8')
     except AttributeError:
         data['status'] = LACK_OF_PARAMETER
         return json.dumps(data)
     class_id = request.args.get('class')
     stars = request.args.get('stars')
-    user = User.query.filter_by(username=username).first()
+    user = User.query.get(user_id)
     class_ = Class.query.filter_by(id=class_id).first()
     if user and class_ and u'1' <= stars <= u'5' and len(stars) == 1:
         class_comment_ = ClassComment(
