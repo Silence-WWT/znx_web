@@ -11,9 +11,9 @@ def send_captcha(user_or_org, mobile):
     local_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
     rand = str(randint(100000, 999999))
     print 'generate round num:'+rand
-    r = send_sms(mobile, rand)
+    #r = send_sms(mobile, rand)
     # TODO: check return code by func send_sms.
-    print r.text
+    # print r.text
     key = 'captcha:'+user_or_org+':'+mobile
     local_redis.set(key, rand, 120)
     print 'get captcha:'
