@@ -47,6 +47,7 @@ def register():
         else:
             data['status'] = SUCCESS
             data['user'] = {
+                'user_id': user.id,
                 'username': username,
                 'mobile': mobile,
                 'identity': identity,
@@ -69,6 +70,7 @@ def login():
             user.identity = identity
         data['status'] = SUCCESS
         data['user'] = {
+            'user_id': user.id,
             'username': user.username,
             'mobile': user.mobile,
             'email': user.email,
@@ -93,7 +95,7 @@ def mobile_confirm():
         response = urlopen(message_url.encode('utf8')).read()
         doc = minidom.parseString(response)
         code = doc.getElementsByTagName('code')[0].firstChild.nodeValue
-        if code != MESSAGE_API_SUCCESS:
+        if code != str(MESSAGE_API_SUCCESS):
             data['status'] = MESSAGE_CONFIRM_FAIL
         else:
             data['status'] = SUCCESS
