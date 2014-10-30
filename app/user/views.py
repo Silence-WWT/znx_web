@@ -92,3 +92,17 @@ def course_order_detail(id):
 def activity_order_detail(id):
     activity_order = ActivityOrder.query.get_or_404(id)
     return render_template('user_activity_order_det_py.html', order=activity_order)
+
+@user.route('/account', methods=['POST'])
+def account():
+    username = request.values.get('username', u'', type=unicode)
+    if username:
+        if User.query.filter_by(username=username).first():
+            return 'false'
+        return 'true'
+    mobile = request.values.get('mobile', '', type=str)
+    if mobile:
+        if User.query.filter_by(mobile=mobile).first():
+            return 'false'
+        return 'true'
+    return 'false'
