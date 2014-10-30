@@ -4,28 +4,30 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms import ValidationError
 from ..models import User
-from ..utils.validator import Captcha
+from ..utils.validator import Captcha, EmptyEmail
 
 
 # TODO: add telephone number.
 class LoginForm(Form):
-    username = StringField(validators=[DataRequired(), Length(1, 64)])
+    username = StringField(validators=[DataRequired(), Length(4, 16)])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me logged in')
 
 
 class RegistrationForm(Form):
     username = StringField('username',
-                           validators=[DataRequired(),
-                                       Length(6,64, u'用户名长度不符合要求')])
+                           validators=[DataRequired(u'必填'),
+                                       Length(4, 16, u'用户名长度不符合要求')])
     cellphone = StringField('cellphone',
                             validators=[
                                 DataRequired(u'必填'),
                                 Length(11, 11, u'手机号码不符合规范')])
     captcha = StringField('cpatcha', validators=[Captcha('user', 'cellphone')])
-    email = StringField('Email', validators=[Email()])
+    email = StringField('Email', validators=[EmptyEmail(u'邮箱不符合规范')])
     password = PasswordField('Password', validators=[
-        DataRequired(), EqualTo('password2', message='Passwords must match.')])
+        DataRequired(),
+        Length(6, 20, u'密码长度不符合规范'),
+        EqualTo('password2', message=u'密码不一致')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
 
     confirmed = BooleanField()
