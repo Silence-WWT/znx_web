@@ -21,12 +21,12 @@ class RegistrationForm(Form):
                                                  Length(6, 6, u'验证码错误'),
                                                  Captcha('org', 'cellphone')])
     password = PasswordField('Password', validators=[
-        DataRequired(), EqualTo('password2', message='Passwords must match.')])
-    password2 = PasswordField('Confirm password', validators=[DataRequired()])
+        DataRequired(u'必填'), EqualTo('password2', message=u'密码不一致')])
+    password2 = PasswordField('Confirm password', validators=[DataRequired(u'必填')])
 
     def validate_cellphone(self, field):
         if Organization.query.filter_by(mobile=field.data).first():
-            raise ValidationError('Cellphone already registered.')
+            raise ValidationError(u'手机号已被注册')
 
 
 # TODO: cellphone regexp validator
