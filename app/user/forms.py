@@ -9,7 +9,7 @@ from ..utils.validator import Captcha, EmptyEmail
 
 # TODO: add telephone number.
 class LoginForm(Form):
-    username = StringField(validators=[DataRequired(), Length(1, 64)])
+    username = StringField(validators=[DataRequired(), Length(4, 16)])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Keep me logged in')
 
@@ -25,7 +25,9 @@ class RegistrationForm(Form):
     captcha = StringField('cpatcha', validators=[Captcha('user', 'cellphone')])
     email = StringField('Email', validators=[EmptyEmail(u'邮箱不符合规范')])
     password = PasswordField('Password', validators=[
-        DataRequired(), EqualTo('password2', message=u'密码不一致')])
+        DataRequired(),
+        Length(6, 20, u'密码长度不符合规范'),
+        EqualTo('password2', message=u'密码不一致')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
 
     confirmed = BooleanField()
