@@ -38,7 +38,7 @@ $(function () {
         } else if(usernameok==0){
             $(this).next().text('用户名不能为空');
         }else{
-            $(this).next().text('用户名长度应大于6字节，一个汉字3字节"');
+            $(this).next().text('请输入正确长度的用户名');
         }
     });
     //验证手机号
@@ -110,6 +110,7 @@ $(function () {
     });
  
 });
+
 function show(){ 
 var box = document.getElementById("boxmore"); 
 var text = box.innerHTML; 

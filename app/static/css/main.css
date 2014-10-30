@@ -147,6 +147,7 @@ body {
 #contenthead .dropdown-toggle {
     width: 46px;
     font-size: 18px;
+    box-shadow: none;
 }
 
 #contenthead .dropdown-menu > li > a:hover {
@@ -2771,7 +2772,7 @@ input[disabled] {
     background: #FD8F6A;
     width: 335px;
     border-radius: 5px;
-    margin: 20px 2px 40px;
+    margin: 40px 155px 40px;
 }
 .footerhr{
     margin: 0px;
