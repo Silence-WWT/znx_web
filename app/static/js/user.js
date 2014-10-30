@@ -26,6 +26,7 @@ $(function () {
     $('#username').focus(function () {
     }).blur(function () {
         var username=$(this).val();
+        var userurl=$("#userurl").val();
         var usernameok=username.replace (/[^\x00-\xff]/g,"rrr").length;;
         if (usernameok>=6 && usernameok <=64) {
             $(this).next().text('');
@@ -34,6 +35,18 @@ $(function () {
         }else{
             $(this).next().text('请输入正确长度的用户名');
         }
+        $.ajax({
+            type: "POST", //用POST方式传输
+            dataType: "text", //数据格式:JSON
+            url: userurl, //目标地址
+            data: "username=" + username,
+            error: function (data) {
+                $(this).next().text('用户名已经被注册');
+            },
+            success: function (data){
+                $(this).next().text('');
+            }
+        });
     });
     //验证手机号
     $('#cellphone').focus(function () {
