@@ -38,7 +38,7 @@ $(function () {
         } else if(usernameok==0){
             $(this).next().text('用户名不能为空');
         }else{
-            $(this).next().text('请输入正确长度的用户名');
+            $(this).next().text('用户名长度应大于6字节，一个汉字3字节"');
         }
     });
     //验证手机号
@@ -100,8 +100,9 @@ $(function () {
 
     //提交按钮,所有验证通过方可提交
     $('#uerregbtn').click(function () {
+        alert("da");
         if (ok1 && ok2 && ok3 && ok4 && ok5) {
-            alert("da");
+
             $('form').submit();
         } else {
             return false;
@@ -132,7 +133,6 @@ box.appendChild(newBox);
 box.appendChild(btn); 
 } 
 show();
-
 
 var degree = ['','很差','差','中','良','优','未评分'];
 //重新点评
@@ -176,10 +176,7 @@ function addComment2(e,inid,opt,id){
 						}
 						$(v).html(str);
 						$(v).next().html(degree[arr[i]]);
-					
 				})
-				
-				
 				create_show(119);
 			}else{
 				ui.error(data.msg,2000);
