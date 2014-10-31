@@ -67,6 +67,9 @@ $(function () {
                 dataType: "text", //数据格式:JSON
                 url: userurl, //目标地址
                 data: "mobile=" + phonenum,
+                error: function (data) {
+                    $("#cellphone").next().text('用户名已经被注册');
+                },
                 success: function (data) {
                     if (data == "false") {
                         $("#cellphone").next().text('手机号已存在');
