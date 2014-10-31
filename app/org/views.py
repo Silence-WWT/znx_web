@@ -230,3 +230,13 @@ def course_order_detail(id):
 def activity_order_detail(id):
     activity_order = ActivityOrder.query.get_or_404(id)
     return render_template('user_activity_order_det_py.html', order=activity_order)
+
+
+@org.route('/account', methods=['POST'])
+def account():
+    mobile = request.values.get('mobile', '', type=str)
+    if mobile:
+        if Organization.query.filter_by(mobile=mobile).first():
+            return 'false', 500
+        return 'true', 200
+    return 'false', 500

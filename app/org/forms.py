@@ -21,8 +21,11 @@ class RegistrationForm(Form):
                                                  Length(6, 6, u'验证码错误'),
                                                  Captcha('org', 'cellphone')])
     password = PasswordField('Password', validators=[
-        DataRequired(u'必填'), EqualTo('password2', message=u'密码不一致')])
-    password2 = PasswordField('Confirm password', validators=[DataRequired(u'必填')])
+        DataRequired(u'必填'),
+        Length(6, 20, u'密码长度不符合规范'),
+        EqualTo('password2', message=u'密码不一致')])
+    password2 = PasswordField('Confirm password',
+                              validators=[DataRequired(u'必填')])
 
     def validate_cellphone(self, field):
         if Organization.query.filter_by(mobile=field.data).first():
