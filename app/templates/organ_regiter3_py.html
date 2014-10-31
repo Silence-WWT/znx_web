@@ -22,9 +22,6 @@
             </li>
         </ul>
         <div id="organregform">
-            <form action="" method="POST" enctype="multipart/form-data">
-                {{ form.hidden_tag() }}
-                {{ wtf.form_errors(form) }}
                 <div class="upload1">
 
                     <h3 id="about-header1">上传营业执照</h3>
@@ -39,21 +36,28 @@
                             </div>
                         </li>
                         <li>
+                            <form name="{{ certification_form.name }}" action="" method="POST" enctype="multipart/form-data">
+                                {{ certification_form.hidden_tag() }}
+                                {{ wtf.form_errors(photo_form) }}
                             <h3>我的
                                 <button type="submit" class="btn-next anotherbtn"
-                                        onclick="document.getElementById('uploadorginpic').click();return false;">上传本地照片
+                                        onclick="document.getElementById('uploadorginpic').click(); return false">上传本地照片
                                 </button>
-                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic"
+                                <input type="file" name="{{ certification_form.certification.name }}" id="uploadorginpic"
                                        style="display:none"></h3>
                             <h3>
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}"
+                                <div class="anlipic"><img src="{{ url_for('org.pic', filename=current_user.authorization) }}"
                                                           class="img-polaroid"></div>
                             </h3>
+                                </form>
                         </li>
                     </ul>
                 </div>
                 <div style="clear:both;"></div>
                 <div class="upload2">
+                    <form name="{{ photo_form.name }}" action="" method="POST" enctype="multipart/form-data">
+                        {{ photo_form.hidden_tag() }}
+                        {{ wtf.form_errors(photo_form) }}
                     <h3 id="about-header2">上传门店照片</h3>
 
                     <ul class="inline unstyled">
@@ -70,14 +74,15 @@
                                 <button type="submit" class="btn-next anotherbtn"
                                         onclick="document.getElementById('uploadshoppic').click(); return false;">上传本地照片
                                 </button>
-                                <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
+                                <input type="file" name="{{ photo_form.photo.name }}" id="uploadshoppic" style="display:none">
                             </h3>
                             <h3>
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}"
+                                <div class="anlipic"><img src="{{ url_for('org.pic', filename=current_user.photo) }}"
                                                           class="img-polaroid"></div>
                             </h3>
                         </li>
                     </ul>
+                        </form>
                 </div>
                 <div class="controls">
                     <button type="submit" class="btn-next btn-final">完成</button>
