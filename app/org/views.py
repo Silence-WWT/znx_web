@@ -97,14 +97,13 @@ def detail():
         current_user.intro = form.intro.data
         db.session.add(current_user)
         db.session.commit()
-        print form.location_id.data
         # token = user.generate_confirmation_token()
         # TODO: Add token.
         # TODO: add macro in template for errors.
         #send_email(user.email, 'Confirm Your Account',
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.certification'))
     return render_template('organ_regiter2_py.html', form=form)
 
 
@@ -125,20 +124,20 @@ def certification():
         #flash('A confirmation email has been sent to you by email.')
         path = current_app.config['PHOTO_DIR']
 
-        certification = uuid4().hex
         ext = form.certification.data.filename.rsplit('.', 1)[-1]
-        file_path = os.path.join(path, certification+'.'+ext)
+        certification = uuid4().hex + '.' + ext
+        file_path = os.path.join(path, certification)
         form.certification.data.save(file_path)
 
-        photo = uuid4().hex
         ext = form.photo.data.filename.rsplit('.', 1)[-1]
-        file_path = os.path.join(path, photo+'.'+ext)
+        photo = uuid4().hex + '.' + ext
+        file_path = os.path.join(path, photo)
         form.photo.data.save(file_path)
         current_user.authorization = certification
         current_user.photo = photo
         db.session.add(current_user)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('org.course_list'))
     return render_template('organ_regiter3_py.html', form=form)
 
 
