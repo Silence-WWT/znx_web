@@ -5,7 +5,7 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder,\
-    Profession, Property, Size, Location, Class, Activity, City
+    Profession, Property, Size, Location, Class, Activity, City, ClassTime
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
@@ -171,8 +171,28 @@ def add_course():
         course = course_form.create_course()
         db.session.add(course)
         db.session.commit()
+        for time_id in course_form.class_time.data:
+            class_time = ClassTime(class_id=course.id, time_id=time_id)
+            db.session.add(class_time)
+        db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html', form=course_form)
+
+
+@org.route('/course/delete/<int:id>', methods=['POST'])
+@org_permission.require()
+def delete_course(id):
+    course = Class.query.get_or_404(id)
+    if ClassOrder.query.filter_by(class_id=id).first():
+        flash(u'已经有用户选择课程，无法关闭')
+        return redirect(url_for('org.course_list'))
+
+    course.is_closed = True
+    db.session.add(course)
+    db.session.commit()
+    return redirect(url_for('org.course_list'))
+
+
 
 
 @org.route('/course/list')
