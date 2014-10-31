@@ -265,6 +265,84 @@ $('#userregbtn').click(function () {
         return false;
     }
 });
+$('#userregbtn').click(function () {
+    var ok1 = false;
+    var ok2 = false;
+    var ok3 = false;
+    var ok4 = false;
+    var userurl = $("#userurl").val();
+    var isMobile = /^(?:13\d|14\d|15\d|18\d|17\d)\d{5}(\d{3}|\*{3})$/;
+    var phonenum = $('#cellphone').val();
+    if (isMobile.test(phonenum)) {
+        if (isMobile.test(phonenum)) {
+            $.ajax({
+                type: "POST", //用POST方式传输
+                dataType: "text", //数据格式:JSON
+                url: userurl, //目标地址
+                async: false,
+                data: "mobile=" + phonenum,
+                error: function (data) {
+                    ok1 = false;
+                    $("#cellphone").next().text('手机号已存在');
+                    $("#cellphonestatus").val(0);
+                },
+                success: function (data) {
+                    if (data == "false") {
+                        $("#cellphonestatus").val(0);
+                        $("#cellphone").next().text('手机号已存在');
+                    } else {
+                        $("#cellphonestatus").val(1);
+                        $("#cellphone").next().text('');
+                    }
+                }
+
+            });
+            var cellphonestatus = $("#cellphonestatus").val();
+            if (cellphonestatus == "1") {
+                ok1 = true;
+            }
+            else {
+                ok1 = false;
+            }
+
+        }
+
+    } else if (phonenum == "") {
+        $('#cellphone').next().text('手机号码不能为空');
+    } else {
+        $('#cellphone').next().text('请输入正确的手机号');
+    }
+
+    var code = $('#inputVerCode').val();
+    var iscode = /^\d{6}$/;
+    if (iscode.test(code)) {
+        $("#smsinfo").text("");
+        ok2 = true;
+    } else {
+        $("#smsinfo").text('请输入正确的验证码');
+    }
+    var password = $('#password').val();
+    var passwordlength = password.length;
+    if (passwordlength >= 6 && passwordlength <= 20) {
+        $('#password').next().text('');
+        ok3 = true;
+    } else {
+        $('#password').next().text('请输入长度为6到20位的密码');
+    }
+    if ($('#password2').val() != '' && $('#password2').val() == $('#password').val()) {
+        $('#password2').next().text('');
+        ok4 = true;
+    } else {
+        $('#password2').next().text('前后密码不一致');
+    }
+    if (ok1 && ok2 && ok3 && ok4) {
+        $('#orgreg1').submit();
+
+    } else {
+        return false;
+    }
+});
+
 //显示全部
 function show() {
     var box = document.getElementById("boxmore");
