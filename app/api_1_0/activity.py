@@ -82,8 +82,7 @@ def activity_sign_up():
     email = request.args.get('email')
 
     activity = Activity.query.filter_by(id=activity_id).first()
-    user = User.query.filter_by(id=user_id).first()
-    if activity and user and age and mobile and sex:
+    if activity and age and mobile and sex:
         order_profile = OrderProfile(
             user_id=user_id,
             mobile_uuid=uuid,

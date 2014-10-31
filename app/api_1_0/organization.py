@@ -40,7 +40,7 @@ def organization_filter():
             latitude = float(request.args.get('latitude'))
             longitude = float(request.args.get('longitude'))
             delta_latitude = distance / EARTH_CIRCUMFERENCE * 360
-            delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(90 - latitude)) * 360
+            delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) * 360
             org_query = Organization.query.filter(Organization.latitude <= latitude + delta_latitude,
                                                   Organization.latitude >= latitude - delta_latitude,
                                                   Organization.longitude <= longitude + delta_longitude,
@@ -53,7 +53,6 @@ def organization_filter():
             return json.dumps(data)
     else:
         org_query = Organization.query
-
     if city and district:
         location = Location.query.filter_by(city_id=city.id, district=district).first()
         if location:
@@ -86,7 +85,15 @@ def organization_filter():
             'photo': '',
             'intro': org.intro,
         }
+        if distance:
+            delta_latitude = math.fabs(latitude - org.latitude)
+            delta_longitude = math.fabs(longitude - org.longitude)
+            delta_x = delta_latitude * EARTH_CIRCUMFERENCE / 360
+            delta_y = delta_longitude * (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) / 360
+            org_dict['distance'] = math.sqrt(delta_x**2 + delta_y**2)
         data['organizations'].append(org_dict)
+    if distance:
+        data['organizations'].sort(key=lambda x: x['distance'])
     data['status'] = SUCCESS
     return json.dumps(data)
 

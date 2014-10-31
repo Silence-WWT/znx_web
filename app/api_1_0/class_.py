@@ -84,8 +84,7 @@ def class_sign_up():
     time = request.args.get('time')
 
     class_ = Class.query.filter_by(id=class_id).first()
-    user = User.query.filter_by(id=user_id).first()
-    if class_ and user and age and mobile and sex and time and email:
+    if class_ and age and mobile and sex and time and email:
         order_profile = OrderProfile(
             user_id=user_id,
             mobile_uuid=uuid,
