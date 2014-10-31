@@ -426,10 +426,10 @@ $(function () {
             $(this).next().text('');
         } else if(org_namelength==0)
         {
-            $(this).next().text('机构名不能为空');
+            $(this).next().text('机构名必填');
         }
         else {
-            $(this).next().text('请输入合适长度的机构名');
+            $(this).next().text('请填入长度为1到30位的机构名');
         }
 
     });
