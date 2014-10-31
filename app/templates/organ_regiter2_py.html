@@ -24,7 +24,6 @@
         <div id="organregform">
             <form class="form-horizontal" method="post">
                 {{ form.hidden_tag() }}
-                {{ wtf.form_errors(form) }}
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>选择类型</label>
 
@@ -36,8 +35,8 @@
                     <label class="control-label"><i class="form-required"></i>机构名称</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.name.name }}" class="form-control"> <span></span>
-
+                        {{ form.name(class="form-control") }}
+                        <span>{{ helper.field_errors(form.name) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -65,7 +64,8 @@
                     <label class="control-label"><i class="form-required"></i>联系人</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.contact.name }}" class="form-control"> <span></span>
+                        {{ form.contact(class="form-control") }}
+                        <span>{{ helper.field_errors(form.contact) }}</span>
 
                     </div>
                 </div>
@@ -94,14 +94,15 @@
 
                         {% endfor %}
                         </select>
-
+                        <span>{{ helper.field_errors(form.location_id) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>详细地址</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.address.name }}" class="form-control"> <span></span>
+                        {{ form.address(class="form-control", id="org_name") }}
+                        <span>{{ helper.field_errors(form.address) }}</span>
 
                     </div>
                 </div>
@@ -109,7 +110,8 @@
                     <label class="control-label"><i class="form-required"></i>详细介绍</label>
 
                     <div class="controls">
-                        <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea"></textarea> <span></span>
+                        {{ form.intro(class="form-textarea", row="4") }}
+                        <span>{{ helper.field_errors(form.intro) }}</span>
 
                     </div>
                 </div>
