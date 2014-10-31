@@ -36,14 +36,21 @@ class RegistrationForm(Form):
 
 class DetailForm(Form):
     type_id = SelectField(coerce=int)
-    name = StringField()
+    name = StringField('name', validators=[DataRequired(u'必填'),
+                                           Length(1, 30, u'名字长度不符合规范')])
     profession_id = SelectField(coerce=int)
     property_id = SelectField(coerce=int)
     size_id = SelectField(coerce=int)
-    contact = StringField()
+    contact = StringField('contact',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 6, u'联系人长度不符合规范')])
     location_id = SelectField(coerce=int)
-    address = StringField()
-    intro = TextAreaField()
+    address = StringField('address',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 40, u'地址长度不符合规范')])
+    intro = TextAreaField('intro',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 140, u'简介长度不符合规范')])
 
 
 class CertificationForm(Form):

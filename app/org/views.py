@@ -55,7 +55,9 @@ def register():
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
         login_user(organization)
-        return redirect(url_for('main.index'))
+        identity_changed.send(current_app._get_current_object(),
+                              identity=Identity(organization.get_id()))
+        return redirect(url_for('.detail'))
     return render_template('organ_regiter_py.html', form=form)
 
 @org.route('/send_sms', methods=['post'])
