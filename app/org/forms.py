@@ -3,13 +3,11 @@ import uuid
 import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    SelectMultipleField, TextAreaField, BooleanField, RadioField, \
-    DateTimeField, IntegerField
+    TextAreaField, BooleanField, RadioField, DateTimeField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Age, Class, Activity, OrganizationComment,\
-    Time
+from ..models import Organization, Age, Class, Activity, OrganizationComment
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 
@@ -58,9 +56,6 @@ class DetailForm(Form):
 class CertificationForm(Form):
     certification = FileField(validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
-
-
-class PhotoForm(Form):
     photo = FileField(validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
 
@@ -72,24 +67,22 @@ class LoginForm(Form):
 
 
 class CourseForm(Form):
-    name = StringField('name', )
+    name = StringField('name')
     age_id = SelectField('age_id', coerce=int)
-    price = IntegerField('price')
+    price = StringField('price')
     consult_time = StringField('consult_time')
-    days = IntegerField('days')
+    days = StringField('days')
+    # TODO: days int
     is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
                              coerce=int)
     is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')],
                           coerce=int)
     intro = TextAreaField('intro')
     # TODO: add class time.
-    class_time = SelectMultipleField('class_time', coerce=int)
 
     def create_choices(self):
         ages = Age.query.all()
         self.age_id.choices = [(age.id, age.age) for age in ages]
-        self.class_time.choices = [(time.id, time.time)
-                                   for time in Time.query.all()]
 
     def create_course(self):
         # TODO: check is org not user.

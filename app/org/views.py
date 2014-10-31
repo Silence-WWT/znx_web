@@ -7,12 +7,12 @@ from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder,\
     Profession, Property, Size, Location, Class, Activity, City
 from .forms import RegistrationForm, DetailForm, \
-    CertificationForm, LoginForm, CommentForm, PhotoForm
+    CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
 from flask.ext.login import login_user, login_required, current_user
 from flask.ext.principal import identity_changed, Identity
 from flask import redirect, url_for, render_template,\
-    flash, current_app, request, send_file
+    flash, current_app, request
 from ..utils.query import get_location
 from ..permission import org_permission, anonymous_permission, user_permission
 from ..utils.captcha import send_captcha
@@ -110,10 +110,8 @@ def detail():
 @org.route('/certification', methods=['GET', 'POST'])
 @org_permission.require()
 def certification():
-    certification_form = CertificationForm()
-    photo_form = PhotoForm()
-    path = current_app.config['PHOTO_DIR']
-    if certification_form.validate_on_submit():
+    form = CertificationForm()
+    if form.validate_on_submit():
         #organization = Organization(cellphone=form.cellphone.data,
         # #password=form.password.data)
         #db.session.add(organization)
@@ -124,33 +122,24 @@ def certification():
         #send_email(user.email, 'Confirm Your Account',
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
+        path = current_app.config['PHOTO_DIR']
 
-        ext = certification_form.certification.data.filename.rsplit('.', 1)[-1]
-        certification_file = uuid4().hex + '.' + ext
-        file_path = os.path.join(path, certification_file)
-        certification_form.certification.data.save(file_path)
-        current_user.authorization = certification_file
-        db.session.add(current_user)
-        db.session.commit()
+        ext = form.certification.data.filename.rsplit('.', 1)[-1]
+        certification = uuid4().hex + '.' + ext
+        file_path = os.path.join(path, certification)
+        form.certification.data.save(file_path)
 
-    if photo_form.validate_on_submit():
-        ext = photo_form.photo.data.filename.rsplit('.', 1)[-1]
+        ext = form.photo.data.filename.rsplit('.', 1)[-1]
         photo = uuid4().hex + '.' + ext
         file_path = os.path.join(path, photo)
-        photo_form.photo.data.save(file_path)
-
+        form.photo.data.save(file_path)
+        current_user.authorization = certification
         current_user.photo = photo
         db.session.add(current_user)
         db.session.commit()
+        return redirect(url_for('org.course_list'))
+    return render_template('organ_regiter3_py.html', form=form)
 
-    return render_template('organ_regiter3_py.html',
-                           certification_form=certification_form,
-                           photo_form=photo_form)
-@org.route('/pic/<path:filename>')
-def pic(filename):
-    path = current_app.config['PHOTO_DIR']
-    file_path = os.path.join(path, filename)
-    return send_file(file_path)
 
 @org.route('/home/<int:id>', methods=['GET', 'POST'])
 def home(id):
