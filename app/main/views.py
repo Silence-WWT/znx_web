@@ -39,7 +39,7 @@ def register():
 
 @main.route('/')
 def index():
-    registers = Register.query.order_by(Register.id.desc()).limit(6).all()
+    registers = Register.query.order_by(Register.id.desc()).limit(3).all()
     return render_template('index_py.html', registers=registers)
 
 

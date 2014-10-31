@@ -3,13 +3,16 @@ import uuid
 import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField, RadioField, DateTimeField, IntegerField
+    SelectMultipleField, TextAreaField, BooleanField, RadioField, \
+    DateTimeField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Age, Class, Activity, OrganizationComment
+from ..models import Organization, Age, Class, Activity, OrganizationComment,\
+    Time
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
+from ..utils.query import select_multi_checkbox
 
 
 class RegistrationForm(Form):
@@ -21,8 +24,11 @@ class RegistrationForm(Form):
                                                  Length(6, 6, u'验证码错误'),
                                                  Captcha('org', 'cellphone')])
     password = PasswordField('Password', validators=[
-        DataRequired(u'必填'), EqualTo('password2', message=u'密码不一致')])
-    password2 = PasswordField('Confirm password', validators=[DataRequired(u'必填')])
+        DataRequired(u'必填'),
+        Length(6, 20, u'密码长度不符合规范'),
+        EqualTo('password2', message=u'密码不一致')])
+    password2 = PasswordField('Confirm password',
+                              validators=[DataRequired(u'必填')])
 
     def validate_cellphone(self, field):
         if Organization.query.filter_by(mobile=field.data).first():
@@ -33,14 +39,21 @@ class RegistrationForm(Form):
 
 class DetailForm(Form):
     type_id = SelectField(coerce=int)
-    name = StringField()
+    name = StringField('name', validators=[DataRequired(u'必填'),
+                                           Length(1, 30, u'名字长度不符合规范')])
     profession_id = SelectField(coerce=int)
     property_id = SelectField(coerce=int)
     size_id = SelectField(coerce=int)
-    contact = StringField()
+    contact = StringField('contact',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 6, u'联系人长度不符合规范')])
     location_id = SelectField(coerce=int)
-    address = StringField()
-    intro = TextAreaField()
+    address = StringField('address',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 40, u'地址长度不符合规范')])
+    intro = TextAreaField('intro',
+                          validators=[DataRequired(u'必填'),
+                                      Length(1, 140, u'简介长度不符合规范')])
 
 
 class CertificationForm(Form):
@@ -59,9 +72,9 @@ class LoginForm(Form):
 class CourseForm(Form):
     name = StringField('name')
     age_id = SelectField('age_id', coerce=int)
-    price = StringField('price')
+    price = IntegerField('price')
     consult_time = StringField('consult_time')
-    days = StringField('days')
+    days = IntegerField('days')
     # TODO: days int
     is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
                              coerce=int)
@@ -69,10 +82,13 @@ class CourseForm(Form):
                           coerce=int)
     intro = TextAreaField('intro')
     # TODO: add class time.
+    class_time = SelectMultipleField('class_time', coerce=int, widget=select_multi_checkbox)
 
     def create_choices(self):
         ages = Age.query.all()
         self.age_id.choices = [(age.id, age.age) for age in ages]
+        self.class_time.choices = [(time.id, time.time)
+                                   for time in Time.query.all()]
 
     def create_course(self):
         # TODO: check is org not user.

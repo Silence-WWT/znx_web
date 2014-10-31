@@ -5,7 +5,7 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder,\
-    Profession, Property, Size, Location, Class, Activity, City
+    Profession, Property, Size, Location, Class, Activity, City, ClassTime
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
@@ -55,7 +55,9 @@ def register():
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
         login_user(organization)
-        return redirect(url_for('main.index'))
+        identity_changed.send(current_app._get_current_object(),
+                              identity=Identity(organization.get_id()))
+        return redirect(url_for('.detail'))
     return render_template('organ_regiter_py.html', form=form)
 
 @org.route('/send_sms', methods=['post'])
@@ -80,8 +82,9 @@ def detail():
                             for t in Size.query.all()]
     form.location_id.choices = [(t.id, t.district)
                                 for t in Location.query.all()]
+    form.city_id = City.query.all()
         # TODO: correct choose form.
-    form.location = get_location()
+    form.location = Location.query.all()
     if form.validate_on_submit():
         current_user.type_id = form.type_id.data
         current_user.name = form.name.data
@@ -94,14 +97,13 @@ def detail():
         current_user.intro = form.intro.data
         db.session.add(current_user)
         db.session.commit()
-        print form.location_id.data
         # token = user.generate_confirmation_token()
         # TODO: Add token.
         # TODO: add macro in template for errors.
         #send_email(user.email, 'Confirm Your Account',
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.certification'))
     return render_template('organ_regiter2_py.html', form=form)
 
 
@@ -122,20 +124,20 @@ def certification():
         #flash('A confirmation email has been sent to you by email.')
         path = current_app.config['PHOTO_DIR']
 
-        certification = uuid4().hex
         ext = form.certification.data.filename.rsplit('.', 1)[-1]
-        file_path = os.path.join(path, certification+'.'+ext)
+        certification = uuid4().hex + '.' + ext
+        file_path = os.path.join(path, certification)
         form.certification.data.save(file_path)
 
-        photo = uuid4().hex
         ext = form.photo.data.filename.rsplit('.', 1)[-1]
-        file_path = os.path.join(path, photo+'.'+ext)
+        photo = uuid4().hex + '.' + ext
+        file_path = os.path.join(path, photo)
         form.photo.data.save(file_path)
         current_user.authorization = certification
         current_user.photo = photo
         db.session.add(current_user)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('org.course_list'))
     return render_template('organ_regiter3_py.html', form=form)
 
 
@@ -169,8 +171,29 @@ def add_course():
         course = course_form.create_course()
         db.session.add(course)
         db.session.commit()
+        for time_id in course_form.class_time.data:
+            class_time = ClassTime(class_id=course.id, time_id=time_id)
+            db.session.add(class_time)
+        db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html', form=course_form)
+
+
+# TODO: delete course with delete method.
+@org.route('/course/delete/<int:id>')
+@org_permission.require()
+def delete_course(id):
+    course = Class.query.get_or_404(id)
+    #if ClassOrder.query.filter_by(class_id=id).first():
+    #    flash(u'已经有用户选择课程，无法关闭')
+    #    return redirect(url_for('org.course_list'))
+
+    course.is_closed = True
+    db.session.add(course)
+    db.session.commit()
+    return redirect(url_for('org.course_list'))
+
+
 
 
 @org.route('/course/list')
@@ -230,3 +253,13 @@ def course_order_detail(id):
 def activity_order_detail(id):
     activity_order = ActivityOrder.query.get_or_404(id)
     return render_template('user_activity_order_det_py.html', order=activity_order)
+
+
+@org.route('/account', methods=['POST'])
+def account():
+    mobile = request.values.get('mobile', '', type=str)
+    if mobile:
+        if Organization.query.filter_by(mobile=mobile).first():
+            return 'false', 500
+        return 'true', 200
+    return 'false', 500

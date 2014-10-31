@@ -62,7 +62,7 @@
                 {% for register in registers %}
                 <li>
                     <h5>{{ register.need }}</h5>
-                   <p><span class="regname">{{ register.name }}</span><span class="regmob">{{ register.mobile }}</span><span class="regtime">{{ register.get_date() }}</span></p>
+                   <p><span class="regname">{{ register.name|anonymous_name }}</span><span class="regmob">{{ register.mobile|anonymous_mobile }}</span><span class="regtime">{{ register.get_date() }}</span></p>
                 </li>
                 {% endfor %}
             </ul>

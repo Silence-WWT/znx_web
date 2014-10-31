@@ -32,7 +32,9 @@ a:hover {
     text-decoration: none;
     color: #00B98D;
 }
-
+input:-webkit-autofill,input:-webkit-autofill:focus{
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 .active a {
     color: #00B98D;
 }
@@ -1371,6 +1373,7 @@ body {
 
 #usertest li .leftuser span {
     float: left;
+    margin-left: -15px;
 }
 
 #usercomment1, #usercomment2 {
@@ -1739,6 +1742,7 @@ body {
     font-size: 20px;
     color: #292929;
     line-height: 24px;
+    width: 650px;
 }
 
 #lead #myCarousel .carousel-inner {
@@ -1839,7 +1843,7 @@ body {
     font-size: 18px;
     padding-left: 10px;
     background: #fff;
-    margin-left: -10px;
+    margin-left: 0px;
     width: 330px;
     height: 42px;
 }
@@ -2354,7 +2358,7 @@ body {
 }
 
 #regmessage {
-    width: 162px;
+    width: 182px;
     text-align: center;
 
 }
@@ -2392,7 +2396,7 @@ body {
 #smsinfo {
     color: #FF2424;
     float: right;
-    margin-right: 98px;
+    margin-right: 83px;
     margin-bottom: -20px;
     width: 160px;
     text-align: center;
@@ -2804,4 +2808,32 @@ input[disabled] {
 #guestbook .form-horizontal .qqdiv {
     margin: 10px 197px 32px;
     float: left;
+}
+
+#uploadok1,#uploadok2{
+    margin: 26px 14px 0px;
+    display: none;
+    float: left;
+
+}
+
+#large2,#large1{
+    position: absolute;
+    top: 100px;
+    left:0px;
+    width: 800px;
+
+}
+#large2{
+    top:400px;
+}
+
+.closebtn{
+    border: 0px none;
+    color: #727272;
+    padding: 5px 30px;
+    border-radius: 4px;
+    outline: medium none;
+    background: #F0F0F0;
+    cursor: default;
 }

@@ -13,5 +13,14 @@ def sex(s):
     else:
         return u'女'
 
+
 def get_date_time(timestamp):
     return time.strftime('%Y-%m-%d %H:%M', time.localtime(timestamp))
+
+
+def anonymous_name(name):
+    return name[0]+u'同学'
+
+
+def anonymous_mobile(mobile):
+    return mobile[0:3]+'xxxxx'+ mobile[-3:]

@@ -40,18 +40,19 @@
                         </li>
                         <li>
                             <h3>我的
-                                <button type="submit" class="btn-next anotherbtn"
-                                        onclick="document.getElementById('uploadorginpic').click();return false;">上传本地照片
-                                </button>
-                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic"
-                                       style="display:none"></h3>
+                                <button type="button" class="btn-next anotherbtn" id="organupload">上传本地照片</button></h3>
+                            <i class="icon-ok" id="uploadok1"></i>
+                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display: none;">
+
                             <h3>
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/anli2.jpg') }}"
-                                                          class="img-polaroid"></div>
+
+                                <div class="anlipic"><img src="{{ url_for('static', filename='images/footerlogo.png') }}" class="img-polaroid" id="uploadpic1"/></div>
                             </h3>
                         </li>
                     </ul>
                 </div>
+                <div id="large1"></div>
+
                 <div style="clear:both;"></div>
                 <div class="upload2">
                     <h3 id="about-header2">上传门店照片</h3>
@@ -67,18 +68,19 @@
                         </li>
                         <li>
                             <h3>我的
-                                <button type="submit" class="btn-next anotherbtn"
-                                        onclick="document.getElementById('uploadshoppic').click(); return false;">上传本地照片
-                                </button>
-                                <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
+                                <button type="button" class="btn-next anotherbtn" id="shopupload">上传本地照片 </button>
                             </h3>
+                            <i class="icon-ok" id="uploadok2"></i>
+                                <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
+
                             <h3>
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/mendian2.jpg') }}"
-                                                          class="img-polaroid"></div>
+                                <div class="anlipic"><img src="{{ url_for('static', filename='images/footerlogo.png') }}" class="img-polaroid"
+                                        id="uploadpic2"/></div>
                             </h3>
                         </li>
                     </ul>
                 </div>
+                <div id="large2"></div>
                 <div class="controls">
                     <button type="submit" class="btn-next btn-final">完成</button>
                 </div>

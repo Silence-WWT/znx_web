@@ -98,11 +98,11 @@ def account():
     username = request.values.get('username', u'', type=unicode)
     if username:
         if User.query.filter_by(username=username).first():
-            return 'false'
-        return 'true'
+            return 'false', 500
+        return 'true', 200
     mobile = request.values.get('mobile', '', type=str)
     if mobile:
         if User.query.filter_by(mobile=mobile).first():
-            return 'false'
-        return 'true'
-    return 'false'
+            return 'false', 500
+        return 'true', 200
+    return 'false', 500

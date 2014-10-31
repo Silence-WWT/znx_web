@@ -40,12 +40,16 @@
                             <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>
 
                             <div class="actrighta">
+                                {% if course.is_closed %}
+                                    <button class="closebtn">已关闭</button>
+                                {% else %}
                                 <a>
                                     <button class="btn-edit">编辑</button>
                                 </a>
-                                <a class="deleclass" id="myclass1">
-                                    <button class="btn-det">删除</button>
+                                <a class="deleclass"  href="{{ url_for('org.delete_course', id=course.id) }}" onClick="return confirm('关闭课程吗？')">
+                                    <button class="btn-det">关闭</button>
                                 </a>
+                                {% endif %}
 
                             </div>
                         </div>
@@ -66,19 +70,5 @@
 {% block inscript %}
 <script type="text/javascript">
 
-    $(function () {
-        $(".deleclass").click(function () {
-            var id = $(this).attr("id");
-            //alert(id);
-            var r = confirm("删除课程？");
-            if (r == true) {
-                alert("你删除的课程是" + id);
-            }
-            else {
-                //alert("You pressed Cancel!");
-            }
-        })
-
-    })
 </script>
 {% endblock inscript %}
