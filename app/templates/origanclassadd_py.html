@@ -53,22 +53,23 @@
                     <div class="control-group">
                         <label class="control-label">价格</label>
 
-                        <div class="controls">
-                            <input type="text" name="{{ form.price.name }}" class="form-control"/>
+                        <div class="input-append" id="mysetyuan">
+                            <input type="text" name="{{ form.price.name }}" class="form-control" id="appendedPrependedInput" placeholder="请输入整数"/>
+                            <span class="add-on">元</span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <label class="control-label">总课时</label>
+                        <label class="control-label">上课天数</label>
 
                         <div class="controls">
-                            <input type="text" name="{{ form.days.name }}" class="form-control"/>
+                            <input type="text" name="{{ form.days.name }}" class="form-control" placeholder="请输入整数"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">咨询时间</label>
 
                         <div class="controls">
-                            <input type="text" name="{{ form.consult_time.name }}" class="form-control"/>
+                            <input type="text" name="{{ form.consult_time.name }}" class="form-control" placeholder="可以咨询时间段，类似于9:00-21:00"/>
                         </div>
                     </div>
                     <div class="control-group">

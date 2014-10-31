@@ -2489,9 +2489,11 @@ input[disabled] {
 
 #myclassset .checkbox {
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: -5px;
 }
-
+#myclassset #class_time{
+    margin-left: 5px;
+}
 #myorderdet > div.myorderxq > h3 {
     font-size: 18px;
 
@@ -2836,4 +2838,17 @@ input[disabled] {
     outline: medium none;
     background: #F0F0F0;
     cursor: default;
+}
+#mysetyuan .form-control{
+    width: 280px;
+    margin-left: 20px;
+}
+#mysetyuan span{
+    height: 32px;
+    width: 30px;
+    font-size: 18px;
+    line-height: 30px;
+}
+#age_id{
+    margin-left: 20px;
 }
