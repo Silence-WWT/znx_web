@@ -82,8 +82,9 @@ def detail():
                             for t in Size.query.all()]
     form.location_id.choices = [(t.id, t.district)
                                 for t in Location.query.all()]
+    form.city_id = City.query.all()
         # TODO: correct choose form.
-    form.location = get_location()
+    form.location = Location.query.all()
     if form.validate_on_submit():
         current_user.type_id = form.type_id.data
         current_user.name = form.name.data

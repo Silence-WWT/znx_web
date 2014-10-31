@@ -76,7 +76,7 @@
 
                         <select id="city" class="form-control">
                             <option selected="selected" value="0">----请选择城市----</option>
-                            {% for city in form.city_id.iterkeys() %}
+                            {% for city in form.city_id %}
                             <option value="{{ city.id }}">{{ city.city }}</option>
                             {% endfor %}
                         </select>
@@ -86,9 +86,6 @@
                     <label class="control-label"><i class="form-required"></i>区域</label>
 
                     <div class="controls form-control">
-                        <select class="district" id="dropFrame">
-                            <option>----请选择区域----</option>
-                        </select>
                         <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
                             <option selected="selected" value="0">----请选择区域----</option>
                         {% for location in form.location %}
@@ -96,6 +93,7 @@
                             <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}</option>
 
                         {% endfor %}
+                        </select>
 
                     </div>
                 </div>
