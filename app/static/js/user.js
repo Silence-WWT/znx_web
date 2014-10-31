@@ -474,6 +474,60 @@ $('#orgreg2').click(function () {
     }
 
 });
+//简历一个可以取图片地址的url
+function getObjectURL(file) {
+    var url = null ;
+    if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+}
+$(function(){
+    $("#organupload").click(function(){
+        $("#uploadorginpic").click();
+        $("#uploadorginpic").live('change',function(){
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+                $("#uploadpic1").attr("src", objUrl) ;
+                $("#uploadpic1").css('cursor','pointer');
+                var ei = $("#large1");
+                ei.hide();
+                $("#uploadpic1").mousemove(function(e){
+                    ei.css({top:e.pageY-400,left:e.pageX}).html('<img style="border:1px solid gray;" src="' + this.src + '" />').show();
+                }).mouseout( function(){
+                    ei.hide("slow");
+                })
+            }
+            $("#uploadok1").css('display','block');
+        });
+    });
+    $("#shopupload").click(function(){
+        $("#uploadshoppic").click();
+        $("#uploadshoppic").live('change',function(){
+            var objUrl = getObjectURL(this.files[0]) ;
+            console.log("objUrl = "+objUrl) ;
+            if (objUrl) {
+                $("#uploadpic2").attr("src", objUrl) ;
+                $("#uploadpic2").css('cursor','pointer');
+                var ei1 = $("#large2");
+                ei1.hide();
+                $("#uploadpic2").mousemove(function(e){
+
+                    ei1.css({top:e.pageY,left:e.pageX}).html('<img style="border:1px solid gray;" src="' + this.src + '" />').show();
+                }).mouseout( function(){
+                    ei1.hide("slow");
+                })
+            }
+            $("#uploadok2").css('display','block');
+        });
+    });
+
+})
 //显示全部
 function show() {
     var box = document.getElementById("boxmore");

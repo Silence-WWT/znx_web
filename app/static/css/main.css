@@ -2810,3 +2810,9 @@ input[disabled] {
     float: left;
 }
 
+#uploadok1,#uploadok2{
+    margin: 26px 14px 0px;
+    display: none;
+    float: left;
+
+}
