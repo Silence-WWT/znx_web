@@ -462,7 +462,7 @@ $(function () {
     $('#org_intro').focus(function () {
     }).blur(function () {
         var org_intro = $(this).val();
-        var org_introlength=org_address.length;
+        var org_introlength=org_intro.length;
         if (org_introlength>=4&& org_introlength<=140) {
             $(this).next().text('');
         } else if(org_introlength==0){
