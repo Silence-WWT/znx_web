@@ -63,13 +63,13 @@
     {% block navbar %}
 
     {% endblock navbar %}
-    {% block content %}
     {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-        {{ message }}
-    </div>
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
     {% endfor %}
+    {% block content %}
     {% endblock content %}
     {% block footer %}
     <div id="goup"></div>
