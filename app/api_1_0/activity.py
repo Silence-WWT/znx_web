@@ -65,8 +65,9 @@ def activity_detail():
 def activity_sign_up():
     data = {}
     activity_id = request.args.get('activity')
+    user_id = request.args.get('user_id')
+    uuid = request.args.get('uuid')
     try:
-        username = request.args.get('username').encode('utf8')
         name = request.args.get('name').encode('utf8')
         address = request.args.get('address').encode('utf8')
     except AttributeError:
@@ -81,11 +82,18 @@ def activity_sign_up():
     email = request.args.get('email')
 
     activity = Activity.query.filter_by(id=activity_id).first()
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(id=user_id).first()
     if activity and user and age and mobile and sex:
+        order_profile = OrderProfile(
+            user_id=user_id,
+            mobile_uuid=uuid,
+            web_uuid=''
+        )
+        db.session.add(order_profile)
+        db.session.commit()
         activity_order = ActivityOrder(
             activity_id=activity_id,
-            user_id=user.id,
+            order_profile_id=order_profile.id,
             name=name,
             mobile=mobile,
             age=age,
@@ -114,13 +122,13 @@ def activity_comment():
     data = {}
     activity_id = request.args.get('activity')
     stars = request.args.get('stars')
+    user_id = request.args.get('user_id')
     try:
-        username = request.args.get('username').encode('utf8')
         comment = request.args.get('comment').encode('utf8')
     except AttributeError:
         data['status'] = LACK_OF_PARAMETER
         return json.dumps(data)
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(id=user_id).first()
     activity = Activity.query.filter_by(id=activity_id).first()
     if user and activity and u'1' <= stars <= u'5' and len(stars) == 1:
         activity_comment_ = ActivityComment(
@@ -157,7 +165,9 @@ def activity_comment_list():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
-        comment_list = ActivityComment.query.filter_by(activity_id=activity_id).paginate(page, PER_PAGE, False).items
+        comment_list = ActivityComment.query.filter_by(activity_id=activity_id).\
+            order_by(-ActivityComment.created).\
+            paginate(page, PER_PAGE, False).items
         for comment in comment_list:
             user = User.query.get(comment.user_id)
             comment_dict = {

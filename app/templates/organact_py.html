@@ -86,12 +86,13 @@
                             src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
                     <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog"
                          aria-labelledby="myModalLabel" aria-hidden="true">
+                        <form action="" method="post" class="form-horizontal">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h3 id="myCommentLabel">写评价，攒人品！</h3>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="post" class="form-horizontal">
+
                                 {{ form.hidden_tag() }}
                                 {{ wtf.form_errors(form) }}
                             <div class="control-group">
@@ -169,7 +170,13 @@
 </div>
 {% endblock content %}
 
-
+{% block inscript %}
+    <script type="text/javascript">
+        $(function(){
+            show();
+        })
+    </script>
+{% endblock inscript %}
 
 
 

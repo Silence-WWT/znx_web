@@ -11,12 +11,7 @@ from api_constants import *
 @api.route('/order_list')
 def order_list():
     data = {}
-    mobile = request.args.get('mobile')
-    try:
-        username = request.args.get('username').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
+    user_id = request.args.get('user_id')
     try:
         page = int(request.args.get('page'))
     except TypeError:
@@ -24,7 +19,7 @@ def order_list():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
-    user = User.query.filter_by(username=username, mobile=mobile).first()
+    user = User.query.get(user_id)
     if user:
         orders_list = []
         class_orders = ClassOrder.query.filter_by(user_id=user.id)\
@@ -63,16 +58,11 @@ def order_list():
 @api.route('/class_order_detail')
 def class_order_detail():
     data = {}
-    try:
-        username = request.args.get('username').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
-    mobile = request.args.get('mobile')
+    user_id = request.args.get('user_id')
     class_order_id = request.args.get('class_order')
-    user = User.query.filter_by(username=username, mobile=mobile).first()
+    user = User.query.get(user_id)
     if user:
-        class_order = ClassOrder.query.filter_by(id=class_order_id).first()
+        class_order = ClassOrder.query.get(class_order_id)
         if not class_order:
             data['status'] = ORDER_NOT_EXIST
             return json.dumps(data)
@@ -101,16 +91,11 @@ def class_order_detail():
 @api.route('/activity_order_detail')
 def activity_order_detail():
     data = {}
-    try:
-        username = request.args.get('username').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
-    mobile = request.args.get('mobile')
+    user_id = request.args.get('user_id')
     activity_order_id = request.args.get('activity_order')
-    user = User.query.filter_by(username=username, mobile=mobile).first()
+    user = User.query.get(user_id)
     if user:
-        activity_order = ActivityOrder.query.filter_by(id=activity_order_id).first()
+        activity_order = ActivityOrder.query.get(activity_order_id)
         if not activity_order:
             data['status'] = ORDER_NOT_EXIST
             return json.dumps(data)
@@ -132,4 +117,19 @@ def activity_order_detail():
         data['status'] = SUCCESS
     else:
         data['status'] = USER_NOT_EXIST
+    return json.dumps(data)
+
+
+@api.route('/order_synchronize')
+def order_synchronize():
+    data = {}
+    user_id = request.args.get('user_id')
+    uuid = request.args.get('uuid')
+    if not User.query.filter_by(id=user_id).first():
+        data['status'] = USER_NOT_EXIST
+    else:
+        order_profile_list = OrderProfile.query.filter_by(uuid=uuid, user_id='')
+        for order_profile in order_profile_list:
+            order_profile.user_id = user_id
+        data['status'] = SUCCESS
     return json.dumps(data)

@@ -20,7 +20,7 @@ def requirement_list():
     except ValueError:
         data['status'] = PARAMETER_ERROR
         return json.dumps(data)
-    register_list = Register.query.paginate(page, PER_PAGE, False).items
+    register_list = Register.query.order_by(-Register.created).paginate(page, PER_PAGE, False).items
     for register in register_list:
         if len(register.name) == 2 or len(register.name) == 3:
             last_name = register.name[:1]

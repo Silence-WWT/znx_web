@@ -33,7 +33,7 @@ register
         mobile
         identity
         email
-        
+
 login
 ----
     URL:
@@ -53,7 +53,7 @@ login
         mobile
         email
         identity
-        
+
 organization_filter
 ---
     URL:
@@ -83,7 +83,7 @@ organization_filter
             district
             photo: url of photo
             intro
-        
+
 organization_detail
 ---
     URL:
@@ -111,16 +111,16 @@ organization_detail
             comments_count
             stars: a float number for stars
             traffic
-    
+
 organization_comment
 ---
     URL:
-        /api/v1.0/organization_comment?organization=&username&comment=&stars=
+        /api/v1.0/organization_comment?organization=&user_id&comment=&stars=
     method:
         get
     parameters:
         organization: id of organization
-        username
+        user_id
         comment
         stars
     json:
@@ -147,7 +147,7 @@ organization_comment_list
             stars
             created
             username
-        
+
 class_list
 ---
     URL:
@@ -168,7 +168,7 @@ class_list
             age
             price
             days
-    
+
 class_detail
 ---
     URL:
@@ -195,16 +195,16 @@ class_detail
             end_time
             comments_count
             days
-    
+
 class_sign_up
 ---
     URL:
-        /api/v1.0/class_sign_up?class=&username=&name=&mobile=&age=&sex=&address=&remark=&email=&time=
+        /api/v1.0/class_sign_up?class=&user_id=&name=&mobile=&age=&sex=&address=&remark=&email=&time=
     method:
         get
     parameters:
         class: id of class
-        username
+        user_id
         name
         mobile
         age
@@ -217,16 +217,16 @@ class_sign_up
         {"status": 0}
         
         status: 0 for success, 5002 for lack of parameters
-    
+
 class_comment
 ---
     URL:
-        /api/v1.0/class_comment?class=&username&comment=&stars=
+        /api/v1.0/class_comment?class=&user_id&comment=&stars=
     method:
         get
     parameters:
         class: id of class
-        username
+        user_id
         comment
         stars
     json:
@@ -253,7 +253,7 @@ class_comment_list
             stars
             created
             username
-            
+
 activity_list
 ---
     URL:
@@ -305,12 +305,12 @@ activity_detail
 activity_sign_up
 ---
     URL:
-        /api/v1.0/activity_sign_up?class=&username=&name=&mobile=&age=&sex=&address=&remark=&email=
+        /api/v1.0/activity_sign_up?class=&user_id=&name=&mobile=&age=&sex=&address=&remark=&email=
     method:
         get
     parameters:
         class: id of class
-        username
+        user_id
         name
         mobile
         age
@@ -326,12 +326,12 @@ activity_sign_up
 activity_comment
 ---
     URL:
-        /api/v1.0/activity_comment?activity=&username&comment=&stars=
+        /api/v1.0/activity_comment?activity=&user_id&comment=&stars=
     method:
         get
     parameters:
         activity: id of activity
-        username
+        user_id
         comment
         stars
     json:
@@ -358,16 +358,15 @@ activity_comment_list
             stars
             created
             username
-            
+
 order_list
 ---
     URL:
-        /api/v1.0/order_list?username=&mobile=&page=
+        /api/v1.0/order_list?user_id=&page=
     method:
         get
     parameters:
-        username
-        mobile
+        user_id
         page
     json:
         {"status": 0,
@@ -379,16 +378,29 @@ order_list
          class_name/activity_name
          created
          org_name
-         
-class_order_detail
+
+order_synchronize
 ---
     URL:
-        /api/v1.0/order_list?username=&mobile=&class_order=
+        /api/v1.0/order_synchronize?user_id=&uuid=
     method:
         get
     parameters:
-        username
-        mobile
+        user_id
+        uuid
+    json:
+        {"status":0}
+        
+        status: 0 for success, 1003 for user not exist
+
+class_order_detail
+---
+    URL:
+        /api/v1.0/order_list?user_id=&class_order=
+    method:
+        get
+    parameters:
+        user_id
         class_order
     json:
         {"status": 0,
@@ -407,16 +419,15 @@ class_order_detail
             email
             address: user's address
             remark: user's remark of this class
-    
+
 activity_order_detail
 ---
     URL:
-        /api/v1.0/order_list?username=&mobile=&activity_order=
+        /api/v1.0/order_list?user_id=&activity_order=
     method:
         get
     parameters:
-        username
-        mobile
+        user_id
         activity_order
     json:
         {"status": 0,
@@ -434,7 +445,7 @@ activity_order_detail
             email
             address: user's address
             remark: user's remark of this activity
-    
+
 requirement_list
 ---
     URL:
@@ -483,6 +494,18 @@ get_district_profession
         status: 0 for success, 3000 for city not exist
         districts: a list of districts in city
         professions: a list of professions
+
+get_cities
+---
+    URL:
+        /api/v1.0/get_cities
+    method:
+        get
+    json:
+        {"status": 0, "cities": [""]}
+        
+        status: 0 for success
+        cities: a list of the name of cities
 
 CONSTANTS
 ---

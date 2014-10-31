@@ -127,15 +127,15 @@ def organization_detail():
 @api.route('/organization_comment')
 def organization_comment():
     data = {}
+    user_id = request.args.get('user_id')
     try:
-        username = request.args.get('username').encode('utf8')
         comment = request.args.get('comment').encode('utf8')
     except AttributeError:
         data['status'] = LACK_OF_PARAMETER
         return json.dumps(data)
     organization_id = request.args.get('organization')
     stars = request.args.get('stars')
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(id=user_id).first()
     organization = Organization.query.filter_by(id=organization_id).first()
     if user and organization and u'1' <= stars <= u'5' and len(stars) == 1:
         org_comment = OrganizationComment(
@@ -174,9 +174,11 @@ def organization_comment_list():
     organization_id = request.args.get('organization')
     organization = Organization.query.filter_by(id=organization_id).first()
     if organization:
-        comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
+        comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).\
+            order_by(-OrganizationComment.created).\
+            paginate(page, PER_PAGE, False).items
         for comment in comment_list:
-            user = User.query.filter_by(id=comment.user_id).first()
+            user = User.query.get(comment.user_id)
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
