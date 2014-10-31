@@ -6,7 +6,7 @@
         $.fn.goup.defaultOpts = {
             appear: 200,
             scrolltime: 800,
-            imgsrc: "../static/images/top_arrow.png",
+            imgsrc: "http://news.csdn.net/images/top_arrow.png",
             width: 90,
             place: "bottom-right",
             fadein: 500,
@@ -77,7 +77,7 @@ $(document).ready(function() {
         width: "40px",
         scrolltime: 800,
         appear: 600,
-        imgsrc: '../static/images/top_arrow.png',
+        imgsrc: 'http://news.csdn.net/images/top_arrow.png',
         place: "bottom-right",
         fadein: 300,
         fadeout: 500,
