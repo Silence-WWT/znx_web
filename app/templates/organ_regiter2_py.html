@@ -72,9 +72,9 @@
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>城市</label>
 
-                    <div class="controls form-control">
+                    <div class="controls ">
 
-                        <select id="dropLang" class="form-control">
+                        <select id="dropLang" class="district" >
                             <option selected="selected" value="0">----请选择城市----</option>
                             {% for city in form.city_id %}
                             <option value="{{ city.id }}">{{ city.city }}</option>
@@ -85,7 +85,7 @@
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>区域</label>
 
-                    <div class="controls form-control">
+                    <div class="controls">
                         <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
                             <option selected="selected" value="0">----请选择区域----</option>
                         {% for location in form.location %}
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button type="submit" class="btn-next">下一步</button>
+                    <button type="submit" class="btn-next" id="orgreg2">下一步</button>
                 </div>
             </form>
         </div>
