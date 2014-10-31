@@ -491,7 +491,9 @@ $(function(){
                 var ei = $("#large1");
                 ei.hide();
                 $("#uploadpic1").mousemove(function(e){
+
                     ei.html('<img style="border:1px solid gray;" src="' + this.src + '" />').show();
+
                 }).mouseout( function(){
                     ei.hide("slow");
                 })
@@ -511,7 +513,9 @@ $(function(){
                 ei1.hide();
                 $("#uploadpic2").mousemove(function(e){
 
+
                     ei1.html('<img style="border:1px solid gray;" src="' + this.src + '" />').show();
+
                 }).mouseout( function(){
                     ei1.hide("slow");
                 })

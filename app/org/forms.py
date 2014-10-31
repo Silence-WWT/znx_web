@@ -3,13 +3,16 @@ import uuid
 import time
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
-    TextAreaField, BooleanField, RadioField, DateTimeField, IntegerField
+    SelectMultipleField, TextAreaField, BooleanField, RadioField, \
+    DateTimeField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
-from ..models import Organization, Age, Class, Activity, OrganizationComment
+from ..models import Organization, Age, Class, Activity, OrganizationComment,\
+    Time
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
+from ..utils.query import select_multi_checkbox
 
 
 class RegistrationForm(Form):
@@ -69,9 +72,9 @@ class LoginForm(Form):
 class CourseForm(Form):
     name = StringField('name')
     age_id = SelectField('age_id', coerce=int)
-    price = StringField('price')
+    price = IntegerField('price')
     consult_time = StringField('consult_time')
-    days = StringField('days')
+    days = IntegerField('days')
     # TODO: days int
     is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
                              coerce=int)
@@ -79,10 +82,13 @@ class CourseForm(Form):
                           coerce=int)
     intro = TextAreaField('intro')
     # TODO: add class time.
+    class_time = SelectMultipleField('class_time', coerce=int, widget=select_multi_checkbox)
 
     def create_choices(self):
         ages = Age.query.all()
         self.age_id.choices = [(age.id, age.age) for age in ages]
+        self.class_time.choices = [(time.id, time.time)
+                                   for time in Time.query.all()]
 
     def create_course(self):
         # TODO: check is org not user.

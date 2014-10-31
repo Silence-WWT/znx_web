@@ -2816,6 +2816,7 @@ input[disabled] {
     float: left;
 
 }
+
 #large2,#large1{
     position: absolute;
     top: 100px;
@@ -2826,3 +2827,4 @@ input[disabled] {
 #large2{
     top:400px;
 }
+
