@@ -416,7 +416,64 @@ function addComment2(e, inid, opt, id) {
         }
     })
 }
+//机构注册第二步的验证
+$(function () {
+    $('#org_name').focus(function () {
+    }).blur(function () {
+        var org_name = $(this).val();
+        var org_namelength = org_name.length;
+        if (org_namelength >= 1 && org_namelength <= 30) {
+            $(this).next().text('');
+        } else if(org_namelength==0)
+        {
+            $(this).next().text('机构名不能为空');
+        }
+        else {
+            $(this).next().text('请输入合适长度的机构名');
+        }
 
+    });
+    $('#org_contact').focus(function () {
+    }).blur(function () {
+        var org_contact = $(this).val();
+        var org_contactlength=org_contact.length;
+        if (org_contactlength>=1 && org_contactlength<=6) {
+            $(this).next().text('');
+        } else if(org_contactlength==0){
+            $(this).next().text('联系人必填');
+        }else {
+            $(this).next().text('请填入长度为1到6位的联系人姓名');
+        }
+
+    });
+    $('#org_address').focus(function () {
+    }).blur(function () {
+        var org_address = $(this).val();
+        var org_addresslength=org_address.length;
+        if (org_addresslength>4&& org_addresslength<=40) {
+            $(this).next().text('');
+        } else if(org_addresslength==0){
+            $(this).next().text('详细地址必填');
+        } else{
+            $(this).next().text('请填入长度为4到40位的地址');
+        }
+
+    });
+    $('#org_intro').focus(function () {
+    }).blur(function () {
+        var org_intro = $(this).val();
+        var org_introlength=org_address.length;
+        if (org_introlength>4&& org_introlength<=140) {
+            $(this).next().text('');
+        } else if(org_introlength==0){
+            $(this).next().text('详细介绍必填');
+        } else{
+            $(this).next().text('请填入长度为4到140位的详细介绍');
+        }
+
+    });
+
+})
 $(function () {
     //点星星
     $(document).on('mouseover', 'i[cjmark]', function () {
