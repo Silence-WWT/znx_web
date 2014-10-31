@@ -74,7 +74,7 @@
 
                     <div class="controls form-control">
 
-                        <select id="city" class="form-control">
+                        <select id="dropLang" class="form-control">
                             <option selected="selected" value="0">----请选择城市----</option>
                             {% for city in form.city_id %}
                             <option value="{{ city.id }}">{{ city.city }}</option>
@@ -125,35 +125,26 @@
 
     <script type="text/javascript" language="javascript">
         $(function(){
-            //Bind the change event
             $("#dropLang").unbind("change", eDropLangChange).bind("change", eDropLangChange);
             $("#dropFrame").unbind("change", eDropFrameChange).bind("change", eDropFrameChange);
         });
 
-        //The change event of language dropdown-list
         var eDropLangChange = function(){
-            //The selected value of the language dropdown-list.
             var selectedValue = $(this).val();
 
-            //show all options.
             $("#dropFrame").children("span").each(function(){
-                $(this).children().clone().replaceAll($(this));         //use the content of the <span> replace the <span>
+                $(this).children().clone().replaceAll($(this));
             });
 
-            //Filter the data through selected value of language dropdown-list except <Please Select>.
-            //If the option is <Please Select>, it only needs to show all and hide nothing.
             if(parseInt(selectedValue) != 0){
-                //hide the option whose parentid is not equal with selected value of language dropdown-list.
-                //The <Please Select> option should not be hidden.
+
                 $("#dropFrame").children("option[parentid!='" + selectedValue + "'][value!='0']").each(function(){
-                    $(this).wrap("<span style='display:none'></span>");     //add a <span> around the <option> and hide the <span>.
+                    $(this).wrap("<span style='display:none'></span>");
                 });
             }
         };
 
-        //The change event of frame dropdown-list.
         var eDropFrameChange = function(){
-            //Find the selected option of frame dropdown-list. set the value of language dropdown-list by selected parentid.
             $("#dropLang").val($(this).children("option:selected").attr("parentid"));
         };
     </script>
