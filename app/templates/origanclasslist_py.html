@@ -66,19 +66,5 @@
 {% block inscript %}
 <script type="text/javascript">
 
-    $(function () {
-        $(".deleclass").click(function () {
-            var id = $(this).attr("id");
-            //alert(id);
-            var r = confirm("删除课程？");
-            if (r == true) {
-                alert("你删除的课程是" + id);
-            }
-            else {
-                //alert("You pressed Cancel!");
-            }
-        })
-
-    })
 </script>
 {% endblock inscript %}
