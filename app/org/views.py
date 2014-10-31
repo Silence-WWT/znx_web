@@ -179,13 +179,14 @@ def add_course():
     return render_template('origanclassadd_py.html', form=course_form)
 
 
-@org.route('/course/delete/<int:id>', methods=['POST'])
+# TODO: delete course with delete method.
+@org.route('/course/delete/<int:id>')
 @org_permission.require()
 def delete_course(id):
     course = Class.query.get_or_404(id)
-    if ClassOrder.query.filter_by(class_id=id).first():
-        flash(u'已经有用户选择课程，无法关闭')
-        return redirect(url_for('org.course_list'))
+    #if ClassOrder.query.filter_by(class_id=id).first():
+    #    flash(u'已经有用户选择课程，无法关闭')
+    #    return redirect(url_for('org.course_list'))
 
     course.is_closed = True
     db.session.add(course)
