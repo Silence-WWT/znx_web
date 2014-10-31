@@ -35,7 +35,7 @@
                     <label class="control-label"><i class="form-required"></i>机构名称</label>
 
                     <div class="controls">
-                        {{ form.name(class="form-control") }}
+                        {{ form.name(class="form-control", id="org_name") }}
                         <span>{{ helper.field_errors(form.name) }}</span>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <label class="control-label"><i class="form-required"></i>联系人</label>
 
                     <div class="controls">
-                        {{ form.contact(class="form-control") }}
+                        {{ form.contact(class="form-control", id="org_contact") }}
                         <span>{{ helper.field_errors(form.contact) }}</span>
 
                     </div>
@@ -101,7 +101,7 @@
                     <label class="control-label"><i class="form-required"></i>详细地址</label>
 
                     <div class="controls">
-                        {{ form.address(class="form-control", id="org_name") }}
+                        {{ form.address(class="form-control", id="org_address") }}
                         <span>{{ helper.field_errors(form.address) }}</span>
 
                     </div>
@@ -110,7 +110,7 @@
                     <label class="control-label"><i class="form-required"></i>详细介绍</label>
 
                     <div class="controls">
-                        {{ form.intro(class="form-textarea", row="4") }}
+                        {{ form.intro(class="form-textarea", row="4", id="org_intro") }}
                         <span>{{ helper.field_errors(form.intro) }}</span>
 
                     </div>
