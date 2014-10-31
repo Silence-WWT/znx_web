@@ -73,10 +73,11 @@
                     <label class="control-label"><i class="form-required"></i>城市</label>
 
                     <div class="controls form-control">
+
                         <select id="city" class="form-control">
-                            <option>----请选择城市----</option>
-                            {% for city in form.location.iterkeys() %}
-                            <option>{{ city }}</option>
+                            <option selected="selected" value="0">----请选择城市----</option>
+                            {% for city in form.city_id.iterkeys() %}
+                            <option value="{{ city.id }}">{{ city.city }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -85,16 +86,15 @@
                     <label class="control-label"><i class="form-required"></i>区域</label>
 
                     <div class="controls form-control">
-                        <select class="district">
+                        <select class="district" id="dropFrame">
                             <option>----请选择区域----</option>
                         </select>
+                        <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
+                            <option selected="selected" value="0">----请选择区域----</option>
+                        {% for location in form.location %}
 
-                        {% for city, districts in form.location.iteritems() %}
-                        <select name="{{ form.location_id.name }}" class="district">
-                            {% for id, district in districts %}
-                            <option value="{{ id }}">{{ district }}</option>
-                            {% endfor %}
-                        </select>
+                            <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}</option>
+
                         {% endfor %}
 
                     </div>
@@ -125,21 +125,38 @@
 {% endblock content %}
 {% block inscript %}
 
-<script type="text/javascript">
-
-    var currentShowCity = 0;
-    $(document).ready(function () {
-        $("#city").change(function () {
-            $("#city option").each(function (i, o) {
-                if ($(this).attr("selected")) {
-
-                    $(".district").hide();
-                    $(".district").eq(i).show();
-                    currentShowCity = i;
-                }
-            });
+    <script type="text/javascript" language="javascript">
+        $(function(){
+            //Bind the change event
+            $("#dropLang").unbind("change", eDropLangChange).bind("change", eDropLangChange);
+            $("#dropFrame").unbind("change", eDropFrameChange).bind("change", eDropFrameChange);
         });
-        $("#city").change();
-    });
-</script>
+
+        //The change event of language dropdown-list
+        var eDropLangChange = function(){
+            //The selected value of the language dropdown-list.
+            var selectedValue = $(this).val();
+
+            //show all options.
+            $("#dropFrame").children("span").each(function(){
+                $(this).children().clone().replaceAll($(this));         //use the content of the <span> replace the <span>
+            });
+
+            //Filter the data through selected value of language dropdown-list except <Please Select>.
+            //If the option is <Please Select>, it only needs to show all and hide nothing.
+            if(parseInt(selectedValue) != 0){
+                //hide the option whose parentid is not equal with selected value of language dropdown-list.
+                //The <Please Select> option should not be hidden.
+                $("#dropFrame").children("option[parentid!='" + selectedValue + "'][value!='0']").each(function(){
+                    $(this).wrap("<span style='display:none'></span>");     //add a <span> around the <option> and hide the <span>.
+                });
+            }
+        };
+
+        //The change event of frame dropdown-list.
+        var eDropFrameChange = function(){
+            //Find the selected option of frame dropdown-list. set the value of language dropdown-list by selected parentid.
+            $("#dropLang").val($(this).children("option:selected").attr("parentid"));
+        };
+    </script>
 {% endblock inscript %}
