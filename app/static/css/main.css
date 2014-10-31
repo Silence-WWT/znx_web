@@ -1353,7 +1353,7 @@ body {
 
 #usertest li {
     height: 150px;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
     margin-top: 30px;
 }
 
@@ -1373,7 +1373,7 @@ body {
 
 #usertest li .leftuser span {
     float: left;
-    margin-left: -15px;
+    margin-left: -25px;
 }
 
 #usercomment1, #usercomment2 {
@@ -1382,7 +1382,7 @@ body {
     float: left;
     max-width: 933px;
     margin-left: 32px;
-    height: 170px;
+    height: 140px;
 }
 
 #usercomment1 .popover-title, #usercomment1 .popover-title {
@@ -2323,7 +2323,7 @@ body {
     color: #00B98D;
 }
 
-#aboutknow, #aboutnew, #aboutrule, #aboutjoin {
+#aboutknow, #aboutnew, #aboutrule, #aboutjoin,#abouttalk {
     padding: 40px 50px;
     float: left;
     width: 827px;
@@ -2406,20 +2406,13 @@ input[disabled] {
     color: #727272;
 }
 
-#abouttalk {
-    float: left;
-    background-color: #FFF;
-    width: 729px;
-    color: #4B5660;
-    padding: 10px 60px;
-    min-height: 679px;
-}
+
 
 #abouttalk h2 {
-    font-size: 18px;
-    color: #000;
+    font-size: 24.5px;
+    color: #333333;
     margin-bottom: 4px;
-    font-weight: 700;
+
 }
 
 #abouttalk h3 {
@@ -2851,4 +2844,12 @@ input[disabled] {
 }
 #age_id{
     margin-left: 20px;
+}
+.righttest .popover-content{
+    padding: 33px 26px;
+    width: 900px;
+}
+#actlistul li .actleft a{
+    display: inline-block;
+    float: left;
 }
