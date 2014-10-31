@@ -68,7 +68,7 @@ $(function () {
                 url: userurl, //目标地址
                 data: "mobile=" + phonenum,
                 error: function (data) {
-                    $("#cellphone").next().text('用户名已经被注册');
+                    $("#cellphone").next().text('手机号已存在');
                 },
                 success: function (data) {
                     if (data == "false") {
@@ -265,7 +265,7 @@ $('#userregbtn').click(function () {
         return false;
     }
 });
-$('#userregbtn').click(function () {
+$('#orgreg1').click(function () {
     var ok1 = false;
     var ok2 = false;
     var ok3 = false;
