@@ -40,12 +40,16 @@
                             <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>
 
                             <div class="actrighta">
+                                {% if course.is_closed %}
+                                    <button>已关闭</button>
+                                {% else %}
                                 <a>
                                     <button class="btn-edit">编辑</button>
                                 </a>
                                 <a class="deleclass"  href="{{ url_for('org.delete_course', id=course.id) }}">
                                     <button class="btn-det">删除</button>
                                 </a>
+                                {% endif %}
 
                             </div>
                         </div>
