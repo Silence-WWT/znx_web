@@ -450,7 +450,7 @@ $(function () {
     }).blur(function () {
         var org_address = $(this).val();
         var org_addresslength=org_address.length;
-        if (org_addresslength>4&& org_addresslength<=40) {
+        if (org_addresslength>=4&& org_addresslength<=40) {
             $(this).next().text('');
         } else if(org_addresslength==0){
             $(this).next().text('详细地址必填');
@@ -463,7 +463,7 @@ $(function () {
     }).blur(function () {
         var org_intro = $(this).val();
         var org_introlength=org_address.length;
-        if (org_introlength>4&& org_introlength<=140) {
+        if (org_introlength>=4&& org_introlength<=140) {
             $(this).next().text('');
         } else if(org_introlength==0){
             $(this).next().text('详细介绍必填');
