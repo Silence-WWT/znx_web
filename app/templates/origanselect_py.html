@@ -23,13 +23,10 @@
         <dt>所在区域</dt>
         <dd>
             <ul class="unstyled inline">
-                <li class="active"><a href="#">全部</a></li>
-                <li><a href="#">朝阳区</a></li>
-                <li><a href="#">海定区</a></li>
-                <li><a href="#">昌平区</a></li>
-                <li><a href="#">西城区</a></li>
-                <li><a href="#">海定区</a></li>
-                <li><a href="#">昌平区</a></li>
+                <li class="active"><a href="/search">全部</a></li>
+                {% for location in locations %}
+                <li><a href="/search?location_id={{ location.id }}">{{ location.district }}</a></li>
+                {% endfor %}
             </ul>
         </dd>
     </dl>
