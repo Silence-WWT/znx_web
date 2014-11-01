@@ -624,6 +624,7 @@ body {
 #myactset select.form-control {
     width: 336px;
     height: 43px;
+    margin-left:0px;
 }
 
 #myactset .form-textarea {
@@ -646,6 +647,7 @@ body {
     line-height: 40px;
     height: 40px;
     font-size: 18px;
+    cursor: default;
 }
 
 .btn-long {
