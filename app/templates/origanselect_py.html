@@ -12,9 +12,9 @@
         <dt>机构类别</dt>
         <dd>
             <ul class="unstyled inline">
-                <li {% if profession_id==0 %} class="active" {% endif %}><a href="/search?location_id={{ location_id }}">全部</a></li>
+                <li {% if profession_id==0 %} class="active" {% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}">全部</a></li>
                 {% for profession in professions %}
-                    <li {% if profession_id==profession.id %}class="active"{% endif %}><a href="/search?location_id={{ location_id }}&profession_id={{ profession.id }}">{{ profession.profession }}</a></li>
+                    <li {% if profession_id==profession.id %}class="active"{% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession.id }}">{{ profession.profession }}</a></li>
                 {% endfor %}
             </ul>
         </dd>
@@ -24,9 +24,9 @@
         <dt>所在区域</dt>
         <dd>
             <ul class="unstyled inline">
-                <li {% if location_id==0 %}class="active"{% endif %}><a href="/search?profession_id={{ profession_id }}">全部</a></li>
+                <li {% if location_id==0 %}class="active"{% endif %}><a href="/search?name={{ name }}&profession_id={{ profession_id }}">全部</a></li>
                 {% for location in locations %}
-                <li {% if location_id==location.id %} class="active" {% endif %}><a href="/search?location_id={{ location.id }}&profession_id={{ profession_id }}">{{ location.district }}</a></li>
+                <li {% if location_id==location.id %} class="active" {% endif %}><a href="/search?name={{ name }}&location_id={{ location.id }}&profession_id={{ profession_id }}">{{ location.district }}</a></li>
                 {% endfor %}
             </ul>
         </dd>

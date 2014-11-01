@@ -113,6 +113,7 @@ def search():
         query=query.filter(Organization.location_id.in_(location_ids))
     orgs = query.filter(Organization.name.like(u'%'+name+u'%')).all()
     return render_template('origanselect_py.html',
+                           name=name,
                            location_id = location_id,
                            profession_id=profession_id,
                            orgs=orgs,
