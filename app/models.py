@@ -315,7 +315,7 @@ class UnifiedId(db.Model):
 
 
 class ChartLine(db.Model):
-    __tablename__ = 'chart_lines'
+    __tablename__ = 'chat_lines'
     id = db.Column(db.Integer, primary_key=True)
     unified_id = db.Column(db.Integer, nullable=False)
     is_user = db.Column(db.BOOLEAN, nullable=False)
@@ -571,7 +571,7 @@ class ActivityComment(db.Model):
             db.session.commit()
 
 
-# TODO: chart 等待魏鹏的方案
+# TODO: chat 等待魏鹏的方案
 
 
 class ClassOrder(db.Model):
