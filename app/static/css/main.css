@@ -726,16 +726,17 @@ body {
 
 #twologin ul li a {
     width: 162px;
-    padding: 0;
+    padding: 0px;
     text-align: center;
     font-size: 18px;
     height: 42px;
     line-height: 42px;
-    color: #000;
-    background: #EDEAE5;
-    border-radius: 0;
-    outline: none;
+    color: #333;
+    background: none repeat scroll 0% 0% #EDEAE5;
+    border-radius: 0px;
+    outline: medium none;
     margin: 0px;
+    border: 1px solid #EDEAE5;
 }
 
 #twologin .controls {
@@ -768,12 +769,13 @@ body {
 #rememberme {
     margin: -11px -23px 0px;
     width: 80px;
+    color: #333;
 }
 
 #twologin .controls span a {
     margin-top: -23px;
     float: right;
-    color: #000;
+    color: #333;
     margin-right: -5px;
 }
 
@@ -851,7 +853,9 @@ body {
     outline: none;
     display: inline-block;
 }
-
+#twologin  a.form-feedback{
+    color: #333;
+}
 #organregform .upload1 ul li img, #organregform .upload2 ul li img {
     width: 260px;
     height: 190px;
