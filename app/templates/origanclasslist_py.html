@@ -43,7 +43,7 @@
                                 {% if course.is_closed %}
                                     <button class="closebtn">已关闭</button>
                                 {% else %}
-                                <a>
+                                <a href="{{ url_for('org.edit_course', id=course.id) }}">
                                     <button class="btn-edit">编辑</button>
                                 </a>
                                 <a class="deleclass"  href="{{ url_for('org.delete_course', id=course.id) }}" onClick="return confirm('关闭课程吗？')">

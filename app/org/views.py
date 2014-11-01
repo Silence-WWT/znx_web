@@ -176,7 +176,9 @@ def add_course():
             db.session.add(class_time)
         db.session.commit()
         return redirect(url_for('main.index'))
-    return render_template('origanclassadd_py.html', form=course_form)
+    return render_template('origanclassadd_py.html',
+                           form=course_form,
+                           add=True)
 
 
 # TODO: delete course with delete method.
@@ -193,6 +195,28 @@ def delete_course(id):
     db.session.commit()
     return redirect(url_for('org.course_list'))
 
+@org.route('/course/edit/<int:id>', methods=['GET', 'POST'])
+@org_permission.require()
+def edit_course(id):
+    Class.query.get_or_404(id)
+    course_form = CourseForm()
+    course_form.create_choices()
+    if course_form.validate_on_submit():
+        course = course_form.update_course(id)
+        db.session.add(course)
+        db.session.commit()
+
+        class_times = ClassTime.query.filter_by(class_id=id).all()
+        for class_time in class_times:
+            db.session.delete(class_time)
+        for time_id in course_form.class_time.data:
+            class_time = ClassTime(class_id=course.id, time_id=time_id)
+            db.session.add(class_time)
+
+        db.session.commit()
+        return redirect(url_for('.course_list'))
+    course_form.init_from_class(id)
+    return render_template('origanclassadd_py.html', form=course_form)
 
 
 

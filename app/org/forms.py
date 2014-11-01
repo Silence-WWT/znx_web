@@ -113,6 +113,29 @@ class CourseForm(Form):
                        created=time.time())
         return course
 
+    def init_from_class(self, class_id):
+        course = Class.query.get_or_404(class_id)
+        self.name.data = course.name
+        self.age_id.data = course.age_id
+        self.price.data = course.price
+        self.consult_time.data = course.consult_time
+        self.is_tastable.data = int(course.is_tastable)
+        self.is_round.data = int(course.is_round)
+        self.days.data = course.days
+        self.intro.data = course.intro
+
+    def update_course(self, class_id):
+        course = Class.query.get_or_404(class_id)
+        course.name = self.name.data
+        course.age_id = self.age_id.data
+        course.price = self.price.data
+        course.consult_time = self.consult_time.data
+        course.is_tastable = bool(self.is_tastable.data)
+        course.is_round = bool(self.is_round.data)
+        course.days = self.days.data
+        course.intro = self.intro.data
+        return course
+
 
 class ActivityForm(Form):
     name = StringField('name')
