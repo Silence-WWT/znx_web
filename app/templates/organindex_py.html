@@ -137,8 +137,10 @@
                         {% include 'snippet/comment.html' %}
                         <dd>
                             <ul class="unstyled" id="usertest">
+                                {% for comment in org.get_comments() %}
                                <!--评论列表-->
                                 {% include 'snippet/commentlist.html' %}
+                                {% endfor %}
                             </ul>
                         </dd>
                     </dl>

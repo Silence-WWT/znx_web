@@ -87,90 +87,11 @@
                         <dt>评论（{{ course.get_comment_count() }}）<span id="icommnet"><a href="#myComment" role="button"
                                                                                        data-toggle="modal">
                             <img src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
-                        <div id="myComment" class="modal hide fade" tabindex="-1" role="dialog"
-                             aria-labelledby="myModalLabel" aria-hidden="true">
-                            <form action="" method="post" class="form-horizontal">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h3 id="myCommentLabel">写评价，攒人品！</h3>
-                            </div>
-                            <div class="modal-body">
-
-                                    {{ form.hidden_tag() }}
-                                    {{ wtf.form_errors(form) }}
-                                    <div class="control-group">
-                                        <label class="control-label">总体评价</label>
-
-                                        <div class="controls">
-                                            <div class="revinp">
-				<span class="level">
-					<i class="level_hollow" cjmark=""></i>
-					<i class="level_hollow" cjmark=""></i>
-					<i class="level_hollow" cjmark=""></i>
-					<i class="level_hollow" cjmark=""></i>
-					<i class="level_hollow" cjmark=""></i>
-				</span>
-                                                <span class="revgrade" id="scoreno">请评分</span>
-                                                <input type="hidden" name="{{ form.stars.name }}" id="scorenum"
-                                                       value="0"/>
-                                            </div>
-
-                                        </div>
-                                        <br>
-
-                                        <div class="control-group">
-                                            <h4>写评价</h4>
-                                            <textarea rows="5" name="{{ form.body.name }}" class="form-textarea"
-                                                      id="Commenttext"></textarea>
-                                            <b id="commentnum"></b>
-                                        </div>
-                                    </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn-next nomargin" type="submit" id="scorebtn">提交</button>
-                            </div>
-                            </form>
-                        </div>
+                        {% include 'snippet/comment.html' %}
                         <dd>
                             <ul class="unstyled" id="usertest">
                                 {% for comment in course.get_comments() %}
-                                    <li>
-                                        <div class="leftuser"><img
-                                                src="{{ url_for('static', filename='images/userpic.png') }}"
-                                                class="img-circle"/>
-                                            <span class="text-center">{{ comment.get_user().username }}</span>
-                                        </div>
-                                        <div class="righttest">
-                                            <div class="popover right" id="usercomment1">
-                                                <div class="arrow"></div>
-
-
-                                                <div class="popover-content">
-                                                    <div class="commentin"><span><img
-                                                            src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
-
-            <span><div class="revinp">
-				<span class="level">
-                	<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
-				</span>
-
-            </div></span>
-
-                                                    </div>
-                                                    <div class="commment">
-                                                        <p>{{ comment.body }}
-                                                        </p>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    {% include 'snippet/commentlist.html' %}
                                 {% endfor %}
                             </ul>
                         </dd>
