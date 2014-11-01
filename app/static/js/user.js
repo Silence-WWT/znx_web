@@ -39,6 +39,7 @@ $(function(){
       //  window.open(searchurl);
     })
 });
+
 //用户注册控制表单验证
 $(function () {
     // 验证用户名
