@@ -17,7 +17,7 @@
 
                     {{ comment.stars|stars|safe }}
 				</span>
-                <span>{{ comment.timestamp }}</span>
+                <span>{{ comment.created|get_date_time }}</span>
 
             </div></span>
 
