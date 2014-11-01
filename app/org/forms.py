@@ -75,11 +75,11 @@ class CourseForm(Form):
                            DataRequired(u'必填'),
                            Length(1, 30, u'长度不超过30个字符')])
     age_id = SelectField('age_id', coerce=int)
-    price = IntegerField('price', validators=[DataRequired(u'必填')])
+    price = IntegerField('price')
     consult_time = StringField('consult_time', validators=[
                                DataRequired(u'必填'),
                                Length(1, 20, u'长度不超过20字符')])
-    days = IntegerField('days', validators=[DataRequired(u'必填')])
+    days = IntegerField('days')
     is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
                              coerce=int)
     is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')],
