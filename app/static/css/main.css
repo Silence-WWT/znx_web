@@ -1774,6 +1774,7 @@ body {
     line-height: 200px;
     margin: 42px 50px;
     font-weight: normal;
+    outline: none;
 }
 #arr1{
     margin: 42px 20px;
