@@ -6,7 +6,7 @@
 
         <div class="controls">
             {{ form.name(class="form-control", required=true, placeholder="课程名称不能为空") }}
-            <span>{{ field_errors(form.name) }}</span>
+            <span class="inputwrong">{{ field_errors(form.name) }}</span>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         <label class="control-label"><i class="form-required"></i>适应年龄</label>
 
         {{ form.age_id(class="form-control-more")}}
-        <span>{{ field_errors(form.age_id) }}</span>
+        <span class="inputwrong">{{ field_errors(form.age_id) }}</span>
 
     </div>
     <div class="control-group">
@@ -23,7 +23,7 @@
         <div class="input-append" id="mysetyuan">
             {{ form.price(class="form-control", placeholder="请输入整数", required=true) }}
             <span class="add-on">元</span>
-            <span>{{ field_errors(form.price) }}</span>
+            <span class="inputwrong">{{ field_errors(form.price) }}</span>
 
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="input-append" id="mysetday">
             {{ form.days(class="form-control", placeholder="请输入整数", required=true) }}
             <span class="add-on">天</span>
-            <span>{{ field_errors(form.days) }}</span>
+            <span class="inputwrong">{{ field_errors(form.days) }}</span>
         </div>
     </div>
     <div class="control-group">
@@ -41,7 +41,7 @@
 
         <div class="controls">
             {{ form.consult_time(class="form-control", placeholder="可以咨询时间段，类似于9:00-21:00", required=true) }}
-            <span>{{ field_errors(form.consult_time) }}</span>
+            <span class="inputwrong">{{ field_errors(form.consult_time) }}</span>
         </div>
     </div>
     <div class="control-group">
@@ -77,7 +77,7 @@
         <label class="control-label"><i class="form-required"></i>上课时间</label>
         <div class="controls">
             {{ form.class_time }}
-            <span>{{ field_errors(form.class_time) }}</span>
+            <span class="inputwrong">{{ field_errors(form.class_time) }}</span>
         </div>
     </div>
 
@@ -86,7 +86,7 @@
 
         <div class="controls">
             {{ form.intro(rows="4", class="form-textarea", placeholder="请输入140字以内的课程简介", required=true) }}
-            <span>{{ field_errors(form.intro) }}</span>
+            <span class="inputwrong">{{ field_errors(form.intro) }}</span>
         </div>
     </div>
     <div class="controls">

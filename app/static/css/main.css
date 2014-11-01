@@ -2223,7 +2223,7 @@ body {
 }
 
 #myactset, #myclassset {
-    padding: 50px 120px;
+    padding: 50px 10px 50px 120px
 }
 
 #myactset .btn-next, #myclassset .btn-next {
@@ -2845,8 +2845,8 @@ input[disabled] {
     width: 30px;
     font-size: 18px;
     line-height: 30px;
-    margin-top: 1px;
 }
+
 #age_id{
     margin-left: 20px;
 }
@@ -2857,4 +2857,13 @@ input[disabled] {
 #actlistul li .actleft a{
     display: inline-block;
     float: left;
+}
+.inputwrong{
+    color: #FF2424;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#mysetday .inputwrong,#mysetyuan .inputwrong{
+    color: #FF2424;
+    font-size: 14px;
 }
