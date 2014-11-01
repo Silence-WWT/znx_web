@@ -893,6 +893,9 @@ body {
     border-radius: 10px;
     opacity: .1;
 }
+.carousel-control{
+    outline: none;
+}
 .carousel-control:hover, .carousel-control:focus{
     opacity: 0.5;
 }
