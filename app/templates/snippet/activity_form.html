@@ -1,13 +1,13 @@
 <form class="form-horizontal" method="post">
     {{ form.hidden_tag() }}
     <div class="control-group">
-        <label class="control-label">活动名称</label>
+        <label class="control-label"><i class="form-required"></i>活动名称</label>
         <div class="controls">
             <input type="text" name="{{ form.name.name }}" class="form-control" placeholder="活动名称不能为空" required/>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">面向人群</label>
+        <label class="control-label"><i class="form-required"></i>面向人群</label>
         <div class="controls">
             {{ form.age_id(class="form-control") }}
         </div>
@@ -21,14 +21,14 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">联系人</label>
+        <label class="control-label"><i class="form-required"></i>联系人</label>
 
         <div class="controls">
             <input type="text" class="form-control" placeholder="请输入活动联系人电话" required/>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">联系电话</label>
+        <label class="control-label"><i class="form-required"></i>联系电话</label>
 
         <div class="controls">
             <input type="text" class="form-control" placeholder="请输入11位的手机号码" required/>
@@ -36,10 +36,10 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">活动开始时间</label>
+        <label class="control-label"><i class="form-required"></i>活动开始时间</label>
         <div class="controls">
             <div id="datetimepicker1" class="input-append date">
-                <input type="text" name="{{ form.start_time.name }}" class="form-control shortinput"/>
+                <input type="text" name="{{ form.start_time.name }}" class="form-control shortinput" required/>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -47,11 +47,11 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">活动结束时间</label>
+        <label class="control-label"><i class="form-required"></i>活动结束时间</label>
 
         <div class="controls">
             <div id="datetimepicker2" class="input-append date">
-                <input type="text" name="{{ form.end_time.name }}" class="form-control shortinput"/>
+                <input type="text" name="{{ form.end_time.name }}" class="form-control shortinput" required/>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -62,7 +62,7 @@
 
 
     <div class="control-group">
-        <label class="control-label">活动简介</label>
+        <label class="control-label"><i class="form-required"></i>活动简介</label>
 
         <div class="controls">
             <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea" placeholder="请输入140字以内的活动简介" required></textarea>
