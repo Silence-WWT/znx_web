@@ -359,7 +359,7 @@ activity_comment_list
             created
             username
 
-order_list
+order_list_or_detail
 ---
     URL:
         /api/v1.0/order_list?user_id=&page=
@@ -370,14 +370,29 @@ order_list
         page
     json:
         {"status": 0,
-         "orders": [{"class_order_id": "", "created": "", "class_name": "", "org_name": ""},
-            {"activity_order_id": "", "created": "", "activity_name", "", "org_name": ""}]}
+         "class_orders": [{"class_order_id": "", "created": "", "class_name": "", "org_name": "", "user_name": "",
+         "age": "", "user_sex": "", "user_mobile": "", "user_address": "", "user_remark": "", "comments_count": "",
+         "user_age": "", "price": "", "days": ""}],
+         "activity_orders": [{"activity_order_id": "", "created": "", "activity_name", "", "org_name": "",
+         "user_name": "", "age": "", "user_sex": "", "user_mobile": "", "email": "", "user_address": "",
+         "user_remark": "", "comments_count": "", "user_age": "", "price": "", "start_time": "", "end_time": ""}]}
          
          status: 0 for success, 1003 for user not exist
-         class_order_id/activity_order_id
-         class_name/activity_name
-         created
-         org_name
+         class_orders/activity_orders
+            class_order_id/activity_order_id
+            created
+            class_name/activity_name
+            start_time/end_time/days
+            price
+            org_name
+            user_name: user's name
+            user_age
+            user_sex
+            user_mobile
+            user_email
+            user_address: user's address
+            user_remark: user's remark of this class
+            comments_count
 
 order_synchronize
 ---
@@ -392,59 +407,6 @@ order_synchronize
         {"status":0}
         
         status: 0 for success, 1003 for user not exist
-
-class_order_detail
----
-    URL:
-        /api/v1.0/order_list?user_id=&class_order=
-    method:
-        get
-    parameters:
-        user_id
-        class_order
-    json:
-        {"status": 0,
-         "class": [{"time": "", "created": "", "class_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "mobile": "", "address": "", "remark": ""}]}
-         
-        status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
-        activity
-            created: created time of this order
-            time: the taste time of class
-            class_name
-            name: user's name
-            age
-            sex
-            mobile
-            email
-            address: user's address
-            remark: user's remark of this class
-
-activity_order_detail
----
-    URL:
-        /api/v1.0/order_list?user_id=&activity_order=
-    method:
-        get
-    parameters:
-        user_id
-        activity_order
-    json:
-        {"status": 0,
-         "activity": [{"created": "", "activity_name": "", "org_name": "", "name": "", "age": "", "sex": "",
-             "mobile": "", "email": "", "address": "", "remark": ""}]}
-         
-        status: 0 for success, 1003 for user not exist, 1005 for access restricted, 1006 for order not exist
-        activity
-            created: created time of this order
-            activity_name
-            name: user's name
-            age
-            sex
-            mobile
-            email
-            address: user's address
-            remark: user's remark of this activity
 
 requirement_list
 ---
