@@ -361,7 +361,7 @@ body {
     line-height: 54px;
 }
 
-#classdet  #mywrongLabel {
+ #mywrongLabel {
     font-size: 16px;
     font-weight: normal;
 }
@@ -1408,7 +1408,7 @@ body {
     float: left;
     max-width: 933px;
     margin-left: 32px;
-    height: 140px;
+    height: 150px;
 }
 
 #usercomment1 .popover-title, #usercomment1 .popover-title {
@@ -1453,8 +1453,11 @@ body {
 #myComment .modal-header .close, #myeditwrong .modal-header .close, #myzixun .modal-header .close {
     width: 20px;
     font-size: 36px;
-    color: #000;
+    color: #FFF;
     margin: -3px -4px;
+    font-weight: normol;
+    opacity: 0.8;
+
 }
 
 #myzixun .modal-header .close {
@@ -1469,7 +1472,8 @@ body {
 #myComment .control-group textarea {
     width: 433px;
     margin: 0 44px 10px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: normal;
 }
 
 #myComment .control-group label {
@@ -2874,8 +2878,9 @@ input[disabled] {
     margin-left: 20px;
 }
 .righttest .popover-content{
-    padding: 33px 26px;
+    padding: 20px 26px;
     width: 900px;
+    font-size: 14px;
 }
 #actlistul li .actleft a{
     display: inline-block;

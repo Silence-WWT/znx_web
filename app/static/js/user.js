@@ -681,7 +681,7 @@ var chackTextarea = function (obj, num, objTip) {
     }
 }
 
-chackTextarea(document.getElementById("Commenttext"), 500, document.getElementById("commentnum"));
+chackTextarea(document.getElementById("Commenttext"), 140, document.getElementById("commentnum"));
 function shake(o) {
     var $panel = $("#" + o);
     box_left = ($(window).width() - $panel.width()) / 2;
