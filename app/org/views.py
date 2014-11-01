@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-import time
+import time, datetime
 from uuid import uuid4
 from . import org
 from .. import db
@@ -242,6 +242,21 @@ def add_activity():
         return redirect(url_for('main.index'))
     return render_template('origanactadd_py.html', form=form)
 
+
+@org.route('/activity/edit/<int:id>', methods=['GET', 'POST'])
+@org_permission.require()
+def edit_activity(id):
+    Activity.query.get_or_404(id)
+    activity_form = ActivityForm()
+    activity_form.create_choices()
+    if activity_form.validate_on_submit():
+        course = activity_form.update_activity(id)
+        db.session.add(course)
+        db.session.commit()
+
+        return redirect(url_for('.activity_list'))
+    activity_form.init_from_activity(id)
+    return render_template('origanactadd_py.html', form=activity_form)
 
 @org.route('/activity/list')
 @org_permission.require()

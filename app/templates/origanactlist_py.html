@@ -41,7 +41,7 @@
                             <h4><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h4>
 
                             <div class="actrighta">
-                                <a>
+                                <a href="{{ url_for('org.edit_activity', id=activity.id) }}">
                                     <button class="btn-edit">编辑</button>
                                 </a>
                                 <a class="deleclass" id="myclass1">

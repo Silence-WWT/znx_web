@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import uuid
 import time
+from datetime import datetime
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
     SelectMultipleField, TextAreaField, BooleanField, RadioField, \
@@ -164,6 +165,26 @@ class ActivityForm(Form):
                             intro=self.intro.data)
         return activity
 
+    def init_from_activity(self, activity_id):
+        activity = Activity.query.get_or_404(activity_id)
+        self.name.data = activity.name
+        self.age_id.data = activity.age_id
+        self.price.data = activity.price
+        self.start_time.data = datetime.fromtimestamp(activity.start_time)
+        self.end_time.data = datetime.fromtimestamp(activity.end_time)
+        self.intro.data = activity.intro
+
+    def update_activity(self, activity_id):
+        activity = Activity.query.get_or_404(activity_id)
+        activity.name = self.name.data
+        activity.age_id = self.age_id.data
+        activity.price = self.price.data
+        activity.start_time = time.mktime(
+            self.start_time.data.timetuple())
+        activity.end_time = time.mktime(
+            self.end_time.data.timetuple())
+        activity.intro = self.intro.data
+        return activity
 
 class CommentForm(Form):
     stars = IntegerField('stars')
