@@ -31,81 +31,8 @@
             <h3><span>增加活动</span></h3>
 
             <div id="myactset">
-                <form class="form-horizontal" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ wtf.form_errors(form) }}
-                    <div class="control-group">
-                        <label class="control-label">活动名称</label>
-                        <div class="controls">
-                            <input type="text" name="{{ form.name.name }}" class="form-control" required/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">面向人群</label>
-                        <div class="controls">
-                            {{ form.age_id(class="form-control") }}
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">收费标准</label>
-
-                        <div class="controls">
-                            <input type="text" name="{{ form.price.name }}" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">联系人</label>
-
-                        <div class="controls">
-                            <input type="text" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">联系电话</label>
-
-                        <div class="controls">
-                            <input type="text" class="form-control"/>
-
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">活动开始时间</label>
-                        <div class="controls">
-                            <div id="datetimepicker1" class="input-append date">
-                                <input type="text" name="{{ form.start_time.name }}" class="form-control shortinput"/>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-      </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">活动结束时间</label>
-
-                        <div class="controls">
-                            <div id="datetimepicker2" class="input-append date">
-                                <input type="text" name="{{ form.end_time.name }}" class="form-control shortinput"/>
-      <span class="add-on">
-        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-      </span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class="control-group">
-                        <label class="control-label">活动简介</label>
-
-                        <div class="controls">
-                            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea"></textarea>
-
-                        </div>
-                    </div>
-                    <div class="controls">
-                        <button type="submit" class="btn-next">发布</button>
-                    </div>
-                </form>
+             <!--活动form-->
+                {% include 'snippet/activity_form.html' %}
             </div>
         </div>
     </div>
@@ -116,7 +43,6 @@
 <link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
 <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
-
     $('#datetimepicker1').datetimepicker({
         format: 'yyyy/MM/dd hh:mm',
         language: 'ch',
