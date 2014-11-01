@@ -31,10 +31,7 @@
         </dd>
     </dl>
 </div>
-{% for org in orgs %}
-    {{ org.name }}
-    <br/>
-{% endfor %}
+
 <div class="selectbottom" id="selectbottom">
     <div class="tabbable"> <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
@@ -47,16 +44,22 @@
 
             <div class="tab-pane active" id="tab1">
                 <ul class="unstyled">
+                    {% for org in orgs %}
+
+
+
                     <li>
                         <div class="selepic">
+                            <a href="{{ url_for('org.home', id=org.id) }}">
                             <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                            </a>
                         </div>
                         <div class="seledet">
-                            <h3><span>机构名</span><img
+                            <h3><span><a href="{{ url_for('org.home', id=org.id) }}"> {{ org.name }}</a></span><img
                                     src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
 
-                            <p>---机构二级标语</p>
-                            <span class="organplace"><i class=" icon-map-marker"></i>机构地址</span>
+                            <p>---{{ org.slogan }}</p>
+                            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.address }}</span>
                         </div>
                         <div class="selectscore">
                             <ul class="unstyled inline">
@@ -69,16 +72,17 @@
 					<i class="level_solid"></i>
 					<i class="level_hollow"></i>
 				</span>
-                                        <span>评分分</span>
+                                        <span>评分</span>
                                     </div>
                                 </li>
-                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：浏览数</span></li>
-                                <li><span class="organtalk"><i class="icon-comment"></i>评论：评论数</span><br/></li>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{ org.page_view }}</span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{ org.get_comment_count() }}</span><br/></li>
                                 <li><span class="organtalk"><i class="icon-plus"></i>报名：名数</span><br/></li>
                             </ul>
 
                         </div>
                     </li>
+                    {% endfor %}
 
                 </ul>
                 <div class="pagination pagination-centered pagination-large myselectlist">
