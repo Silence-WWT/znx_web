@@ -5,10 +5,10 @@ from .forms import RegisterForm, SiteCommentForm, SearchForm
 from flask.ext.login import login_required, logout_user
 from flask.ext.principal import identity_changed, AnonymousIdentity
 from flask import redirect, url_for, \
-    render_template, flash, session, current_app
+    render_template, flash, session, current_app, request
 from ..user.forms import LoginForm as UserLoginForm
 from ..org.forms import LoginForm as OrgLoginForm
-from ..models import City, Register, Organization, Location
+from ..models import City, Register, Organization, Location, Profession
 
 
 @main.route('/login', methods=['GET'])
@@ -96,22 +96,23 @@ def report():
 
 @main.route('/search', methods=['GET', 'POST'])
 def search():
-    form = SearchForm()
-    form.create_choices(1)
-    if form.validate_on_submit():
-        query = Organization.query
-        if form.type_id.data:
-            query=query.filter(Organization.type_id==form.type_id.data)
-        if form.profession_id.data:
-            query=query.filter(Organization.profession_id==form.profession_id.data)
-        if form.property_id.data:
-            query=query.filter(Organization.property_id==form.property_id.data)
-        if form.size_id.data:
-            query=query.filter(Organization.size_id==form.size_id.data)
-        if form.location_id.data:
-            query=query.filter(Organization.location_id==form.location_id.data)
-        if form.is_confirmed.data != -1:
-            query=query.filter(Organization.is_confirmed==bool(form.is_confirmed.data))
-        orgs = query.filter(Organization.name.like(u'%'+form.name.data+u'%')).all()
-        return render_template('origanselect_py.html', form=form, orgs=orgs)
-    return render_template('origanselect_py.html', form=form)
+    locations = Location.query.all()
+    professions = Profession.query.all()
+    name = request.values.get('name', u'', type=unicode)
+    profession_id = request.values.get('profession_id', 0, type=int)
+    location_id  = request.values.get('location_id', 0, type=int)
+    city_id  = request.values.get('city_id', 1, type=int)
+    location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
+
+    query = Organization.query
+    if profession_id:
+        query=query.filter(Organization.profession_id==profession_id)
+    if location_id:
+        query=query.filter(Organization.location_id==location_id)
+    else:
+        query=query.filter(Organization.location_id.in_(location_ids))
+    orgs = query.filter(Organization.name.like(u'%'+name+u'%')).all()
+    return render_template('origanselect_py.html',
+                           orgs=orgs,
+                           locations=locations,
+                           professions=professions)
