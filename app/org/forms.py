@@ -138,12 +138,14 @@ class CourseForm(Form):
 
 
 class ActivityForm(Form):
-    name = StringField('name')
+    name = StringField('name', validators=[DataRequired(u'必填'),
+                                           Length(1, 30, u'30字符以内')])
     age_id = SelectField('age_id', coerce=int)
-    price = StringField('prince')
+    price = IntegerField('prince')
     start_time = DateTimeField('start_time', format='%Y/%m/%d %H:%M')
     end_time = DateTimeField('end_time', format='%Y/%m/%d %H:%M')
-    intro = TextAreaField('intro')
+    intro = TextAreaField('intro', validators=[DataRequired(u'必填'),
+                                               Length(1, 140,u'140字符以内')])
 
     def create_choices(self):
         ages = Age.query.all()
