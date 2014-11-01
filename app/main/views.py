@@ -96,13 +96,13 @@ def report():
 
 @main.route('/search', methods=['GET', 'POST'])
 def search():
-    locations = Location.query.all()
     professions = Profession.query.all()
     name = request.values.get('name', u'', type=unicode)
     profession_id = request.values.get('profession_id', 0, type=int)
     location_id  = request.values.get('location_id', 0, type=int)
-    city_id  = request.values.get('city_id', 1, type=int)
+    city_id  = request.values.get('city_id', 2, type=int)
     location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
+    locations = Location.query.filter_by(city_id=city_id).all()
 
     query = Organization.query
     if profession_id:
