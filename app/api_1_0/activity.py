@@ -104,13 +104,10 @@ def activity_sign_up():
             is_submitted=True,
             is_canceled=False
         )
-        try:
-            db.session.add(activity_order)
-            db.session.commit()
-        except Exception:
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
+        db.session.add(activity_order)
+        db.session.commit()
+        data['status'] = SUCCESS
+
     else:
         data['status'] = LACK_OF_PARAMETER
     return json.dumps(data)
