@@ -29,8 +29,11 @@
 
         </div>
         <div class="myuserright">
+            {% if add %}
             <h3><span>增加课程</span></h3>
-
+           {% else %}
+            <h3><span>编辑课程</span></h3>
+            {% endif %}
             <div id="myclassset">
              <!--课程增加模板-->
                 {% include 'snippet/class_form.html' %}

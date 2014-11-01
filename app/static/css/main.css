@@ -94,7 +94,26 @@ body {
     background: #FAF7F2;
     min-width: 1230px;
 }
-
+#alert-warning{
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    left: 45%;
+    background: #000;
+    color: #fff;
+    text-shadow: none;
+    border: 1px solid #000;
+    opacity: 0.7;
+}
+#alert-warning .close{
+    position: relative;
+    top: -5px;
+    right: -25px;
+    line-height: 20px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.8;
+}
 .clearboth {
     clear: both;
 }
@@ -707,16 +726,17 @@ body {
 
 #twologin ul li a {
     width: 162px;
-    padding: 0;
+    padding: 0px;
     text-align: center;
     font-size: 18px;
     height: 42px;
     line-height: 42px;
-    color: #000;
-    background: #EDEAE5;
-    border-radius: 0;
-    outline: none;
+    color: #333;
+    background: none repeat scroll 0% 0% #EDEAE5;
+    border-radius: 0px;
+    outline: medium none;
     margin: 0px;
+    border: 1px solid #EDEAE5;
 }
 
 #twologin .controls {
@@ -749,12 +769,13 @@ body {
 #rememberme {
     margin: -11px -23px 0px;
     width: 80px;
+    color: #333;
 }
 
 #twologin .controls span a {
     margin-top: -23px;
     float: right;
-    color: #000;
+    color: #333;
     margin-right: -5px;
 }
 
@@ -832,7 +853,9 @@ body {
     outline: none;
     display: inline-block;
 }
-
+#twologin  a.form-feedback{
+    color: #333;
+}
 #organregform .upload1 ul li img, #organregform .upload2 ul li img {
     width: 260px;
     height: 190px;
@@ -1774,6 +1797,7 @@ body {
     line-height: 200px;
     margin: 42px 50px;
     font-weight: normal;
+    outline: none;
 }
 #arr1{
     margin: 42px 20px;
@@ -2222,7 +2246,7 @@ body {
 }
 
 #myactset, #myclassset {
-    padding: 50px 120px;
+    padding: 50px 10px 50px 120px
 }
 
 #myactset .btn-next, #myclassset .btn-next {
@@ -2845,6 +2869,7 @@ input[disabled] {
     font-size: 18px;
     line-height: 30px;
 }
+
 #age_id{
     margin-left: 20px;
 }
@@ -2855,4 +2880,13 @@ input[disabled] {
 #actlistul li .actleft a{
     display: inline-block;
     float: left;
+}
+.inputwrong{
+    color: #FF2424;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#mysetday .inputwrong,#mysetyuan .inputwrong{
+    color: #FF2424;
+    font-size: 14px;
 }

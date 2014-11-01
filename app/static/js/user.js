@@ -5,6 +5,16 @@ $(function () {
         $(this).tab('show');
     });
 })
+//控制提示内容
+    $(function () {
+
+        setTimeout(function () {
+
+            $("#alert-warning").hide(1000);
+
+        }, 3000);
+
+    })
 
 //在除首页的其他页面对于nav竖导航进行控制
 $(function () {
