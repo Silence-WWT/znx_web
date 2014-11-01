@@ -70,19 +70,27 @@ class LoginForm(Form):
 
 
 class CourseForm(Form):
-    name = StringField('name')
+    name = StringField('name',
+                       validators=[
+                           DataRequired(u'必填'),
+                           Length(1, 30, u'长度不超过30个字符')])
     age_id = SelectField('age_id', coerce=int)
-    price = IntegerField('price')
-    consult_time = StringField('consult_time')
-    days = IntegerField('days')
-    # TODO: days int
+    price = IntegerField('price', validators=[DataRequired(u'必填')])
+    consult_time = StringField('consult_time', validators=[
+                               DataRequired(u'必填'),
+                               Length(1, 20, u'长度不超过20字符')])
+    days = IntegerField('days', validators=[DataRequired(u'必填')])
     is_tastable = RadioField('is_tastable', choices=[(1, 'yes'), (0, 'no')],
                              coerce=int)
     is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')],
                           coerce=int)
-    intro = TextAreaField('intro')
-    # TODO: add class time.
-    class_time = SelectMultipleField('class_time', coerce=int, widget=select_multi_checkbox)
+    intro = TextAreaField('intro', validators=[
+        DataRequired(u'必填'),
+        Length(1, 140, u'长度不超过140个字符')])
+    class_time = SelectMultipleField('class_time',
+                                     validators=[DataRequired(u'至少选一项')],
+                                     coerce=int,
+                                     widget=select_multi_checkbox)
 
     def create_choices(self):
         ages = Age.query.all()
@@ -100,7 +108,7 @@ class CourseForm(Form):
                        consult_time=self.consult_time.data,
                        is_tastable=bool(self.is_tastable.data),
                        is_round=bool(self.is_round.data),
-                       days=int(self.days.data),
+                       days=self.days.data,
                        intro=self.intro.data,
                        created=time.time())
         return course

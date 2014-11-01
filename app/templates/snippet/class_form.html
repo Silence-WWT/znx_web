@@ -1,11 +1,12 @@
+{% from 'snippet/field_error.html' import field_errors %}
 <form class="form-horizontal" method="post">
     {{ form.hidden_tag() }}
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>课程名称</label>
 
         <div class="controls">
-            <input type="text" name="{{ form.name.name }}" class="form-control" placeholder="课程名称不能为空" required/>
-
+            {{ form.name(class="form-control", required=true, placeholder="课程名称不能为空") }}
+            <span class="setspan">{{ field_errors(form.name) }}</span>
         </div>
     </div>
 
@@ -13,21 +14,23 @@
         <label class="control-label"><i class="form-required"></i>适应年龄</label>
 
         {{ form.age_id(class="form-control-more")}}
+        <span class="setspan">{{ field_errors(form.age_id) }}</span>
 
     </div>
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>价格</label>
 
         <div class="input-append" id="mysetyuan">
-            <input type="text" name="{{ form.price.name }}" class="form-control" id="appendedPrependedInput" placeholder="请输入整数" required/>
+            {{ form.price(class="form-control", id="appendedPrependedInput", placeholder="请输入整数", required=true) }}
             <span class="add-on">元</span>
+
         </div>
     </div>
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>上课天数</label>
 
         <div class="input-append" id="mysetday">
-            <input type="text" name="{{ form.days.name }}" class="form-control" placeholder="请输入整数" required/>
+            {{ form.days(class="form-control", placeholder="请输入整数", required=true) }}
             <span class="add-on">天</span>
         </div>
     </div>
@@ -35,7 +38,7 @@
         <label class="control-label"><i class="form-required"></i>咨询时间</label>
 
         <div class="controls">
-            <input type="text" name="{{ form.consult_time.name }}" class="form-control" placeholder="可以咨询时间段，类似于9:00-21:00" required/>
+            {{ form.consult_time(class="form-control", placeholder="可以咨询时间段，类似于9:00-21:00", required=true) }}
         </div>
     </div>
     <div class="control-group">
@@ -78,8 +81,7 @@
         <label class="control-label"><i class="form-required"></i>课程简介</label>
 
         <div class="controls">
-            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea" placeholder="请输入140字以内的课程简介" required></textarea>
-
+            {{ form.intro(rows="4", class="form-textarea", placeholder="请输入140字以内的课程简介", required=true) }}
         </div>
     </div>
     <div class="controls">
