@@ -35,8 +35,8 @@ $(function(){
     $("#searchbtn").click(function () {
         var keywords=$("#searchiput").val();
         var searchurl="/search?name="+keywords;
-      //  location.href=searchurl;
-        window.open(searchurl);
+       location.href=searchurl;
+      //  window.open(searchurl);
     })
 });
 //用户注册控制表单验证
