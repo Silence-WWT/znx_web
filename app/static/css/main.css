@@ -94,7 +94,26 @@ body {
     background: #FAF7F2;
     min-width: 1230px;
 }
-
+#alert-warning{
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    left: 45%;
+    background: #000;
+    color: #fff;
+    text-shadow: none;
+    border: 1px solid #000;
+    opacity: 0.7;
+}
+#alert-warning .close{
+    position: relative;
+    top: -5px;
+    right: -25px;
+    line-height: 20px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.8;
+}
 .clearboth {
     clear: both;
 }

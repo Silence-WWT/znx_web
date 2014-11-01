@@ -38,7 +38,7 @@
                         {% else %}
                         <li><a href="{{ url_for('user.home') }}"><span>{{current_user.get_name()}}</span>的在哪学</a></li>
                         {% endif %}
-                        <li style="color: #E2E1DE;">|</li>
+                        <li style="color: #E0E0E0;line-height:40px;">|</li>
                         <li><a href="{{ url_for('main.logout') }}">登出</a>
                         </li>
                         {% else %}
@@ -46,6 +46,7 @@
                             <a href="{{ url_for('main.login') }}">
                                 <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
                         </li>
+                            <li style="color: #E0E0E0;line-height:40px;">|</li>
                         <li><a href="{{ url_for('main.register') }}">注册</a>
                         </li>
                         {% endif %}
@@ -64,7 +65,7 @@
 
     {% endblock navbar %}
     {% for message in get_flashed_messages() %}
-        <div class="alert alert-warning">
+        <div class="alert alert-warning" id="alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{ message }}
         </div>
