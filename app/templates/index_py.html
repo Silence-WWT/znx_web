@@ -81,14 +81,14 @@
         <ul class="inline unstyled">
             <li>
                 <div class="floorpic">
-                    <a href="#">
+                    <a href="{{ url_for('org.home', id=orgs[1].id) }}">
                         <img src="{{ url_for('static', filename='images/floorpic1.png') }}">
                     </a>
                 </div>
                 <div class="floordec">
-                    <span>机构名称</span>
+                    <span>{{ orgs[1].name }}</span>
 
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">北京市-朝阳区</address>
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[1].address }}</address>
 
                 </div>
             </li>

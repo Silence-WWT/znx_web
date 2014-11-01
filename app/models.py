@@ -189,6 +189,10 @@ class Organization(UserMixin, db.Model):
     # 页面浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
 
+    def get_comment_count(self):
+        return OrganizationComment.query.\
+            filter_by(organization_id=self.id).count()
+
     def get_comments(self):
         return OrganizationComment.query.\
             filter_by(organization_id=self.id).all()

@@ -22,9 +22,10 @@ img {
     width: 1200px;
 }
 
-textarea:focus, select:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:focus,textarea:focus, select:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
     border-color: rgba(0, 185, 141, 0.8);
     outline: 0px none;
+    color: #666;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(0, 185, 141, 0.6);
 }
 
@@ -93,7 +94,26 @@ body {
     background: #FAF7F2;
     min-width: 1230px;
 }
-
+#alert-warning{
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    left: 45%;
+    background: #000;
+    color: #fff;
+    text-shadow: none;
+    border: 1px solid #000;
+    opacity: 0.7;
+}
+#alert-warning .close{
+    position: relative;
+    top: -5px;
+    right: -25px;
+    line-height: 20px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.8;
+}
 .clearboth {
     clear: both;
 }
@@ -341,7 +361,7 @@ body {
     line-height: 54px;
 }
 
-#mywrongLabel {
+ #mywrongLabel {
     font-size: 16px;
     font-weight: normal;
 }
@@ -624,6 +644,7 @@ body {
 #myactset select.form-control {
     width: 336px;
     height: 43px;
+    margin-left:0px;
 }
 
 #myactset .form-textarea {
@@ -646,6 +667,7 @@ body {
     line-height: 40px;
     height: 40px;
     font-size: 18px;
+    cursor: default;
 }
 
 .btn-long {
@@ -704,16 +726,17 @@ body {
 
 #twologin ul li a {
     width: 162px;
-    padding: 0;
+    padding: 0px;
     text-align: center;
     font-size: 18px;
     height: 42px;
     line-height: 42px;
-    color: #000;
-    background: #EDEAE5;
-    border-radius: 0;
-    outline: none;
+    color: #333;
+    background: none repeat scroll 0% 0% #EDEAE5;
+    border-radius: 0px;
+    outline: medium none;
     margin: 0px;
+    border: 1px solid #EDEAE5;
 }
 
 #twologin .controls {
@@ -746,12 +769,13 @@ body {
 #rememberme {
     margin: -11px -23px 0px;
     width: 80px;
+    color: #333;
 }
 
 #twologin .controls span a {
     margin-top: -23px;
     float: right;
-    color: #000;
+    color: #333;
     margin-right: -5px;
 }
 
@@ -829,7 +853,9 @@ body {
     outline: none;
     display: inline-block;
 }
-
+#twologin  a.form-feedback{
+    color: #333;
+}
 #organregform .upload1 ul li img, #organregform .upload2 ul li img {
     width: 260px;
     height: 190px;
@@ -1353,7 +1379,7 @@ body {
 
 #usertest li {
     height: 150px;
-    margin-bottom: 70px;
+    margin-bottom: 60px;
     margin-top: 30px;
 }
 
@@ -1373,7 +1399,7 @@ body {
 
 #usertest li .leftuser span {
     float: left;
-    margin-left: -15px;
+    margin-left: -25px;
 }
 
 #usercomment1, #usercomment2 {
@@ -1382,7 +1408,7 @@ body {
     float: left;
     max-width: 933px;
     margin-left: 32px;
-    height: 170px;
+    height: 150px;
 }
 
 #usercomment1 .popover-title, #usercomment1 .popover-title {
@@ -1427,8 +1453,11 @@ body {
 #myComment .modal-header .close, #myeditwrong .modal-header .close, #myzixun .modal-header .close {
     width: 20px;
     font-size: 36px;
-    color: #000;
+    color: #FFF;
     margin: -3px -4px;
+    font-weight: normol;
+    opacity: 0.8;
+
 }
 
 #myzixun .modal-header .close {
@@ -1443,7 +1472,8 @@ body {
 #myComment .control-group textarea {
     width: 433px;
     margin: 0 44px 10px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: normal;
 }
 
 #myComment .control-group label {
@@ -1771,6 +1801,7 @@ body {
     line-height: 200px;
     margin: 42px 50px;
     font-weight: normal;
+    outline: none;
 }
 #arr1{
     margin: 42px 20px;
@@ -2219,7 +2250,7 @@ body {
 }
 
 #myactset, #myclassset {
-    padding: 50px 120px;
+    padding: 50px 10px 50px 120px
 }
 
 #myactset .btn-next, #myclassset .btn-next {
@@ -2323,7 +2354,7 @@ body {
     color: #00B98D;
 }
 
-#aboutknow, #aboutnew, #aboutrule, #aboutjoin {
+#aboutknow, #aboutnew, #aboutrule, #aboutjoin,#abouttalk {
     padding: 40px 50px;
     float: left;
     width: 827px;
@@ -2406,20 +2437,13 @@ input[disabled] {
     color: #727272;
 }
 
-#abouttalk {
-    float: left;
-    background-color: #FFF;
-    width: 729px;
-    color: #4B5660;
-    padding: 10px 60px;
-    min-height: 679px;
-}
+
 
 #abouttalk h2 {
-    font-size: 18px;
-    color: #000;
+    font-size: 24.5px;
+    color: #333333;
     margin-bottom: 4px;
-    font-weight: 700;
+
 }
 
 #abouttalk h3 {
@@ -2489,9 +2513,11 @@ input[disabled] {
 
 #myclassset .checkbox {
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: -5px;
 }
-
+#myclassset #class_time{
+    margin-left: 5px;
+}
 #myorderdet > div.myorderxq > h3 {
     font-size: 18px;
 
@@ -2836,4 +2862,36 @@ input[disabled] {
     outline: medium none;
     background: #F0F0F0;
     cursor: default;
+}
+#mysetyuan .form-control,#mysetday .form-control{
+    width: 280px;
+    margin-left: 20px;
+}
+#mysetyuan span,#mysetday span{
+    height: 32px;
+    width: 30px;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+#age_id{
+    margin-left: 20px;
+}
+.righttest .popover-content{
+    padding: 20px 26px;
+    width: 900px;
+    font-size: 14px;
+}
+#actlistul li .actleft a{
+    display: inline-block;
+    float: left;
+}
+.inputwrong{
+    color: #FF2424;
+    font-size: 14px;
+    margin-left: 10px;
+}
+#mysetday .inputwrong,#mysetyuan .inputwrong{
+    color: #FF2424;
+    font-size: 14px;
 }

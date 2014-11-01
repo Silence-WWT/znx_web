@@ -34,7 +34,7 @@
             <ul class="unstyled" id="actlistul">
                 {% for course in courses %}
                 <li>
-                    <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
+                    <div class="actleft"><a href="{{ url_for('course.home', id=course.id) }}"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>
@@ -43,7 +43,7 @@
                                 {% if course.is_closed %}
                                     <button class="closebtn">已关闭</button>
                                 {% else %}
-                                <a>
+                                <a href="{{ url_for('org.edit_course', id=course.id) }}">
                                     <button class="btn-edit">编辑</button>
                                 </a>
                                 <a class="deleclass"  href="{{ url_for('org.delete_course', id=course.id) }}" onClick="return confirm('关闭课程吗？')">

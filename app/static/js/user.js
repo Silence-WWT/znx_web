@@ -5,6 +5,16 @@ $(function () {
         $(this).tab('show');
     });
 })
+//控制提示内容
+    $(function () {
+
+        setTimeout(function () {
+
+            $("#alert-warning").hide(1000);
+
+        }, 3000);
+
+    })
 
 //在除首页的其他页面对于nav竖导航进行控制
 $(function () {
@@ -671,7 +681,7 @@ var chackTextarea = function (obj, num, objTip) {
     }
 }
 
-chackTextarea(document.getElementById("Commenttext"), 500, document.getElementById("commentnum"));
+chackTextarea(document.getElementById("Commenttext"), 140, document.getElementById("commentnum"));
 function shake(o) {
     var $panel = $("#" + o);
     box_left = ($(window).width() - $panel.width()) / 2;

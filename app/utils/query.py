@@ -24,5 +24,5 @@ def select_multi_checkbox(field, ul_class='', **kwargs):
         if checked:
             options['checked'] = 'checked'
         html.append(u'<label class="checkbox inline">')
-        html.append(u'<input %s /> %s </label>' % (html_params(**options), label))
+        html.append(u'<input %s class="class_time" /> %s </label>' % (html_params(**options), label))
     return u''.join(html)

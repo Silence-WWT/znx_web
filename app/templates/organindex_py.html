@@ -138,40 +138,9 @@
                         <dd>
                             <ul class="unstyled" id="usertest">
                                 {% for comment in org.get_comments() %}
-                                <li>
-                                    <div class="leftuser"><img
-                                            src="{{ url_for('static', filename='images/userpic.png') }}"
-                                            class="img-circle"/>
-                                        <span class="text-center">{{ comment.get_user().username }}</span>
-                                    </div>
-                                    <div class="righttest">
-                                        <div class="popover right" id="usercomment1">
-                                            <div class="arrow"></div>
-                                            <div class="popover-content">
-                                                <div class="commentin"><span><img
-                                                        src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
-
-            <span><div class="revinp">
-				<span class="level">
-                <b>评价：</b>
-                    {{ comment.stars|stars|safe }}
-				</span>
-                <span>{{ comment.timestamp }}</span>
-
-            </div></span>
-
-                                                </div>
-                                                <div class="commment">
-                                                    <p>{{comment.body}}
-                                                    </p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                               <!--评论列表-->
+                                {% include 'snippet/commentlist.html' %}
                                 {% endfor %}
-
                             </ul>
                         </dd>
                     </dl>

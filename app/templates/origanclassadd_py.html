@@ -29,96 +29,14 @@
 
         </div>
         <div class="myuserright">
+            {% if add %}
             <h3><span>增加课程</span></h3>
-
+           {% else %}
+            <h3><span>编辑课程</span></h3>
+            {% endif %}
             <div id="myclassset">
-                <form class="form-horizontal" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ wtf.form_errors(form) }}
-                    <div class="control-group">
-                        <label class="control-label">课程名称</label>
-
-                        <div class="controls">
-                            <input type="text" name="{{ form.name.name }}" class="form-control"/>
-
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">适应年龄</label>
-
-                        {{ form.age_id(class="form-control-more") }}
-
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">价格</label>
-
-                        <div class="controls">
-                            <input type="text" name="{{ form.price.name }}" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">总课时</label>
-
-                        <div class="controls">
-                            <input type="text" name="{{ form.days.name }}" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">咨询时间</label>
-
-                        <div class="controls">
-                            <input type="text" name="{{ form.consult_time.name }}" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">是否支持试听</label>
-
-                        <div class="controls">
-                            <label class="radio">
-                                <input type="radio" name="{{ form.is_tastable.name }}" value="1" checked>支持
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="{{ form.is_tastable.name }}" value="0">
-                                不支持
-                            </label>
-
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">滚动开班</label>
-
-                        <div class="controls">
-                            <label class="radio">
-                                <input type="radio" name="{{ form.is_round.name }}" value="1" checked/>支持
-                            </label>
-                            <label class="radio">
-                                <input type="radio" name="{{ form.is_round.name }}" value="0"/>
-                                不支持
-                            </label>
-
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">上课时间</label>
-                        <div class="controls">
-                            {{ form.class_time }}
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label">课程简介</label>
-
-                        <div class="controls">
-                            <textarea rows="4" name="{{ form.intro.name }}" class="form-textarea"></textarea>
-
-                        </div>
-                    </div>
-                    <div class="controls">
-                        <button type="submit" class="btn-next">发布</button>
-                    </div>
-                </form>
+             <!--课程增加模板-->
+                {% include 'snippet/class_form.html' %}
             </div>
         </div>
     </div>
