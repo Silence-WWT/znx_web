@@ -714,13 +714,15 @@ $(function () {
 $(function(){
 $("#onlinetalk").click(function(){
     var talkcontent=$("#talkcontent").val();
+
     $.ajax({
         type: "POST", //用POST方式传输
         dataType: "text", //数据格式:JSON
         url: '/chat/chat', //目标地址
         data:"context="+talkcontent,
-        success: function (data) {
-            alert(data);
+        success: function (talkcontent) {
+            alert(talkcontent);
+            $("<p class=\'badge badge-success italk\'>"+talkcontent+"</p>").append($("#talkbody"));
         }
 
     });
