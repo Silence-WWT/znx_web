@@ -14,7 +14,7 @@ def chat():
         last_id = request.values.get('id', 1, type=int)
         if last_id:
             chatline = ChatLine.query.\
-                filte(ChatLine.unified_id == channel_id).\
+                filter(ChatLine.unified_id == channel_id).\
                 filter(ChatLine.is_user == False).\
                 filter(ChatLine.id > last_id).first()
             if chatline:
