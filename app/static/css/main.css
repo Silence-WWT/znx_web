@@ -1626,26 +1626,27 @@ body {
 
 #myzixun .modal-body {
     height: 400px;
-    padding-Bottom: 6PX;
+    padding-Bottom: 0PX;
 }
 
 #myzixun .modal-body textarea {
     width: 513px;
     border: 1px solid rgb(221, 221, 221);
     margin: 0px 0px 10px;
-    height: 80px;
+    height: 50px;
     outline: none;
     resize: none;
 }
 
 #myzixun .modal-body .talk {
-    height: 300px;
+    height: 330px;
+    overflow: auto;
 }
 
 #myzixun .modal-body .talk .italk, #myzixun .modal-body .talk .ytalk {
     background: #00B98D;
     font-size: 16px;
-    padding: 10px;
+    padding: 8px 15px;
     float: right;
     max-width: 340px;
     height: auto;
@@ -1654,7 +1655,7 @@ body {
     line-height: 24px;
     white-space: normal;
     word-break: break-all;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 #myzixun .modal-body .talk .ytalk {
@@ -2905,4 +2906,11 @@ input[disabled] {
 #mysetday .inputwrong,#mysetyuan .inputwrong{
     color: #FF2424;
     font-size: 14px;
+}
+#talkpost li{
+    width: 100%;
+    float: right;
+}
+#talkget{
+    display: none;
 }

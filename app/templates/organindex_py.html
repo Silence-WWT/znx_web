@@ -93,10 +93,13 @@
             </div>
             <div class="modal-body">
                 <div class="talk" id="talkbody">
-                    <p class="badge badge-success italk">你好我想咨询一个事情</p>
+                    <ul class="unstyled" id="talkpost">
+                        <li></li>
+                    </ul>
 
-                    <p class="badge badge-success ytalk">
-                        你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？你好这里是在哪学客服，很高兴为你，请问你具体遇到了什么问题呢？</p>
+
+                    <p class="badge badge-success ytalk" id="talkget">
+                       </p>
 
                 </div>
                 <textarea rows="5" class="form-textarea" name="talkcontent" id="talkcontent"></textarea>
@@ -152,7 +155,7 @@
             </div>
             <div class="tab-pane" id="tab2">
                 <div id="organclass">
-                    <ul class="unstyled">
+                    <ul class="unstyled block">
                         {% for class in org.get_classes() %}
                         <li>
                             <div class="classleft">
