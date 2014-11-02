@@ -7,4 +7,5 @@ from ..models import UnifiedId
 @chat.route('/chat', methods=['POST'])
 def chat():
     channel_id = current_user.get_unified_id()
-    return
+    print channel_id
+    return 'ok'
