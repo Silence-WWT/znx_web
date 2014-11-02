@@ -305,6 +305,24 @@ class OrganizationComment(db.Model):
             db.session.commit()
 
 
+class UnifiedId(db.Model):
+    __tablename__ = 'unified_id'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, nullable=False)
+    mobile_key = db.Column(db.CHAR(64), nullable=False)
+    web_key = db.Column(db.CHAR(32), nullable=False)
+    created = db.Column(db.Integer, nullable=False)
+
+
+class ChartLine(db.Model):
+    __tablename__ = 'chat_lines'
+    id = db.Column(db.Integer, primary_key=True)
+    unified_id = db.Column(db.Integer, nullable=False)
+    is_user = db.Column(db.BOOLEAN, nullable=False)
+    content = db.Column(db.Unicode(500), nullable=False)
+    created = db.Column(db.Integer, nullable=False)
+
+
 class Class(db.Model):
     __tablename__ = 'classes'
     id = db.Column(db.Integer, primary_key=True)
@@ -553,7 +571,7 @@ class ActivityComment(db.Model):
             db.session.commit()
 
 
-# TODO: chart 等待魏鹏的方案
+# TODO: chat 等待魏鹏的方案
 
 
 class ClassOrder(db.Model):
