@@ -2911,6 +2911,7 @@ input[disabled] {
     width: 100%;
     float: right;
 }
-#talkget{
-    display: none;
+#talkget li{
+    width: 100%;
+    float: right;
 }
