@@ -711,3 +711,12 @@ $(function () {
     })
 })
 
+$(function(){
+$("#onlinetalk").click(function(){
+    $.ajax({
+        type: "POST", //用POST方式传输
+        dataType: "text", //数据格式:JSON
+        url: '/chat/chat'//目标地址
+    });
+})
+})

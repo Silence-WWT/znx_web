@@ -4,6 +4,7 @@
 a {
     text-decoration: none;
     color: #727272;
+    outline: none;
 }
 
 a:hover {
@@ -1109,6 +1110,7 @@ body {
     height: 366px;
     border: 1px solid #ECE9E2;
     background: #fff;
+    border-top:0px;
 }
 
 #myorgan .headtitle {
@@ -1258,6 +1260,7 @@ body {
     border-radius: 0px;
     font-weight: 600;
     border-top: 0px;
+    outline: none;
 }
 
 #organthree .tabbable .nav-tabs > .active > a, #organthree .tabbable .nav-tabs > .active > a:focus {
@@ -1440,8 +1443,11 @@ body {
     vertical-align: middle;
     margin: -3px 5px;
     cursor: pointer;
+    outline: none;
 }
-
+#organregall .container .attendtitle{
+    width: 200px;
+}
 #myComment .modal-header, #myeditwrong .modal-header {
     padding: 10px;
     height: 28px;
@@ -1454,10 +1460,10 @@ body {
 
 #myComment .modal-header .close, #myeditwrong .modal-header .close, #myzixun .modal-header .close {
     width: 20px;
-    font-size: 36px;
+    font-size: 30px;
     color: #FFF;
     margin: -3px -4px;
-    font-weight: normol;
+    font-weight: normal;
     opacity: 0.8;
 
 }
