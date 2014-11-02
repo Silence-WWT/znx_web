@@ -712,21 +712,41 @@ $(function () {
 })
 
 $(function(){
-$("#onlinetalk").click(function(){
-    var talkcontent=$("#talkcontent").val();
-    var talkdiv="<li ><p class=\'badge badge-success italk\'>"+talkcontent+"</p></li>";
+$("#onlinetalk").click(function() {
+    var talkcontent = $("#talkcontent").val();
+    var talkdiv = "<li ><p class=\'badge badge-success italk\'>" + talkcontent + "</p></li>";
     //alert(talkcontent);
     $.ajax({
         type: "POST", //用POST方式传输
         dataType: "text", //数据格式:JSON
         url: '/chat/chat', //目标地址
-        data:"context="+talkcontent,
+        data: "context=" + talkcontent,
         success: function () {
             $("#talkpost li:last-child").after(talkdiv);
-           // alert($("#talkcontent").offset().top);
-            $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top},800);
+            $("#talkcontent").val('');
+            $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
         }
-
     });
+
+
+
 })
+ $("#zixunbtn").click(function(){
+        setInterval("talkget()",3000);
+    })
+
 })
+function talkget() {
+    $.ajax({
+        type: 'GET',
+        url: '/chat/chat',
+        dataType: "json",
+        success: function (msg) {
+            //alert(msg);
+            $.each(msg, function (id, content) {
+                alert(id);
+                alert(content);
+            });
+        }
+    });
+};
