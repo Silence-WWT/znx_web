@@ -713,10 +713,16 @@ $(function () {
 
 $(function(){
 $("#onlinetalk").click(function(){
+    var talkcontent=$("#talkcontent").val();
     $.ajax({
         type: "POST", //用POST方式传输
         dataType: "text", //数据格式:JSON
-        url: '/chat/chat'//目标地址
+        url: '/chat/chat', //目标地址
+        data:"content="+talkcontent,
+        success: function (data) {
+            alert(data);
+        }
+
     });
 })
 })
