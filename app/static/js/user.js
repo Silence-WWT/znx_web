@@ -737,15 +737,18 @@ $("#onlinetalk").click(function() {
 
 })
 function talkget() {
+     var id=$("#talkid").val();
     $.ajax({
         type: 'GET',
         url: '/chat/chat',
         dataType: "json",
+        data:"id="+id,
         success: function (msg) {
             //alert(msg);
             $.each(msg, function (id, content) {
-                alert(id);
-                alert(content);
+                var talkdiv2="<li ><p class=\'badge badge-success ytalk\'>" + content + "</p></li>";
+                $("#talkget li:last-child").after(talkdiv2);
+                $("#taikid").val(id);
             });
         }
     });
