@@ -57,10 +57,14 @@ def create_app(config_name):
     from .activity import activity as activity_blueprint
     app.register_blueprint(activity_blueprint, url_prefix='/activity')
 
+    # TODO: remove this when deployed. Used only for dev/test.
     from .test import test as test_blueprint
     app.register_blueprint(test_blueprint, url_prefix='/test')
 
     from .api_1_0 import api as api_1_0_blueprint
     app.register_blueprint(api_1_0_blueprint, url_prefix='/api/v1.0')
+
+    from .chat import chat as char_blueprint
+    app.register_blueprint(char_blueprint, url_prefix='/chat')
 
     return app
