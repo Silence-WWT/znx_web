@@ -744,7 +744,7 @@ function talkget() {
         dataType: "json",
         data:"id="+tid,
         success: function (data) {
-          $("talkid").val(data.id);
+          $("#talkid").val(data.id);
        var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
             $("#talkpost li:last-child").after(ytalkdiv);
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
