@@ -723,6 +723,7 @@ $("#onlinetalk").click(function() {
         data: "context=" + talkcontent,
         success: function () {
             $("#talkpost li:last-child").after(talkdiv);
+            $("#talkcontent").val('');
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
         }
     });
@@ -730,22 +731,22 @@ $("#onlinetalk").click(function() {
 
 
 })
-    $("#zixunbtn").click(function(){
+ $("#zixunbtn").click(function(){
         setInterval("talkget()",3000);
     })
-    )
-    function talkget() {
-        $.ajax({
-            type: 'GET',
-            url: '/chat/chat',
-            dataType: "json",
-            success: function (msg) {
-                //alert(msg);
-                $.each(msg, function (id, content) {
-                    alert(id);
-                    alert(content);
-                });
-            }
-        });
-    }
-});
+
+})
+function talkget() {
+    $.ajax({
+        type: 'GET',
+        url: '/chat/chat',
+        dataType: "json",
+        success: function (msg) {
+            //alert(msg);
+            $.each(msg, function (id, content) {
+                alert(id);
+                alert(content);
+            });
+        }
+    });
+};
