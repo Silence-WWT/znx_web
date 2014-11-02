@@ -732,24 +732,23 @@ $("#onlinetalk").click(function() {
 
 })
  $("#zixunbtn").click(function(){
-        setInterval("talkget()",3000);
+        setInterval("talkget()",5000);
     })
 
 })
 function talkget() {
-     var id=$("#talkid").val();
+     var tid=$("#talkid").val();
     $.ajax({
         type: 'GET',
         url: '/chat/chat',
         dataType: "json",
-        data:"id="+id,
-        success: function (msg) {
-            //alert(msg);
-            $.each(msg, function (id, content) {
-                var talkdiv2="<li ><p class=\'badge badge-success ytalk\'>" + content + "</p></li>";
-                $("#talkget li:last-child").after(talkdiv2);
-                $("#taikid").val(id);
-            });
+        data:"id="+tid,
+        success: function (data) {
+          $("talkid").val(data.id);
+       var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
+            $("#talkpost li:last-child").after(ytalkdiv);
+            $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
+
         }
     });
 };
