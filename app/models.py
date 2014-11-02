@@ -20,7 +20,7 @@ class AnonymousUser(AnonymousUserMixin):
             session['uuid'] = uuid
             return unified_id.id
         uuid = session['uuid']
-        unified_id = UnifiedId.query(web_key=uuid).first_or_404()
+        unified_id = UnifiedId.query.filter_by(web_key=uuid).first_or_404()
         return unified_id.id
 
 
@@ -46,7 +46,7 @@ class User(UserMixin, db.Model):
     identity = db.Column(db.String(64), nullable=False)
 
     def get_unified_id(self):
-        unified_id = UnifiedId.query(user_id=self.id).first_or_404()
+        unified_id = UnifiedId.query.filter_by(user_id=self.id).first_or_404()
         return unified_id.id
 
     def get_id(self):
@@ -339,7 +339,7 @@ class UnifiedId(db.Model):
     created = db.Column(db.Integer, nullable=False)
 
 
-class ChartLine(db.Model):
+class ChatLine(db.Model):
     __tablename__ = 'chat_lines'
     id = db.Column(db.Integer, primary_key=True)
     unified_id = db.Column(db.Integer, nullable=False)
