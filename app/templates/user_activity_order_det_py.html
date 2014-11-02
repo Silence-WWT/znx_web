@@ -1,14 +1,9 @@
 {% extends "layout.html" %}
-{% block title %}>去哪学-用户中心-订单详情{% endblock title %}
+{% block title %}去哪学-用户中心-订单详情{% endblock title %}
 {% block navbar %}
 {% include 'headuser.html' %}
-{% block userfrom %}
-用户中心
-{% endblock userfrom %}
 {% endblock navbar %}
 {% block content %}
-
-
 <div class="container" id="myuserindex">
     <div class="myuserpic ">
         <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>

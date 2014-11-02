@@ -41,13 +41,17 @@
                             <h4><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h4>
 
                             <div class="actrighta">
-                                <a href="{{ url_for('org.edit_activity', id=activity.id) }}">
-                                    <button class="btn-edit">编辑</button>
-                                </a>
-                                <a class="deleclass" id="myclass1">
-                                    <button class="btn-det">删除</button>
-                                </a>
 
+                                {% if activity.is_closed %}
+                                    <button class="closebtn">已关闭</button>
+                                {% else %}
+                                    <a href="{{ url_for('org.edit_activity', id=activity.id) }}">
+                                        <button class="btn-edit">编辑</button>
+                                    </a>
+                                    <a class="deleclass"  href="{{ url_for('org.delete_activity', id=activity.id) }}" onClick="return confirm('关闭活动吗？')">
+                                        <button class="btn-det">关闭</button>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                         <span><small>学费</small>￥{{ activity.price }}</span>
@@ -61,27 +65,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock content %}
-{% block inscript %}
-<link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
-<script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript">
-
-    $(function () {
-        $(".deleclass").click(function () {
-            var id = $(this).attr("id");
-            //alert(id);
-            var r = confirm("删除课程？");
-            if (r == true) {
-                alert("你删除的课程是" + id);
-            }
-            else {
-                //alert("You pressed Cancel!");
-            }
-        })
-
-    })
-</script>
-{% endblock inscript %}
