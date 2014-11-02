@@ -5,7 +5,7 @@ from . import user
 from .. import db
 from flask.ext.principal import identity_changed, Identity
 from .forms import LoginForm, RegistrationForm
-from ..models import User, ActivityOrder, ClassOrder
+from ..models import User, ActivityOrder, ClassOrder, UnifiedId
 from ..permission import anonymous_permission, user_permission
 from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
@@ -41,7 +41,7 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        # TODO: add username
+        unified_id = current_user.get_unified_id()
         user = User(email=form.email.data,
                     username=form.username.data,
                     mobile=form.cellphone.data,
@@ -49,7 +49,11 @@ def register():
                     identity='',
                     created=time.time())
         db.session.add(user)
+        unified = UnifiedId.query.get_or_404(unified_id)
+        unified.user_id = user.id
+        db.session.add(unified)
         db.session.commit()
+
         # token = user.generate_confirmation_token()
         # TODO: Add token.
         #send_email(user.email, 'Confirm Your Account',

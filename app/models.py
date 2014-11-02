@@ -1,9 +1,30 @@
 # -*- coding: utf-8 -*-
 import time
+from uuid import uuid4
 from . import db, login_manager
-from flask.ext.login import UserMixin
+from flask.ext.login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask import session
 
+
+class AnonymousUser(AnonymousUserMixin):
+    def get_unified_id(self):
+        if 'uuid' not in session:
+            uuid = uuid4().hex
+            unified_id = UnifiedId(user_id=0,
+                                   web_key=uuid,
+                                   mobile_key='',
+                                   created=time.time())
+            db.session.add(unified_id)
+            db.session.commit()
+            session['uuid'] = uuid
+            return unified_id.id
+        uuid = session['uuid']
+        unified_id = UnifiedId.query(web_key=uuid).first_or_404()
+        return unified_id.id
+
+
+login_manager.anonymous_user = AnonymousUser
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -23,6 +44,10 @@ class User(UserMixin, db.Model):
     created = db.Column(db.Integer, nullable=False)
     # 移动端标识
     identity = db.Column(db.String(64), nullable=False)
+
+    def get_unified_id(self):
+        unified_id = UnifiedId.query(user_id=self.id).first_or_404()
+        return unified_id.id
 
     def get_id(self):
         return u'u'+unicode(self.id)
