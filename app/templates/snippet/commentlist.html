@@ -1,34 +1,28 @@
-
-    <li>
-        <div class="leftuser"><img
-                src="{{ url_for('static', filename='images/userpic.png') }}"
-                class="img-circle"/>
-            <span class="text-center">{{ comment.get_user().username }}</span>
-        </div>
-        <div class="righttest">
-            <div class="popover right" id="usercomment1">
-                <div class="arrow"></div>
-                <div class="popover-content">
-                    <div class="commentin"><span><img
-                            src="{{ url_for('static', filename='images/happypic.png') }}"/>好评</span>
-
-            <span><div class="revinp">
-				<span class="level">
-
+<li>
+    <div class="leftuser"><img
+            src="{{ url_for('static', filename='images/userpic.png') }}"
+            class="img-circle"/>
+        <span class="text-center">{{ comment.get_user().username }}</span>
+    </div>
+    <div class="righttest">
+        <div class="popover right" id="usercomment1">
+            <div class="arrow"></div>
+            <div class="popover-content">
+                <div class="commentin"><span>评分：</span>
+                     <span>
+                         <div class="revinp">
+				         <span class="level">
                     {{ comment.stars|stars|safe }}
-				</span>
+				    </span>
                 <span>{{ comment.created|get_date_time }}</span>
-
-            </div></span>
-
-                    </div>
-                    <div class="commment">
-                        <p>{{comment.body}}
-                        </p>
-
-                    </div>
+                         </div>
+                     </span>
+                </div>
+                <div class="commment">
+                    <p>{{ comment.body }}</p>
                 </div>
             </div>
         </div>
-    </li>
+    </div>
+</li>
 
