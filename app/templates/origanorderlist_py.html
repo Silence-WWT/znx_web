@@ -5,17 +5,7 @@
 {% endblock navbar %}
 {% block content %}
 <div class="container" id="myuserindex">
-    <div class="myuserpic ">
-        <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>
-        <ul class="unstyled">
-            <li>
-                <a class="username" href="#">{{current_user.get_name()}}</a>
-            </li>
-            <li>
-                <a href="{{ url_for('main.logout') }}" class="outa">退出登录</a>
-            </li>
-        </ul>
-    </div>
+    {% include 'logincenter.html' %}
     <div class="container" id="myuser">
         <div class="myuserleft">
             <ul class="unstyled">
@@ -39,7 +29,7 @@
                         <th>用户名</th>
                         <th>金额</th>
                         <th>联系电话</th>
-                        <th>操作</th>
+                        <th>详情</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,7 +41,7 @@
                         <td>{{ class_order.name }}</td>
                         <td>{{ class.price }}</td>
                         <td>{{ class_order.mobile }}</td>
-                        <td><a href="{{ url_for('org.course_order_detail', id=class_order.id) }}">操作</a></td>
+                        <td><a href="{{ url_for('org.course_order_detail', id=class_order.id) }}">详情</a></td>
                     </tr>
                     {% endfor %}
                     </tbody>

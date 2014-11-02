@@ -361,10 +361,7 @@ body {
     line-height: 54px;
 }
 
- #mywrongLabel {
-    font-size: 16px;
-    font-weight: normal;
-}
+
 
 #indexcontent {
     position: absolute;
@@ -893,6 +890,9 @@ body {
     border-radius: 10px;
     opacity: .1;
 }
+.carousel-control{
+    outline: none;
+}
 .carousel-control:hover, .carousel-control:focus{
     opacity: 0.5;
 }
@@ -1153,25 +1153,27 @@ body {
 
 #myorgan .organlogo {
     float: left;
-    margin-left: 70px;
+    margin-left: 50px;
     margin-top: 110px;
 }
 
 #myorgan .headdes .organmoredec {
     float: left;
-    margin: 22px 277px;
+    margin: 22px 245px;
 }
 
 #myorgan .headdes .organmoredec span {
-    font-size: 18px;
+    font-size: 16px;
     margin-right: 14px;
     height: 20px;
     line-height: 20px;
     color: #000;
 }
-
+#myorgan .headdes .organmoredec .icon-eye-open{
+    margin-left: 7px;
+}
 #myorgan .headdes .organmoredec span i {
-    margin: 5px;
+    margin: 4px 5px 5px;
 }
 
 #myorgan .headdes .organmoredec .organplace img {
@@ -1183,7 +1185,7 @@ body {
 }
 
 #myorgan .headdes .organknown .lastspan {
-    margin: 0px -14px;
+    margin: 0px 0px;
     float: left;
     font-size: 12px;
     color: #000;
@@ -1197,7 +1199,7 @@ body {
 
 #myorgan .headdes .organtotal {
     float: left;
-    margin: -30px 108px;
+    margin: -30px 95px;
 }
 
 #myorgan .headdes .organtotal ul li {
@@ -1694,7 +1696,10 @@ body {
     font-weight: normal;
     float: left;
 }
-
+#classdet #mywrongLabel,#mywrongLabel {
+    font-size: 16px;
+    font-weight: normal;
+}
 #classdet h3 span {
     font-size: 18px;
 }

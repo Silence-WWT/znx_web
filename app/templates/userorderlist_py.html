@@ -1,43 +1,13 @@
 {% extends "layout.html" %}
 {% block title %}去哪学-用户中心-我的订单{% endblock title %}
 {% block navbar %}
-<div class="mainuserhead">
-    <div class="container head" id="userindexhead">
-        <div id="header">
-            <a class="bigbrand" href="{{ url_for('main.index') }}">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" class="logopic">
-            </a>
-        </div>
-        <div class="titleright">
-
-            <h1>
-            用户中心
-            </h1>
-
-        </div>
-        <div class="indexright"><img src="{{ url_for('static', filename='images/returnhome.png') }}"><a
-                href="{{ url_for('main.index') }}">回到首页</a></div>
-
-    </div>
-</div>
-{% block userfrom %}
-{% endblock userfrom %}
+    {% include 'headuser.html' %}
 {% endblock navbar %}
 {% block content %}
 
 
 <div class="container" id="myuserindex">
-    <div class="myuserpic ">
-        <img src="{{ url_for('static', filename='images/userhead.png') }}" class="img-circle"/>
-        <ul class="unstyled">
-            <li>
-                <a class="username" href="#">{{current_user.get_name()}}</a>
-            </li>
-            <li>
-                <a href="{{ url_for('main.logout') }}" class="outa">退出登录</a>
-            </li>
-        </ul>
-    </div>
+    {% include 'logincenter.html' %}
     <div class="container" id="myuser">
         <div class="myuserleft">
             <ul class="unstyled">
