@@ -12,12 +12,12 @@ from ..models import UnifiedId, ChatLine
 def chat():
     channel_id = current_user.get_unified_id()
     if request.method == 'GET':
-        last_id = request.valuse.get('id', None, type=int)
+        last_id = request.valuse.get('id', 1, type=int)
         if last_id:
             chatline = ChatLine.query.filte(ChatLine.unified_id==channel_id).\
                 filter(ChatLine.is_user==False).\
                 filter(ChatLine.id>last_id).first()
-            return jsonify({'time': channel_id.created,
+            return jsonify({'id': chatline.id,
                             'content':chatline.content})
         else:
             return 'false', 500
