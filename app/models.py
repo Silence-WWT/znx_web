@@ -339,7 +339,7 @@ class UnifiedId(db.Model):
     created = db.Column(db.Integer, nullable=False)
 
 
-class ChartLine(db.Model):
+class ChatLine(db.Model):
     __tablename__ = 'chat_lines'
     id = db.Column(db.Integer, primary_key=True)
     unified_id = db.Column(db.Integer, nullable=False)
