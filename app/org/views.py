@@ -258,6 +258,20 @@ def edit_activity(id):
     activity_form.init_from_activity(id)
     return render_template('origanactadd_py.html', form=activity_form)
 
+
+@org.route('/activity/delete/<int:id>')
+@org_permission.require()
+def delete_activity(id):
+    activity = Activity.query.get_or_404(id)
+    #if ClassOrder.query.filter_by(class_id=id).first():
+    #    flash(u'已经有用户选择课程，无法关闭')
+    #    return redirect(url_for('org.course_list'))
+
+    activity.is_closed = True
+    db.session.add(activity)
+    db.session.commit()
+    return redirect(url_for('org.activity_list'))
+
 @org.route('/activity/list')
 @org_permission.require()
 def activity_list():
