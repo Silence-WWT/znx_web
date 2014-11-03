@@ -205,7 +205,7 @@
                                 </div>
                             </div>
                             <div class="classright">
-                                <span>￥{{ class.price }}</span>
+                                <span>{{ class.price_unicode }}</span>
                                 <a href="{{ url_for('course.home', id=class.id) }}">
                                     <button class=" btn-myred">查看详情</button>
                                 </a></div>
@@ -235,12 +235,13 @@
 				</span><b>{{ activity.get_comment_count() }}</b>
    </div>
    </span>
-                                    <span>适合年龄：{{ activity.get_age() }}</span>
-                                    <span>总课时： {{ activity.get_time() }}</span>
+                                    <span>适合年龄：{{ activity.age_unicode }}</span>
+                                    <span>开始时间：{{ activity.start_time_unicode }}</span>
+                                    <span>结束时间：{{ activity.end_time_unicode }}</span>
 
                                 </div>
                                 <div class="classright">
-                                    <span>￥{{ activity.price }}</span>
+                                    <span>￥{{ activity.price_unicode }}</span>
                                     <a href="{{ url_for('activity.home', id=activity.id) }}">
                                         <button class=" btn-myred">查看详情</button>
                                     </a></div>
