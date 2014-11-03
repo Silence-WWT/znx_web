@@ -2,8 +2,9 @@
 from . import activity
 from .. import db
 from .forms import DetailForm, ConfirmForm, CommentForm
-from ..models import Activity, ActivityOrder
-from flask import render_template, redirect, url_for, abort
+from ..models import Activity, ActivityOrder, ActivityComment
+from flask import render_template, redirect, url_for, abort, request, \
+    current_app
 from flask.ext.login import current_user
 
 
@@ -16,7 +17,17 @@ def home(id):
         db.session.add(comment)
         db.session.commit()
         return redirect(url_for('.home', id=id))
-    return render_template('organact_py.html', activity=activity, form=form)
+    page = request.args.get('page', 1, type=int)
+    pagination = ActivityComment.query.filter_by(activity_id=id).order_by(
+        ActivityComment.created.asc()).paginate(
+        page, per_page=current_app.config['ORG_COMMENT_PER_PAGE'],
+        error_out=False)
+    comments = pagination.items
+    activity.page_view = activity.page_view+1
+    db.session.add(activity)
+    db.session.commit()
+    return render_template('organact_py.html', activity=activity,
+                           comments=comments, form=form, pagination=pagination)
 
 
 @activity.route('/taste/<int:id>', methods=['GET', 'POST'])
