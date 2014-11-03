@@ -2919,3 +2919,78 @@ input[disabled] {
     text-align: center;
     margin: -25px 0px 20px;
 }
+#talkadmin h3{
+    width: 872px;
+    padding: 0 28px;
+    background: #CCC;
+    margin-top: 1px;
+    height: 52px;
+    line-height: 52px;
+    font-weight: normal;
+    font-size: 16px;
+}
+#talkadmin .accordion-heading{
+    height: 100px;
+}
+#talkadmin .accordion-group{
+    padding: 20px 20px 0px;
+
+}
+#talkadmin .accordion-group .accordion-heading ul.talkadmintop li{
+    margin-right: 85px;
+}
+#talkadmin .accordion-group .accordion-heading p{
+    color: #000;
+    font-size: 16px;
+    margin: 20px 55px;
+}
+#talkadmin .accordion-group .accordion-heading ul.unstyled:nth-child(3){
+    float: left;
+    width: 500px;
+}
+#talkadmin .accordion-group .accordion-heading  ul.unstyled:nth-child(4){
+     float: right;
+     width: 223px;
+ }
+#talkadmin .talkcontentmore{
+    padding: 10px 25px;
+    border-top: 1px solid #EEE;
+}
+#talkadmin .accordion-body{
+    width: 100%;
+
+}
+#talkadmin .accordion-group{
+    border-bottom:2px solid #999;
+}
+#talkadmin h4{
+    font-size: 16px;
+    font-weight: normal;
+}
+#talkadmin .timeright{
+    float: right;
+}
+#talkadmin .talkcontentmore p{
+   width: 600px;
+    float: left;
+}
+#talkadmin .talkcontentmore li{
+    height: 20px;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 12px 0px 5px;
+}
+#talkadmin .talkcontentmore .talktext{
+    float: left;
+    width: 400px;
+    resize: none;
+    height: 100px;
+}
+#talkadmin .talkcontentmore  .talkadminbtn{
+    margin: 57px 42px 0px;
+}
+#talkadmin .accordion-group{
+    border-top: 0px;
+   border-left: 0px;
+    border-right: 0px;
+
+}
