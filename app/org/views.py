@@ -146,8 +146,6 @@ def certification():
 @org.route('/home/<int:id>', methods=['GET', 'POST'])
 def home(id):
     org = Organization.query.get_or_404(id)
-    classes = Class.query.filter_by(organization_id=id).all()
-    activities = Activity.query.filter_by(organization_id=id).all()
     form = CommentForm()
     if form.validate_on_submit():
         if user_permission.can():
@@ -155,6 +153,10 @@ def home(id):
             db.session.add(comment)
             db.session.commit()
             return redirect(url_for('org.home', id=id))
+        else:
+            flash(u'用户登录后才可以评论')
+    classes = Class.query.filter_by(organization_id=id).all()
+    activities = Activity.query.filter_by(organization_id=id).all()
     page = request.args.get('page', 1, type=int)
     pagination = OrganizationComment.query.filter_by(organization_id=id).order_by(
         OrganizationComment.created.asc()).paginate(
