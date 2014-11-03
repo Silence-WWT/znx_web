@@ -28,8 +28,10 @@
                     <span class="organview"><i class="icon-eye-open"></i>{{ activity.page_view }}</span>
                     <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
                 </li>
-                <li class="firstli">适合年龄：{{ activity.get_age() }}</li>
-                <li>上课时间：{{ activity.get_time() }}</li>
+                <li class="firstli">适合年龄：{{ activity.age_unicode }}</li>
+                <li>开始时间：{{ activity.start_time_unicode }}</li>
+                <li>结束时间：{{ activity.end_time_unicode }}</li>
+                <li>活动类型：{{ activity.category }}</li>
             </ul>
         </div>
         <div class="threesmall">
@@ -73,12 +75,29 @@
                 <dl class="dl-horizontal">
                     <dt>活动简介</dt>
                     <dd>
-                        <div id="boxmore">{{ activity.intro }}</div>
+                        <div id="boxmore">{{ activity.detail|safe }}</div>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
+                    <dt>状态</dt>
+                    <dd><p class="organplace">{{ activity.status }}</p></dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                    <dt>地标</dt>
+                    <dd><p class="organplace">{{ activity.landmark }}</p></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>联系方式</dt>
+                    <dd><p class="organplace">{{ activity.contract_phone }}</p></dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>地址</dt>
+                    <dd><p class="organplace">{{ activity.address }}</p></dd>
+                </dl>
+                <dl class="dl-horizontal">
                     <dt>附近交通</dt>
-                    <dd><p class="organplace">{{ activity.get_org().traffic }}</p></dd>
+                    <dd><p class="organplace">{{ activity.traffic }}</p></dd>
                 </dl>
                 <dl class="dl-horizontal">
 

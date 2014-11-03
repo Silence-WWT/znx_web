@@ -3,8 +3,11 @@ import time
 
 
 def stars(num):
-    return '<i class="level_solid"></i>'*num + \
-           '<i class="level_hollow"></i>'*(5-num)
+    if num <=5:
+        return '<i class="level_solid"></i>'*num + \
+               '<i class="level_hollow"></i>'*(5-num)
+    else:
+        return stars(num/10)
 
 
 def sex(s):

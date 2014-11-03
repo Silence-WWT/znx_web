@@ -28,7 +28,7 @@
                         <span class="organview"><i class="icon-eye-open"></i>{{ course.page_view }}</span>
                         <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
                     </li>
-                    <li class="firstli">适合年龄：{{ course.get_age() }}</li>
+                    <li class="firstli">适合年龄：{{ course.age_unicode }}</li>
                     <li>总课时：{{ course.days }}天</li>
                     <li>咨询时间：{{ course.consult_time }}</li>
                     <li>上课时间：{{ course.get_time() }}</li>
@@ -75,7 +75,7 @@
                     <dl class="dl-horizontal">
                         <dt>简介特色</dt>
                         <dd>
-                            <div id="boxmore">{{ course.intro }}</div>
+                            <div id="boxmore">{{ course.detail|safe }}</div>
                         </dd>
                     </dl>
                     <dl class="dl-horizontal">
@@ -93,7 +93,7 @@
                         </span>
                             {% else %}
                                 <span id="icommnet">
-                            <a href="{{ url_for('main.login') }}?next={{ url_for('class.home', id=course.id) }}" role="button" onClick="return confirm('登录后才可以评价哦')">
+                            <a href="{{ url_for('main.login') }}?next={{ url_for('course.home', id=course.id) }}" role="button" onClick="return confirm('登录后才可以评价哦')">
                                 <img  src="{{ url_for('static', filename='images/noticomment.png') }}"/>
                             </a>
                         </span>
