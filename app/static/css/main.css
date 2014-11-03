@@ -1384,14 +1384,14 @@ body {
 
 #usertest li {
     height: 150px;
-    margin-bottom: 60px;
-    margin-top: 30px;
+    margin:30px 0px;
+
 }
 
 #usertest li .leftuser {
     width: 70px;
     float: left;
-    margin-top: 23px;
+    margin-top: 5px;
 }
 
 #usertest li .leftuser img {
@@ -1411,9 +1411,9 @@ body {
     display: block;
     position: relative;
     float: left;
-    max-width: 933px;
+    max-width: 950px;
     margin-left: 32px;
-    height: 150px;
+    height: auto;
 }
 
 #usercomment1 .popover-title, #usercomment1 .popover-title {
@@ -1435,13 +1435,13 @@ body {
 #usercomment1 .commment, #usercomment2 .commment {
     margin-top: 15px;
     margin-top: 15px;
-    padding: 19px 0px;
+    padding: 20px 0px 0px;
 }
 
 #icommnet {
     float: right;
     vertical-align: middle;
-    margin: -3px 5px;
+    margin: -2px 5px;
     cursor: pointer;
     outline: none;
 }
@@ -2914,4 +2914,8 @@ input[disabled] {
 #talkget li{
     width: 100%;
     float: right;
+}
+#pages{
+    text-align: center;
+    margin: -25px 0px 20px;
 }
