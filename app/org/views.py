@@ -4,8 +4,9 @@ import time, datetime
 from uuid import uuid4
 from . import org
 from .. import db
-from ..models import Organization, Type, ClassOrder, ActivityOrder,\
-    Profession, Property, Size, Location, Class, Activity, City, ClassTime
+from ..models import Organization, Type, ClassOrder, ActivityOrder, \
+    Profession, Property, Size, Location, Class, \
+    Activity, City, ClassTime, OrganizationComment
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
@@ -16,6 +17,7 @@ from flask import redirect, url_for, render_template,\
 from ..utils.query import get_location
 from ..permission import org_permission, anonymous_permission, user_permission
 from ..utils.captcha import send_captcha
+
 
 @org.route('/login', methods=['POST'])
 def login():
@@ -153,8 +155,16 @@ def home(id):
             db.session.add(comment)
             db.session.commit()
             return redirect(url_for('org.home', id=id))
+    page = request.args.get('page', 1, type=int)
+    pagination = OrganizationComment.query.filter_by(organization_id=id).order_by(
+        OrganizationComment.created.asc()).paginate(
+        page, per_page=current_app.config['ORG_COMMENT_PER_PAGE'],
+        error_out=False)
+    comments = pagination.items
     return render_template('organindex_py.html',
                            org=org,
+                           comments=comments,
+                           pagination=pagination,
                            classes=classes,
                            activities=activities, form=form)
 

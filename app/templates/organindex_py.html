@@ -137,19 +137,20 @@
                     </dl>
                     <dl class="dl-horizontal">
 
-                        <dt>评论（34）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img  src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+                        <dt>评论（{{ pagination.total }}）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img  src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
                         <!--评论弹出区域-->
                         {% include 'snippet/comment.html' %}
                         <dd>
                             <ul class="unstyled" id="usertest">
-                                {% for comment in org.get_comments() %}
+                                {% for comment in comments %}
                                <!--评论列表-->
                                 {% include 'snippet/commentlist.html' %}
                                 {% endfor %}
                             </ul>
                         </dd>
                     </dl>
-
+                    {% from 'snippet/pagination.html' import pagination_widget %}
+                    {{ pagination_widget(pagination, 'org.home', fragment='#icommnet', id=org.id) }}
 
                     <!-- Modal -->
 

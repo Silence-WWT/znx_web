@@ -16,6 +16,7 @@ class Config:
     ZNX_MAIL_SUBJECT_PREFIX = '[ZNX]'
     ZNX_MAIL_SENDER = 'Notification <Notification@znx.com>'
     PHOTO_DIR = os.path.join(basedir, 'photos')
+    ORG_COMMENT_PER_PAGE = 10
 
 
 class DevelopmentConfig(Config):
