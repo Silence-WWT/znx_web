@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}在哪学-注册选择{% endblock title %}、
+{% block title %}在哪学-用户登录{% endblock title %}、
 {% block tophead %}
 {% endblock tophead %}
 {% block navbar %}
@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
 
-                            <div class="form-right"><a class="form-signup" href="user_regiter.html">免费注册</a>
+                            <div class="form-right"><a class="form-signup" href="{{ url_for('main.register') }}">免费注册</a>
                                 <a href="{{ url_for('main.report')}}" class="form-feedback" target="_blank" ><span
                                     class="fengge">|</span>意见反馈</a>
                             </div>
@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
 
-                            <div class="form-right"><a class="form-signup" href="organ_regiter.html">免费注册</a>
+                            <div class="form-right"><a class="form-signup" href="{{ url_for('main.register') }}">免费注册</a>
                                 <a href="{{ url_for('main.report')}}"  class="form-feedback"  target="_blank" ><span class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
