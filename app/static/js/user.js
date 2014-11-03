@@ -678,14 +678,18 @@ var chackTextarea = function (obj, num, objTip) {
             if (obj.value.length > num) {
                 objTip.innerHTML = "已超出";
                 objTip.style.color = "#F00";
-                document.getElementById("button").disabled = "disabled";
+                document.getElementById("scorebtn").disabled = "disabled";
             } else {
                 objTip.innerHTML = "已输入" + (obj.value.length) + "/" + num + "个字!";
                 objTip.style.color = "#000";
-                document.getElementById("button").disabled = "";
+                document.getElementById("scorebtn").disabled = "";
+                $(".btn-next").css('background',"#00B98D");
             }
         } else {
-            document.getElementById("button").disabled = "disabled";
+            document.getElementById("scorebtn").disabled = "disabled";
+            $(".btn-next").css('background',"#999999");
+            $("#commentnum").text("评论不能为空");
+            $("#myComment .control-group b").css('color',"#f00");
         }
     }
 }
