@@ -131,7 +131,21 @@
                     </dl>
                     <dl class="dl-horizontal">
 
-                        <dt>评论（{{ pagination.total }}）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img  src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
+                        <dt>评论（{{ pagination.total }}）
+                            {% if current_user.is_authenticated() %}
+                            <span id="icommnet">
+                            <a href="#myComment" role="button" data-toggle="modal">
+                                <img  src="{{ url_for('static', filename='images/icomment.png') }}"/>
+                            </a>
+                        </span>
+                            {% else %}
+                               <span id="icommnet">
+                            <a href="{{ url_for('main.login') }}?next={{ url_for('org.home', id=org.id) }}" role="button" onClick="return confirm('登录后才可以评价哦')">
+                                <img  src="{{ url_for('static', filename='images/noticomment.png') }}"/>
+                            </a>
+                        </span>
+                            {% endif %}
+                            /dt>
                         <!--评论弹出区域-->
                         {% include 'snippet/comment.html' %}
                         <dd>
