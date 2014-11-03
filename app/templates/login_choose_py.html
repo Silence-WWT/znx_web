@@ -21,7 +21,7 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="userLogin">
-                    <form class="form-horizontal" action="{{ url_for('user.login') }}" method="post">
+                    <form class="form-horizontal" action="{{ url_for('user.login') }}?next={{ request.values.get('next') }}" method="post">
                         {{ user_form.hidden_tag() }}
                         <div class="control-group">
                             <div class="controls">
