@@ -28,8 +28,8 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+        'mysql+pymysql://test:testpassword@localhost/znx_test?charset=utf8'
 
 
 class ProductionConfig(Config):
@@ -43,5 +43,5 @@ config = {
     'testing': TestingConfig,
     'production': ProductionConfig,
 
-    'default': DevelopmentConfig
+    'default': TestingConfig
 }

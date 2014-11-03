@@ -61,11 +61,7 @@
                     <span><img src="{{ url_for('static', filename='images/organknow3.png') }}"/></span></br>
 <span class="lastspan"><div class="revinp">
 				<span class="level">
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
+                    {{ org.stars |stars|safe }}
 				</span>
 
 </div></span>
@@ -120,7 +116,25 @@
                         <dt>机构简介</dt>
                         <dd>
                             <div>
-                                <div id="boxmore">{{ org.intro }}
+                                <div id="boxmore">{{ org.detail }}
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>适合年龄</dt>
+                        <dd>
+                            <div>
+                                <div>{{ org.age }}
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>联系电话</dt>
+                        <dd>
+                            <div>
+                                <div>{{ org.contract_phone }}
                                 </div>
                             </div>
                         </dd>
@@ -185,7 +199,7 @@
 				</span><b>{{ class.get_comment_count() }}</b>
    </div>
    </span>
-                                    <span>适合年龄：{{ class.get_age() }}</span>
+                                    <span>适合年龄：{{ class.age_unicode }}</span>
                                     <span>总课时：{# TODO: 课时 #}</span>
 
                                 </div>

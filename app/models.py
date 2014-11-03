@@ -214,6 +214,23 @@ class Organization(UserMixin, db.Model):
     # 页面浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
 
+    # 抓取来源
+    source_site_id = db.Column(db.Integer, nullable=False)
+    # 在抓取来源的网站上的ID
+    source = db.Column(db.Integer, nullable=False)
+    # 官方网站
+    site = db.Column(db.CHAR(36))
+    # 适合年龄 30 Unicode
+    age = db.Column(db.Unicode(90), nullable=False)
+    # 联系电话 35 Unicode
+    contract_phone = db.Column(db.Unicode(105), default=u'', nullable=False)
+    # 评星
+    stars = db.Column(db.Integer, nullable=False)
+    # 详情 UnicodeText
+    detail = db.Column(db.UnicodeText, nullable=False)
+    # 城市
+    city_id = db.Column(db.Integer, nullable=False)
+
     def get_comment_count(self):
         return OrganizationComment.query.\
             filter_by(organization_id=self.id).count()
@@ -376,6 +393,15 @@ class Class(db.Model):
     # 浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
 
+    # 详情
+    detail = db.Column(db.UnicodeText, nullable=False)
+    # 适合年龄 20 Unicode
+    age_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
+    # 在抓取来源的网站上的ID
+    source = db.Column(db.Integer, nullable=False)
+    # 价格 30 Unicode
+    price_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
+
     def get_org(self):
         return Organization.query.get(self.organization_id)
 
@@ -513,6 +539,30 @@ class Activity(db.Model):
     is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
+
+    # 起止时间 20 Unicode
+    start_time_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
+    end_time_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
+    # 状态 5 Unicode
+    status = db.Column(db.Unicode(15), default=u'', nullable=False)
+    # 活动类型 10 Unicode
+    category = db.Column(db.Unicode(30), default=u'', nullable=False)
+    # 适合年龄 30 Unicode
+    age_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 价格 30 Unicode
+    price_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 地址 40 Unicode
+    address = db.Column(db.Unicode(120), default=u'', nullable=False)
+    # 地标 20 Unicode
+    landmark = db.Column(db.Unicode(60), default=u'', nullable=False)
+    # 附近交通 200
+    traffic = db.Column(db.Unicode(600), default=u'', nullable=False)
+    # 联系方式 35 Unicode
+    contract_phone = db.Column(db.Unicode(105), default=u'', nullable=False)
+    # 详情
+    detail = db.Column(db.UnicodeText, default=u'', nullable=False)
+    # 在抓取来源的网站上的ID
+    source = db.Column(db.Integer, nullable=False)
 
     def get_comment_count(self):
         return ActivityComment.query.filter_by(activity_id=self.id).count()
@@ -844,6 +894,19 @@ class City(db.Model):
     # 城市 5 Unicode
     city = db.Column(db.Unicode(15), nullable=False)
 
+
+class SourceSite(db.Model):
+    __tablename = 'source_sites'
+    id = db.Column(db.Integer, primary_key=True)
+    # 抓取来源
+    source_site = db.Column(db.CHAR(20), nullable=False)
+
+    @staticmethod
+    def generate():
+        db.session.add(SourceSite(source_site='izaojiao.com'))
+        db.session.commit()
+
+
 def generate_helper_data():
     Location.generate()
     Age.generate()
@@ -857,17 +920,17 @@ def generate_helper_data():
 def generate_fake_data(org_num=50, org_comment=30,
                        class_num=10, class_order=10, class_com=10,
                        act_num=10, act_order=10, act_com=10):
-    Register.generate_fake()
-    SiteComment.generate_fake()
-    User.generate_fake()
-    Organization.generate_fake(org_num)
+    #Register.generate_fake()
+    #SiteComment.generate_fake()
+    #User.generate_fake()
+    #Organization.generate_fake(org_num)
     OrganizationComment.generate_fake(org_comment)
-    Class.generate_fake(class_num)
+    #Class.generate_fake(class_num)
     ClassComment.generate_fake(class_com)
     ClassOrder.generate_fake(class_order)
 
-    ClassTime.generate_fake()
+    #ClassTime.generate_fake()
 
-    Activity.generate_fake(act_num)
+    #Activity.generate_fake(act_num)
     ActivityComment.generate_fake(act_com)
     ActivityOrder.generate_fake(act_order)
