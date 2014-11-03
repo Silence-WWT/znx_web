@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from . import course
 from .forms import TimeForm, DetailForm, CommentForm, ConfirmForm
-from ..models import Class, ClassOrder
+from ..models import Class, ClassOrder, ClassComment
 from .. import db
-from flask import render_template, redirect, url_for, abort
+from flask import render_template, redirect, \
+    url_for, abort, current_app, request
 from flask.ext.login import current_user
 
 
@@ -16,7 +17,17 @@ def home(id):
         db.session.add(comment)
         db.session.commit()
         redirect(url_for('.home', id=id))
-    return render_template('organclass_py.html', course=course, form=form)
+    page = request.args.get('page', 1, type=int)
+    pagination = ClassComment.query.filter_by(class_id=id).order_by(
+        ClassComment.created.asc()).paginate(
+        page, per_page=current_app.config['ORG_COMMENT_PER_PAGE'],
+        error_out=False)
+    comments = pagination.items
+    course.page_view = course.page_view+1
+    db.session.add(course)
+    db.session.commit()
+    return render_template('organclass_py.html', course=course,
+                           comments=comments, form=form, pagination=pagination)
 
 
 @course.route('/taste/<int:id>', methods=['GET', 'POST'])
