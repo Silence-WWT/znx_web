@@ -25,8 +25,8 @@
 
             <ul class="unstyled">
                 <li>
-                    <span class="organview"><i class="icon-eye-open"></i>1233</span>
-                    <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+                    <span class="organview"><i class="icon-eye-open"></i>{{ activity.page_view }}</span>
+                    <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
                 </li>
                 <li class="firstli">适合年龄：{{ activity.get_age() }}</li>
                 <li>上课时间：{{ activity.get_time() }}</li>
@@ -82,18 +82,20 @@
                 </dl>
                 <dl class="dl-horizontal">
 
-                    <dt>评论（{{ activity.get_comment_count() }}）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img
+                    <dt>评论（{{ pagination.total }}）<span id="icommnet"><a href="#myComment" role="button" data-toggle="modal"><img
                             src="{{ url_for('static', filename='images/icomment.png') }}"/></a></span></dt>
                     {% include 'snippet/comment.html' %}
                     <dd>
                         <ul class="unstyled" id="usertest">
-                            {% for comment in activity.get_comments() %}
+                            {% for comment in comments %}
                                 <!--评论列表-->
                                 {% include 'snippet/commentlist.html' %}
                             {% endfor %}
                         </ul>
                     </dd>
                 </dl>
+                    {% from 'snippet/pagination.html' import pagination_widget %}
+                    {{ pagination_widget(pagination, 'activity.home', fragment='#icommnet', id=activity.id) }}
 
                 <!-- Modal -->
 
