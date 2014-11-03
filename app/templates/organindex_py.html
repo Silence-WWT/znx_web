@@ -140,7 +140,7 @@
                         </span>
                             {% else %}
                                <span id="icommnet">
-                            <a href="{{ url_for('main.login') }}" role="button" onClick="return confirm('登录后才可以评价哦')">
+                            <a href="{{ url_for('main.login') }}?next={{ url_for('org.home', id=org.id) }}" role="button" onClick="return confirm('登录后才可以评价哦')">
                                 <img  src="{{ url_for('static', filename='images/noticomment.png') }}"/>
                             </a>
                         </span>
