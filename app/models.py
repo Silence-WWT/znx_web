@@ -31,7 +31,7 @@ class User(UserMixin, db.Model):
     # id
     id = db.Column(db.Integer, primary_key=True)
     # 用户名 4-16 Unicode
-    username = db.Column(db.Unicode(48), nullable=False)
+    username = db.Column(db.Unicode(16), nullable=False)
     # 邮箱
     email = db.Column(db.String(64), nullable=False)
     # 邮箱确认
@@ -109,9 +109,9 @@ class Register(db.Model):
     # 手机号
     mobile = db.Column(db.CHAR(11), nullable=False)
     # 名字 4-16 Unicode
-    name = db.Column(db.Unicode(48), nullable=False)
-    # 需求 <=6 Unicode
-    need = db.Column(db.Unicode(18), nullable=False)
+    name = db.Column(db.Unicode(16), nullable=False)
+    # 需求 <=16 Unicode
+    need = db.Column(db.Unicode(16), nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
 
@@ -142,11 +142,10 @@ class Register(db.Model):
 class SiteComment(db.Model):
     __tablename__ = 'site_comments'
     id = db.Column(db.Integer, primary_key=True)
-    # 手机号码
-    # TODO: 变更为手机号 qq号  邮箱 增加长度。
-    mobile = db.Column(db.String(11), nullable=False)
+    # 手机号 qq号 邮箱
+    contact = db.Column(db.String(32), nullable=False)
     # 留言信息 140 Unicode
-    body = db.Column(db.Unicode(420), nullable=False)
+    body = db.Column(db.Unicode(140), nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
     # 被关闭
@@ -181,31 +180,25 @@ class Organization(UserMixin, db.Model):
     # 类型
     type_id = db.Column(db.Integer, default=0, nullable=False)
     # 机构名 30Unicode
-    name = db.Column(db.Unicode(90), default=u'', nullable=False)
+    name = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 广告 30 Unicode
-    slogan = db.Column(db.Unicode(90), default=u'', nullable=False)
+    slogan = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 联系人 6 Unicode
-    contact = db.Column(db.Unicode(18), default=u'', nullable=False)
-    # 地址 40 Unicode
-    address = db.Column(db.Unicode(120), default=u'', nullable=False)
+    contact = db.Column(db.Unicode(6), default=u'', nullable=False)
+    # 联系电话 35 Unicode
+    contract_phone = db.Column(db.Unicode(35), default=u'', nullable=False)
+    # 地址 100 Unicode
+    address = db.Column(db.Unicode(100), default=u'', nullable=False)
     # 执照照片
     authorization = db.Column(db.CHAR(36), default='', nullable=False)
     # 门店照片
     photo = db.Column(db.CHAR(36), default='', nullable=False)
     # LOGO照片
     logo = db.Column(db.CHAR(36), default='', nullable=False)
-    # 行业
-    profession_id = db.Column(db.Integer, default=0, nullable=False)
-    # 类别
-    property_id = db.Column(db.Integer, default=0, nullable=False)
-    # 规模
-    size_id = db.Column(db.Integer, default=0, nullable=False)
     # 区域
     location_id = db.Column(db.Integer, default=0, nullable=False)
     # 是否被认证
     is_confirmed = db.Column(db.BOOLEAN, default=False, nullable=False)
-    # 介绍 140 Unicode
-    intro = db.Column(db.Unicode(420), default=u'', nullable=False)
     # 附近交通 30 Unicode
     traffic = db.Column(db.Unicode(90), default=u'', nullable=False)
     # 移动端 经纬度
@@ -213,23 +206,10 @@ class Organization(UserMixin, db.Model):
     latitude = db.Column(db.Float, default=0.0, nullable=False)
     # 页面浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
-
-    # 抓取来源
-    source_site_id = db.Column(db.Integer, nullable=False)
-    # 在抓取来源的网站上的ID
-    source = db.Column(db.Integer, nullable=False)
     # 官方网站
     site = db.Column(db.CHAR(36))
-    # 适合年龄 30 Unicode
-    age = db.Column(db.Unicode(90), nullable=False)
-    # 联系电话 35 Unicode
-    contract_phone = db.Column(db.Unicode(105), default=u'', nullable=False)
-    # 评星
-    stars = db.Column(db.Integer, nullable=False)
     # 详情 UnicodeText
-    detail = db.Column(db.UnicodeText, nullable=False)
-    # 城市
-    city_id = db.Column(db.Integer, nullable=False)
+    detail = db.Column(db.UnicodeText, default=u'', nullable=False)
 
     def get_comment_count(self):
         return OrganizationComment.query.\
@@ -306,6 +286,24 @@ class Organization(UserMixin, db.Model):
             db.session.commit()
 
 
+class OrganizationAge(db.Model):
+    __tablename__ = 'organization_ages'
+    id = db.Column(db.Integer, primary_key=True)
+    # 机构 id
+    organization_id = db.Column(db.Integer, nullable=False)
+    # 年龄 id
+    age_id = db.Column(db.Integer, nullable=False)
+
+
+class OrganizationProfession(db.Model):
+    __tablename__ = 'organization_professions'
+    id = db.Column(db.Integer, primary_key=True)
+    # 机构 id
+    organization_id = db.Column(db.Integer, nullable=False)
+    # 行业  id
+    profession_id = db.Column(db.Integer, nullable=False)
+
+
 class OrganizationComment(db.Model):
     __tablename__ = 'organization_comments'
     id = db.Column(db.Integer, primary_key=True)
@@ -316,7 +314,7 @@ class OrganizationComment(db.Model):
     # 评价
     stars = db.Column(db.SMALLINT, nullable=False)
     # 评价内容 140 Unicode
-    body = db.Column(db.Unicode(420), nullable=False)
+    body = db.Column(db.Unicode(140), nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
     # 被关闭
@@ -672,8 +670,6 @@ class ClassOrder(db.Model):
     email = db.Column(db.String(64), nullable=False)
     # 地址 40 Unicode
     address = db.Column(db.Unicode(120), nullable=False)
-    # 校区 20 Unicode
-    campus = db.Column(db.Unicode(60), nullable=False)
     # 备注 100 Unicode
     remark = db.Column(db.Unicode(300), nullable=False)
     # 取消
@@ -815,40 +811,9 @@ class Profession(db.Model):
 
     @staticmethod
     def generate():
-        db.session.add(Profession(profession=u'婴儿早教'))
-        db.session.add(Profession(profession=u'幼儿培训'))
-        db.session.add(Profession(profession=u'胎前课程'))
-        db.session.commit()
-
-
-class Property(db.Model):
-    __tablename__ = 'properties'
-    id = db.Column(db.Integer, primary_key=True)
-    # 类别 6 Unicode
-    property = db.Column(db.Unicode(18), nullable=False)
-
-    @staticmethod
-    def generate():
-        db.session.add(Property(property=u'国有'))
-        db.session.add(Property(property=u'民营'))
-        db.session.add(Property(property=u'外资'))
-        db.session.add(Property(property=u'合资'))
-        db.session.commit()
-
-
-class Size(db.Model):
-    __tablename__ = 'sizes'
-    id = db.Column(db.Integer, primary_key=True)
-    # 规模 6 Unicode
-    size = db.Column(db.Unicode(18), nullable=False)
-
-    @staticmethod
-    def generate():
-        db.session.add(Size(size=u'0-50'))
-        db.session.add(Size(size=u'51-100'))
-        db.session.add(Size(size=u'101-200'))
-        db.session.add(Size(size=u'201-400'))
-        db.session.add(Size(size=u'>400'))
+        db.session.add(Profession(profession=u'语言类'))
+        db.session.add(Profession(profession=u'启蒙类'))
+        db.session.add(Profession(profession=u'才艺类'))
         db.session.commit()
 
 
