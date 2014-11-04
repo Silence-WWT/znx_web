@@ -13,13 +13,7 @@ from api_constants import *
 @api.route('/requirement_list')
 def requirement_list():
     data = {'registers': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     register_list = Register.query.order_by(-Register.created).paginate(page, PER_PAGE, False).items
     for register in register_list:
         if len(register.name) == 2 or len(register.name) == 3:
@@ -41,13 +35,9 @@ def requirement_list():
 @api.route('/requirement_sign_up')
 def requirement_sign_up():
     data = {}
-    try:
-        name = request.args.get('name').encode('utf8')
-        city = request.args.get('city').encode('utf8')
-        need = request.args.get('need').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
+    name = request.args.get('name', '').encode('utf8')
+    city = request.args.get('city', '').encode('utf8')
+    need = request.args.get('need', '').encode('utf8')
     mobile = request.args.get('mobile')
     city = City.query.filter_by(city=city).first()
     if name and mobile and need and city:
@@ -58,12 +48,8 @@ def requirement_sign_up():
             city_id=city.id,
             created=time_now()
         )
-        try:
-            db.session.add(register)
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-            data['status'] = SQL_EXCEPTION
+        db.session.add(register)
+        db.session.commit()
         data['status'] = SUCCESS
     else:
         data['status'] = PARAMETER_ERROR

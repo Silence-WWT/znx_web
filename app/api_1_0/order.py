@@ -13,13 +13,7 @@ def order_list():
     data = {}
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     user = User.query.filter_by(id=user_id).first()
     if user:
         class_order_list = []

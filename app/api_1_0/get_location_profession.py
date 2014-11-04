@@ -11,10 +11,7 @@ from api_constants import *
 @api.route('/get_district_profession')
 def get_district_profession():
     data = {'districts': [], 'professions': []}
-    try:
-        city = City.query.filter_by(city=request.args.get('city').encode('utf8')).first()
-    except AttributeError:
-        city = None
+    city = City.query.filter_by(city=request.args.get('city', '').encode('utf8')).first()
     if city:
         location_list = Location.query.filter_by(city_id=city.id)
         districts = [location.district for location in location_list]

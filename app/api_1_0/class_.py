@@ -13,13 +13,7 @@ from api_constants import *
 @api.route('/class_list')
 def class_list():
     data = {'classes': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     organization_id = request.args.get('organization')
     class_list_ = Class.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for class_ in class_list_:
@@ -67,15 +61,9 @@ def class_sign_up():
     data = {}
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    try:
-        address = request.args.get('address').encode('utf8')
-        name = request.args.get('name').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
-    remark = request.args.get('remark')
-    if remark:
-        remark = remark.encode('utf8')
+    address = request.args.get('address', '').encode('utf8')
+    name = request.args.get('name', '').encode('utf8')
+    remark = request.args.get('remark', '').encode('utf8')
     class_id = request.args.get('class')
     mobile = request.args.get('mobile')
     age = request.args.get('age')
@@ -106,13 +94,9 @@ def class_sign_up():
             campus=u'',
             created=time_now()
         )
-        try:
-            db.session.add(class_order)
-            db.session.commit()
-        except Exception:
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
+        db.session.add(class_order)
+        db.session.commit()
+        data['status'] = SUCCESS
     else:
         data['status'] = LACK_OF_PARAMETER
     return json.dumps(data)
@@ -128,10 +112,10 @@ def class_comment():
         data['status'] = LACK_OF_PARAMETER
         return json.dumps(data)
     class_id = request.args.get('class')
-    stars = request.args.get('stars')
+    stars = request.values.get('stars', 0, type=int)
     user = User.query.filter_by(id=user_id).first()
     class_ = Class.query.filter_by(id=class_id).first()
-    if user and class_ and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and class_ and 1 <= stars <= 5:
         class_comment_ = ClassComment(
             class_id=class_.id,
             user_id=user.id,
@@ -139,13 +123,9 @@ def class_comment():
             body=comment,
             created=time_now()
         )
-        try:
-            db.session.add(class_comment_)
-            db.session.commit()
-        except Exception:
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
+        db.session.add(class_comment_)
+        db.session.commit()
+        data['status'] = SUCCESS
     elif not class_:
         data['status'] = ACTIVITY_NOT_EXIST
     else:
@@ -156,13 +136,7 @@ def class_comment():
 @api.route('/class_comment_list')
 def class_comment_list():
     data = {'class_comments': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     class_id = request.args.get('class')
     class_ = Class.query.filter_by(id=class_id).first()
     if class_:
