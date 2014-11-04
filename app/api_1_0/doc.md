@@ -26,13 +26,15 @@ register
         email
         identity: mobile + uuid + 0
     json:
-        {"status": 0, "user": {"username": "", "mobile": "", "identity": "", "email": ""}}
+        {"status": 0, "user": {"username": "", "mobile": "", "identity": "", "email": "", "unified": "", "chat_line": ""}}
         
         status: 0 for success, 1002 for existing mobile, 1004 for existing username, 5000 for SQL exception
         username
         mobile
         identity
         email
+        unified
+        chat_line
 
 login
 ----
@@ -468,6 +470,39 @@ get_cities
         
         status: 0 for success
         cities: a list of the name of cities
+
+chat_get
+---
+    URL:
+        /api/v1.0/chat_get?user_id=&last_id=
+    method:
+        get
+    parameters:
+        user_id
+        last_id
+    json:
+        {"status": 0, "chat_lines": ["chat_line": "", "content": "", "created": ""]}
+        
+        status: 0 for success, 5001 for parameter error
+        chat_lines: a list of chat line
+            chat_line
+            content
+            created
+
+chat_post
+---
+    URL:
+        /api/v1.0/chat_post?user_id=&unified=&content=
+    method:
+        get
+    parameters:
+        user_id
+        unified
+        content
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 5001 for parameter error
 
 CONSTANTS
 ---

@@ -8,7 +8,7 @@ from urllib2 import urlopen
 from flask import request
 
 from app import db
-from ..models import User
+from ..models import User, UnifiedId, ChatLine
 from . import api
 from api_constants import *
 
@@ -36,13 +36,31 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
+        unified = UnifiedId(
+            user_id=user.id,
+            created=time_now(),
+            mobile_key='',
+            web_key=''
+        )
+        db.session.add(unified)
+        db.commit()
+        chat_line = ChatLine(
+            unified_id=unified.id,
+            is_user=False,
+            content='',
+            created=time_now()
+        )
+        db.session.add(chat_line)
+        db.session.commit()
         data['status'] = SUCCESS
         data['user'] = {
             'user_id': user.id,
             'username': username,
             'mobile': mobile,
             'identity': identity,
-            'email': email
+            'email': email,
+            'unified': unified.id,
+            'chat_line': chat_line.id
         }
     else:
         data['status'] = PARAMETER_ERROR
