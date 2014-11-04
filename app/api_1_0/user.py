@@ -16,11 +16,7 @@ from api_constants import *
 @api.route('/register')
 def register():
     data = {}
-    try:
-        username = request.args.get('username').encode('utf8')
-    except AttributeError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    username = request.args.get('username', '').encode('utf8')
     password = request.args.get('password')
     mobile = request.args.get('mobile')
     identity = request.args.get('identity')
@@ -38,21 +34,16 @@ def register():
             is_email_confirmed=False,
             created=time_now()
         )
-        try:
-            db.session.add(user)
-            db.session.commit()
-        except Exception:
-            db.session.rollback()
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
-            data['user'] = {
-                'user_id': user.id,
-                'username': username,
-                'mobile': mobile,
-                'identity': identity,
-                'email': email
-            }
+        db.session.add(user)
+        db.session.commit()
+        data['status'] = SUCCESS
+        data['user'] = {
+            'user_id': user.id,
+            'username': username,
+            'mobile': mobile,
+            'identity': identity,
+            'email': email
+        }
     else:
         data['status'] = PARAMETER_ERROR
     return json.dumps(data)

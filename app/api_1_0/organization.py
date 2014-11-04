@@ -14,41 +14,23 @@ from api_constants import *
 @api.route('/organization_filter')
 def organization_filter():
     data = {'organizations': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
-    city = request.args.get('city')
-    district = request.args.get('district')
-    profession = request.args.get('profession')
-    distance = request.args.get('distance')
-    if city:
-        city = City.query.filter_by(city=city.encode('utf8')).first()
-    else:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
-    if district:
-        district = district.encode('utf8')
-    if profession:
-        profession = profession.encode('utf8')
+    page = request.values.get('page', 1, type=int)
+    city = request.args.get('city', '').encode('utf8')
+    district = request.args.get('district', '').encode('utf8')
+    profession = request.args.get('profession', '').encode('utf8')
+    distance = request.values.get('distance', 0.0, type=float)
+    city = City.query.filter_by(city=city).first()
     if distance:
-        try:
-            distance = float(distance)
-            latitude = float(request.args.get('latitude'))
-            longitude = float(request.args.get('longitude'))
+        latitude = request.values.get('latitude', 0.0, type=float)
+        longitude = request.values.get('longitude', 0.0, type=float)
+        if latitude and longitude:
             delta_latitude = distance / EARTH_CIRCUMFERENCE * 360
             delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) * 360
             org_query = Organization.query.filter(Organization.latitude <= latitude + delta_latitude,
                                                   Organization.latitude >= latitude - delta_latitude,
                                                   Organization.longitude <= longitude + delta_longitude,
                                                   Organization.longitude >= longitude - delta_longitude)
-        except TypeError:
-            data['status'] = PARAMETER_ERROR
-            return json.dumps(data)
-        except ValueError:
+        else:
             data['status'] = PARAMETER_ERROR
             return json.dumps(data)
     else:
@@ -135,16 +117,12 @@ def organization_detail():
 def organization_comment():
     data = {}
     user_id = request.args.get('user_id')
-    try:
-        comment = request.args.get('comment').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
+    comment = request.args.get('comment', '').encode('utf8')
     organization_id = request.args.get('organization')
-    stars = request.args.get('stars')
+    stars = request.values.get('stars', 0, type=int)
     user = User.query.filter_by(id=user_id).first()
     organization = Organization.query.filter_by(id=organization_id).first()
-    if user and organization and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and organization and 1 <= stars <= 5:
         org_comment = OrganizationComment(
             organization_id=organization.id,
             user_id=user.id,
@@ -152,13 +130,9 @@ def organization_comment():
             body=comment,
             created=time_now()
         )
-        try:
-            db.session.add(org_comment)
-            db.session.commit()
-        except Exception:
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
+        db.session.add(org_comment)
+        db.session.commit()
+        data['status'] = SUCCESS
     elif not organization:
         data['status'] = ORGANIZATION_NOT_EXIST
     elif not user:
@@ -171,13 +145,7 @@ def organization_comment():
 @api.route('/organization_comment_list')
 def organization_comment_list():
     data = {'organization_comments': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     organization_id = request.args.get('organization')
     organization = Organization.query.filter_by(id=organization_id).first()
     if organization:
@@ -189,7 +157,7 @@ def organization_comment_list():
             comment_dict = {
                 'body': comment.body,
                 'stars': comment.stars,
-                'created': str(comment.created),
+                'created': comment.created,
                 'username': user.username
             }
             data['organization_comments'].append(comment_dict)

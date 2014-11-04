@@ -13,13 +13,7 @@ from api_constants import *
 @api.route('/activity_list')
 def activity_list():
     data = {'activities': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     organization_id = request.args.get('organization')
     activity_list_ = Activity.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for activity in activity_list_:
@@ -67,15 +61,9 @@ def activity_sign_up():
     activity_id = request.args.get('activity')
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    try:
-        name = request.args.get('name').encode('utf8')
-        address = request.args.get('address').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
-    remark = request.args.get('remark')
-    if remark:
-        remark = remark.encode('utf8')
+    name = request.args.get('name', '').encode('utf8')
+    address = request.args.get('address', '').encode('utf8')
+    remark = request.args.get('remark', '').encode('utf8')
     mobile = request.args.get('mobile')
     age = request.args.get('age')
     sex = request.args.get('sex')
@@ -107,7 +95,6 @@ def activity_sign_up():
         db.session.add(activity_order)
         db.session.commit()
         data['status'] = SUCCESS
-
     else:
         data['status'] = LACK_OF_PARAMETER
     return json.dumps(data)
@@ -117,16 +104,12 @@ def activity_sign_up():
 def activity_comment():
     data = {}
     activity_id = request.args.get('activity')
-    stars = request.args.get('stars')
+    stars = request.values.get('stars', 0, type=int)
     user_id = request.args.get('user_id')
-    try:
-        comment = request.args.get('comment').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
+    comment = request.args.get('comment', '').encode('utf8')
     user = User.query.filter_by(id=user_id).first()
     activity = Activity.query.filter_by(id=activity_id).first()
-    if user and activity and u'1' <= stars <= u'5' and len(stars) == 1:
+    if user and activity and 1 <= stars <= 5:
         activity_comment_ = ActivityComment(
             activity_id=activity.id,
             user_id=user.id,
@@ -134,13 +117,9 @@ def activity_comment():
             body=comment,
             created=time_now()
         )
-        try:
-            db.session.add(activity_comment_)
-            db.session.commit()
-        except Exception:
-            data['status'] = SQL_EXCEPTION
-        else:
-            data['status'] = SUCCESS
+        db.session.add(activity_comment_)
+        db.session.commit()
+        data['status'] = SUCCESS
     elif not activity:
         data['status'] = ACTIVITY_NOT_EXIST
     else:
@@ -151,13 +130,7 @@ def activity_comment():
 @api.route('/activity_comment_list')
 def activity_comment_list():
     data = {'activity_comments': []}
-    try:
-        page = int(request.args.get('page'))
-    except TypeError:
-        page = 1
-    except ValueError:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+    page = request.values.get('page', 1, type=int)
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
