@@ -584,7 +584,7 @@ class Activity(db.Model):
 
 
 class Category(db.Model):
-    __tablename__ = 'ages'
+    __tablename__ = 'categories'
     id = db.Column(db.Integer, primary_key=True)
     # 活动类型 10 Unicode
     category = db.Column(db.Unicode(10), nullable=False)
@@ -647,7 +647,7 @@ class ClassOrder(db.Model):
     __tablename__ = 'class_orders'
     id = db.Column(db.Integer, primary_key=True)
     # 用户
-    user_id = db.Column(db.Integer, nullable=False)
+    unified_id = db.Column(db.Integer, nullable=False)
     # 课程
     class_id = db.Column(db.Integer, nullable=False)
     # 创建时间
@@ -712,7 +712,7 @@ class ActivityOrder(db.Model):
     __tablename__ = 'activity_orders'
     id = db.Column(db.Integer, primary_key=True)
     # 用户
-    user_id = db.Column(db.Integer, nullable=False)
+    unified_id = db.Column(db.Integer, nullable=False)
     # 活动
     activity_id = db.Column(db.Integer, nullable=False)
     # 创建时间

@@ -4,7 +4,7 @@ from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField, \
     TextAreaField, BooleanField, RadioField, DateTimeField, SubmitField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
-from ..models import Register, SiteComment, Type, Profession, Property, Size,\
+from ..models import Register, SiteComment, Type, Profession, \
     Location
 
 
@@ -58,15 +58,6 @@ class SearchForm(Form):
                        for profession in Profession.query.all()]
         professions.extend(all)
         self.profession_id.choices = professions
-
-        properties = [(property.id, property.property)
-                      for property in Property.query.all()]
-        properties.extend(all)
-        self.property_id.choices = properties
-
-        sizes = [(size.id, size.size) for size in Size.query.all()]
-        sizes.extend(all)
-        self.size_id.choices = sizes
 
         locations = [(location.id, location.district)
                      for location in Location.query.filter(city_id == city_id).all()]
