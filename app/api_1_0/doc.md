@@ -48,13 +48,14 @@ login
         identity: mobile + uuid + 0
     json:
         {"status": 0,
-         "user": {"username": "", "mobile": "", "email": "", "identity": ""}}
+         "user": {"username": "", "mobile": "", "email": "", "identity": "", "chat_line": ""}}
              
         status: 0 for success, 1000 for login failed
         username: if login fail, username, mobile, email, identity won't return
         mobile
         email
         identity
+        chat_line
 
 organization_filter
 ---

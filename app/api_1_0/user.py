@@ -39,7 +39,7 @@ def register():
         unified = UnifiedId(
             user_id=user.id,
             created=time_now(),
-            mobile_key='',
+            mobile_key=identity,
             web_key=''
         )
         db.session.add(unified)
@@ -75,6 +75,8 @@ def login():
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
     if user is not None and user.verify_password(password):
+        unified = UnifiedId.query.filter_by(user_id=user.id).first()
+        chat_line = ChatLine.query.filter_by(unified_id=unified.id, is_user=False).order_by(-ChatLine.created).first()
         if user.identity != identity and identity:
             user.identity = identity
         data['status'] = SUCCESS
@@ -83,7 +85,8 @@ def login():
             'username': user.username,
             'mobile': user.mobile,
             'email': user.email,
-            'identity': user.identity
+            'identity': user.identity,
+            'chat_line': chat_line.id
         }
     else:
         data['status'] = LOGIN_FAILED
