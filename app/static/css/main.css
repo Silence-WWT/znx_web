@@ -2919,7 +2919,7 @@ input[disabled] {
     text-align: center;
     margin: -25px 0px 20px;
 }
-#talkadmin h3{
+#talkadmin h3,#asklearnadmin h3,#origancomeadmin h3,#indexactivity h3,#indexorigan h3{
     width: 872px;
     padding: 0 28px;
     background: #CCC;
@@ -2993,4 +2993,41 @@ input[disabled] {
    border-left: 0px;
     border-right: 0px;
 
+}
+#talkadmin h3 a,#asklearnadmin  h3 a,#origancomeadmin h3 a,#indexactivity h3 a,#indexorigan h3 a{
+    float: right;
+}
+#asklearnadmin ul,#origancomeadmin ul,#indexactivity ul,#indexorigan ul{
+    padding: 5px 20px ;
+}
+#asklearnadmin ul dl dd span{
+    float: left;
+    margin-right: 120px;
+}
+#asklearnadmin ul dl dt{
+    margin:10px;
+    font-size: 16px;
+    font-weight: normal;
+}
+#asklearnadmin ul li{
+    border-bottom: 1px solid #E2E2E2;
+    height: 60px;
+}
+#indexactivity ul li,#indexorigan ul li{
+    padding: 10px 10px 16px;
+    border-bottom: 1px solid #e2e2e2;
+}
+#indexactivity ul li .acttitle,#indexorigan ul li .acttitle{
+    font-size: 16px;
+    line-height: 24px;
+}
+#indexactivity ul li a .adminbtn,#indexorigan ul li a .adminbtn{
+    width: 60px;
+    height: 30px;
+    font-size: 16px;
+    margin: 0px 10px;
+    float: right;
+}
+#origanaddhide{
+    display: none;
 }
