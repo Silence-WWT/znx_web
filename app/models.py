@@ -366,8 +366,6 @@ class Class(db.Model):
     organization_id = db.Column(db.Integer, nullable=False)
     # 课程名字 30 Unicode
     name = db.Column(db.Unicode(30), nullable=False)
-    # 年龄
-    age_id = db.Column(db.Integer, nullable=False)
     # 价格
     price = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 咨询时间 20 Unicode
