@@ -199,8 +199,8 @@ class Organization(UserMixin, db.Model):
     location_id = db.Column(db.Integer, default=0, nullable=False)
     # 是否被认证
     is_confirmed = db.Column(db.BOOLEAN, default=False, nullable=False)
-    # 附近交通 30 Unicode
-    traffic = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 附近交通 200 Unicode
+    traffic = db.Column(db.Unicode(200), default=u'', nullable=False)
     # 移动端 经纬度
     longitude = db.Column(db.Float, default=0.0, nullable=False)
     latitude = db.Column(db.Float, default=0.0, nullable=False)
@@ -256,8 +256,6 @@ class Organization(UserMixin, db.Model):
         location_count = Location.query.count()
         type_count = Type.query.count()
         profession_count = Profession.query.count()
-        property_count = Property.query.count()
-        size_count = Size.query.count()
 
         seed()
         for i in range(count):
@@ -273,8 +271,6 @@ class Organization(UserMixin, db.Model):
                              photo='1'*36,
                              logo='1'*36,
                              profession_id=randint(1, profession_count),
-                             property_id=randint(1, property_count),
-                             size_id=randint(1, size_count),
                              location_id=randint(1, location_count),
                              is_confirmed=True,
                              intro=zh.text(),
@@ -359,7 +355,7 @@ class ChatLine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     unified_id = db.Column(db.Integer, nullable=False)
     is_user = db.Column(db.BOOLEAN, nullable=False)
-    content = db.Column(db.Unicode(500), nullable=False)
+    content = db.Column(db.Unicode(100), nullable=False)
     created = db.Column(db.Integer, nullable=False)
 
 
@@ -369,13 +365,13 @@ class Class(db.Model):
     # 机构id
     organization_id = db.Column(db.Integer, nullable=False)
     # 课程名字 30 Unicode
-    name = db.Column(db.Unicode(90), nullable=False)
+    name = db.Column(db.Unicode(30), nullable=False)
     # 年龄
     age_id = db.Column(db.Integer, nullable=False)
     # 价格
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 咨询时间 20 Unicode
-    consult_time = db.Column(db.Unicode(60), nullable=False)
+    consult_time = db.Column(db.Unicode(20), nullable=False)
     # 是否可以免费试听
     is_tastable = db.Column(db.BOOLEAN, nullable=False)
     # 创建时间
@@ -384,21 +380,12 @@ class Class(db.Model):
     is_round = db.Column(db.BOOLEAN, nullable=False)
     # 天数
     days = db.Column(db.Integer, nullable=False)
-    # 课程简介 140 Unicode
-    intro = db.Column(db.Unicode(420), nullable=False)
     # 关闭
     is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
-
     # 详情
     detail = db.Column(db.UnicodeText, nullable=False)
-    # 适合年龄 20 Unicode
-    age_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
-    # 在抓取来源的网站上的ID
-    source = db.Column(db.Integer, nullable=False)
-    # 价格 30 Unicode
-    price_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
 
     def get_org(self):
         return Organization.query.get(self.organization_id)
@@ -459,7 +446,7 @@ class ClassComment(db.Model):
     # 评价
     stars = db.Column(db.SMALLINT, nullable=False)
     # 评价内容 140 Unicode
-    body = db.Column(db.Unicode(420), nullable=False)
+    body = db.Column(db.Unicode(140), nullable=False)
     # 评价时间
     created = db.Column(db.Integer, nullable=False)
     # 被关闭
@@ -513,54 +500,47 @@ class ClassTime(db.Model):
             db.session.commit()
 
 
+class ClassAge(db.Model):
+    __tablename__ = 'class_age'
+    id = db.Column(db.Integer, primary_key=True)
+    # 课程
+    class_id = db.Column(db.Integer, nullable=False)
+    # 年龄
+    age_id = db.Column(db.Integer, nullable=False)
+
+
 class Activity(db.Model):
     __tablename__ = 'activities'
     id = db.Column(db.Integer, primary_key=True)
     # 机构
     organization_id = db.Column(db.Integer, nullable=False)
     # 活动名字 30 Unicode
-    name = db.Column(db.Unicode(90), nullable=False)
-    # 年龄
-    age_id = db.Column(db.Integer, nullable=False)
+    name = db.Column(db.Unicode(30), nullable=False)
     # 价格
-    price = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
     # 起始时间
     start_time = db.Column(db.Integer, nullable=False)
     end_time = db.Column(db.Integer, nullable=False)
-    # 活动简介 140 Unicode
-    intro = db.Column(db.Unicode(420), nullable=False)
     # 图片
     photo = db.Column(db.CHAR(36), default='', nullable=False)
     # 关闭
     is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
-
-    # 起止时间 20 Unicode
-    start_time_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
-    end_time_unicode = db.Column(db.Unicode(60), default=u'', nullable=False)
-    # 状态 5 Unicode
-    status = db.Column(db.Unicode(15), default=u'', nullable=False)
-    # 活动类型 10 Unicode
-    category = db.Column(db.Unicode(30), default=u'', nullable=False)
-    # 适合年龄 30 Unicode
-    age_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
-    # 价格 30 Unicode
-    price_unicode = db.Column(db.Unicode(90), default=u'', nullable=False)
+    # 活动类型
+    category_id = db.Column(db.Integer, nullable=False)
     # 地址 40 Unicode
-    address = db.Column(db.Unicode(120), default=u'', nullable=False)
-    # 地标 20 Unicode
-    landmark = db.Column(db.Unicode(60), default=u'', nullable=False)
+    address = db.Column(db.Unicode(40), default=u'', nullable=False)
+    # 地标 40 Unicode
+    landmark = db.Column(db.Unicode(40), default=u'', nullable=False)
     # 附近交通 200
-    traffic = db.Column(db.Unicode(600), default=u'', nullable=False)
+    traffic = db.Column(db.Unicode(200), default=u'', nullable=False)
     # 联系方式 35 Unicode
-    contract_phone = db.Column(db.Unicode(105), default=u'', nullable=False)
+    contract_phone = db.Column(db.Unicode(35), default=u'', nullable=False)
     # 详情
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
-    # 在抓取来源的网站上的ID
-    source = db.Column(db.Integer, nullable=False)
 
     def get_comment_count(self):
         return ActivityComment.query.filter_by(activity_id=self.id).count()
@@ -603,6 +583,22 @@ class Activity(db.Model):
                 db.session.commit()
 
 
+class Category(db.Model):
+    __tablename__ = 'ages'
+    id = db.Column(db.Integer, primary_key=True)
+    # 活动类型 10 Unicode
+    category = db.Column(db.Unicode(10), nullable=False)
+
+
+class ActivityAge(db.Model):
+    __tablename__ = 'activity_age'
+    id = db.Column(db.Integer, primary_key=True)
+    # 活动
+    activity_id = db.Column(db.Integer, nullable=False)
+    # 年龄
+    age_id = db.Column(db.Integer, nullable=False)
+
+
 class ActivityComment(db.Model):
     __tablename__ = 'activity_comments'
     id = db.Column(db.Integer, primary_key=True)
@@ -613,7 +609,7 @@ class ActivityComment(db.Model):
     # 评价
     stars = db.Column(db.SMALLINT, nullable=False)
     # 评价内容 140 Unicode
-    body = db.Column(db.Unicode(420), nullable=False)
+    body = db.Column(db.Unicode(140), nullable=False)
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
     # 关闭
@@ -659,9 +655,9 @@ class ClassOrder(db.Model):
     # 试听时间
     time = db.Column(db.Integer, nullable=False)
     # 听课人 6 Unicode
-    name = db.Column(db.Unicode(18), nullable=False)
+    name = db.Column(db.Unicode(6), nullable=False)
     # 年龄 10 Unicode
-    age = db.Column(db.Unicode(30), nullable=False)
+    age = db.Column(db.Unicode(10), nullable=False)
     # 性别
     sex = db.Column(db.BOOLEAN, nullable=False)
     # 手机号
@@ -669,9 +665,9 @@ class ClassOrder(db.Model):
     # email
     email = db.Column(db.String(64), nullable=False)
     # 地址 40 Unicode
-    address = db.Column(db.Unicode(120), nullable=False)
+    address = db.Column(db.Unicode(40), nullable=False)
     # 备注 100 Unicode
-    remark = db.Column(db.Unicode(300), nullable=False)
+    remark = db.Column(db.Unicode(100), nullable=False)
     # 取消
     is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 提交订单
@@ -722,9 +718,9 @@ class ActivityOrder(db.Model):
     # 创建时间
     created = db.Column(db.Integer, nullable=False)
     # 姓名 6 Unicode
-    name = db.Column(db.Unicode(18), nullable=False)
+    name = db.Column(db.Unicode(6), nullable=False)
     # 年龄 10 Unicode
-    age = db.Column(db.Unicode(30), nullable=False)
+    age = db.Column(db.Unicode(10), nullable=False)
     # 性别
     sex = db.Column(db.BOOLEAN, nullable=False)
     # 手机号
@@ -732,9 +728,9 @@ class ActivityOrder(db.Model):
     # email
     email = db.Column(db.String(64), nullable=False)
     # 地址
-    address = db.Column(db.Unicode(120), nullable=False)
+    address = db.Column(db.Unicode(40), nullable=False)
     # 备注
-    remark = db.Column(db.Unicode(300), nullable=False)
+    remark = db.Column(db.Unicode(100), nullable=False)
     # 取消
     is_canceled = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 提交订单
@@ -774,7 +770,7 @@ class Time(db.Model):
     __tablename__ = 'times'
     id = db.Column(db.Integer, primary_key=True)
     # 上课时间 6 Unicode
-    time = db.Column(db.Unicode(18), nullable=False)
+    time = db.Column(db.Unicode(6), nullable=False)
 
     @staticmethod
     def generate():
@@ -792,7 +788,7 @@ class Type(db.Model):
     __tablename__ = 'types'
     id = db.Column(db.Integer, primary_key=True)
     # 类型 6 Unicode
-    type = db.Column(db.Unicode(18), nullable=False)
+    type = db.Column(db.Unicode(6), nullable=False)
 
     @staticmethod
     def generate():
@@ -807,7 +803,7 @@ class Profession(db.Model):
     __tablename__ = 'professions'
     id = db.Column(db.Integer, primary_key=True)
     # 行业 8 Unicode
-    profession = db.Column(db.Unicode(24), nullable=False)
+    profession = db.Column(db.Unicode(8), nullable=False)
 
     @staticmethod
     def generate():
@@ -821,7 +817,7 @@ class Age(db.Model):
     __tablename__ = 'ages'
     id = db.Column(db.Integer, primary_key=True)
     # 适应年龄 10 Unicode
-    age = db.Column(db.Unicode(30), nullable=False)
+    age = db.Column(db.Unicode(10), nullable=False)
 
     @staticmethod
     def generate():
@@ -837,8 +833,8 @@ class Location(db.Model):
     __tablename__ = 'locations'
     id = db.Column(db.Integer, primary_key=True)
     city_id = db.Column(db.Integer, nullable=False)
-    # 区县 4
-    district = db.Column(db.Unicode(12), nullable=False)
+    # 区县 6
+    district = db.Column(db.Unicode(6), nullable=False)
 
     @staticmethod
     def generate():
@@ -857,26 +853,12 @@ class City(db.Model):
     __tablename__ = 'cities'
     id = db.Column(db.Integer, primary_key=True)
     # 城市 5 Unicode
-    city = db.Column(db.Unicode(15), nullable=False)
-
-
-class SourceSite(db.Model):
-    __tablename = 'source_sites'
-    id = db.Column(db.Integer, primary_key=True)
-    # 抓取来源
-    source_site = db.Column(db.CHAR(20), nullable=False)
-
-    @staticmethod
-    def generate():
-        db.session.add(SourceSite(source_site='izaojiao.com'))
-        db.session.commit()
+    city = db.Column(db.Unicode(5), nullable=False)
 
 
 def generate_helper_data():
     Location.generate()
     Age.generate()
-    Size.generate()
-    Property.generate()
     Profession.generate()
     Type.generate()
     Time.generate()
