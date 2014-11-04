@@ -5,7 +5,7 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder, \
-    Profession, Property, Size, Location, Class, \
+    Profession, Location, Class, \
     Activity, City, ClassTime, OrganizationComment
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
@@ -76,12 +76,8 @@ def send_sms():
 def detail():
     form = DetailForm()
     form.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
-    form.property_id.choices = [(t.id, t.property)
-                                for t in Property.query.all()]
     form.profession_id.choices = [(t.id, t.profession)
                                   for t in Profession.query.all()]
-    form.size_id.choices = [(t.id, t.size)
-                            for t in Size.query.all()]
     form.location_id.choices = [(t.id, t.district)
                                 for t in Location.query.all()]
     form.city_id = City.query.all()
