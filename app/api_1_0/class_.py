@@ -5,9 +5,10 @@ from time import time as time_now
 from flask import request
 
 from app import db
-from ..models import User, Class, ClassComment, ClassOrder, Age, UnifiedId
+from ..models import User, Class, ClassComment, ClassOrder, UnifiedId
 from . import api
 from api_constants import *
+from helper import get_ages
 
 
 @api.route('/class_list')
@@ -17,11 +18,10 @@ def class_list():
     organization_id = request.args.get('organization')
     class_list_ = Class.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for class_ in class_list_:
-        age = Age.query.get(class_.age_id)
         class_dict = {
             'id': class_.id,
             'name': class_.name,
-            'age': age.age,
+            'age': get_ages(class_),
             'price': class_.price,
             'days': class_.days
         }
@@ -36,18 +36,16 @@ def class_detail():
     class_id = request.args.get('class')
     class_ = Class.query.filter_by(id=class_id).first()
     if class_:
-        age = Age.query.get(class_.age_id)
-        comments_count = ClassComment.query.filter_by(class_id=class_.id).count()
         data['class'] = {
             'id': class_.id,
             'name': class_.name,
-            'age': age.age,
+            'age': get_ages(class_),
             'price': class_.price,
-            'intro': class_.intro,
+            'intro': class_.detail,
             'consult_time': class_.consult_time,
             'is_round': class_.is_round,
             'is_tastable': class_.is_tastable,
-            'comments_count': comments_count,
+            'comments_count': class_.get_comment_count,
             'days': class_.days
         }
         data['status'] = SUCCESS
@@ -61,9 +59,9 @@ def class_sign_up():
     data = {}
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    address = request.args.get('address', '').encode('utf8')
-    name = request.args.get('name', '').encode('utf8')
-    remark = request.args.get('remark', '').encode('utf8')
+    address = request.args.get('address', u'', type=unicode)
+    name = request.args.get('name', u'', type=unicode)
+    remark = request.args.get('remark', u'', type=unicode)
     class_id = request.args.get('class')
     mobile = request.args.get('mobile')
     age = request.args.get('age')
@@ -83,8 +81,6 @@ def class_sign_up():
             )
             db.session.add(order_profile)
             db.session.commit()
-        db.session.add(order_profile)
-        db.session.commit()
         class_order = ClassOrder(
             class_id=class_id,
             order_profile_id=order_profile.id,
@@ -111,16 +107,12 @@ def class_sign_up():
 def class_comment():
     data = {}
     user_id = request.args.get('user_id')
-    try:
-        comment = request.args.get('comment').encode('utf8')
-    except AttributeError:
-        data['status'] = LACK_OF_PARAMETER
-        return json.dumps(data)
+    comment = request.args.get('comment', u'', type=unicode)
     class_id = request.args.get('class')
     stars = request.values.get('stars', 0, type=int)
     user = User.query.filter_by(id=user_id).first()
     class_ = Class.query.filter_by(id=class_id).first()
-    if user and class_ and 1 <= stars <= 5:
+    if user and class_ and 1 <= stars <= 5 and comment:
         class_comment_ = ClassComment(
             class_id=class_.id,
             user_id=user.id,
