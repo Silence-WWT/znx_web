@@ -207,7 +207,7 @@ class Organization(UserMixin, db.Model):
     # 页面浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
     # 官方网站
-    site = db.Column(db.CHAR(36))
+    site = db.Column(db.CHAR(36), nullable=False)
     # 详情 UnicodeText
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
 
@@ -255,7 +255,6 @@ class Organization(UserMixin, db.Model):
         zh = Factory.create('zh-CN')
         location_count = Location.query.count()
         type_count = Type.query.count()
-        profession_count = Profession.query.count()
 
         seed()
         for i in range(count):
@@ -266,17 +265,18 @@ class Organization(UserMixin, db.Model):
                              name=zh.company(),
                              slogan=u'学技术到蓝翔',
                              contact=zh.name(),
+                             contract_phone=zh.phone_number(),
                              address=zh.address(),
-                             authorization='1'*36,
-                             photo='1'*36,
-                             logo='1'*36,
-                             profession_id=randint(1, profession_count),
+                             authorization='',
+                             photo='',
+                             logo='',
                              location_id=randint(1, location_count),
                              is_confirmed=True,
-                             intro=zh.text(),
+                             detail=zh.text(),
                              traffic=u'太白南路',
                              longitude=zh.longitude(),
                              latitude=zh.latitude(),
+                             site='www.baidu.com',
                              page_view=randint(0, 10000))
             db.session.add(u)
             db.session.commit()
@@ -290,6 +290,20 @@ class OrganizationAge(db.Model):
     # 年龄 id
     age_id = db.Column(db.Integer, nullable=False)
 
+    @staticmethod
+    def generate_fake():
+        from random import seed, sample
+        org_count = Organization.query.count()
+        age_count = Age.query.count()
+        age_range = range(1, age_count+1)
+
+        seed()
+        for org_id in range(1, org_count+1):
+            for age_id in sample(age_range, 3):
+                u = OrganizationAge(organization_id=org_id, age_id=age_id)
+                db.session.add(u)
+            db.session.commit()
+
 
 class OrganizationProfession(db.Model):
     __tablename__ = 'organization_professions'
@@ -299,6 +313,19 @@ class OrganizationProfession(db.Model):
     # 行业  id
     profession_id = db.Column(db.Integer, nullable=False)
 
+    @staticmethod
+    def generate_fake():
+        from random import seed, sample
+        org_count = Organization.query.count()
+        profession_count = Profession.query.count()
+        profession_range = range(1, profession_count+1)
+
+        seed()
+        for org_id in range(1, org_count+1):
+            for profession_id in sample(profession_range, 3):
+                u = OrganizationProfession(organization_id=org_id, profession_id=profession_id)
+                db.session.add(u)
+            db.session.commit()
 
 class OrganizationComment(db.Model):
     __tablename__ = 'organization_comments'
@@ -335,7 +362,7 @@ class OrganizationComment(db.Model):
                     organization_id=organization_id,
                     user_id=randint(1, user_count),
                     stars=randint(1, 5),
-                    body=zh.text(),
+                    body=zh.sentence(),
                     created=time.mktime(fake.date_time().timetuple()))
                 db.session.add(u)
             db.session.commit()
@@ -412,21 +439,19 @@ class Class(db.Model):
         fake = Factory.create()
         zh = Factory.create('zh-CN')
         organization_count = Organization.query.count()
-        age_count = Age.query.count()
 
         seed()
         for organization_id in range(1, organization_count+1):
             for i in range(count):
                 u = Class(organization_id=organization_id,
                           name=u'课程名字',
-                          age_id=randint(1, age_count),
-                          price=randint(0, 100000),
-                          consult_time=unicode(zh.words()),
+                          price=unicode(randint(0, 100000)),
+                          consult_time=unicode(zh.word()),
                           is_tastable=True,
                           is_round=True,
                           days=randint(10,20),
                           created=time.mktime(fake.date_time().timetuple()),
-                          intro=zh.text(),
+                          detail=zh.text(),
                           is_closed=False,
                           page_view=randint(1, 10000))
                 db.session.add(u)
@@ -469,7 +494,7 @@ class ClassComment(db.Model):
                     class_id=class_id,
                     user_id=randint(1, user_count),
                     stars=randint(1, 5),
-                    body=unicode((zh.text())),
+                    body=unicode((zh.words())),
                     created=fake.unix_time())
                 db.session.add(u)
             db.session.commit()
@@ -505,6 +530,20 @@ class ClassAge(db.Model):
     class_id = db.Column(db.Integer, nullable=False)
     # 年龄
     age_id = db.Column(db.Integer, nullable=False)
+
+    @staticmethod
+    def generate_fake():
+        from random import seed, sample
+        class_count = Class.query.count()
+        age_count = Age.query.count()
+        age_range = range(1, age_count+1)
+
+        seed()
+        for class_id in range(1, class_count+1):
+            for age_id in sample(age_range, 3):
+                u = ClassAge(class_id=class_id, age_id=age_id)
+                db.session.add(u)
+            db.session.commit()
 
 
 class Activity(db.Model):
@@ -587,6 +626,16 @@ class Category(db.Model):
     # 活动类型 10 Unicode
     category = db.Column(db.Unicode(10), nullable=False)
 
+    @staticmethod
+    def generate():
+        db.session.add(Category(category=u'周一'))
+        db.session.add(Category(category=u'周二'))
+        db.session.add(Category(category=u'周三'))
+        db.session.add(Category(category=u'周四'))
+        db.session.add(Category(category=u'周五'))
+        db.session.add(Category(category=u'周六'))
+        db.session.add(Category(category=u'周日'))
+        db.session.commit()
 
 class ActivityAge(db.Model):
     __tablename__ = 'activity_age'
@@ -860,6 +909,7 @@ def generate_helper_data():
     Profession.generate()
     Type.generate()
     Time.generate()
+    Category.generate()
 
 
 def generate_fake_data(org_num=50, org_comment=30,
