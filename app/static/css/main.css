@@ -2318,13 +2318,13 @@ body {
     float: left;
 }
 
-#aboutus .leftabout #myTab {
+#aboutus .leftabout #myTab,#aboutus .leftabout #adminTab{
     background: #F4F2EE;
     margin: 0px;
     height: 780px;
 }
 
-#aboutus .leftabout #myTab li {
+ #aboutus .leftabout #myTab li,#aboutus .leftabout #adminTab li{
     height: 54px;
     border-bottom: 1px solid #E2E1DD;
 
@@ -2336,7 +2336,7 @@ body {
     color: #000;
 }
 
-#aboutus .leftabout #myTab li a {
+#aboutus .leftabout #myTab li a ,#aboutus .leftabout #adminTab li a{
 
     display: block;
     outline: none;
@@ -2345,11 +2345,11 @@ body {
     padding-right: 110px;
 }
 
-#aboutus .leftabout #myTab li a:hover {
+#aboutus .leftabout #myTab li a:hover,#aboutus .leftabout #adminTab li a:hover {
     color: #00B98D;
 }
 
-#aboutus .leftabout #myTab li img {
+#aboutus .leftabout #myTab li img,#aboutus .leftabout #adminTab li img {
     margin-right: 10px;
 }
 
@@ -2357,12 +2357,12 @@ body {
     padding-left: 50px;
 }
 
-#aboutus .leftabout #myTab li.active {
+#aboutus .leftabout #myTab li.active,#aboutus .leftabout #adminTab li.active {
     border-right: 1px solid #fff;
     background: #fff;
 }
 
-#aboutus .leftabout #myTab li.active a {
+#aboutus .leftabout #myTab li.active a,#aboutus .leftabout #adminTab li.active a {
     color: #00B98D;
 }
 
