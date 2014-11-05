@@ -5,9 +5,10 @@ from time import time as time_now
 from flask import request
 
 from app import db
-from ..models import User, Activity, ActivityComment, ActivityOrder, Age, UnifiedId
+from ..models import User, Activity, ActivityComment, ActivityOrder, UnifiedId
 from . import api
 from api_constants import *
+from helper import get_ages
 
 
 @api.route('/activity_list')
@@ -17,11 +18,10 @@ def activity_list():
     organization_id = request.args.get('organization')
     activity_list_ = Activity.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for activity in activity_list_:
-        age = Age.query.get(activity.age_id)
         activity_dict = {
             'id': activity.id,
             'name': activity.name,
-            'age': age.age,
+            'age': get_ages(activity),
             'price': activity.price,
             'start_time': activity.start_time,
             'end_time': activity.end_time
@@ -37,17 +37,15 @@ def activity_detail():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
-        age = Age.query.get(activity.age_id)
-        comments_count = ActivityComment.query.filter_by(activity_id=activity.id).count()
         data['activity'] = {
             'id': activity.id,
             'name': activity.name,
-            'age': age.age,
+            'age': get_ages(activity),
             'price': activity.price,
-            'intro': activity.intro,
+            'intro': activity.detail,
             'start_time': activity.start_time,
             'end_time': activity.end_time,
-            'comments_count': comments_count
+            'comments_count': activity.get_comment_count()
         }
         data['status'] = SUCCESS
     else:
@@ -61,16 +59,16 @@ def activity_sign_up():
     activity_id = request.args.get('activity')
     user_id = request.args.get('user_id')
     uuid = request.args.get('uuid')
-    name = request.args.get('name', '').encode('utf8')
-    address = request.args.get('address', '').encode('utf8')
-    remark = request.args.get('remark', '').encode('utf8')
+    address = request.args.get('address', u'', type=unicode)
+    name = request.args.get('name', u'', type=unicode)
+    remark = request.args.get('remark', u'', type=unicode)
     mobile = request.args.get('mobile')
     age = request.args.get('age')
     sex = request.args.get('sex')
     email = request.args.get('email')
 
     activity = Activity.query.filter_by(id=activity_id).first()
-    if activity and age and mobile and sex:
+    if activity and age and mobile:
         order_profile = UnifiedId.query.filter_by(user_id=user_id, mobile_key=uuid).first()
         if not order_profile:
             order_profile = UnifiedId(

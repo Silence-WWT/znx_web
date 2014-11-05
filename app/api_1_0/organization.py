@@ -54,8 +54,7 @@ def organization_filter():
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
     else:
-        data['status'] = PARAMETER_ERROR
-        return json.dumps(data)
+        org_list = org_query
     for org in org_list:
         location = Location.query.get(org.location_id)
         city = City.query.get(location.city_id)
@@ -65,7 +64,7 @@ def organization_filter():
             'city': city.city,
             'district': location.district,
             'photo': '',
-            'intro': org.intro,
+            'intro': org.detail,
         }
         if distance:
             delta_latitude = math.fabs(latitude - org.latitude)
@@ -89,10 +88,12 @@ def organization_detail():
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
         city = City.query.get(location.city_id)
-        org_comment_query = OrganizationComment.query.filter_by(organization_id=organization.id)
-        comments_count = org_comment_query.count()
-        start_count = sum([comment.stars for comment in org_comment_query])
-        stars = float(start_count) / comments_count
+        comments_count = organization.get_comment_count()
+        if comments_count:
+            start_count = sum([comment.stars for comment in organization.get_comments()])
+            stars = float(start_count) / comments_count
+        else:
+            stars = 0
         org_dict = {
             'id': organization.id,
             'name': organization.name,
@@ -100,7 +101,7 @@ def organization_detail():
             'logo': organization.logo,
             'city': city.city,
             'district': location.district,
-            'intro': organization.intro,
+            'intro': organization.detail,
             'address': organization.address,
             'mobile': organization.mobile,
             'comments_count': comments_count,
@@ -117,7 +118,7 @@ def organization_detail():
 def organization_comment():
     data = {}
     user_id = request.args.get('user_id')
-    comment = request.args.get('comment', '').encode('utf8')
+    comment = request.values.get('comment', u'', type=unicode)
     organization_id = request.args.get('organization')
     stars = request.values.get('stars', 0, type=int)
     user = User.query.filter_by(id=user_id).first()
@@ -164,4 +165,24 @@ def organization_comment_list():
         data['status'] = SUCCESS
     else:
         data['status'] = ORGANIZATION_NOT_EXIST
+    return json.dumps(data)
+
+
+@api.route('/organization_search')
+def organization_search():
+    data = {'organizations': []}
+    name = request.values.get('name', u'', type=unicode)
+    organization_list = Organization.query.filter(Organization.name.like(u'%' + name + u'%')).all()
+    for organization in organization_list:
+        location = Location.query.get(organization.location_id)
+        city = City.query.get(location.city_id)
+        data['organizations'].append({
+            'id': organization.id,
+            'name': organization.name,
+            'city': city.city,
+            'district': location.district,
+            'photo': '',
+            'intro': organization.detail,
+        })
+    data['status'] = SUCCESS
     return json.dumps(data)

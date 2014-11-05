@@ -16,14 +16,9 @@ def requirement_list():
     page = request.values.get('page', 1, type=int)
     register_list = Register.query.order_by(-Register.created).paginate(page, PER_PAGE, False).items
     for register in register_list:
-        if len(register.name) == 2 or len(register.name) == 3:
-            last_name = register.name[:1]
-        else:
-            last_name = register.name[:2]
-        mobile = register.mobile[:3]
         register_dict = {
-            'name': last_name + u'同学',
-            'mobile': mobile + '*' * 8,
+            'name': register.name[:1] + u'同学',
+            'mobile': register.mobile[:3] + '*' * 4 + register.mobile[7:],
             'need': register.need,
             'time': register.created
         }
