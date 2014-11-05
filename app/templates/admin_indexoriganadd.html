@@ -44,10 +44,21 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="indexorigan">
                     <h3>推荐机构设置</h3>
-                    <div class="input-append">
-                        <input type="text" class="span2 search-query">
-                        <button type="submit" class="btn">Search</button>
+                    <div class="input-append searchinput">
+                        <input type="text" class="span2 search-query" id="adminindexsearch">
+                        <button type="submit" class="btn search-btn btn-next">搜索</button>
                     </div>
+                    <form class="indexoriganform">
+                    <div class="indexoriganpicup" >
+                        <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button><span>请添加XXXXXX大小图片</span>
+                                <i class="icon-ok" id="uploadok1"></i>
+                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display: none;">
+
+                                    <div class="anlipic"><img src="../static/images/footerlogo.png" class="img-polaroid" id="uploadpic1"/></div>
+                               <button type="submit" class=" btn btn-long">添加推荐机构</button>
+                    </div>
+                    </form>
+                    <div id="large1"></div>
                 </div>
 
             </div>

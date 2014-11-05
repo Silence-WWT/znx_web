@@ -3031,3 +3031,53 @@ input[disabled] {
 #origanaddhide{
     display: none;
 }
+.searchinput{
+    margin: 20px 200px;
+    float: left;
+}
+.searchinput .search-query{
+    width: 250px;
+    height: 40px;
+    /* line-height: 40px; */
+    border-radius: 0px;
+    font-size: 18px;
+}
+.indexoriganpicup{
+
+    margin: 80px 200px;}
+.indexoriganpicup #organupload{
+    margin: 15px;
+}
+.indexoriganpicup .anlipic{
+    width: 480px;
+    height: auto;
+    margin: 0px auto;
+}
+.indexactivitypicup{
+    margin: 0 200px;
+}
+.indexoriganform #uploadok1{
+                      margin: -43px 156px 27px;
+                  }
+#indexorigan{
+    float: left;
+    width: 928px;
+}
+#indexorigan .indexactivity,#indexactivity .indexactivity{
+    margin: 20px 200px;
+}
+
+#indexorigan .indexactivity label,#indexactivity .indexactivity label{
+    float: left;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+}
+#adminaddactivity{
+    width: 250px;
+    height: 40px;
+    /* line-height: 40px; */
+    border-radius: 0px;
+    font-size: 18px;
+    margin-left: 20px;
+}
