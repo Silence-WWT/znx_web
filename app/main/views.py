@@ -119,3 +119,7 @@ def search():
                            orgs=orgs,
                            locations=locations,
                            professions=professions)
+
+@main.route('/admin_talk')
+def admin_talk():
+    return render_template('admin_talk.html')
