@@ -87,6 +87,26 @@ organization_filter
             photo: url of photo
             intro
 
+organization_search
+---
+    URL:
+        /api/v1.0/organization_search?name=
+    method:
+        get
+    parameters:
+        name: key of search organization
+    json:
+        {"status": 0, "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": ""}]}
+        
+        status: 0 for success
+        organizations: a list of organizations
+            id
+            name
+            city
+            district
+            photo
+            intro
+
 organization_detail
 ---
     URL:

@@ -94,6 +94,7 @@ def report():
         return redirect(url_for('main.index'))
     return render_template('guestbook_py.html', form=form)
 
+
 @main.route('/search', methods=['GET', 'POST'])
 def search():
     professions = Profession.query.all()
@@ -120,6 +121,7 @@ def search():
                            locations=locations,
                            professions=professions)
 
-@main.route('/admin_talk')
+
+@main.route('/admin_talk', methods=['GET', 'POST'])
 def admin_talk():
     return render_template('admin_talk.html')
