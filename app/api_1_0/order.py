@@ -3,7 +3,8 @@ import json
 
 from flask import request
 
-from ..models import User, Organization, Age, Class, ClassOrder, ClassComment, Activity, ActivityOrder, ActivityComment
+from ..models import User, Organization, Age, Class, ClassOrder, ClassComment, Activity, ActivityOrder,\
+    ActivityComment, UnifiedId
 from . import api
 from api_constants import *
 
@@ -12,7 +13,6 @@ from api_constants import *
 def order_list():
     data = {}
     user_id = request.args.get('user_id')
-    uuid = request.args.get('uuid')
     page = request.values.get('page', 1, type=int)
     user = User.query.filter_by(id=user_id).first()
     if user:
@@ -53,7 +53,7 @@ def order_synchronize():
     if not User.query.filter_by(id=user_id).first():
         data['status'] = USER_NOT_EXIST
     else:
-        order_profile_list = OrderProfile.query.filter_by(uuid=uuid, user_id='')
+        order_profile_list = UnifiedId.query.filter_by(mobile_key=uuid, user_id='')
         for order_profile in order_profile_list:
             order_profile.user_id = user_id
         data['status'] = SUCCESS

@@ -5,7 +5,7 @@ from time import time as time_now
 from flask import request
 
 from app import db
-from ..models import User, Activity, ActivityComment, ActivityOrder, Age
+from ..models import User, Activity, ActivityComment, ActivityOrder, Age, UnifiedId
 from . import api
 from api_constants import *
 
@@ -71,13 +71,16 @@ def activity_sign_up():
 
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity and age and mobile and sex:
-        order_profile = OrderProfile(
-            user_id=user_id,
-            mobile_uuid=uuid,
-            web_uuid=''
-        )
-        db.session.add(order_profile)
-        db.session.commit()
+        order_profile = UnifiedId.query.filter_by(user_id=user_id, mobile_key=uuid).first()
+        if not order_profile:
+            order_profile = UnifiedId(
+                user_id=user_id,
+                mobile_uuid=uuid,
+                web_uuid='',
+                created=time_now()
+            )
+            db.session.add(order_profile)
+            db.session.commit()
         activity_order = ActivityOrder(
             activity_id=activity_id,
             order_profile_id=order_profile.id,

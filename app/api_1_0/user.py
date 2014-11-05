@@ -8,7 +8,7 @@ from urllib2 import urlopen
 from flask import request
 
 from app import db
-from ..models import User
+from ..models import User, UnifiedId, ChatLine
 from . import api
 from api_constants import *
 
@@ -36,13 +36,31 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
+        unified = UnifiedId(
+            user_id=user.id,
+            created=time_now(),
+            mobile_key=identity,
+            web_key=''
+        )
+        db.session.add(unified)
+        db.commit()
+        chat_line = ChatLine(
+            unified_id=unified.id,
+            is_user=False,
+            content='',
+            created=time_now()
+        )
+        db.session.add(chat_line)
+        db.session.commit()
         data['status'] = SUCCESS
         data['user'] = {
             'user_id': user.id,
             'username': username,
             'mobile': mobile,
             'identity': identity,
-            'email': email
+            'email': email,
+            'unified': unified.id,
+            'chat_line': chat_line.id
         }
     else:
         data['status'] = PARAMETER_ERROR
@@ -57,6 +75,8 @@ def login():
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
     if user is not None and user.verify_password(password):
+        unified = UnifiedId.query.filter_by(user_id=user.id).first()
+        chat_line = ChatLine.query.filter_by(unified_id=unified.id, is_user=False).order_by(-ChatLine.created).first()
         if user.identity != identity and identity:
             user.identity = identity
         data['status'] = SUCCESS
@@ -65,7 +85,8 @@ def login():
             'username': user.username,
             'mobile': user.mobile,
             'email': user.email,
-            'identity': user.identity
+            'identity': user.identity,
+            'chat_line': chat_line.id
         }
     else:
         data['status'] = LOGIN_FAILED
