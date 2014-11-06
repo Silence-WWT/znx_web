@@ -628,6 +628,8 @@ class Activity(db.Model):
     page_view = db.Column(db.Integer, default=0, nullable=False)
     # 活动类型
     category_id = db.Column(db.Integer, nullable=False)
+    # 区县
+    location_id = db.Column(db.Integer, default=0, nullable=False)
     # 地址 40 Unicode
     address = db.Column(db.Unicode(40), default=u'', nullable=False)
     # 地标 40 Unicode

@@ -12,7 +12,7 @@ from wtforms import ValidationError
 from .. import db
 from ..models import Organization, Age, Class, Activity, OrganizationComment,\
     Time, Type, Profession, Location, City, OrganizationAge,\
-    OrganizationProfession, ClassTime, ClassAge
+    OrganizationProfession, ClassTime, ClassAge, Category
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 from ..utils.query import select_multi_checkbox
@@ -220,17 +220,32 @@ class CourseForm(Form):
 class ActivityForm(Form):
     name = StringField('name', validators=[DataRequired(u'必填'),
                                            Length(1, 30, u'30字符以内')])
-    age_id = SelectField('age_id', coerce=int)
-    price = IntegerField('prince')
+    price = StringField('prince')
     start_time = DateTimeField('start_time', format='%Y/%m/%d %H:%M')
     end_time = DateTimeField('end_time', format='%Y/%m/%d %H:%M')
-    intro = TextAreaField('intro', validators=[DataRequired(u'必填'),
+    category_id = SelectField(coerce=int)
+    location_id = SelectField(coerce=int)
+    address = StringField('address', validators=[DataRequired(u'必填'),
+                                                 Length(1, 40, u'长度不符合要求')])
+    landmark = StringField('landmark')
+    traffic = StringField('traffic')
+    contact_phone = StringField('contact_phone')
+    detail = TextAreaField('detail', validators=[DataRequired(u'必填'),
                                                Length(1, 140,u'140字符以内')])
+    ages = SelectMultipleField('ages',
+                               validators=[DataRequired(u'至少选一项')],
+                               coerce=int,
+                               widget=select_multi_checkbox)
 
     def create_choices(self):
-        ages = Age.query.all()
-        self.age_id.choices = [(age.id, age.age) for age in ages]
-
+        self.location_id.choices = [(t.id, t.district)
+                                    for t in Location.query.all()]
+        self.category_id.choices = [(t.id, t.category)
+                                    for t in Category.query.all()]
+        self.city_id = City.query.all()
+        self.location = Location.query.all()
+        self.ages.choices = [(t.id, t.age)
+                             for t in Age.query.all()]
     def create_activity(self):
         activity = Activity(organization_id=current_user.id,
                             name=self.name.data,

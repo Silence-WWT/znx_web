@@ -13,9 +13,9 @@
         <h3><img src="{{ url_for('static', filename='images/proposal.png') }}"/></h3>
 
         <div class="controls">
-            <textarea rows="8" name="{{ form.body.name }}" class="form-textarea"></textarea>
+            <textarea rows="8" name="{{ form.body.name }}" class="form-textarea" placeholder="网站用着有什么不爽,告诉我们吧!" required></textarea>
         </div>
-        <div class="controls"><input type="text" name="{{ form.mobile.name }}" placeholder="QQ号/邮箱/手机号" class="form-control longqq"/></div>
+        <div class="controls"><input type="text" name="{{ form.mobile.name }}" placeholder="QQ号/邮箱/手机号" class="form-control longqq" required></div>
         <div class="controls">
             <span>这个很重要，方便我们第一时间联系你，帮你及时解决问题！</span>
         </div>
