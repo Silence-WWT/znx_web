@@ -6,7 +6,7 @@ from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
     SelectMultipleField, TextAreaField, BooleanField, RadioField, \
     DateTimeField, IntegerField
-from wtforms.validators import DataRequired, Length, EqualTo, Email
+from wtforms.validators import DataRequired, Length, EqualTo
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from .. import db
