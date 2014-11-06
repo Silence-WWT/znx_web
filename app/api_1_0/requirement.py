@@ -17,8 +17,8 @@ def requirement_list():
     register_list = Register.query.order_by(-Register.created).paginate(page, PER_PAGE, False).items
     for register in register_list:
         register_dict = {
-            'name': register.name[:1] + u'同学',
-            'mobile': register.mobile[:3] + '*' * 4 + register.mobile[7:],
+            'name': register.name[0] + u'同学',
+            'mobile': register.mobile[:3] + '*' * 4 + register.mobile[-4:],
             'need': register.need,
             'time': register.created
         }
