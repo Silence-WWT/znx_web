@@ -1934,7 +1934,7 @@ body {
     width: 680px;
     background: #fff;
     float: left;
-    padding: 10px 50px 100px;
+    padding: 10px 50px 17px;
 }
 
 #organregall .askleft h3.asklearntitle {
@@ -1975,7 +1975,7 @@ body {
 
 #askright .learnreason, #askright .newasklearn {
     padding: 0 25px;
-    height: 320px;
+    height: 245px;
     float: left;
     background: #fff;
     margin-bottom: 20px;
@@ -2018,7 +2018,7 @@ body {
 }
 
 .askbtn {
-    margin-top: 33px;
+    margin-top: 25px;
     width: 330px;
     margin-left: 0px;
 }
@@ -2567,11 +2567,13 @@ input[disabled] {
 }
 
 #myclassset .checkbox {
-    margin-right: 10px;
-    margin-top: -5px;
+    margin-left: 18px;
+    margin-right: 5px;
+    margin-top: 4px
 }
 #myclassset #class_time{
-    margin-left: 5px;
+    margin-left: -17px;
+    margin-top: 1px;
 }
 #myorderdet > div.myorderxq > h3 {
     font-size: 18px;
@@ -2918,7 +2920,11 @@ input[disabled] {
     background: #F0F0F0;
     cursor: default;
 }
-#mysetyuan .form-control,#mysetday .form-control{
+#mysetyuan .form-control{
+    width: 320px;
+    margin-left: 20px;
+}
+#mysetday .form-control{
     width: 280px;
     margin-left: 20px;
 }
