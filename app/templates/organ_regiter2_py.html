@@ -40,10 +40,27 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label"><i class="form-required"></i>广告语</label>
+
+                    <div class="controls">
+                        {{ form.slogan(class="form-control", id="org_slogan") }}
+                        <span>{{ helper.field_errors(form.slogan) }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>行业</label>
 
                     <div class="controls form-control">
-                        {{ form.profession }}
+                        {{ form.professions }}
+                        <span class="inputwrong">{{ helper.field_errors(form.professions) }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><i class="form-required"></i>适合年龄</label>
+
+                    <div class="controls form-control">
+                        {{ form.ages }}
+                        <span class="inputwrong">{{ helper.field_errors(form.ages) }}</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -103,7 +120,7 @@
                     <label class="control-label"><i class="form-required"></i>附近交通</label>
 
                     <div class="controls">
-                        {{ form.intro(class="form-textarea", row="4", id="org_traffic") }}
+                        {{ form.traffic(class="form-textarea", row="4", id="org_traffic") }}
                         <span>{{ helper.field_errors(form.traffic) }}</span>
 
                     </div>
@@ -112,8 +129,8 @@
                     <label class="control-label"><i class="form-required"></i>详细介绍</label>
 
                     <div class="controls">
-                        {{ form.intro(class="form-textarea", row="4", id="org_intro") }}
-                        <span>{{ helper.field_errors(form.intro) }}</span>
+                        {{ form.detail(class="form-textarea", row="4", id="org_intro") }}
+                        <span>{{ helper.field_errors(form.detail) }}</span>
 
                     </div>
                 </div>
