@@ -55,7 +55,7 @@ class DetailForm(Form):
     address = StringField('address',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 40, u'地址长度不符合规范')])
-    traffic = StringField('traffic', validators=[Length(0, 200, u'附近交通不符合要求')])
+    traffic = TextAreaField('traffic', validators=[Length(0, 200, u'附近交通不符合要求')])
     detail = TextAreaField('detail',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 140, u'简介长度不符合规范')])
