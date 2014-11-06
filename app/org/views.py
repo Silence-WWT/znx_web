@@ -76,7 +76,7 @@ def send_sms():
 def detail():
     form = DetailForm()
     form.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
-    form.profession_id.choices = [(t.id, t.profession)
+    form.professions.choices = [(t.id, t.profession)
                                   for t in Profession.query.all()]
     form.location_id.choices = [(t.id, t.district)
                                 for t in Location.query.all()]
@@ -87,8 +87,6 @@ def detail():
         current_user.type_id = form.type_id.data
         current_user.name = form.name.data
         current_user.profession_id = form.profession_id.data
-        current_user.property_id = form.property_id.data
-        current_user.size_id = form.size_id.data
         current_user.contact = form.contact.data
         current_user.location_id = form.location_id.data
         current_user.address = form.address.data

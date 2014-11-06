@@ -42,19 +42,35 @@ class DetailForm(Form):
     type_id = SelectField(coerce=int)
     name = StringField('name', validators=[DataRequired(u'必填'),
                                            Length(1, 30, u'名字长度不符合规范')])
-    profession_id = SelectField(coerce=int)
-    property_id = SelectField(coerce=int)
-    size_id = SelectField(coerce=int)
+    slogan = StringField('slogan', validators=[DataRequired(u'必填'),
+                                               Length(1, 30, u'广告语长度不符合规范')])
     contact = StringField('contact',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 6, u'联系人长度不符合规范')])
-    location_id = SelectField(coerce=int)
+    contact_phone = StringField(
+        'contact_phone',
+        validators=[DataRequired(u'必填'),
+                    Length(1, 35, u'联系电话长度不符合要求')])
     address = StringField('address',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 40, u'地址长度不符合规范')])
-    intro = TextAreaField('intro',
+    traffic = StringField('traffic', validators=[Length(0, 200, u'附近交通不符合要求')])
+    detail = TextAreaField('detail',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 140, u'简介长度不符合规范')])
+    site = StringField('site', validators=[Length(0, 255, u'网址长度太长')])
+
+    location_id = SelectField(coerce=int)
+    professions = SelectMultipleField('org_profession',
+                                     validators=[DataRequired(u'至少选一项')],
+                                     coerce=int,
+                                     widget=select_multi_checkbox)
+
+    age = SelectMultipleField('org_ages',
+                                      validators=[DataRequired(u'至少选一项')],
+                                      coerce=int,
+                                      widget=select_multi_checkbox)
+
 
 
 class CertificationForm(Form):

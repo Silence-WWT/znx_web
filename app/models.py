@@ -207,7 +207,7 @@ class Organization(UserMixin, db.Model):
     # 页面浏览量
     page_view = db.Column(db.Integer, default=0, nullable=False)
     # 官方网站
-    site = db.Column(db.CHAR(36), nullable=False)
+    site = db.Column(db.CHAR(255), nullable=False)
     # 详情 UnicodeText
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
 
