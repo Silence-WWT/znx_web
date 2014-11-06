@@ -39,7 +39,7 @@ def register():
 
 @main.route('/')
 def index():
-    registers = Register.query.order_by(Register.id.desc()).limit(3).all()
+    registers = Register.query.order_by(Register.id.desc()).limit(5).all()
     city = City.query.first()
     if 'city_id' not in session:
         session['city_id'] = city.id

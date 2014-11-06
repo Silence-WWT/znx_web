@@ -5,7 +5,7 @@ from . import db, login_manager
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session
-
+from sqlalchemy import func
 
 class AnonymousUser(AnonymousUserMixin):
     def get_unified_id(self):
@@ -210,6 +210,18 @@ class Organization(UserMixin, db.Model):
     site = db.Column(db.CHAR(36), nullable=False)
     # 详情 UnicodeText
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
+
+    @property
+    def stars(self):
+        stars = db.session.query(OrganizationComment.stars).\
+            filter(OrganizationComment.organization_id==self.id).all()
+        if stars:
+            sumary = 0
+            for star in stars:
+                sumary += star.stars
+            return sumary/len(stars)
+        else:
+            return 0
 
     def get_comment_count(self):
         return OrganizationComment.query.\

@@ -3,6 +3,7 @@ import time
 
 
 def stars(num):
+    num = int(num)
     if num <=5:
         return '<i class="level_solid"></i>'*num + \
                '<i class="level_hollow"></i>'*(5-num)
