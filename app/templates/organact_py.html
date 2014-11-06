@@ -34,37 +34,16 @@
                 <li>活动类型：{{ activity.category }}</li>
             </ul>
         </div>
-        <div class="threesmall">
-            <span><i class=" icon-star"></i>收藏</span>
-            <span><i class="  icon-share"></i>分享</span>
-            <span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"
-                                                              data-toggle="modal">纠错</a></span>
-        </div>
-        <div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mywrongLabel"
-             aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="mywrongLabel">我要纠错</h3>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post" class="form-horizontal"/>
-                <div class="control-group">
-                    <h4>请留言</h4>
-                    <textarea rows="5" class="form-textarea" id="wrongtext"></textarea>
 
-                </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-next nomargin" type="submit">提交</button>
-            </div>
-        </div>
     </div>
 
     <a href="{{ url_for('activity.taste', id=activity.id) }}">
         <button class="attendbtn"></button>
     </a>
-
+    <div class="threesmall1">
+            <span id="editwrong"><i class=" icon-edit"></i><a href="{{ url_for('main.report')}}" role="button"
+                                                              target="_blank">纠错</a></span>
+    </div>
 </div>
 
 <div class="container" id="organthree">
@@ -87,10 +66,7 @@
                     <dt>地标</dt>
                     <dd><p class="organplace">{{ activity.landmark }}</p></dd>
                 </dl>
-                <dl class="dl-horizontal">
-                    <dt>联系方式</dt>
-                    <dd><p class="organplace">{{ activity.contract_phone }}</p></dd>
-                </dl>
+
                 <dl class="dl-horizontal">
                     <dt>地址</dt>
                     <dd><p class="organplace">{{ activity.address }}</p></dd>

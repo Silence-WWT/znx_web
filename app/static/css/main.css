@@ -668,7 +668,10 @@ body {
     font-size: 18px;
     cursor: default;
 }
-
+#organregform #ages,#organregform #professions{
+    width:400px;
+    margin: 0px;
+}
 .btn-long {
     width: 330px;
     margin-left: 0px;
@@ -1184,9 +1187,11 @@ body {
 
 #myorgan .headdes .organmoredec {
     float: left;
-    margin: 22px 245px;
+    margin: 13px 245px;
 }
-
+#editwrong i{
+    margin: 4px;
+}
 #myorgan .headdes .organmoredec span {
     font-size: 16px;
     margin-right: 14px;
@@ -1218,20 +1223,20 @@ body {
 
 #myorgan > div > div.headdes > div.organtotal > ul > li.organknown {
     FLOAT: left;
-    margin: 7px -30px;
+    margin: 6px -30px;
     padding-right: 50px;
 }
 
 #myorgan .headdes .organtotal {
     float: left;
-    margin: -30px 95px;
+    margin: -7px 95px;
 }
 
 #myorgan .headdes .organtotal ul li {
     border-right: 1px solid #DEDEDE;
     padding-right: 30px;
     height: 50px;
-    margin-top: 10px;
+    margin-top: 5px;
     padding-left: 30px;
     text-align: center;
     padding-top: 10px;
@@ -1623,22 +1628,28 @@ body {
 }
 
 #zixunbtn {
-    width: 230px;
-    height: 45px;
-    background: url("../images/zixun.png");
+    width: 115px;
+    height: 40px;
+    background: #00B98D;
     border: 0px;
-    border-radius: 0px;
+    border-radius: 6px;
     float: right;
-    margin: -43px 70px;
+    margin: -26px 129px;
     outline: none;
+    color: #fff;
+    font-size: 20px;
 }
 
 .threesmall {
     float: right;
-    margin: 46px 115px;
+    margin: 43px 12px;
     cursor: pointer;
 }
-
+.threesmall1 {
+    float: right;
+    margin: -26px 12px;
+    cursor: pointer;
+}
 #wrongtext {
     width: 458px;
     margin-left: 30px;

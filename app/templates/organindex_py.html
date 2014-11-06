@@ -24,34 +24,11 @@
         <div class="organmoredec">
             <span class="organview"><i class="icon-eye-open"></i>1233</span>
             <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
-            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span>
+            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span><br/>
+            <span class="organcall"><i class="  icon-bullhorn"></i>400-656-9191</span>
         </div>
 
-        <div class="threesmall">
-            <span><i class=" icon-star"></i>收藏</span>
-            <span><i class="  icon-share"></i>分享</span>
-            <span id="editwrong"><i class=" icon-edit"></i><a href="#myeditwrong" role="button"
-                                                              data-toggle="modal">纠错</a></span>
-        </div>
-        <div id="myeditwrong" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-             aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="mywrongLabel">我要纠错</h3>
-            </div>
-            <div class="modal-body">
-                <form action="#" method="post" class="form-horizontal"/>
-                <div class="control-group">
-                    <h4>请留言</h4>
-                    <textarea rows="5" class="form-textarea" id="wrongtext"></textarea>
 
-                </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-next nomargin" type="submit">提交</button>
-            </div>
-        </div>
         <div class="clearboth"></div>
         <div class="organtotal">
             <ul class="unstyled inline">
@@ -75,9 +52,12 @@
             </ul>
         </div>
         <a href="#myzixun" role="button" data-toggle="modal">
-            <button class="zixunbtn" id="zixunbtn"></button>
+            <button class="zixunbtn" id="zixunbtn">咨询</button>
         </a>
-
+        <div class="threesmall">
+            <span id="editwrong">
+                <i class=" icon-edit"></i><a href="{{ url_for('main.report')}}" role="button"  target="_blank">纠错</a></span>
+        </div>
         <div id="myzixun" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myzixunLabel"
              aria-hidden="true">
             <div class="modal-header">
@@ -144,15 +124,7 @@
                             </div>
                         </dd>
                     </dl>
-                    <dl class="dl-horizontal">
-                        <dt>联系电话</dt>
-                        <dd>
-                            <div>
-                                <div>{{ org.contract_phone }}
-                                </div>
-                            </div>
-                        </dd>
-                    </dl>
+
                     <dl class="dl-horizontal">
                         <dt>附近交通</dt>
                         <dd><p class="organplace">{{ org.address }}</p></dd>
