@@ -160,7 +160,7 @@ def add_course():
     course_form.create_choices()
     if course_form.validate_on_submit():
         course_form.create_course()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.course_list'))
     return render_template('origanclassadd_py.html',
                            form=course_form,
                            add=True)

@@ -184,6 +184,7 @@ class CourseForm(Form):
                        detail=self.detail.data,
                        created=time.time())
         db.session.add(course)
+        db.session.commit()
 
         for time_id in self.class_time.data:
             class_time = ClassTime(class_id=course.id, time_id=time_id)
