@@ -48,6 +48,8 @@ def register():
             unified_id=unified.id,
             is_user=False,
             content='',
+            source=CHAT_SOURCE_ANDROID,
+            organization_id=0,
             created=time.time()
         )
         db.session.add(chat_line)
