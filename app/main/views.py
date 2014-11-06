@@ -46,7 +46,7 @@ def index():
     city_id = int(session['city_id'])
     orgs = Organization.query.filter(
         Organization.location_id.in_(
-            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(3).all()
+            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(5).all()
     return render_template('index_py.html', registers=registers, orgs=orgs)
 
 
