@@ -48,6 +48,14 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label"><i class="form-required"></i>官方网址</label>
+
+                    <div class="controls">
+                        {{ form.site(class="form-control", id="org_site") }}
+                        <span>{{ helper.field_errors(form.site) }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>行业</label>
 
                     <div class="controls form-control">

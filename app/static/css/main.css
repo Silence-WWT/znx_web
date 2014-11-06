@@ -668,7 +668,10 @@ body {
     font-size: 18px;
     cursor: default;
 }
-
+#organregform #ages,#organregform #professions{
+    width:400px;
+    margin: 0px;
+}
 .btn-long {
     width: 330px;
     margin-left: 0px;
