@@ -24,7 +24,7 @@
         <div class="organmoredec">
             <span class="organview"><i class="icon-eye-open"></i>1233</span>
             <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
-            <span class="organplace"><i class=" icon-map-marker"></i>北京市-昌平区</span>
+            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span>
         </div>
 
         <div class="threesmall">
@@ -125,7 +125,24 @@
                         <dt>适合年龄</dt>
                         <dd>
                             <div>
-                                <div>{{ org.age }}
+                                {% for age in org.get_ages() %}
+                                    {{ age.age }}
+                                {% endfor %}
+
+                                <div>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>机构类型</dt>
+                        <dd>
+                            <div>
+                                {% for profession in org.get_professions() %}
+                                    {{ profession.profession }}
+                                {% endfor %}
+
+                                <div>
                                 </div>
                             </div>
                         </dd>
