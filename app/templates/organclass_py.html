@@ -13,12 +13,7 @@
 
                 <div class="revinp">
 				<span class="level">
-             	    <i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
-
+                    {{ course.stars|stars|safe }}
 				</span>
                 </div>
 
@@ -28,7 +23,6 @@
                         <span class="organview"><i class="icon-eye-open"></i>{{ course.page_view }}</span>
                         <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
                     </li>
-                    <li class="firstli">适合年龄：{{ course.age_unicode }}</li>
                     <li>总课时：{{ course.days }}天</li>
                     <li>咨询时间：{{ course.consult_time }}</li>
                     <li>上课时间：{{ course.get_time() }}</li>
@@ -54,6 +48,19 @@
                         <dt>简介特色</dt>
                         <dd>
                             <div id="boxmore">{{ course.detail|safe }}</div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt>适合年龄</dt>
+                        <dd>
+                            <div>
+                                {% for age in course.get_ages() %}
+                                    {{ age.age }}
+                                {% endfor %}
+
+                                <div>
+                                </div>
+                            </div>
                         </dd>
                     </dl>
                     <dl class="dl-horizontal">

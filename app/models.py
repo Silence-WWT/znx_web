@@ -466,8 +466,12 @@ class Class(db.Model):
     def get_comments(self):
         return ClassComment.query.filter_by(class_id=self.id).all()
 
-    def get_age(self):
-        return Age.query.get(self.age_id).age
+    def get_ages(self):
+        age_ids = ClassAge.query.filter_by(class_id=self.id).all()
+        ages = list()
+        for age_id in age_ids:
+            ages.append(Age.query.get(age_id.age_id))
+        return ages
 
     def get_time(self):
         classtimes = ClassTime.query.filter_by(class_id=self.id).all()
@@ -476,6 +480,17 @@ class Class(db.Model):
             class_time += Time.query.get(classtime.time_id).time
         return class_time
 
+    @property
+    def stars(self):
+        stars = db.session.query(ClassComment.stars). \
+            filter(ClassComment.class_id==self.id).all()
+        if stars:
+            sumary = 0
+            for star in stars:
+                sumary += star.stars
+            return sumary/len(stars)
+        else:
+            return 0
 
     @staticmethod
     def generate_fake(count=20):
