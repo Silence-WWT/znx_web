@@ -176,6 +176,7 @@ body {
     outline: none;
     padding: 2px 17px 2px 8px;
     background: #F8F8F8;
+    margin-left: 12px;
 }
 #contenthead > div.city > div > a >.caret{
     border-top: 4px solid #939390;
@@ -221,9 +222,14 @@ body {
 }
 
 #citylist {
-    min-width: 40px;
+    min-width: 235px;
+    height: 130px;
+    margin-left: 12px;
 }
-
+#citylist li{
+    width: 58px;
+    float:left;
+}
 #header {
     width: 200px;
     float: left;
@@ -281,6 +287,7 @@ body {
     width: 200px;
     height: 100px;
     float: left;
+    margin-left: 5px;
 }
 
 #header > span {
@@ -3129,4 +3136,11 @@ input[disabled] {
     border-radius: 0px;
     font-size: 18px;
     margin-left: 20px;
+}
+
+#contenthead .dropdown-menu > li > a {
+    padding: 3px 15px;
+    width: 28px;
+    float: left;
+
 }

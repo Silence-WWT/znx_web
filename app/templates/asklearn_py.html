@@ -22,7 +22,7 @@
                     <label class="control-label">你的姓名</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.name.name }}" class="form-control"/>
+                        <input type="text" name="{{ form.name.name }}" class="form-control" required/>
 
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <label class="control-label">你的手机号</label>
 
                     <div class="controls">
-                        <input type="text" name="{{ form.mobile.name }}" class="form-control"/>
+                        <input type="text" name="{{ form.mobile.name }}" class="form-control" required/>
 
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <label class="control-label">想学什么</label>
 
                     <div class="controls">
-                        <textarea rows="4" name="{{ form.need.name }}" class="form-textarea"></textarea>
+                        <textarea rows="4" name="{{ form.need.name }}" class="form-textarea" required></textarea>
 
                     </div>
                 </div>
