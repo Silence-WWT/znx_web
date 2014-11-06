@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
-from xml.dom import minidom
-from time import time as time_now
+import time
 from random import randint
 from urllib2 import urlopen
+from xml.dom import minidom
 
 from flask import request
 
@@ -20,7 +20,7 @@ def register():
     password = request.args.get('password')
     mobile = request.args.get('mobile')
     identity = request.args.get('identity')
-    email = request.args.get('email')
+    email = request.args.get('email', '')
     if User.query.filter_by(username=username).first():
         data['status'] = USERNAME_EXIST
         return json.dumps(data)
@@ -32,23 +32,23 @@ def register():
             identity=identity,
             email=email,
             is_email_confirmed=False,
-            created=time_now()
+            created=time.time()
         )
         db.session.add(user)
         db.session.commit()
         unified = UnifiedId(
             user_id=user.id,
-            created=time_now(),
+            created=time.time(),
             mobile_key=identity,
             web_key=''
         )
         db.session.add(unified)
-        db.commit()
+        db.session.commit()
         chat_line = ChatLine(
             unified_id=unified.id,
             is_user=False,
             content='',
-            created=time_now()
+            created=time.time()
         )
         db.session.add(chat_line)
         db.session.commit()
@@ -101,7 +101,7 @@ def mobile_confirm():
         data['status'] = MOBILE_EXIST
     elif mobile:
         verify_code = randint(100000, 999999)
-        content = MESSAGE_API_CONTENT.format(verify_code=verify_code)
+        content = MESSAGE_API_CONTENT_TEST.format(verify_code=verify_code)
         message_url = MESSAGE_API_URL.format(account=MESSAGE_API_ACCOUNT, password=MESSAGE_API_PASSWORD,
                                              mobile=mobile, content=content)
         response = urlopen(message_url.encode('utf8')).read()

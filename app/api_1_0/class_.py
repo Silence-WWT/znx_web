@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
-from time import time as time_now
+import time
 
 from flask import request
 
 from app import db
-from ..models import User, Class, ClassComment, ClassOrder, UnifiedId
+from ..models import User, Class, ClassComment, ClassOrder
 from . import api
 from api_constants import *
-from helper import get_ages
+from helper import get_ages, get_unified
 
 
 @api.route('/class_list')
@@ -45,7 +45,7 @@ def class_detail():
             'consult_time': class_.consult_time,
             'is_round': class_.is_round,
             'is_tastable': class_.is_tastable,
-            'comments_count': class_.get_comment_count,
+            'comments_count': class_.get_comment_count(),
             'days': class_.days
         }
         data['status'] = SUCCESS
@@ -67,23 +67,14 @@ def class_sign_up():
     age = request.args.get('age')
     sex = request.args.get('sex')
     email = request.args.get('email')
-    time = request.args.get('time')
+    taste_time = request.args.get('time')
 
     class_ = Class.query.filter_by(id=class_id).first()
-    if class_ and age and mobile and sex and time and email:
-        order_profile = UnifiedId.query.filter_by(user_id=user_id, mobile_key=uuid).first()
-        if not order_profile:
-            order_profile = UnifiedId(
-                user_id=user_id,
-                mobile_uuid=uuid,
-                web_uuid='',
-                created=time_now()
-            )
-            db.session.add(order_profile)
-            db.session.commit()
+    if class_ and age and mobile and sex and taste_time and email:
+        unified = get_unified(user_id, uuid)
         class_order = ClassOrder(
             class_id=class_id,
-            order_profile_id=order_profile.id,
+            unified_id=unified.id,
             name=name,
             mobile=mobile,
             age=age,
@@ -91,9 +82,10 @@ def class_sign_up():
             email=email,
             address=address,
             remark=remark,
-            time=time,
-            campus=u'',
-            created=time_now()
+            time=taste_time,
+            created=time.time(),
+            is_canceled=False,
+            is_submitted=True
         )
         db.session.add(class_order)
         db.session.commit()
@@ -118,7 +110,7 @@ def class_comment():
             user_id=user.id,
             stars=stars,
             body=comment,
-            created=time_now()
+            created=time.time()
         )
         db.session.add(class_comment_)
         db.session.commit()

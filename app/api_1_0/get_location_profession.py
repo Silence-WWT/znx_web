@@ -3,7 +3,7 @@ import json
 
 from flask import request
 
-from ..models import Organization, Profession, Location, City
+from ..models import Organization, Location, City
 from . import api
 from api_constants import *
 from helper import get_professions

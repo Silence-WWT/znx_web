@@ -26,7 +26,7 @@ EARTH_CIRCUMFERENCE = 40000
 
 
 MESSAGE_API_SUCCESS = 2
-MESSAGE_API_ACCOUNT = u'cf_supportznx'
+MESSAGE_API_ACCOUNT = u'cf_zainaxue'
 MESSAGE_API_PASSWORD = u'zainaxue'
 MESSAGE_API_CONTENT = u'尊敬的在哪学用户，您的验证码为{verify_code}，请您尽快完成操作，感谢您的使用！【在哪学】'
 MESSAGE_API_CONTENT_TEST = u'您的验证码是：{verify_code}。请不要把验证码泄露给其他人。'

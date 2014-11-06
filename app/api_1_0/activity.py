@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
-from time import time as time_now
+import time
 
 from flask import request
 
 from app import db
-from ..models import User, Activity, ActivityComment, ActivityOrder, UnifiedId
+from ..models import User, Activity, ActivityComment, ActivityOrder, Category
 from . import api
 from api_constants import *
-from helper import get_ages
+from helper import get_ages, get_unified
 
 
 @api.route('/activity_list')
@@ -37,6 +37,7 @@ def activity_detail():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
+        category = Category.query.get(activity.category_id)
         data['activity'] = {
             'id': activity.id,
             'name': activity.name,
@@ -45,7 +46,12 @@ def activity_detail():
             'intro': activity.detail,
             'start_time': activity.start_time,
             'end_time': activity.end_time,
-            'comments_count': activity.get_comment_count()
+            'comments_count': activity.get_comment_count(),
+            'landmark': activity.landmark,
+            'address': activity.address,
+            'traffic': activity.traffic,
+            'contract_phone': activity.contract_phone,
+            'category': category.category
         }
         data['status'] = SUCCESS
     else:
@@ -69,19 +75,10 @@ def activity_sign_up():
 
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity and age and mobile:
-        order_profile = UnifiedId.query.filter_by(user_id=user_id, mobile_key=uuid).first()
-        if not order_profile:
-            order_profile = UnifiedId(
-                user_id=user_id,
-                mobile_uuid=uuid,
-                web_uuid='',
-                created=time_now()
-            )
-            db.session.add(order_profile)
-            db.session.commit()
+        unified = get_unified(user_id, uuid)
         activity_order = ActivityOrder(
             activity_id=activity_id,
-            order_profile_id=order_profile.id,
+            unified_id=unified.id,
             name=name,
             mobile=mobile,
             age=age,
@@ -89,7 +86,7 @@ def activity_sign_up():
             email=email,
             address=address,
             remark=remark,
-            created=time_now(),
+            created=time.time(),
             is_submitted=True,
             is_canceled=False
         )
@@ -116,7 +113,7 @@ def activity_comment():
             user_id=user.id,
             stars=stars,
             body=comment,
-            created=time_now()
+            created=time.time()
         )
         db.session.add(activity_comment_)
         db.session.commit()
@@ -135,7 +132,8 @@ def activity_comment_list():
     activity_id = request.args.get('activity')
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity:
-        comment_list = ActivityComment.query.filter_by(activity_id=activity_id).\
+        comment_list = ActivityComment.query.\
+            filter_by(activity_id=activity_id).\
             order_by(-ActivityComment.created).\
             paginate(page, PER_PAGE, False).items
         for comment in comment_list:

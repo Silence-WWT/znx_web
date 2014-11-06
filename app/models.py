@@ -223,6 +223,10 @@ class Organization(UserMixin, db.Model):
         else:
             return 0
 
+    @property
+    def location(self):
+        location = Location.query.get(self.location_id)
+        return location.get_location()
     def get_comment_count(self):
         return OrganizationComment.query.\
             filter_by(organization_id=self.id).count()
@@ -245,8 +249,34 @@ class Organization(UserMixin, db.Model):
     def is_org(self):
         return True
 
+    def get_sign_up_num(self):
+        class_order_num = ClassOrder.query.filter(ClassOrder.class_id.in_(
+            db.session.query(Class.id).filter(Class.organization_id==self.id)
+        )).count()
+
+        activity_order_num = ActivityOrder.query.filter(ActivityOrder.activity_id.in_(
+        db.session.query(Activity.id).filter(Activity.organization_id==self.id)
+        )).count()
+        return class_order_num+activity_order_num
+
     def get_name(self):
         return self.name or self.mobile
+
+    def get_ages(self):
+        age_ids = OrganizationAge.query.filter_by(organization_id=self.id).all()
+        ages = list()
+        for age_id in age_ids:
+            ages.append(Age.query.get(age_id.age_id))
+        return ages
+
+    def get_professions(self):
+        profession_ids = OrganizationProfession.query.\
+            filter_by(organization_id=self.id).all()
+        professions = list()
+        for profession_id in profession_ids:
+            professions.append(Profession.query.get(profession_id.profession_id))
+        return professions
+
 
     @property
     def password(self):
@@ -910,6 +940,10 @@ class Location(db.Model):
     city_id = db.Column(db.Integer, nullable=False)
     # 区县 6
     district = db.Column(db.Unicode(6), nullable=False)
+
+    def get_location(self):
+        city = City.query.get(self.city_id)
+        return city.city + u' - '+ self.district
 
     @staticmethod
     def generate():
