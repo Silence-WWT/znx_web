@@ -36,32 +36,34 @@
                 <li ><a href="admin_talk.html">用户留言</a></li>
                 <li><a href="admin_origancome.html">求学登记</a></li>
                 <li><a href="admin_origancome.html">机构学校审核</a></li>
-                <li ><a href="admin_indexactivity.html">首页推荐活动</a></li>
-                <li class="active"><a href="admin_indexorigan.html">首页推荐机构</a></li>
+                <li class="active"><a href="admin_indexactivity.html">首页推荐活动</a></li>
+                <li ><a href="admin_indexorigan.html">首页推荐机构</a></li>
             </ul>
         </div>
         <div class="rightabout">
             <div class="tab-content">
+                <div class="tab-pane active" id="indexactivity">
+                    <h3>推荐活动设置</h3>
+
+                    <div class="control-group indexactivity" >
+                        <label class="control-label" >请输入活动名称:</label>
+                        <div class="controls">
+                            <input type="text"  name="indexactivity" class="form-control" id="adminaddactivity">
+                        </div>
+                    </div>
 
 
+                    <form class="indexoriganform">
+                    <div class="indexactivitypicup" >
+                        <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button><span>请添加XXXXXX大小banner</span>
+                                <i class="icon-ok" id="uploadok1"></i>
+                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display: none;">
 
-
-                <div class="tab-pane active" id="indexorigan">
-                    <h3>推荐机构设置<a href="admin_indexoriganadd.html">添加机构</a></h3>
-                    <ul class="unstyled">
-                        <li><span class="acttitle">西安电子科技大学</span>
-                            <a href="#"><button type="button" class="btn-next adminbtn">编辑</button></a>
-                            <a href="#"><button type="button" class="btn-next adminbtn">删除</button></a>
-                        </li>
-                        <li><span class="acttitle">西安电子科技大学</span>
-                            <a href="#"><button type="button" class="btn-next adminbtn">编辑</button></a>
-                            <a href="#"><button type="button" class="btn-next adminbtn">删除</button></a>
-                        </li>
-                        <li><span class="acttitle">西安电子科技大学</span>
-                            <a href="#"><button type="button" class="btn-next adminbtn">编辑</button></a>
-                            <a href="#"><button type="button" class="btn-next adminbtn">删除</button></a>
-                        </li>
-                    </ul>
+                                    <div class="anlipic"><img src="../static/images/footerlogo.png" class="img-polaroid" id="uploadpic1"/></div>
+                               <button type="submit" class=" btn btn-long">上传</button>
+                    </div>
+                    </form>
+                    <div id="large1"></div>
                 </div>
 
             </div>
