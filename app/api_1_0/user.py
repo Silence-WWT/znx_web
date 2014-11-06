@@ -88,7 +88,8 @@ def login():
             'mobile': user.mobile,
             'email': user.email,
             'identity': user.identity,
-            'chat_line': chat_line.id
+            'chat_line': chat_line.id,
+            'unified': unified.id,
         }
     else:
         data['status'] = LOGIN_FAILED
