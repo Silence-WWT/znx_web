@@ -6,13 +6,13 @@ from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
     SelectMultipleField, TextAreaField, BooleanField, RadioField, \
     DateTimeField, IntegerField
-from wtforms.validators import DataRequired, Length, EqualTo, Email
+from wtforms.validators import DataRequired, Length, EqualTo
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from .. import db
 from ..models import Organization, Age, Class, Activity, OrganizationComment,\
     Time, Type, Profession, Location, City, OrganizationAge,\
-    OrganizationProfession
+    OrganizationProfession, ClassTime, ClassAge
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 from ..utils.query import select_multi_checkbox
@@ -142,8 +142,9 @@ class CourseForm(Form):
                        validators=[
                            DataRequired(u'必填'),
                            Length(1, 30, u'长度不超过30个字符')])
-    age_id = SelectField('age_id', coerce=int)
-    price = IntegerField('price')
+    price = StringField('price', validators=[
+        DataRequired(u'必填'),
+        Length(1, 30, u'价格长度不符合要求')])
     consult_time = StringField('consult_time', validators=[
                                DataRequired(u'必填'),
                                Length(1, 20, u'长度不超过20字符')])
@@ -152,17 +153,21 @@ class CourseForm(Form):
                              coerce=int)
     is_round = RadioField('is_round', choices=[(1, 'yes'), (0, 'no')],
                           coerce=int)
-    intro = TextAreaField('intro', validators=[
+    detail = TextAreaField('detail', validators=[
         DataRequired(u'必填'),
         Length(1, 140, u'长度不超过140个字符')])
     class_time = SelectMultipleField('class_time',
                                      validators=[DataRequired(u'至少选一项')],
                                      coerce=int,
                                      widget=select_multi_checkbox)
+    ages = SelectMultipleField('ages',
+                               validators=[DataRequired(u'至少选一项')],
+                               coerce=int,
+                               widget=select_multi_checkbox)
 
     def create_choices(self):
         ages = Age.query.all()
-        self.age_id.choices = [(age.id, age.age) for age in ages]
+        self.ages.choices = [(age.id, age.age) for age in ages]
         self.class_time.choices = [(time.id, time.time)
                                    for time in Time.query.all()]
 
@@ -171,37 +176,43 @@ class CourseForm(Form):
         # TODO: class time.
         course = Class(organization_id=current_user.id,
                        name=self.name.data,
-                       age_id=self.age_id.data,
                        price=self.price.data,
                        consult_time=self.consult_time.data,
                        is_tastable=bool(self.is_tastable.data),
                        is_round=bool(self.is_round.data),
                        days=self.days.data,
-                       intro=self.intro.data,
+                       detail=self.detail.data,
                        created=time.time())
-        return course
+        db.session.add(course)
+
+        for time_id in self.class_time.data:
+            class_time = ClassTime(class_id=course.id, time_id=time_id)
+            db.session.add(class_time)
+
+        for age_id in self.ages.data:
+            class_age = ClassAge(class_id=course.id, age_id=age_id)
+            db.session.add(class_age)
+        db.session.commit()
 
     def init_from_class(self, class_id):
         course = Class.query.get_or_404(class_id)
         self.name.data = course.name
-        self.age_id.data = course.age_id
         self.price.data = course.price
         self.consult_time.data = course.consult_time
         self.is_tastable.data = int(course.is_tastable)
         self.is_round.data = int(course.is_round)
         self.days.data = course.days
-        self.intro.data = course.intro
+        self.detail.data = course.detail
 
     def update_course(self, class_id):
         course = Class.query.get_or_404(class_id)
         course.name = self.name.data
-        course.age_id = self.age_id.data
         course.price = self.price.data
         course.consult_time = self.consult_time.data
         course.is_tastable = bool(self.is_tastable.data)
         course.is_round = bool(self.is_round.data)
         course.days = self.days.data
-        course.intro = self.intro.data
+        course.detail = self.detail.data
         return course
 
 
