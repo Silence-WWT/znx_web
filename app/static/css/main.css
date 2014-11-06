@@ -382,7 +382,7 @@ body {
 }
 
 #indexcontent .catalog {
-    height: 340px;
+    height: 448px;
     border: 2px solid #00B98D;
     padding: 0 12px;
     width: 187px;
@@ -864,7 +864,13 @@ body {
     margin-left: 360px;
     margin-top: 20px;
 }
-
+#contentright{
+    height:500px;
+}
+#piclist #myCarousel .carousel-inner .item a img{
+    height: 340px;
+    width: 680px;
+}
 #piclist {
     width: 680px;
     margin: 5px;
@@ -872,7 +878,7 @@ body {
 
 #myCarousel .carousel-indicators {
     position: absolute;
-    top: 210px;
+    top: 320px;
     right: 20px;
 }
 
