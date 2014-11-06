@@ -61,6 +61,7 @@ input:-webkit-autofill,input:-webkit-autofill:focus{
 
 .carousel-control {
     top: 50%;
+    opacity: 0.2;
 }
 
 .carousel {
@@ -326,8 +327,8 @@ body {
 
 #asklearn {
     width: 280px;
-    height: 330px;
-    background: #fff;
+    height: 440px;
+    background: none repeat scroll 0% 0% #FFF;
     margin: 10px 5px;
 }
 
@@ -442,14 +443,14 @@ body {
 
 #asklearn ul {
     padding: 0px 22px;
-    height:210px;
+    height:324px;
     overflow: hidden;
 }
 
 #asklearn ul li {
-    padding: 8px 0 6px;
+    padding: 5px 0px;
     border-bottom: 1px solid #ECECEC;
-    height: 55px;
+    height: 54px;
 
 }
 #asklearn ul li h5{
@@ -895,10 +896,11 @@ body {
     text-align: center;
     background: #222;
     border-radius: 10px;
-    opacity: .1;
+    opacity: 0.2;
 }
 .carousel-control{
     outline: none;
+    opacity: 0.2;
 }
 .carousel-control:hover, .carousel-control:focus{
     opacity: 0.5;
@@ -911,14 +913,16 @@ body {
 .btn-qudj {
     background: #fff;
 }
-
-#floor1 h3, #floor2 h3 {
+#floor1,#floor2,#floor3{
+    margin-bottom: 50px;
+}
+#floor1 h3, #floorp h3,#floor2 h3, #floor3 h3,  {
     font-size: 28px;
     color: #000;
     font-weight: normal;
 }
 
-#floor1 ul.inline > li {
+#floor1 ul.inline > li, #floor2 ul.inline > li,#floor3 ul.inline > li{
     background: #fff;
     width: 273px;
     height: auto;
@@ -929,83 +933,96 @@ body {
     height: 270px;
 }
 
-#floor1 ul.inline > li:first-child {
+#floor1 ul.inline > li:first-child,#floor2 ul.inline > li:first-child,#floor3 ul.inline > li:first-child{
     margin-left: 0px;
 }
 
-#floor1 ul.inline > li a {
+#floor1 ul.inline > li a,#floor3 ul.inline > li a,#floor3 ul.inline > li a {
     display: block;
 }
+#floor1 .floorpic a img,#floor2 .floorpic a img,#floor3 .floorpic a img{
+    width: 273px;
+    height: 182px;
+}
+#floor1 ul.inline > li .floordec span a,#floor2 ul.inline > li .floordec span a,#floor3 ul.inline > li .floordec span a
 
-#floor1 ul.inline > li .floordec {
-    padding: 27px 10px 0px;
+{
+    color:#333;
+    margin-bottom: 10px;
+}
+#floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
+    padding: 21px 10px 0px;
     text-align: center;
+
 }
 
-#floor1 ul.inline > li .floordec span {
+#floor1 ul.inline > li .floordec span,#floor2 ul.inline > li .floordec span ,#floor3 ul.inline > li .floordec span
+
+{
     font-size: 24px;
 }
 
-#floor1 ul.inline > li .floordec address {
+#floor1 ul.inline > li .floordec address ,#floor2 ul.inline > li .floordec address ,#floor3 ul.inline > li .floordec address {
     color: #000;
     margin-top: 5px;
 }
 
-#floor1 ul.inline > li .floordec address img {
+#floor1 ul.inline > li .floordec address img,#floor2 ul.inline > li .floordec address img
+{
     margin-right: 4px;
 }
 
-#floor2 ul.inline {
+#floorp ul.inline {
     height: 280px;
     background: #fff;
     padding: 55px;
 }
 
-#floor2 {
+#floorp {
     margin-bottom: 50px;
     margin-top: 30px;
 }
 
-#floor2 ul.inline {
+#floorp ul.inline {
     border: 1px solid #ECE9E2;
 }
 
-#floor2 ul.inline > li {
+#floorp ul.inline > li {
     width: 258px;
     height: 317px;
     margin-left: 14px;
 }
 
-#floor2 ul.inline > li:last-child {
+#floorp ul.inline > li:last-child {
     width: 200px;
 }
 
-#floor2 ul.inline > li .picstep {
+#floorp ul.inline > li .picstep {
     float: left;
     width: 200px;
 }
 
-#floor2 ul.inline > li .picstep a {
+#floorp ul.inline > li .picstep a {
     display: block;
     margin-bottom: 15px;
 }
 
-#floor2 ul.inline > li .picstep span {
+#floorp ul.inline > li .picstep span {
     margin-left: 16px;
     font-size: 20px;
 }
 
-#floor2 ul.inline > li .picstep p {
+#floorp ul.inline > li .picstep p {
     margin-top: 15px;
     color: #000;
 }
 
-#floor2 ul.inline > li .arrstep {
+#floorp ul.inline > li .arrstep {
     width: 34px;
     float: left
 }
 
-#floor2 ul.inline > li .arrstep img {
+#floorp ul.inline > li .arrstep img {
     margin-top: 62px;
 }
 
@@ -1539,12 +1556,15 @@ body {
 }
 
 #organclass ul li, #organplay ul li {
-    padding: 40px 80px 20px;
+    padding: 22px 80px 36px;
     border-bottom: 1px solid #DDDDDD;
     height: 130px;
     width: 1040px;
 }
-
+#organclass ul li a img, #organplay ul li a img{
+    width: 256px;
+    height: 144px;
+}
 #organclass, #organplay {
     margin-bottom: 100px;
 }
@@ -1558,7 +1578,7 @@ body {
 }
 
 #organclass ul li .classleft .classtest, #organplay ul li .classleft .classtest {
-    width: 300px;
+    width: 272px;
     float: left;
     color: #292929;
     margin-left: 25px;
@@ -1567,22 +1587,24 @@ body {
 #organclass ul li .classleft span, #organplay ul li .classleft span {
 
     float: left;
-    width: 241px;
+    width: 240px;
     font-size: 16px;
-    line-height: 20px;
+    line-height: 22px;
     height: 22px;
+    margin-bottom: 3px;
 }
 
 #organclass ul li .classleft span.level, #organplay ul li .classleft span.level {
     width: 85px;
 }
 
-#organclass ul li .classleft h3, #organplay ul li .classleft h3 {
-    color: #000;
+#organclass ul li .classleft h3 a, #organplay ul li .classleft h3 a{
     font-size: 24px;
     float: left;
-    margin: 10px 2px;
+    margin: -4px 2px 1px;
     font-weight: normal;
+    color: #000;
+    line-height: 36px;
 }
 
 #organclass ul li .classright span, #organplay ul li .classright span {
@@ -2175,7 +2197,7 @@ body {
 
 #actlistul > li, #actlistul2 > li {
     height: 160px;
-    padding: 34px 54px;
+    padding: 34px 40px;
     border-bottom: 1px solid #F0F0F0;
 }
 
@@ -2184,12 +2206,16 @@ body {
     padding-bottom: 0px;
 }
 
-#actlistul > li > div.actleft > img, #actlistul2 > li > div.actleft > img {
+#actlistul  li .actleft a img, #actlistul2  .actleft a img {
     float: left;
+    width: 216px;
+    height: 162px;
 }
 
 #actlistul > li > div.actright, #actlistul2 > li > div.actright {
     float: left;
+    width: 570px;
+    padding-left: 25px;
 }
 
 #actlistul > li > div.actright > div > h4, #actlistul2 > li > div.actright > div > h4 {
@@ -2200,8 +2226,8 @@ body {
 }
 
 #actlistul > li > div.actright, #actlistul2 > li > div.actright {
-    width: 620px;
-    padding-left: 10px;
+    width: 570px;
+    padding-left: 25px;
 }
 
 #actlistul > li > div.actright > div > a, #actlistul2 > li > div.actright > div > a {

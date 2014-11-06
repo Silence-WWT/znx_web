@@ -184,10 +184,12 @@
                         {% for class in org.get_classes() %}
                         <li>
                             <div class="classleft">
+                                <a href="{{ url_for('course.home', id=class.id) }}">
                                 <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-
+                                </a>
                                 <div class="classtest">
-                                    <h3>{{ class.name }}</h3>
+
+                                    <h3> <a href="{{ url_for('course.home', id=class.id) }}">{{ class.name }}</a></h3>
                                     <br>
    <span> <div class="revinp">
 				<span class="level">
@@ -220,10 +222,11 @@
                         {% for activity in org.get_activities() %}
                         <li>
                             <div class="classleft">
+                                <a href="{{ url_for('activity.home', id=activity.id) }}">
                                 <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
-
+                                </a>
                                 <div class="classtest">
-                                    <h3>{{ activity.name }}</h3>
+                                    <h3>   <a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h3>
                                     <br>
    <span> <div class="revinp">
 				<span class="level">
