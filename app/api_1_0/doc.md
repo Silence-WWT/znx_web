@@ -503,24 +503,27 @@ chat_get
         user_id
         last_id
     json:
-        {"status": 0, "chat_lines": ["chat_line": "", "content": "", "created": ""]}
+        {"status": 0, "chat_lines": ["chat_line": "", "content": "", "created": "", "org_id": "", "org_name": ""]}
         
         status: 0 for success, 5001 for parameter error
         chat_lines: a list of chat line
             chat_line
             content
             created
+            org_id
+            org_name
 
 chat_post
 ---
     URL:
-        /api/v1.0/chat_post?user_id=&unified=&content=
+        /api/v1.0/chat_post?user_id=&unified=&content=&org_id=
     method:
         get
     parameters:
         user_id
         unified
         content
+        org_id
     json:
         {"status": 0}
         
