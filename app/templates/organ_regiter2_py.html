@@ -56,6 +56,13 @@
                     </div>
                 </div>
                 <div class="control-group">
+                    <label class="control-label"><i class="form-required"></i>联系电话</label>
+                    <div class="controls">
+                        {{ form.contact_phone(class="form-control", id="org_contact_phone") }}
+                        <span>{{ helper.field_errors(form.contact_phone) }}</span>
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>城市</label>
 
                     <div class="controls ">
@@ -89,6 +96,15 @@
                     <div class="controls">
                         {{ form.address(class="form-control", id="org_address") }}
                         <span>{{ helper.field_errors(form.address) }}</span>
+
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><i class="form-required"></i>附近交通</label>
+
+                    <div class="controls">
+                        {{ form.intro(class="form-textarea", row="4", id="org_traffic") }}
+                        <span>{{ helper.field_errors(form.traffic) }}</span>
 
                     </div>
                 </div>

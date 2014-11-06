@@ -377,10 +377,20 @@ $(function () {
         var org_contactlength=org_contact.length;
         if (org_contactlength>=2 && org_contactlength<=6) {
             $(this).next().text('');
-        } else if(org_contactlength==0){
-            $(this).next().text('联系人不能为空');
+
         }else {
-            $(this).next().text('请输入长度为2到6位的联系人姓名');
+            $(this).next().text('请输入联系电话');
+        }
+
+    });
+    $('#org_contact_phone').focus(function () {
+    }).blur(function () {
+        var org_contact_phone = $('#org_contact_phone').val();
+       var org_contact_phonelen=org_contact_phone.length;
+        if (org_contact_phonelen !=0) {
+            $(this).next().text('');
+        } else{
+            $(this).next().text('请输入联系电话');
         }
 
     });
