@@ -5,7 +5,7 @@ from uuid import uuid4
 from . import org
 from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder, \
-    Profession, Location, Class, \
+    Profession, Location, Class, ClassAge,\
     Activity, City, ClassTime, OrganizationComment
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
@@ -159,13 +159,7 @@ def add_course():
     course_form = CourseForm()
     course_form.create_choices()
     if course_form.validate_on_submit():
-        course = course_form.create_course()
-        db.session.add(course)
-        db.session.commit()
-        for time_id in course_form.class_time.data:
-            class_time = ClassTime(class_id=course.id, time_id=time_id)
-            db.session.add(class_time)
-        db.session.commit()
+        course_form.create_course()
         return redirect(url_for('main.index'))
     return render_template('origanclassadd_py.html',
                            form=course_form,
