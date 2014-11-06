@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from time import time as time_now
+import time
 
 from flask import request
 
@@ -46,7 +46,7 @@ def chat_post():
             unified_id=unified_id,
             is_user=True,
             content=content,
-            created=time_now())
+            created=time.time())
         db.session.add(chat_line)
         db.session.commit()
         data['status'] = SUCCESS

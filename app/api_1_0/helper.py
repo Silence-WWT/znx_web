@@ -1,3 +1,7 @@
+import time
+
+from app import db
+
 from app.models import *
 
 
@@ -11,8 +15,8 @@ def get_ages(obj):
     else:
         query = []
     age_list = []
-    for age_id in query:
-        age = Age.query.get(age_id)
+    for item in query:
+        age = Age.query.get(item.age_id)
         age_list.append(age.age)
     return age_list
 
@@ -21,7 +25,21 @@ def get_professions(obj):
     profession_list = []
     if isinstance(obj, Organization):
         query = OrganizationProfession.query.filter_by(organization_id=obj.id)
-        for profession_id in query:
-            profession = Profession.query.get(profession_id)
+        for item in query:
+            profession = Profession.query.get(item.profession_id)
             profession_list.append(profession.profession)
     return profession_list
+
+
+def get_unified(user_id, mobile_key):
+    unified = UnifiedId.query.filter_by(user_id=user_id, mobile_key=mobile_key).first()
+    if not unified:
+        unified = UnifiedId(
+            user_id=user_id,
+            mobile_uuid=mobile_key,
+            web_uuid='',
+            created=time.time()
+        )
+        db.session.add(unified)
+        db.session.commit()
+    return unified
