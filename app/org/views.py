@@ -198,6 +198,12 @@ def edit_course(id):
             class_time = ClassTime(class_id=course.id, time_id=time_id)
             db.session.add(class_time)
 
+        class_ages = ClassAge.query.filter_by(class_id=id).all()
+        for class_age in class_ages:
+            db.session.delete(class_age)
+        for age_id in course_form.ages.data:
+            class_age = ClassAge(class_id=course.id, age_id=age_id)
+            db.session.add(class_age)
         db.session.commit()
         return redirect(url_for('.course_list'))
     course_form.init_from_class(id)
