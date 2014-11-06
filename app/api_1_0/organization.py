@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 import math
-from time import time as time_now
+import time
 
 from flask import request
 
 from app import db
-from ..models import User, Organization, OrganizationComment, Profession, Location, City
+from ..models import User, Organization, OrganizationProfession, OrganizationComment, Profession, Location, City
 from . import api
 from api_constants import *
 
@@ -47,14 +47,16 @@ def organization_filter():
         if profession:
             location_list = Location.query.filter_by(city_id=city.id)
             location_id_list = [location.id for location in location_list]
-            org_list = org_query.filter(Organization.profession_id == profession.id,
+            organization_profession_list = OrganizationProfession.query.filter_by(profession_id=profession.id)
+            organization_id_list = [org_profession.organization_id for org_profession in organization_profession_list]
+            org_list = org_query.filter(Organization.id.in_(organization_id_list),
                                         Organization.location_id.in_(location_id_list))\
                 .paginate(page, PER_PAGE, False).items
         else:
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
     else:
-        org_list = org_query
+        org_list = org_query.paginate(page, PER_PAGE, False).items
     for org in org_list:
         location = Location.query.get(org.location_id)
         city = City.query.get(location.city_id)
@@ -71,7 +73,7 @@ def organization_filter():
             delta_longitude = math.fabs(longitude - org.longitude)
             delta_x = delta_latitude * EARTH_CIRCUMFERENCE / 360
             delta_y = delta_longitude * (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) / 360
-            org_dict['distance'] = math.sqrt(delta_x**2 + delta_y**2)
+            org_dict['distance'] = math.sqrt(delta_x ** 2 + delta_y ** 2)
         data['organizations'].append(org_dict)
     if distance:
         data['organizations'].sort(key=lambda x: x['distance'])
@@ -129,7 +131,7 @@ def organization_comment():
             user_id=user.id,
             stars=stars,
             body=comment,
-            created=time_now()
+            created=time.time()
         )
         db.session.add(org_comment)
         db.session.commit()

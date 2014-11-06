@@ -11,3 +11,4 @@ from .import order
 from .import requirement
 from .import get_location_profession
 from .import get_cities
+from .import chat

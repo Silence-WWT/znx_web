@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from time import time as time_now
+import time
 
 from flask import request
 
@@ -41,7 +41,7 @@ def requirement_sign_up():
             mobile=mobile,
             need=need,
             city_id=city.id,
-            created=time_now()
+            created=time.time()
         )
         db.session.add(register)
         db.session.commit()
