@@ -249,6 +249,16 @@ class Organization(UserMixin, db.Model):
     def is_org(self):
         return True
 
+    def get_sign_up_num(self):
+        class_order_num = ClassOrder.query.filter(ClassOrder.class_id.in_(
+            db.session.query(Class.id).filter(Class.organization_id==self.id)
+        )).count()
+
+        activity_order_num = ActivityOrder.query.filter(ActivityOrder.activity_id.in_(
+        db.session.query(Activity.id).filter(Activity.organization_id==self.id)
+        )).count()
+        return class_order_num+activity_order_num
+
     def get_name(self):
         return self.name or self.mobile
 
