@@ -75,24 +75,9 @@ def send_sms():
 @org_permission.require()
 def detail():
     form = DetailForm()
-    form.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
-    form.professions.choices = [(t.id, t.profession)
-                                  for t in Profession.query.all()]
-    form.location_id.choices = [(t.id, t.district)
-                                for t in Location.query.all()]
-    form.city_id = City.query.all()
-        # TODO: correct choose form.
-    form.location = Location.query.all()
+    form.create_choices()
     if form.validate_on_submit():
-        current_user.type_id = form.type_id.data
-        current_user.name = form.name.data
-        current_user.profession_id = form.profession_id.data
-        current_user.contact = form.contact.data
-        current_user.location_id = form.location_id.data
-        current_user.address = form.address.data
-        current_user.intro = form.intro.data
-        db.session.add(current_user)
-        db.session.commit()
+        form.update_org()
         # token = user.generate_confirmation_token()
         # TODO: Add token.
         # TODO: add macro in template for errors.

@@ -9,8 +9,10 @@ from wtforms import StringField, PasswordField, SelectField,\
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
+from .. import db
 from ..models import Organization, Age, Class, Activity, OrganizationComment,\
-    Time
+    Time, Type, Profession, Location, City, OrganizationAge,\
+    OrganizationProfession
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 from ..utils.query import select_multi_checkbox
@@ -49,8 +51,7 @@ class DetailForm(Form):
                                       Length(1, 6, u'联系人长度不符合规范')])
     contact_phone = StringField(
         'contact_phone',
-        validators=[DataRequired(u'必填'),
-                    Length(1, 35, u'联系电话长度不符合要求')])
+        validators=[Length(0, 255, u'联系电话长度不符合要求')])
     address = StringField('address',
                           validators=[DataRequired(u'必填'),
                                       Length(1, 40, u'地址长度不符合规范')])
@@ -66,11 +67,61 @@ class DetailForm(Form):
                                      coerce=int,
                                      widget=select_multi_checkbox)
 
-    age = SelectMultipleField('org_ages',
+    ages = SelectMultipleField('org_ages',
                                       validators=[DataRequired(u'至少选一项')],
                                       coerce=int,
                                       widget=select_multi_checkbox)
 
+    def create_choices(self):
+
+        self.type_id.choices = [(t.id, t.type) for t in Type.query.all()]
+        self.professions.choices = [(t.id, t.profession)
+                                    for t in Profession.query.all()]
+        self.location_id.choices = [(t.id, t.district)
+                                    for t in Location.query.all()]
+        self.ages.choices = [(t.id, t.age)
+                                    for t in Age.query.all()]
+        self.city_id = City.query.all()
+        self.location = Location.query.all()
+
+    def update_org(self):
+        current_user.type_id = self.type_id.data
+        current_user.name = self.name.data
+        current_user.slogan = self.slogan.data
+        current_user.contact = self.contact.data
+        current_user.contract_phone = self.contact_phone.data
+        current_user.address = self.address.data
+        current_user.traffic = self.traffic.data
+        current_user.detail = self.detail.data
+        current_user.site = self.site.data
+        current_user.location_id = self.location_id.data
+        db.session.add(current_user)
+        db.session.commit()
+
+        # profession
+        org_professions = OrganizationProfession.query.\
+            filter_by(organization_id=current_user.id).all()
+        for org_profession in org_professions:
+            db.session.delete(org_profession)
+        for profession_id in self.professions.data:
+            org_profession = OrganizationProfession(
+                organization_id=current_user.id,
+                profession_id=profession_id)
+            db.session.add(org_profession)
+
+        db.session.commit()
+
+        # ages
+        org_ages = OrganizationAge.query. \
+            filter_by(organization_id=current_user.id).all()
+        for org_age in org_ages:
+            db.session.delete(org_age)
+        for age_id in self.ages.data:
+            org_age = OrganizationAge(
+                organization_id=current_user.id,
+                age_id=age_id)
+            db.session.add(org_age)
+        db.session.commit()
 
 
 class CertificationForm(Form):
