@@ -425,6 +425,9 @@ class ChatLine(db.Model):
     unified_id = db.Column(db.Integer, nullable=False)
     is_user = db.Column(db.BOOLEAN, nullable=False)
     content = db.Column(db.Unicode(100), nullable=False)
+    # web 1 android 2
+    source = db.Column(db.Integer, nullable=False)
+    organization_id = db.Column(db.Integer, nullable=False)
     created = db.Column(db.Integer, nullable=False)
 
 
