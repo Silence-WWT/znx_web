@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+from .models import Category
 
 
 def stars(num):
@@ -10,6 +11,10 @@ def stars(num):
     else:
         return stars(num/10)
 
+
+def category(category_id):
+    category = Category.query.get(category_id)
+    return category.category
 
 def sex(s):
     if s:

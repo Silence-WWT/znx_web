@@ -28,10 +28,11 @@
                     <span class="organview"><i class="icon-eye-open"></i>{{ activity.page_view }}</span>
                     <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
                 </li>
-                <li class="firstli">适合年龄：{{ activity.age_unicode }}</li>
-                <li>开始时间：{{ activity.start_time_unicode }}</li>
-                <li>结束时间：{{ activity.end_time_unicode }}</li>
-                <li>活动类型：{{ activity.category }}</li>
+                <li class="firstli">适合年龄： {% for age in activity.get_ages() %} {{ age.age }} {% endfor %}
+                </li>
+                <li>开始时间：{{ activity.start_time|get_date_time }}</li>
+                <li>结束时间：{{ activity.end_time|get_date_time }}</li>
+                <li>活动类型：{{ activity.category_id|category }}</li>
             </ul>
         </div>
 

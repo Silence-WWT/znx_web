@@ -646,8 +646,12 @@ class Activity(db.Model):
     def get_comment_count(self):
         return ActivityComment.query.filter_by(activity_id=self.id).count()
 
-    def get_age(self):
-        return Age.query.get(self.age_id).age
+    def get_ages(self):
+        age_ids = ActivityAge.query.filter_by(activity_id=self.id).all()
+        ages = list()
+        for age_id in age_ids:
+            ages.append(Age.query.get(age_id.age_id))
+        return ages
 
     def get_comments(self):
         return ActivityComment.query.filter_by(activity_id=self.id).all()

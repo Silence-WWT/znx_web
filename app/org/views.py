@@ -6,7 +6,7 @@ from . import org
 from .. import db
 from ..models import Organization, Type, ClassOrder, ActivityOrder, \
     Profession, Location, Class, ClassAge,\
-    Activity, City, ClassTime, OrganizationComment
+    Activity, City, ClassTime, OrganizationComment, ActivityAge
 from .forms import RegistrationForm, DetailForm, \
     CertificationForm, LoginForm, CommentForm
 from ..user.forms import LoginForm as UserLoginForm
@@ -227,9 +227,7 @@ def add_activity():
     form = ActivityForm()
     form.create_choices()
     if form.validate_on_submit():
-        activity = form.create_activity()
-        db.session.add(activity)
-        db.session.commit()
+        form.create_activity()
         return redirect(url_for('main.index'))
     return render_template('origanactadd_py.html', form=form)
 
@@ -241,8 +239,16 @@ def edit_activity(id):
     activity_form = ActivityForm()
     activity_form.create_choices()
     if activity_form.validate_on_submit():
-        course = activity_form.update_activity(id)
-        db.session.add(course)
+        activity = activity_form.update_activity(id)
+        db.session.add(activity)
+        db.session.commit()
+        
+        activity_ages = ActivityAge.query.filter_by(activity_id=id).all()
+        for activity_age in activity_ages:
+            db.session.delete(activity_age)
+        for age_id in activity_form.ages.data:
+            activity_age = ActivityAge(activity_id=id, age_id=age_id)
+            db.session.add(activity_age)
         db.session.commit()
 
         return redirect(url_for('.activity_list'))
