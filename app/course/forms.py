@@ -11,7 +11,7 @@ class TimeForm(Form):
     campus = StringField('campus')
 
     def create_ord(self, id):
-        class_order = ClassOrder(user_id=current_user.id,
+        class_order = ClassOrder(unified_id=current_user.get_unified_id(),
                                  class_id=id,
                                  created=time.time(),
                                  time=time.mktime(self.time.data.timetuple()),

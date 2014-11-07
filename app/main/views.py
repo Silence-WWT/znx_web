@@ -125,3 +125,9 @@ def search():
 @main.route('/admin_talk', methods=['GET', 'POST'])
 def admin_talk():
     return render_template('admin_talk.html')
+
+@main.route('/change_city/<int:city_id>')
+def change_city(city_id):
+    City.query.get_or_404(city_id)
+    session['city_id'] = city_id
+    return redirect(url_for('main.index'))
