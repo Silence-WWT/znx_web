@@ -2649,6 +2649,7 @@ input[disabled] {
 
 #origanselect > .selecttop dd {
     float: left;
+    width: 1000px;
 }
 
 #origanselect > .selecttop dd ul li {
@@ -2753,7 +2754,7 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
 #tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span {
-    margin-left: 14px;
+    margin-left: 29px;
 }
 
 #tab1 > ul > li > div.seledet > span > i, #tab1 > ul > li > div.selectscore > ul > li > span > i,
