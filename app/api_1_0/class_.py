@@ -8,7 +8,7 @@ from app import db
 from ..models import User, Class, ClassComment, ClassOrder
 from . import api
 from api_constants import *
-from helper import get_ages, get_unified
+from utils import get_ages, get_unified
 
 
 @api.route('/class_list')

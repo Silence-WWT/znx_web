@@ -11,7 +11,7 @@ from app import db
 from ..models import User, UnifiedId, ChatLine
 from . import api
 from api_constants import *
-from helper import get_unified
+from utils import get_unified
 
 
 @api.route('/register')
@@ -60,7 +60,6 @@ def login():
     password = request.args.get('password')
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
-    print mobile
     if not user:
         user = User.query.filter_by(username=mobile).first()
     if user is not None and user.verify_password(password):
