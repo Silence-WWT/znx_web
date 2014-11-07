@@ -23,9 +23,7 @@ def get_district_profession():
             for profession in get_professions(organization):
                 profession_set.add(profession)
         professions = list(profession_set)
-        data['status'] = SUCCESS
         data['districts'] = districts
         data['professions'] = professions
-    else:
-        data['status'] = PARAMETER_ERROR
+    data['status'] = SUCCESS
     return json.dumps(data)
