@@ -1,8 +1,9 @@
+import math
 import time
 
 from app import db
-
 from app.models import *
+from api_constants import *
 
 
 def get_ages(obj):
@@ -45,3 +46,22 @@ def get_unified(user_id, mobile_key):
         db.session.add(unified)
         db.session.commit()
     return unified
+
+
+def organization_filter_by_distance(distance, longitude, latitude):
+    delta_latitude = distance / EARTH_CIRCUMFERENCE * 360
+    delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) * 360
+    org_query = Organization.query.filter(Organization.latitude <= latitude + delta_latitude,
+                                          Organization.latitude >= latitude - delta_latitude,
+                                          Organization.longitude <= longitude + delta_longitude,
+                                          Organization.longitude >= longitude - delta_longitude)
+    return org_query
+
+
+def get_organization_distance(longitude, latitude, org_longitude, org_latitude):
+    delta_latitude = math.fabs(latitude - org_latitude)
+    delta_longitude = math.fabs(longitude - org_longitude)
+    delta_x = delta_latitude * EARTH_CIRCUMFERENCE / 360
+    delta_y = delta_longitude * (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) / 360
+    distance = math.sqrt(delta_x ** 2 + delta_y ** 2)
+    return distance
