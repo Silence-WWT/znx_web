@@ -53,7 +53,8 @@ def chat_post():
             content=content,
             source=CHAT_SOURCE_ANDROID,
             organization_id=organization.id,
-            created=time.time())
+            created=time.time()
+        )
         db.session.add(chat_line)
         db.session.commit()
         data['status'] = SUCCESS

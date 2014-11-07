@@ -48,6 +48,8 @@ def register():
             unified_id=unified.id,
             is_user=False,
             content='',
+            source=CHAT_SOURCE_ANDROID,
+            organization_id=0,
             created=time.time()
         )
         db.session.add(chat_line)
@@ -70,10 +72,12 @@ def register():
 @api.route('/login')
 def login():
     data = {}
-    mobile = request.args.get('mobile')
+    mobile = request.args.get('mobile', u'', type=unicode)
     password = request.args.get('password')
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
+    if not user:
+        user = User.query.filter_by(username=mobile).first()
     if user is not None and user.verify_password(password):
         unified = UnifiedId.query.filter_by(user_id=user.id).first()
         chat_line = ChatLine.query.filter_by(unified_id=unified.id, is_user=False).order_by(-ChatLine.created).first()
@@ -86,7 +90,8 @@ def login():
             'mobile': user.mobile,
             'email': user.email,
             'identity': user.identity,
-            'chat_line': chat_line.id
+            'chat_line': chat_line.id,
+            'unified': unified.id,
         }
     else:
         data['status'] = LOGIN_FAILED
