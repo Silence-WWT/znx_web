@@ -61,9 +61,9 @@ login
 organization_filter
 ---
     URL:
-        /api/v1.0/organization_filter?city=&district=&page=
-        /api/v1.0/organization_filter?city=&profession=&page=  
-        /api/v1.0/organization_filter?distance=&latitude=&longitude=&page=
+        /api/v1.0/organization_filter?city=&district=&page=&type=
+        /api/v1.0/organization_filter?city=&profession=&page=&type=
+        /api/v1.0/organization_filter?distance=&latitude=&longitude=&page=&type=
     method:
         get
     parameters:
@@ -74,6 +74,7 @@ organization_filter
         latitude
         longitude
         page
+        type: 学校 or 机构 or other type
         distance can coexist with another parameter (location OR profession)
     json:
         {"status": 0,
