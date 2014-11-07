@@ -223,7 +223,7 @@ body {
 
 #citylist {
     min-width: 235px;
-    height: 130px;
+    height: auto;
     margin-left: 12px;
 }
 #citylist li{
@@ -3158,7 +3158,7 @@ input[disabled] {
 }
 
 #contenthead .dropdown-menu > li > a {
-    padding: 3px 15px;
+    padding: 3px 16px 4px;
     width: 28px;
     float: left;
 
