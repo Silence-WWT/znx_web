@@ -6,7 +6,7 @@ import time
 from flask import request
 
 from app import db
-from ..models import User, Organization, OrganizationProfession, OrganizationComment, Profession, Location, City
+from ..models import User, Organization, OrganizationProfession, OrganizationComment, Type, Profession, Location, City
 from . import api
 from api_constants import *
 
@@ -19,22 +19,29 @@ def organization_filter():
     district = request.args.get('district', '').encode('utf8')
     profession = request.args.get('profession', '').encode('utf8')
     distance = request.values.get('distance', 0.0, type=float)
+    org_type = request.args.get('type', u'机构', type=unicode)
+    type_ = Type.query.filter_by(type=org_type).first()
     city = City.query.filter_by(city=city).first()
+    if type_:
+        org_type_query = Organization.query.filter_by(type_id=type_.id)
+    else:
+        data['status'] = TYPE_NOT_EXIST
+        return json.dumps(data)
     if distance:
         latitude = request.values.get('latitude', 0.0, type=float)
         longitude = request.values.get('longitude', 0.0, type=float)
         if latitude and longitude:
             delta_latitude = distance / EARTH_CIRCUMFERENCE * 360
             delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) * 360
-            org_query = Organization.query.filter(Organization.latitude <= latitude + delta_latitude,
-                                                  Organization.latitude >= latitude - delta_latitude,
-                                                  Organization.longitude <= longitude + delta_longitude,
-                                                  Organization.longitude >= longitude - delta_longitude)
+            org_query = org_type_query.filter(Organization.latitude <= latitude + delta_latitude,
+                                              Organization.latitude >= latitude - delta_latitude,
+                                              Organization.longitude <= longitude + delta_longitude,
+                                              Organization.longitude >= longitude - delta_longitude)
         else:
             data['status'] = PARAMETER_ERROR
             return json.dumps(data)
     else:
-        org_query = Organization.query
+        org_query = org_type_query
     if city and district:
         location = Location.query.filter_by(city_id=city.id, district=district).first()
         if location:
