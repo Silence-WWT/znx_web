@@ -11,36 +11,32 @@
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>面向人群</label>
         <div class="controls">
-            {{ form.age_id(class="form-control") }}
+            {{ form.ages }}
         </div>
     </div>
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>收费标准</label>
 
         <div class="input-append" id="mysetyuan">
-            {{ form.price(class="form-control", id="appendedPrependedInput", placeholder="请输入整数", required=true) }}
-            <span class="add-on">元</span>
+            {{ form.price(class="form-control", id="appendedPrependedInput", placeholder="请输入价格", required=true) }}
             <span class="inputwrong">{{ field_errors(form.price) }}</span>
         </div>
     </div>
-{# TODO: check this
     <div class="control-group">
-        <label class="control-label"><i class="form-required"></i>联系人</label>
+        <label class="control-label"><i class="form-required"></i>活动类型</label>
 
         <div class="controls">
-            <input type="text" class="form-control" placeholder="请输入活动联系人电话" required/>
-            {{ form.price(class="form-control", id="appendedPrependedInput", placeholder="请输入整数", required=true) }}
+            {{ form.category_id }}
         </div>
     </div>
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>联系电话</label>
 
         <div class="controls">
-            <input type="text" class="form-control" placeholder="请输入11位的手机号码" required/>
+            {{ form.contact_phone(class="form-control", placeholder="请输入活动联系电话", required=true) }}
 
         </div>
     </div>
-#}
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>活动开始时间</label>
         <div class="controls">
@@ -67,14 +63,68 @@
 
         </div>
     </div>
+    <div class="control-group">
+        <label class="control-label"><i class="form-required"></i>城市</label>
 
+        <div class="controls ">
 
+            <select id="dropLang" class="district" >
+                <option selected="selected" value="0">----请选择城市----</option>
+                {% for city in form.city_id %}
+                    <option value="{{ city.id }}">{{ city.city }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><i class="form-required"></i>区域</label>
+
+        <div class="controls">
+            <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
+                <option selected="selected" value="0">----请选择区域----</option>
+                {% for location in form.location %}
+
+                    <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}</option>
+
+                {% endfor %}
+            </select>
+            <span>{{ field_errors(form.location_id) }}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><i class="form-required"></i>地址</label>
+
+        <div class="controls">
+            {{ form.address(class="form-control", id="org_address") }}
+            <span class="inputwrong">{{ field_errors(form.address) }}</span>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label"><i class="form-required"></i>附近交通</label>
+
+        <div class="controls">
+            {{ form.traffic(class="form-textarea", row="4", id="org_traffic") }}
+            <span class="inputwrong">{{ field_errors(form.traffic) }}</span>
+
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label"><i class="form-required"></i>地标</label>
+
+        <div class="controls">
+            {{ form.landmark(class="form-control", id="org_address") }}
+            <span class="inputwrong">{{ field_errors(form.landmark) }}</span>
+
+        </div>
+    </div>
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>活动简介</label>
 
         <div class="controls">
-            {{ form.intro(rows="4", class="form-textarea", placeholder="请输入140字以内的活动简介", required=true) }}
-            <span class="inputwrong">{{ field_errors(form.intro) }}</span>
+            {{ form.detail(rows="4", class="form-textarea", placeholder="请输入140字以内的活动简介", required=true) }}
+            <span class="inputwrong">{{ field_errors(form.detail) }}</span>
 
         </div>
     </div>

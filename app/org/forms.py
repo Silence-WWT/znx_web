@@ -228,7 +228,7 @@ class ActivityForm(Form):
     address = StringField('address', validators=[DataRequired(u'必填'),
                                                  Length(1, 40, u'长度不符合要求')])
     landmark = StringField('landmark')
-    traffic = StringField('traffic')
+    traffic = TextAreaField('traffic')
     contact_phone = StringField('contact_phone')
     detail = TextAreaField('detail', validators=[DataRequired(u'必填'),
                                                Length(1, 140,u'140字符以内')])
