@@ -75,9 +75,9 @@ def send_sms():
 @user.route('/home')
 @user_permission.require()
 def home():
-    activity_orders = ActivityOrder.query.filter_by(user_id=current_user.id).\
+    activity_orders = ActivityOrder.query.filter_by(unified_id=current_user.get_unified_id()).\
         order_by(ActivityOrder.created.desc()).all()
-    class_orders = ClassOrder.query.filter_by(user_id=current_user.id)
+    class_orders = ClassOrder.query.filter_by(unified_id=current_user.get_unified_id())
     # TODO: add class order, activity order. delete order.
 
     return render_template('userorderlist_py.html',

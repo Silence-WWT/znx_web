@@ -7,52 +7,16 @@
         </div>
         <div class="city">
             <div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                北京
+                {{ session['city_id']|city }}
                 <span class="caret"></span>
             </a>
 
                 <ul class="dropdown-menu" id="citylist">
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-                    <li><a href="#">西安</a>
-                    </li>
-                    <li><a href="#">厦门</a>
-                    </li>
-
+                    {% for city in cities %}
+                        <li><a href="{{ url_for('main.change_city', city_id=city.id) }}">
+                            {{ city.city }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

@@ -26,7 +26,7 @@
                     <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
                     <div class="actright">
                         <div class="actrighttop">
-                            <h4>{{ class.name }}</h4>
+                            <h4><a href="{{ url_for('course.home', id=class.id) }}">{{ class.name }}</a></h4>
 
                             <div class="actrighta">
                                 <a href="{{ url_for('user.course_order_detail', id=class_order.id) }}">
