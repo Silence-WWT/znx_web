@@ -1745,7 +1745,9 @@ body {
 #classdet .organmoredec span i {
     margin: 6px;
 }
-
+#classdet .picright ul li span i{
+    margin: 4px;
+}
 #classdet ul {
     margin-top: 60px;
 }
@@ -1774,6 +1776,7 @@ body {
 
     float: left;
     margin-top: 21px;
+    margin-left: 10px;
 }
 
 .attendbtn {

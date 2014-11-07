@@ -46,7 +46,7 @@ def taste(id):
 def detail(id):
     form = DetailForm()
     order = ClassOrder.query.get_or_404(id)
-    if order.user_id != current_user.id:
+    if order.unified_id != current_user.get_unified_id():
         abort(404)
     if form.validate_on_submit():
         form.set_ord(order)
@@ -61,13 +61,15 @@ def confirm(id):
     form = ConfirmForm()
     order = ClassOrder.query.get_or_404(id)
     course = Class.query.get_or_404(order.class_id)
-    if order.user_id != current_user.id:
+    if order.unified_id != current_user.get_unified_id():
         abort(404)
     if form.validate_on_submit():
         order.remark = form.remark.data
         order.is_confirmed = True
         db.session.add(order)
         db.session.commit()
-        return redirect(url_for('user.home'))
+        if current_user.is_authenticated():
+            return redirect(url_for('user.home'))
+        return redirect(url_for('main.index'))
     return render_template('classattend3_py.html', form=form,
                            order=order, course=course)

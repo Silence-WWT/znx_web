@@ -809,7 +809,7 @@ class ClassOrder(db.Model):
         return Class.query.get(self.class_id)
 
     def get_time(self):
-        return time.ctime(self.time)
+        return time.strftime('%Y/%m/%d %H:%M', time.localtime(self.time))
 
     @staticmethod
     def generate_fake(count=100):

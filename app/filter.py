@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-from .models import Category
+from .models import Category, City
 
 
 def stars(num):
@@ -15,6 +15,11 @@ def stars(num):
 def category(category_id):
     category = Category.query.get(category_id)
     return category.category
+
+
+def city(city_id):
+    city=City.query.get(city_id)
+    return city.city
 
 def sex(s):
     if s:

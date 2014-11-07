@@ -8,10 +8,9 @@ from ..models import ClassOrder, ClassComment
 
 class TimeForm(Form):
     time = DateTimeField('time', format='%Y/%m/%d %H:%M')
-    campus = StringField('campus')
 
     def create_ord(self, id):
-        class_order = ClassOrder(user_id=current_user.id,
+        class_order = ClassOrder(unified_id=current_user.get_unified_id(),
                                  class_id=id,
                                  created=time.time(),
                                  time=time.mktime(self.time.data.timetuple()),
@@ -21,7 +20,6 @@ class TimeForm(Form):
                                  mobile='',
                                  email='',
                                  address=u'',
-                                 campus=self.campus.data,
                                  remark=u'')
         return class_order
 
