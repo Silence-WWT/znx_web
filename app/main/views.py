@@ -102,6 +102,7 @@ def search():
     location_id  = request.values.get('location_id', 0, type=int)
     city_id  = session['city_id']
     locations = Location.query.filter_by(city_id=city_id).all()
+    page = request.args.get('page', 1, type=int)
 
     query = Organization.query
     if profession_id:
@@ -114,12 +115,16 @@ def search():
     else:
         location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
         query=query.filter(Organization.location_id.in_(location_ids))
-    orgs = query.filter(Organization.name.like(u'%'+name+u'%')).all()
+    pagination = query.filter(Organization.name.like(u'%'+name+u'%')).paginate(
+        page, 20, error_out=False
+    )
+    orgs = pagination.items
     return render_template('origanselect_py.html',
                            name=name,
                            location_id = location_id,
                            profession_id=profession_id,
                            orgs=orgs,
+                           pagination = pagination,
                            locations=locations,
                            professions=professions)
 
