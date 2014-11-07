@@ -19,7 +19,7 @@ def organization_filter():
     district = request.args.get('district', '').encode('utf8')
     profession = request.args.get('profession', '').encode('utf8')
     distance = request.values.get('distance', 0.0, type=float)
-    org_type = request.args.get('type', u'', type=unicode)
+    org_type = request.args.get('type', u'机构', type=unicode)
     type_ = Type.query.filter_by(type=org_type).first()
     city = City.query.filter_by(city=city).first()
     if type_:
