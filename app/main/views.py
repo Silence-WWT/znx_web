@@ -8,7 +8,8 @@ from flask import redirect, url_for, \
     render_template, flash, session, current_app, request
 from ..user.forms import LoginForm as UserLoginForm
 from ..org.forms import LoginForm as OrgLoginForm
-from ..models import City, Register, Organization, Location, Profession
+from ..models import City, Register, Organization, Location, Profession,\
+    OrganizationProfession
 
 
 @main.route('/login', methods=['GET'])
@@ -41,12 +42,10 @@ def register():
 def index():
     registers = Register.query.order_by(Register.id.desc()).limit(5).all()
     city = City.query.first()
-    if 'city_id' not in session:
-        session['city_id'] = city.id
     city_id = int(session['city_id'])
     orgs = Organization.query.filter(
         Organization.location_id.in_(
-            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(3).all()
+            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(12).all()
     return render_template('index_py.html', registers=registers, orgs=orgs)
 
 
@@ -101,16 +100,19 @@ def search():
     name = request.values.get('name', u'', type=unicode)
     profession_id = request.values.get('profession_id', 0, type=int)
     location_id  = request.values.get('location_id', 0, type=int)
-    city_id  = request.values.get('city_id', 2, type=int)
-    location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
+    city_id  = session['city_id']
     locations = Location.query.filter_by(city_id=city_id).all()
 
     query = Organization.query
     if profession_id:
-        query=query.filter(Organization.profession_id==profession_id)
+        profession_ids = db.session.\
+            query(OrganizationProfession.organization_id).\
+            filter(OrganizationProfession.profession_id==profession_id)
+        query=query.filter(Organization.id.in_(profession_ids))
     if location_id:
         query=query.filter(Organization.location_id==location_id)
     else:
+        location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
         query=query.filter(Organization.location_id.in_(location_ids))
     orgs = query.filter(Organization.name.like(u'%'+name+u'%')).all()
     return render_template('origanselect_py.html',
