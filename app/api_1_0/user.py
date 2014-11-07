@@ -11,6 +11,7 @@ from app import db
 from ..models import User, UnifiedId, ChatLine
 from . import api
 from api_constants import *
+from helper import get_unified
 
 
 @api.route('/register')
@@ -36,25 +37,7 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
-        unified = UnifiedId(
-            user_id=user.id,
-            created=time.time(),
-            mobile_key=identity,
-            web_key=''
-        )
-        db.session.add(unified)
-        db.session.commit()
-        chat_line = ChatLine(
-            unified_id=unified.id,
-            is_user=False,
-            content='',
-            source=CHAT_SOURCE_ANDROID,
-            organization_id=0,
-            created=time.time()
-        )
-        db.session.add(chat_line)
-        db.session.commit()
-        data['status'] = SUCCESS
+        unified = get_unified(user.id, identity)
         data['user'] = {
             'user_id': user.id,
             'username': username,
@@ -62,8 +45,9 @@ def register():
             'identity': identity,
             'email': email,
             'unified': unified.id,
-            'chat_line': chat_line.id
+            'chat_line': 0
         }
+        data['status'] = SUCCESS
     else:
         data['status'] = PARAMETER_ERROR
     return json.dumps(data)
@@ -76,11 +60,16 @@ def login():
     password = request.args.get('password')
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
+    print mobile
     if not user:
         user = User.query.filter_by(username=mobile).first()
     if user is not None and user.verify_password(password):
         unified = UnifiedId.query.filter_by(user_id=user.id).first()
         chat_line = ChatLine.query.filter_by(unified_id=unified.id, is_user=False).order_by(-ChatLine.created).first()
+        if chat_line:
+            last_id = chat_line.id
+        else:
+            last_id = 0
         if user.identity != identity and identity:
             user.identity = identity
         data['status'] = SUCCESS
@@ -90,7 +79,7 @@ def login():
             'mobile': user.mobile,
             'email': user.email,
             'identity': user.identity,
-            'chat_line': chat_line.id,
+            'chat_line': last_id,
             'unified': unified.id,
         }
     else:
