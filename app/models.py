@@ -437,7 +437,7 @@ class Class(db.Model):
     # 机构id
     organization_id = db.Column(db.Integer, nullable=False)
     # 课程名字 30 Unicode
-    name = db.Column(db.Unicode(30), nullable=False)
+    name = db.Column(db.Unicode(255), nullable=False)
     # 价格
     price = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 咨询时间 20 Unicode
@@ -456,6 +456,8 @@ class Class(db.Model):
     page_view = db.Column(db.Integer, default=0, nullable=False)
     # 详情
     detail = db.Column(db.UnicodeText, nullable=False)
+    # 图片
+    photo = db.Column(db.String(255), nullable=False)
 
     def get_org(self):
         return Organization.query.get(self.organization_id)
@@ -611,8 +613,8 @@ class Activity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # 机构
     organization_id = db.Column(db.Integer, nullable=False)
-    # 活动名字 30 Unicode
-    name = db.Column(db.Unicode(30), nullable=False)
+    # 活动名字 255 Unicode
+    name = db.Column(db.Unicode(255), nullable=False)
     # 价格
     price = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 创建时间
@@ -621,7 +623,7 @@ class Activity(db.Model):
     start_time = db.Column(db.Integer, nullable=False)
     end_time = db.Column(db.Integer, nullable=False)
     # 图片
-    photo = db.Column(db.CHAR(36), default='', nullable=False)
+    photo = db.Column(db.CHAR(255), default='', nullable=False)
     # 关闭
     is_closed = db.Column(db.BOOLEAN, default=False, nullable=False)
     # 浏览量
@@ -636,8 +638,8 @@ class Activity(db.Model):
     landmark = db.Column(db.Unicode(40), default=u'', nullable=False)
     # 附近交通 200
     traffic = db.Column(db.Unicode(200), default=u'', nullable=False)
-    # 联系方式 35 Unicode
-    contract_phone = db.Column(db.Unicode(35), default=u'', nullable=False)
+    # 联系方式 255 Unicode
+    contract_phone = db.Column(db.Unicode(255), default=u'', nullable=False)
     # 详情
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
 
