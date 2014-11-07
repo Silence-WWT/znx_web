@@ -497,12 +497,13 @@ get_cities
 chat_get
 ---
     URL:
-        /api/v1.0/chat_get?user_id=&last_id=
+        /api/v1.0/chat_get?user_id=&last_id=&unified=
     method:
         get
     parameters:
         user_id
         last_id
+        unified
     json:
         {"status": 0, "chat_lines": ["chat_line": "", "content": "", "created": "", "org_id": "", "org_name": ""]}
         

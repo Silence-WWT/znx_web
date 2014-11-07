@@ -15,17 +15,12 @@ def chat_get():
     data = {'chat_lines': []}
     user_id = request.args.get('user_id')
     last_id = request.args.get('last_id')
-    unified = UnifiedId.query.filter_by(user_id=user_id).first()
-    chat_line = ChatLine.query.get(last_id)
-    # if not chat_line or not unified:
-    #     data['status'] = PARAMETER_ERROR
-    #     return json.dumps(data)
-    # elif unified.user_id != UnifiedId.query.get(chat_line.unified_id).user_id:
-    #     data['status'] = PARAMETER_ERROR
-    #     return json.dumps(data)
-    if unified and chat_line:
+    unified_id = request.args.get('unified')
+    unified = UnifiedId.query.get(unified_id)
+    user = User.query.get(user_id)
+    if user and unified and user.id == unified.user_id:
         chat_lines = ChatLine.query.\
-            filter(ChatLine.unified_id == unified.id).\
+            filter(ChatLine.unified_id == unified_id).\
             filter(ChatLine.is_user == False).\
             filter(ChatLine.id > last_id).\
             order_by(ChatLine.created)
@@ -48,7 +43,7 @@ def chat_get():
 def chat_post():
     data = {}
     user_id = request.args.get('user_id')
-    content = request.args.get('content', '').encode('utf8')
+    content = request.args.get('content', u'', type=unicode)
     unified_id = request.args.get('unified')
     org_id = request.args.get('org_id')
     organization = Organization.query.get(org_id)

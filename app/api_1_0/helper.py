@@ -32,12 +32,14 @@ def get_professions(obj):
 
 
 def get_unified(user_id, mobile_key):
-    unified = UnifiedId.query.filter_by(user_id=user_id, mobile_key=mobile_key).first()
+    unified = UnifiedId.query.filter_by(mobile_key=mobile_key).first()
+    if not unified:
+        unified = UnifiedId.query.filter_by(user_id=user_id).first()
     if not unified:
         unified = UnifiedId(
             user_id=user_id,
-            mobile_uuid=mobile_key,
-            web_uuid='',
+            mobile_key=mobile_key,
+            web_key='',
             created=time.time()
         )
         db.session.add(unified)
