@@ -52,102 +52,11 @@
             <div id="indexcontent">
                 <div class="row">
                     <div class="span3 catalog" id="allnav" >
-                        <dl class="firsthr">
-                            <dt class="text-left">幼儿早教.</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
+                        {% for profession in professions %}
                         <dl>
-                            <dt class="text-left">少儿培训</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
+                            <dt class="text-left">{{ profession.profession }}</dt>
                         </dl>
-                        <dl>
-                            <dt class="text-left">青少年课辅</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="text-left">IT培训</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="text-left">外语</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="text-left">外语</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt class="text-left">外语</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                        <dl class="lasthr">
-                            <dt class="text-left">外语</dt>
-
-                            <dd>
-                                <ul class="inline">
-                                    <li><a href="#">中学生课辅</a>
-                                    </li>
-                                    <li><a href="#">高中生课辅</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
+                        {% endfor %}
                     </div>
                 </div>
             </div>

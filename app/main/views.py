@@ -41,12 +41,10 @@ def register():
 def index():
     registers = Register.query.order_by(Register.id.desc()).limit(5).all()
     city = City.query.first()
-    if 'city_id' not in session:
-        session['city_id'] = city.id
     city_id = int(session['city_id'])
     orgs = Organization.query.filter(
         Organization.location_id.in_(
-            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(3).all()
+            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(12).all()
     return render_template('index_py.html', registers=registers, orgs=orgs)
 
 
