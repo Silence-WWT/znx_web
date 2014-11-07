@@ -60,7 +60,6 @@ def login():
     password = request.args.get('password')
     identity = request.args.get('identity')
     user = User.query.filter_by(mobile=mobile).first()
-    print mobile
     if not user:
         user = User.query.filter_by(username=mobile).first()
     if user is not None and user.verify_password(password):

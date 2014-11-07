@@ -92,13 +92,17 @@ organization_filter
 organization_search
 ---
     URL:
-        /api/v1.0/organization_search?name=
+        /api/v1.0/organization_search?name=&distance=&longitude=&latitude=&page=
     method:
         get
     parameters:
         name: key of search organization
+        distance
+        longitude
+        latitude
     json:
-        {"status": 0, "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": ""}]}
+        {"status": 0,
+        "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "distance": ""}]}
         
         status: 0 for success
         organizations: a list of organizations
@@ -108,6 +112,7 @@ organization_search
             district
             photo
             intro
+            distance
 
 organization_detail
 ---

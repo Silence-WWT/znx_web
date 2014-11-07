@@ -9,6 +9,7 @@ from app import db
 from ..models import User, Organization, OrganizationProfession, OrganizationComment, Type, Profession, Location, City
 from . import api
 from api_constants import *
+from helper import organization_filter_by_distance, get_organization_distance
 
 
 @api.route('/organization_filter')
@@ -26,12 +27,7 @@ def organization_filter():
         latitude = request.values.get('latitude', 0.0, type=float)
         longitude = request.values.get('longitude', 0.0, type=float)
         if latitude and longitude:
-            delta_latitude = distance / EARTH_CIRCUMFERENCE * 360
-            delta_longitude = distance / (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) * 360
-            org_query = Organization.query.filter(Organization.latitude <= latitude + delta_latitude,
-                                                  Organization.latitude >= latitude - delta_latitude,
-                                                  Organization.longitude <= longitude + delta_longitude,
-                                                  Organization.longitude >= longitude - delta_longitude)
+            org_query = organization_filter_by_distance(distance, longitude, latitude)
         else:
             data['status'] = PARAMETER_ERROR
             return json.dumps(data)
@@ -74,11 +70,7 @@ def organization_filter():
             'intro': org.detail,
         }
         if distance:
-            delta_latitude = math.fabs(latitude - org.latitude)
-            delta_longitude = math.fabs(longitude - org.longitude)
-            delta_x = delta_latitude * EARTH_CIRCUMFERENCE / 360
-            delta_y = delta_longitude * (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) / 360
-            org_dict['distance'] = math.sqrt(delta_x ** 2 + delta_y ** 2)
+            org_dict['distance'] = get_organization_distance(longitude, latitude, org.longitude, org.latitude)
         data['organizations'].append(org_dict)
     if distance:
         data['organizations'].sort(key=lambda x: x['distance'])
@@ -179,17 +171,35 @@ def organization_comment_list():
 def organization_search():
     data = {'organizations': []}
     name = request.values.get('name', u'', type=unicode)
-    organization_list = Organization.query.filter(Organization.name.like(u'%' + name + u'%')).all()
+    distance = request.values.get('distance', 0.0, type=float)
+    page = request.values.get('page', 1, type=int)
+    if distance:
+        latitude = request.values.get('latitude', 0.0, type=float)
+        longitude = request.values.get('longitude', 0.0, type=float)
+        if latitude and longitude:
+            org_query = organization_filter_by_distance(distance, longitude, latitude)
+        else:
+            data['status'] = PARAMETER_ERROR
+            return json.dumps(data)
+    else:
+        org_query = Organization.query
+    organization_list = org_query.filter(Organization.name.like(u'%' + name + u'%')).\
+        paginate(page, PER_PAGE, False).items
+    print(len(organization_list))
     for organization in organization_list:
         location = Location.query.get(organization.location_id)
         city = City.query.get(location.city_id)
-        data['organizations'].append({
+        org_dict = {
             'id': organization.id,
             'name': organization.name,
             'city': city.city,
             'district': location.district,
             'photo': '',
             'intro': organization.detail,
-        })
+        }
+        if distance:
+            org_dict['distance'] = get_organization_distance(longitude, latitude,
+                                                             organization.longitude, organization.latitude)
+        data['organizations'].append(org_dict)
     data['status'] = SUCCESS
     return json.dumps(data)
