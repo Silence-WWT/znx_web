@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import time
-from random import randint
+from random import randint, seed
 from urllib2 import urlopen
 from xml.dom import minidom
 
@@ -96,6 +96,9 @@ def login():
     else:
         data['status'] = LOGIN_FAILED
     return json.dumps(data)
+
+
+seed()
 
 
 @api.route('/mobile_confirm')
