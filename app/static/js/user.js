@@ -728,7 +728,7 @@ $(function () {
 $(function(){
 $("#onlinetalk").click(function() {
     var talkcontent = $("#talkcontent").val();
-    console.log(talkcontent);
+    //alert(talkcontent);
     var talkdiv = "<li ><p class=\'badge badge-success italk\'>" + talkcontent + "</p></li>";
     //alert(talkcontent);
     $.ajax({
@@ -736,7 +736,7 @@ $("#onlinetalk").click(function() {
         dataType: "text", //数据格式:JSON
         url: '/chat/chat', //目标地址
         data: "context=" + talkcontent,
-        success: function () {
+        complete: function () {
             $("#talkpost li:last-child").after(talkdiv);
             $("#talkcontent").val('');
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
