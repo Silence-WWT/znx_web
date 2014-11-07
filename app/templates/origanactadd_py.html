@@ -54,4 +54,29 @@
         inputMask: true
     });
 </script>
+    <script type="text/javascript" language="javascript">
+        $(function(){
+            $("#dropLang").unbind("change", eDropLangChange).bind("change", eDropLangChange);
+            $("#dropFrame").unbind("change", eDropFrameChange).bind("change", eDropFrameChange);
+        });
+
+        var eDropLangChange = function(){
+            var selectedValue = $(this).val();
+
+            $("#dropFrame").children("span").each(function(){
+                $(this).children().clone().replaceAll($(this));
+            });
+
+            if(parseInt(selectedValue) != 0){
+
+                $("#dropFrame").children("option[parentid!='" + selectedValue + "'][value!='0']").each(function(){
+                    $(this).wrap("<span style='display:none'></span>");
+                });
+            }
+        };
+
+        var eDropFrameChange = function(){
+            $("#dropLang").val($(this).children("option:selected").attr("parentid"));
+        };
+    </script>
 {% endblock inscript %}

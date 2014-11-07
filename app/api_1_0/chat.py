@@ -16,7 +16,14 @@ def chat_get():
     user_id = request.args.get('user_id')
     last_id = request.args.get('last_id')
     unified = UnifiedId.query.filter_by(user_id=user_id).first()
-    if unified:
+    chat_line = ChatLine.query.get(last_id)
+    # if not chat_line or not unified:
+    #     data['status'] = PARAMETER_ERROR
+    #     return json.dumps(data)
+    # elif unified.user_id != UnifiedId.query.get(chat_line.unified_id).user_id:
+    #     data['status'] = PARAMETER_ERROR
+    #     return json.dumps(data)
+    if unified and chat_line:
         chat_lines = ChatLine.query.\
             filter(ChatLine.unified_id == unified.id).\
             filter(ChatLine.is_user == False).\
@@ -61,3 +68,24 @@ def chat_post():
     else:
         data['status'] = PARAMETER_ERROR
     return json.dumps(data)
+
+
+@api.route('/add_chat')
+def add_chat():
+    try:
+        content = request.args.get('content', '').encode('utf8')
+        unified_id = request.args.get('unified')
+        org_id = request.args.get('org_id')
+        chat_line = ChatLine(
+            unified_id=unified_id,
+            is_user=False,
+            content=content,
+            source=CHAT_SOURCE_ANDROID,
+            organization_id=org_id,
+            created=time.time()
+        )
+        db.session.add(chat_line)
+        db.session.commit()
+        return json.dumps({'status': SUCCESS})
+    except:
+        return json.dumps({'status': PARAMETER_ERROR})

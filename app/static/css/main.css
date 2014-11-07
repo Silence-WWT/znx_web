@@ -2966,6 +2966,15 @@ input[disabled] {
     font-size: 14px;
     margin-left: 10px;
 }
+#myactset #ages {
+    margin: 5px 3px;
+}
+#myactset #ages label{
+    margin-right: 5px;
+}
+#myactset #category_id{
+
+}
 #mysetday .inputwrong,#mysetyuan .inputwrong{
     color: #FF2424;
     font-size: 14px;

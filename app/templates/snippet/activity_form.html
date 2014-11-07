@@ -26,7 +26,7 @@
         <label class="control-label"><i class="form-required"></i>活动类型</label>
 
         <div class="controls">
-            {{ form.category_id }}
+            {{ form.category_id(class="form-control", required=true) }}
         </div>
     </div>
     <div class="control-group">
@@ -68,7 +68,7 @@
 
         <div class="controls ">
 
-            <select id="dropLang" class="district" >
+            <select id="dropLang" class="district form-control" >
                 <option selected="selected" value="0">----请选择城市----</option>
                 {% for city in form.city_id %}
                     <option value="{{ city.id }}">{{ city.city }}</option>
@@ -80,13 +80,12 @@
         <label class="control-label"><i class="form-required"></i>区域</label>
 
         <div class="controls">
-            <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
+            <select name="{{ form.location_id.name }}" class="district form-control" id="dropFrame">
                 <option selected="selected" value="0">----请选择区域----</option>
                 {% for location in form.location %}
-
                     <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}</option>
 
-                {% endfor %}
+               {% endfor %}
             </select>
             <span>{{ field_errors(form.location_id) }}</span>
         </div>
@@ -96,13 +95,13 @@
         <label class="control-label"><i class="form-required"></i>地址</label>
 
         <div class="controls">
-            {{ form.address(class="form-control", id="org_address") }}
+            {{ form.address(class="form-control", id="org_address",require="true") }}
             <span class="inputwrong">{{ field_errors(form.address) }}</span>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label"><i class="form-required"></i>附近交通</label>
+        <label class="control-label">附近交通</label>
 
         <div class="controls">
             {{ form.traffic(class="form-textarea", row="4", id="org_traffic") }}
@@ -111,7 +110,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><i class="form-required"></i>地标</label>
+        <label class="control-label">地标</label>
 
         <div class="controls">
             {{ form.landmark(class="form-control", id="org_address") }}
