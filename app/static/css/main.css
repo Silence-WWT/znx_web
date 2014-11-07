@@ -491,6 +491,7 @@ body {
     width: 236px;
     outline: none;
     border: 0px;
+    margin-top: -2px;
 }
 
 .nav li span img {
@@ -959,7 +960,7 @@ body {
 
 {
     color:#333;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 #floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
@@ -2018,6 +2019,7 @@ body {
 
 #askright .learnreason ul li:last-child {
     border-bottom: 0px;
+    margin-top: 18px;
 }
 
 #askright .learnreason ul li img {
@@ -2622,7 +2624,7 @@ input[disabled] {
 
 #origanselect > .selecttop {
     background: #fff;
-    padding: 20px 40px 40px;
+    padding: 20px 40px 60px;
     margin: 25px 0;
     border: 1px solid #ECE9E2;
 }

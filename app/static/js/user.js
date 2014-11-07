@@ -728,6 +728,7 @@ $(function () {
 $(function(){
 $("#onlinetalk").click(function() {
     var talkcontent = $("#talkcontent").val();
+    console.log(talkcontent);
     var talkdiv = "<li ><p class=\'badge badge-success italk\'>" + talkcontent + "</p></li>";
     //alert(talkcontent);
     $.ajax({
