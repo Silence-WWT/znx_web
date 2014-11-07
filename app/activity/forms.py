@@ -15,7 +15,7 @@ class DetailForm(Form):
     address = StringField('address')
 
     def create_ord(self, id):
-        activity_order = ActivityOrder(user_id=current_user.id,
+        activity_order = ActivityOrder(unified_id=current_user.get_unified_id(),
                                        activity_id=id,
                                        created=time.time(),
                                        name=self.name.data,
