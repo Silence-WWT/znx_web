@@ -12,7 +12,7 @@ from wtforms import ValidationError
 from .. import db
 from ..models import Organization, Age, Class, Activity, OrganizationComment,\
     Time, Type, Profession, Location, City, OrganizationAge,\
-    OrganizationProfession, ClassTime, ClassAge, Category
+    OrganizationProfession, ClassTime, ClassAge, Category, ActivityAge
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 from ..utils.query import select_multi_checkbox
@@ -249,35 +249,55 @@ class ActivityForm(Form):
     def create_activity(self):
         activity = Activity(organization_id=current_user.id,
                             name=self.name.data,
-                            age_id=self.age_id.data,
-                            price=int(self.price.data),
+                            price=self.price.data,
                             created=time.time(),
                             start_time=time.mktime(
                                 self.start_time.data.timetuple()),
                             end_time=time.mktime(
                                 self.end_time.data.timetuple()),
-                            intro=self.intro.data)
-        return activity
+                            category_id=self.category_id.data,
+                            location_id=self.location_id.data,
+                            address=self.address.data,
+                            landmark=self.landmark.data,
+                            traffic=self.traffic.data,
+                            contract_phone=self.contact_phone.data,
+                            detail=self.detail.data)
+        db.session.add(activity)
+        db.session.commit()
+        for age_id in self.ages.data:
+            activity_age = ActivityAge(activity_id=activity.id, age_id=age_id)
+            db.session.add(activity_age)
+        db.session.commit()
 
     def init_from_activity(self, activity_id):
         activity = Activity.query.get_or_404(activity_id)
         self.name.data = activity.name
-        self.age_id.data = activity.age_id
         self.price.data = activity.price
         self.start_time.data = datetime.fromtimestamp(activity.start_time)
         self.end_time.data = datetime.fromtimestamp(activity.end_time)
-        self.intro.data = activity.intro
+        self.category_id.data = activity.category_id
+        self.location_id.data = activity.location_id
+        self.address.data = activity.address
+        self.landmark.data = activity.landmark
+        self.traffic.data = activity.traffic
+        self.contact_phone.data = activity.contract_phone
+        self.detail.data = activity.detail
 
     def update_activity(self, activity_id):
         activity = Activity.query.get_or_404(activity_id)
         activity.name = self.name.data
-        activity.age_id = self.age_id.data
         activity.price = self.price.data
         activity.start_time = time.mktime(
             self.start_time.data.timetuple())
         activity.end_time = time.mktime(
             self.end_time.data.timetuple())
-        activity.intro = self.intro.data
+        activity.category_id = self.category_id.data
+        activity.location_id = self.location_id.data
+        activity.address = self.address.data
+        activity.landmark = self.landmark.data
+        activity.traffic = self.traffic.data
+        activity.contract_phone = self.contact_phone.data
+        activity.detail = self.detail.data
         return activity
 
 class CommentForm(Form):
