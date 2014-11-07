@@ -6,7 +6,7 @@ from flask import request
 from ..models import User, Organization, Class, ClassOrder, Activity, ActivityOrder, UnifiedId
 from . import api
 from api_constants import *
-from helper import get_ages
+from utils import get_ages
 
 
 @api.route('/order_list_or_detail')

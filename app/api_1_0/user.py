@@ -11,7 +11,7 @@ from app import db
 from ..models import User, UnifiedId, ChatLine
 from . import api
 from api_constants import *
-from helper import get_unified
+from utils import get_unified
 
 
 @api.route('/register')

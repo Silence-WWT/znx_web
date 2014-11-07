@@ -9,7 +9,7 @@ from app import db
 from ..models import User, Organization, OrganizationProfession, OrganizationComment, Type, Profession, Location, City
 from . import api
 from api_constants import *
-from helper import organization_filter_by_distance, get_organization_distance
+from utils import organization_filter_by_distance, get_organization_distance
 
 
 @api.route('/organization_filter')

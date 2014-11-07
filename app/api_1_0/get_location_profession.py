@@ -6,7 +6,7 @@ from flask import request
 from ..models import Organization, Location, City
 from . import api
 from api_constants import *
-from helper import get_professions
+from utils import get_professions
 
 
 @api.route('/get_district_profession')
