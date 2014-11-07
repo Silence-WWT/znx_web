@@ -262,12 +262,13 @@ body {
 }
 
 #allnav dl {
-    height: 45px;
-    margin-bottom: 10px;
+    height: 24px;
+    margin-bottom: 6px;
 }
 
 #allnav dt {
     margin-top: -5px;
+    margin-left: 20px;
 }
 
 #navbar i {
@@ -390,11 +391,12 @@ body {
 }
 
 #indexcontent .catalog {
-    height: 448px;
+    height: 439px;
     border: 2px solid #00B98D;
-    padding: 0 12px;
+    padding: 5px 12px 4px;
     width: 187px;
     background: #fff;
+    overflow: hidden;
 }
 
 #indexcontent .span5 {
@@ -409,6 +411,8 @@ body {
 
 #indexcontent .catalog dl {
     border-bottom: 1px dotted #999;
+    float: left;
+    width: 50%;
 }
 
 #indexcontent .catalog .lasthr {
@@ -960,7 +964,7 @@ body {
 
 {
     color:#333;
-    margin-bottom: 12px;
+    margin-bottom: 11px;
 }
 #floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
@@ -971,7 +975,7 @@ body {
 #floor1 ul.inline > li .floordec span,#floor2 ul.inline > li .floordec span ,#floor3 ul.inline > li .floordec span
 
 {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 #floor1 ul.inline > li .floordec address ,#floor2 ul.inline > li .floordec address ,#floor3 ul.inline > li .floordec address {
