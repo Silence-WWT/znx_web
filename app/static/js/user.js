@@ -41,6 +41,7 @@ $(function () {
 $(function(){
     $("#searchbtn").click(function () {
         var keywords=$("#searchiput").val();
+             keywords=escape(keywords);
         var searchurl="/search?name="+keywords;
        location.href=searchurl;
       //  window.open(searchurl);
@@ -688,7 +689,7 @@ $(function () {
 
 })
 
-document.getElementById("Commenttext").focus();
+//document.getElementById("Commenttext").focus();
 var chackTextarea = function (obj, num, objTip) {
     obj.onkeyup = obj.onfocus = function () {
         if (obj.value.length >= 1) {
