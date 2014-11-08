@@ -62,17 +62,17 @@ def activity_detail():
 @api.route('/activity_sign_up')
 def activity_sign_up():
     data = {}
-    activity_id = request.args.get('activity')
-    user_id = request.args.get('user_id')
-    uuid = request.args.get('uuid')
+    activity_id = request.values.get('activity', '', type=str)
+    user_id = request.values.get('user_id')
+    uuid = request.values.get('uuid', '', type=str)
     address = request.args.get('address', u'', type=unicode)
-    name = request.args.get('name', u'', type=unicode)
-    remark = request.args.get('remark', u'', type=unicode)
-    mobile = request.args.get('mobile')
-    age = request.args.get('age')
-    sex = request.args.get('sex')
-    email = request.args.get('email')
-
+    name = request.values.get('name', u'', type=unicode)
+    remark = request.values.get('remark', u'', type=unicode)
+    mobile = request.values.get('mobile', '', type=str)
+    age = request.values.get('age', '', type=str)
+    sex = request.values.get('sex', '', type=str)
+    email = request.values.get('email', '', type=str)
+    print('uuid', uuid)
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity and age and mobile:
         unified = get_unified(user_id, uuid)
