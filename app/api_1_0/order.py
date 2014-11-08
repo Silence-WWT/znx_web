@@ -70,13 +70,13 @@ def get_order_dict(order_type, order):
         'created': order.created,
         'price': obj.price,
         'age': get_ages(obj),
-        'name': order.name,
+        'user_name': order.name,
         'user_age': order.age,
-        'sex': order.sex,
-        'mobile': order.mobile,
-        'email': order.email,
-        'address': order.address,
-        'remark': order.remark,
+        'user_sex': order.sex,
+        'user_mobile': order.mobile,
+        'user_email': order.email,
+        'user_address': order.address,
+        'user_remark': order.remark,
         'comments_count': obj.get_comment_count()
     }
     if isinstance(order, ClassOrder):
