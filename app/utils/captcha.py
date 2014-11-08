@@ -2,6 +2,7 @@
 import redis
 import requests
 from random import seed, randint
+from xml.dom import minidom
 
 
 seed()
@@ -10,21 +11,34 @@ seed()
 def send_captcha(user_or_org, mobile):
     local_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
     rand = str(randint(100000, 999999))
-    print 'generate round num:'+rand
-    #r = send_sms(mobile, rand)
+    print 'generate round num:' + rand
+    # r = send_sms(mobile, rand)
     # TODO: check return code by func send_sms.
     # print r.text
-    key = 'captcha:'+user_or_org+':'+mobile
-    local_redis.set(key, rand, 120)
-    print 'get captcha:'
-    print local_redis.get(key)
+    status = send_sms(mobile, rand)
+    if status:
+        key = 'captcha:' + user_or_org + ':' + mobile
+        local_redis.set(key, rand, 120)
+        print 'get captcha:'
+        print local_redis.get(key)
+    return status
+
+
+MESSAGE_API_CONTENT = u'尊敬的在哪学用户，您的验证码为%s，请您尽快完成操作，感谢您的使用！'
+MESSAGE_API_CONTENT_TEST = u'您的验证码是：%s。请不要把验证码泄露给其他人。'
+MESSAGE_API_SUCCESS = '2'
 
 
 def send_sms(number, content):
-    query = { 'method': 'Submit',
-              'account': 'cf_znx',
-              'password': 'znx123',
-              'mobile': number,
-              'content': u'您的验证码是：【%s】。请不要把验证码泄露给其他人。' % content}
-    r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query)
-    return r
+    query = {'method': 'Submit',
+             'account': 'cf_zainaxue',
+             'password': 'zainaxue',
+             'mobile': number,
+             'content': MESSAGE_API_CONTENT_TEST % content}
+    r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query).text.encode('utf8')
+    doc = minidom.parseString(r)
+    status = doc.getElementsByTagName('code')[0].firstChild.nodeValue
+    if status != MESSAGE_API_SUCCESS:
+        return False
+    else:
+        return True
