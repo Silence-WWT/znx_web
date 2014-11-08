@@ -71,7 +71,9 @@
                                         <li><p>{{ chatline.is_user|user_or_admin }}：{{ chatline.content }}</p><span class="timeright">时间：{{ chatline.created|get_date_time }}</span></li>
                                         {% endfor %}
                                     </ul>
-                                    <textarea class="talktext"></textarea><button type="button" class="btn-next talkadminbtn">发送</button>
+                                <form class="form-control" name="" action="">
+                                    <textarea class="talktext" name="ttalk"></textarea><button type="submit" class="btn-next talkadminbtn">发送</button>
+                                </form>
                                 </div>
                             </div>
                         </div>
