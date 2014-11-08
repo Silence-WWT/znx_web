@@ -2468,6 +2468,7 @@ body {
 #regmessage {
     width: 182px;
     text-align: center;
+    cursor: pointer;
 
 }
 

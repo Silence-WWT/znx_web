@@ -42,7 +42,7 @@
 
             <div class="controls">
                 {{ form.captcha(id="inputVerCode", class="form-control") }}
-                <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码"/>
+                <input class="btn-myred" id="regmessage" onclick="sendMessage();" value="免费获取验证码" type="button"/>
                 <input id="mobileurl" value="{{ url_for('user.send_sms') }}" type="hidden"/>
 
                 <p id="smsinfo">{{ helper.field_errors(form.captcha) }}</p>
