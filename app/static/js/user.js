@@ -728,6 +728,7 @@ $(function () {
 $(function(){
 $("#onlinetalk").click(function() {
     var talkcontent = $("#talkcontent").val();
+    var orgid=$("#orginid").val();
     //alert(talkcontent);
     var talkdiv = "<li ><p class=\'badge badge-success italk\'>" + talkcontent + "</p></li>";
     //alert(talkcontent);
@@ -735,8 +736,8 @@ $("#onlinetalk").click(function() {
         type: "POST", //用POST方式传输
         dataType: "text", //数据格式:JSON
         url: '/chat/chat', //目标地址
-        data: "context=" + talkcontent,
-        complete: function () {
+        data: "context=" + talkcontent+"&orgid="+orgid,
+        success: function () {
             $("#talkpost li:last-child").after(talkdiv);
             $("#talkcontent").val('');
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
