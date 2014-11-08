@@ -770,11 +770,9 @@ function talkget() {
     });
 };
 $(function(){
-        $('#weixinbtn').popover('toggle');
-})
-$(function () {
-    $("#talkadmin .talkcontentmore .talkadminbtn").click(function(){
-   var  www=$(this).next().val();
-        alert(www);
-    })
+    $("#weixinimg").hide();
+        $("#weixinbtn").click(function(){
+            $("#weixinimg").toggle();
+            $("#weibo").toggle();
+        })
 })

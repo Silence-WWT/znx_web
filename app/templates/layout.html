@@ -116,11 +116,11 @@
 
                     <ul class="unstyled">
                         <li>
-                       <a   id="weixinbtn" data-toggle="popover" title=""
-                           data-content="And here's some amazing content. It's very engaging. right?">
+                       <a   id="weixinbtn" onselectstart="return false">
                            官方微信</a>
+                            <div id="weixinimg"><img src="{{ url_for('static', filename='images/weixin.jpg') }}"></div>
                         </li>
-                        <li><a href="http://weibo.com/u/5348281338?topnav=1&wvr=6">官方微博</a>
+                        <li id="weibo"><a href="http://weibo.com/u/5348281338?topnav=1&wvr=6">官方微博</a>
                         </li>
                     </ul>
                 </div>

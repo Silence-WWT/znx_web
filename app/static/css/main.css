@@ -3169,3 +3169,9 @@ input[disabled] {
     float: left;
 
 }
+#weixinbtn{
+    cursor: pointer;
+}
+#weixinimg{
+    z-index:1000;
+}
