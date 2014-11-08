@@ -87,7 +87,7 @@
                     </a>
                 </div>
                 <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i].id) }}">{{ orgs[4*i].name|truncate(12, false) }}</a></span>
+                    <span><a href="{{ url_for('org.home', id=orgs[4*i].id) }}">{{ orgs[4*i].name|truncate(12, true) }}</a></span>
 
                     <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[0].location }}</address>
 
