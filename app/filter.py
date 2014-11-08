@@ -38,3 +38,9 @@ def anonymous_name(name):
 
 def anonymous_mobile(mobile):
     return mobile[0:3]+'xxxxx'+ mobile[-3:]
+
+
+def user_or_admin(is_user):
+    if is_user:
+        return u'用户'
+    return u'客服'

@@ -418,6 +418,9 @@ class UnifiedId(db.Model):
     web_key = db.Column(db.CHAR(32), nullable=False)
     created = db.Column(db.Integer, nullable=False)
 
+    def get_mobile(self):
+        return User.query.get(self.user_id).mobile
+
 
 class ChatLine(db.Model):
     __tablename__ = 'chat_lines'
@@ -430,6 +433,13 @@ class ChatLine(db.Model):
     organization_id = db.Column(db.Integer, nullable=False)
     created = db.Column(db.Integer, nullable=False)
 
+    def get_user(self):
+        user_id = UnifiedId.query.get(self.unified_id).user_id
+        return User.query.get(user_id)
+
+    def get_org(self):
+        return db.session.query(Organization.name).\
+            filter(Organization.id==self.organization_id)
 
 class Class(db.Model):
     __tablename__ = 'classes'

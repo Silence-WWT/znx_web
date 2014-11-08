@@ -45,38 +45,37 @@
                     <h3>留言反馈（3条）</h3>
 
                     <div class="accordion" id="accordion2">
+                        {% for chat_group in chat_groups %}
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <ul class="unstyled inline talkadmintop">
-                                    <li>手机号：15029279090</li>
+                                    <li>手机号：{{ chat_group[2] }}</li>
                                     <li>留言时间：2014-10-21 11:20:53</li>
                                     <li>最后回复时间：2014-10-21 11:20:53</li>
                                 </ul>
-                                <p>请问你在哪里请问你在哪里请问你咋哪里到圣诞节撒谎大赛</p>
                                 <ul class="unstyled inline form" >
-                                <li>来源：安卓客户端</li>
-                                    <li>机构名：<span>西安电子科技大学</span></li>
+                                    <li>机构名：<span>{{ chat_group[1] }}</span></li>
                                   </ul>
                                 <ul class="unstyled inline dotalk">
-                                <li><a href="#">删除</a></li>
                                 <li><a class="accordion-toggle" data-toggle="collapse"
-                                       data-parent="#accordion2" href="#collapse1">
+                                       data-parent="#accordion2" href="#collapse{{ loop.index }}">
                                     回复（5）
                                 </a>
                                 </li>
                                 </ul>
                             </div>
-                            <div id="collapse1" class="accordion-body collapse">
+                            <div id="collapse{{ loop.index }}" class="accordion-body collapse">
                                 <div class="talkcontentmore">
-                                    <h4>来自机构：西安电子科技大学</h4>
                                     <ul class="unstyled">
-                                        <li><p>用户：你好我想咨询个事情</p><span class="timeright">时间：2014-10-21 11:20:53</span></li>
-                                        <li><p>客服：好的马上解决</p><span class="timeright">时间：2014-10-21 11:20:53</span></li>
+                                        {% for chatline in chat_group[0] %}
+                                        <li><p>{{ chatline.is_user|user_or_admin }}：{{ chatline.content }}</p><span class="timeright">时间：{{ chatline.created|get_date_time }}</span></li>
+                                        {% endfor %}
                                     </ul>
                                     <textarea class="talktext"></textarea><button type="button" class="btn-next talkadminbtn">发送</button>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <ul class="unstyled inline talkadmintop">
