@@ -2,9 +2,6 @@
 import json
 import time
 import redis
-from random import randint
-from urllib2 import urlopen
-from xml.dom import minidom
 
 from flask import request
 
@@ -31,6 +28,8 @@ def register():
     captcha = local_redis.get(key)
     if captcha != verify_code:
         data['status'] = VERIFY_CODE_INCORRECT
+    elif User.query.filter_by(mobile=mobile).first():
+        data['status'] = MOBILE_EXIST
     elif User.query.filter_by(username=username).first():
         data['status'] = USERNAME_EXIST
     elif username and password and mobile:
@@ -98,9 +97,7 @@ def login():
 def mobile_confirm():
     data = {}
     mobile = request.values.get('mobile', '', type=str)
-    if User.query.filter_by(mobile=mobile).first():
-        data['status'] = MOBILE_EXIST
-    elif mobile:
+    if mobile:
         status = send_captcha('user', mobile)
         if status:
             data['status'] = SUCCESS

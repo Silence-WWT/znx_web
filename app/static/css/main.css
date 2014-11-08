@@ -2468,6 +2468,7 @@ body {
 #regmessage {
     width: 182px;
     text-align: center;
+    cursor: pointer;
 
 }
 
@@ -3172,6 +3173,8 @@ input[disabled] {
 }
 #weixinbtn{
     cursor: pointer;
+    -moz-user-select:none;
+    -khtml-user-select:none;
 }
 #weixinimg{
     z-index:1000;
