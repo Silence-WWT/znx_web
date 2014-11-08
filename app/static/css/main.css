@@ -3011,7 +3011,7 @@ input[disabled] {
     font-size: 16px;
 }
 #talkadmin .accordion-heading{
-    height: 100px;
+    height: 72px;
 }
 #talkadmin .accordion-group{
     padding: 20px 20px 0px;
@@ -3064,7 +3064,8 @@ input[disabled] {
     float: left;
     width: 400px;
     resize: none;
-    height: 100px;
+    height: 90px;
+    margin-top: 9px;
 }
 #talkadmin .talkcontentmore  .talkadminbtn{
     margin: 57px 42px 0px;
