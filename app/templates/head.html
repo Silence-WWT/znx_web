@@ -21,11 +21,13 @@
             </div>
         </div>
         <div class="headsearch" id="headsearch">
-            <form class="form-search">
+            <form class="form-search" action="{{ url_for('main.search') }}">
                 <div class="input-append">
-                    <input type="text" class="search"  id="searchiput"  placeholder="搜索你要找的培训机构" type="search"
-                           onkeydown="if(event.keyCode==13){document.getElementById('searchbtn').click();return false;}">
-                    <button type="button" class="btn btn-success" id="searchbtn">搜索</button>
+
+                    <input class="search"  id="searchiput"  placeholder="搜索你要找的培训机构" type="search"
+                           name="name">
+                    <button type="submit" class="btn btn-success" id="searchbtn">搜索</button>
+
                 </div>
             </form>
             <ul id="searchkey" class="inline unstyled">
