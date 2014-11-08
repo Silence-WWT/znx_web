@@ -3172,6 +3172,8 @@ input[disabled] {
 }
 #weixinbtn{
     cursor: pointer;
+    -moz-user-select:none;
+    -khtml-user-select:none;
 }
 #weixinimg{
     z-index:1000;
