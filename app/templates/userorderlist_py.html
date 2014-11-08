@@ -52,7 +52,7 @@
                 {% for activity_order in activity_orders %}
                 {% set activity = activity_order.get_activity() %}
                 <li>
-                    <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
+                    <div class="actleft"><a href="{{ url_for('activity.home', id=activity.id) }}" target="_blank"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h4>

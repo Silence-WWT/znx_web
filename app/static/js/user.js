@@ -5,6 +5,13 @@ $(function () {
         $(this).tab('show');
     });
 })
+$(function(){
+    $("#weixinimg").hide();
+    $("#weixinbtn").click(function(){
+        $("#weixinimg").toggle();
+        $("#weibo").toggle();
+    })
+})
 //控制提示内容
     $(function () {
 
@@ -769,3 +776,4 @@ function talkget() {
         }
     });
 };
+

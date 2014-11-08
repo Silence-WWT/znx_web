@@ -35,7 +35,7 @@ def create_app(config_name):
 
     config_identity(app)
     from .filter import stars, sex, get_date_time, anonymous_mobile, \
-        anonymous_name, category, city
+        anonymous_name, category, city, user_or_admin, source
 
     app.jinja_env.filters['stars'] = stars
     app.jinja_env.filters['sex'] = sex
@@ -44,6 +44,8 @@ def create_app(config_name):
     app.jinja_env.filters['anonymous_name'] = anonymous_name
     app.jinja_env.filters['category'] = category
     app.jinja_env.filters['city'] = city
+    app.jinja_env.filters['user_or_admin'] = user_or_admin
+    app.jinja_env.filters['source'] = source
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
@@ -70,6 +72,8 @@ def create_app(config_name):
     from .chat import chat as char_blueprint
     app.register_blueprint(char_blueprint, url_prefix='/chat')
 
+    from .admin import admin as admin_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     from utils import hook
     app.context_processor(hook.cities)

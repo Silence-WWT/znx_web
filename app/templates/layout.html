@@ -115,9 +115,12 @@
                     <h3>关注我们</h3>
 
                     <ul class="unstyled">
-                        <li><a href="#">官方微信</a>
+                        <li>
+                       <a   id="weixinbtn" onselectstart="return false">
+                           官方微信</a>
+                            <div id="weixinimg"><img src="{{ url_for('static', filename='images/weixin.jpg') }}"></div>
                         </li>
-                        <li><a href="http://weibo.com/u/5348281338?topnav=1&wvr=6">官方微博</a>
+                        <li id="weibo"><a href="http://weibo.com/u/5348281338?topnav=1&wvr=6" target="_blank">官方微博</a>
                         </li>
                     </ul>
                 </div>
