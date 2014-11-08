@@ -2998,7 +2998,7 @@ input[disabled] {
 }
 #pages{
     text-align: center;
-    margin: -25px 0px 20px;
+    margin: 35px 0 30px;
 }
 #talkadmin h3,#asklearnadmin h3,#origancomeadmin h3,#indexactivity h3,#indexorigan h3{
     width: 872px;

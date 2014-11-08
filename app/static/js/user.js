@@ -753,11 +753,12 @@ $("#onlinetalk").click(function() {
 })
 function talkget() {
      var tid=$("#talkid").val();
+     var orgid=$("#orginid").val();
     $.ajax({
         type: 'GET',
         url: '/chat/chat',
         dataType: "json",
-        data:"id="+tid,
+        data:"id="+tid+"&orgid="+orgid,
         success: function (data) {
           $("#talkid").val(data.id);
        var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
