@@ -964,7 +964,7 @@ body {
 
 {
     color:#333;
-    margin-bottom: 11px;
+    margin-bottom: 10px;
 }
 #floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
@@ -975,7 +975,7 @@ body {
 #floor1 ul.inline > li .floordec span,#floor2 ul.inline > li .floordec span ,#floor3 ul.inline > li .floordec span
 
 {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #floor1 ul.inline > li .floordec address ,#floor2 ul.inline > li .floordec address ,#floor3 ul.inline > li .floordec address {
