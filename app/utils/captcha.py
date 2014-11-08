@@ -18,7 +18,8 @@ def send_captcha(user_or_org, mobile):
     status = send_sms(mobile, rand)
     if status:
         key = 'captcha:' + user_or_org + ':' + mobile
-        local_redis.set(key, rand, 120)
+        local_redis.set(key, rand)
+        local_redis.expire(key, 120)  # method set(key, rand, 120) may raise ResponseError on cloud server
         print 'get captcha:'
         print local_redis.get(key)
     return status

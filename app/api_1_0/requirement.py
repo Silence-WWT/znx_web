@@ -30,10 +30,10 @@ def requirement_list():
 @api.route('/requirement_sign_up')
 def requirement_sign_up():
     data = {}
-    name = request.args.get('name', '').encode('utf8')
-    city = request.args.get('city', '').encode('utf8')
-    need = request.args.get('need', '').encode('utf8')
-    mobile = request.args.get('mobile')
+    name = request.values.get('name', u'', type=unicode)
+    city = request.values.get('city', u'', type=unicode)
+    need = request.values.get('need', u'', type=unicode)
+    mobile = request.values.get('mobile', '', type=str)
     city = City.query.filter_by(city=city).first()
     if name and mobile and need and city:
         register = Register(
