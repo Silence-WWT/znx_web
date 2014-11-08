@@ -5,7 +5,7 @@ from . import db, login_manager
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import session
-from sqlalchemy import func
+
 
 class AnonymousUser(AnonymousUserMixin):
     def get_unified_id(self):
@@ -210,6 +210,12 @@ class Organization(UserMixin, db.Model):
     site = db.Column(db.CHAR(255), nullable=False)
     # 详情 UnicodeText
     detail = db.Column(db.UnicodeText, default=u'', nullable=False)
+    # 评论数量
+    comment_count = db.Column(db.Integer, default=0, nullable=False)
+    # 评价
+    stars = db.Column(db.Float, default=0.0, nullable=False)
+    # 报名数
+    orders = db.Column(db.Integer, default=0, nullable=False)
 
     @property
     def stars(self):
@@ -326,6 +332,11 @@ class Organization(UserMixin, db.Model):
 
 class OrganizationAge(db.Model):
     __tablename__ = 'organization_ages'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'organization_id', 'age_id', name='unq_org_age'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     # 机构 id
     organization_id = db.Column(db.Integer, nullable=False)
@@ -349,6 +360,11 @@ class OrganizationAge(db.Model):
 
 class OrganizationProfession(db.Model):
     __tablename__ = 'organization_professions'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'organization_id', 'profession_id', name='unq_org_profession'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     # 机构 id
     organization_id = db.Column(db.Integer, nullable=False)
@@ -368,6 +384,7 @@ class OrganizationProfession(db.Model):
                 u = OrganizationProfession(organization_id=org_id, profession_id=profession_id)
                 db.session.add(u)
             db.session.commit()
+
 
 class OrganizationComment(db.Model):
     __tablename__ = 'organization_comments'
@@ -440,6 +457,7 @@ class ChatLine(db.Model):
     def get_org(self):
         return db.session.query(Organization.name).\
             filter(Organization.id==self.organization_id)
+
 
 class Class(db.Model):
     __tablename__ = 'classes'
@@ -574,6 +592,11 @@ class ClassComment(db.Model):
 
 class ClassTime(db.Model):
     __tablename__ = 'class_time'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'class_id', 'time_id', name='unq_class_time'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     # 课程
     class_id = db.Column(db.Integer, nullable=False)
@@ -597,6 +620,11 @@ class ClassTime(db.Model):
 
 class ClassAge(db.Model):
     __tablename__ = 'class_age'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'class_id', 'age_id', name='unq_class_age'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     # 课程
     class_id = db.Column(db.Integer, nullable=False)
@@ -719,8 +747,14 @@ class Category(db.Model):
         db.session.add(Category(category=u'比赛讲座'))
         db.session.commit()
 
+
 class ActivityAge(db.Model):
     __tablename__ = 'activity_age'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'activity_id', 'age_id', name='unq_activity_age'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     # 活动
     activity_id = db.Column(db.Integer, nullable=False)
@@ -740,6 +774,7 @@ class ActivityAge(db.Model):
                 u = ActivityAge(activity_id=activity_id, age_id=age_id)
                 db.session.add(u)
             db.session.commit()
+
 
 class ActivityComment(db.Model):
     __tablename__ = 'activity_comments'
@@ -780,9 +815,6 @@ class ActivityComment(db.Model):
                     created=fake.unix_time())
                 db.session.add(u)
             db.session.commit()
-
-
-# TODO: chat 等待魏鹏的方案
 
 
 class ClassOrder(db.Model):
@@ -944,7 +976,7 @@ class Profession(db.Model):
     __tablename__ = 'professions'
     id = db.Column(db.Integer, primary_key=True)
     # 行业 8 Unicode
-    profession = db.Column(db.Unicode(8), nullable=False)
+    profession = db.Column(db.Unicode(8), nullable=False, unique=True)
 
     @staticmethod
     def generate():
@@ -958,7 +990,7 @@ class Age(db.Model):
     __tablename__ = 'ages'
     id = db.Column(db.Integer, primary_key=True)
     # 适应年龄 10 Unicode
-    age = db.Column(db.Unicode(10), nullable=False)
+    age = db.Column(db.Unicode(10), nullable=False, unique=True)
 
     @staticmethod
     def generate():
@@ -972,6 +1004,11 @@ class Age(db.Model):
 
 class Location(db.Model):
     __tablename__ = 'locations'
+    __table_args__ = (
+        db.UniqueConstraint(
+            'city_id', 'district', name='unq_city_district'
+        ),
+    )
     id = db.Column(db.Integer, primary_key=True)
     city_id = db.Column(db.Integer, nullable=False)
     # 区县 6
@@ -998,7 +1035,7 @@ class City(db.Model):
     __tablename__ = 'cities'
     id = db.Column(db.Integer, primary_key=True)
     # 城市 5 Unicode
-    city = db.Column(db.Unicode(5), nullable=False)
+    city = db.Column(db.Unicode(5), nullable=False, unique=True)
 
 
 def generate_helper_data():
