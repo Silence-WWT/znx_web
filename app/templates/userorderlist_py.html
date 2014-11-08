@@ -23,7 +23,7 @@
                 {% set class = class_order.get_class() %}
                 <li>
 
-                    <div class="actleft"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></div>
+                    <div class="actleft"><a href="{{ url_for('course.home', id=class.id) }}" target="_blank"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('course.home', id=class.id) }}">{{ class.name }}</a></h4>
