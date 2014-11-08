@@ -49,17 +49,13 @@
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <ul class="unstyled inline talkadmintop">
-                                    <li>手机号：{{ chat_group[2] }}</li>
-                                    <li>留言时间：2014-10-21 11:20:53</li>
-                                    <li>最后回复时间：2014-10-21 11:20:53</li>
+                                    <li>手机号：{{ chat_group.mobile }}</li>
+                                    <li>机构名：<span>{{ chat_group.org.name }}</span></li>
                                 </ul>
-                                <ul class="unstyled inline form" >
-                                    <li>机构名：<span>{{ chat_group[1] }}</span></li>
-                                  </ul>
                                 <ul class="unstyled inline dotalk">
                                 <li><a class="accordion-toggle" data-toggle="collapse"
                                        data-parent="#accordion2" href="#collapse{{ loop.index }}">
-                                    回复（{{ chat_group[0]|length }}）
+                                    回复（{{ chat_group.chatlines|length }}）
                                 </a>
                                 </li>
                                 </ul>
@@ -67,12 +63,14 @@
                             <div id="collapse{{ loop.index }}" class="accordion-body collapse">
                                 <div class="talkcontentmore">
                                     <ul class="unstyled">
-                                        {% for chatline in chat_group[0] %}
+                                        {% for chatline in chat_group.chatlines %}
                                         <li><p>{{ chatline.is_user|user_or_admin }}：{{ chatline.content }}</p><span>{{ chatline.source|source }}</span><span class="timeright">时间：{{ chatline.created|get_date_time }}</span></li>
                                         {% endfor %}
                                     </ul>
-                                <form class="form-control" name="" action="">
-                                    <textarea class="talktext" name="ttalk"></textarea><button type="submit" class="btn-next talkadminbtn">发送</button>
+                                <form class="form-control" action="{{ url_for('admin.chat', unified_id=chat_group.channel.unified_id, orgid=chat_group.channel.organization_id) }}" method="post">
+                                    {{ form.hidden_tag() }}
+                                    {{ form.content(class="talktext") }}
+                                    <button type="submit" class="btn-next talkadminbtn">发送</button>
                                 </form>
                                 </div>
                             </div>
