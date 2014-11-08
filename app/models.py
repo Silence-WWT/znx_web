@@ -180,21 +180,21 @@ class Organization(UserMixin, db.Model):
     # 类型
     type_id = db.Column(db.Integer, default=0, nullable=False)
     # 机构名 30Unicode
-    name = db.Column(db.Unicode(30), default=u'', nullable=False)
+    name = db.Column(db.Unicode(255), default=u'', nullable=False)
     # 广告 30 Unicode
     slogan = db.Column(db.Unicode(30), default=u'', nullable=False)
     # 联系人 6 Unicode
     contact = db.Column(db.Unicode(6), default=u'', nullable=False)
     # 联系电话 35 Unicode
-    contract_phone = db.Column(db.Unicode(35), default=u'', nullable=False)
+    contract_phone = db.Column(db.Unicode(255), default=u'', nullable=False)
     # 地址 100 Unicode
     address = db.Column(db.Unicode(100), default=u'', nullable=False)
     # 执照照片
     authorization = db.Column(db.CHAR(36), default='', nullable=False)
     # 门店照片
-    photo = db.Column(db.CHAR(36), default='', nullable=False)
+    photo = db.Column(db.String(255), default='', nullable=False)
     # LOGO照片
-    logo = db.Column(db.CHAR(36), default='', nullable=False)
+    logo = db.Column(db.String(255), default='', nullable=False)
     # 区域
     location_id = db.Column(db.Integer, default=0, nullable=False)
     # 是否被认证
