@@ -44,3 +44,8 @@ def user_or_admin(is_user):
     if is_user:
         return u'用户'
     return u'客服'
+
+def source(source_id):
+    if source_id == 1:
+        return u'web'
+    return u'安卓'
