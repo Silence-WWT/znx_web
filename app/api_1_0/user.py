@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 import json
 import time
-from random import randint, seed
+import redis
+from random import randint
 from urllib2 import urlopen
 from xml.dom import minidom
 
 from flask import request
 
 from app import db
-from ..models import User, UnifiedId, ChatLine
+from app.models import User, UnifiedId, ChatLine
+from app.utils.captcha import send_captcha
 from . import api
 from api_constants import *
 from utils import get_unified
@@ -17,15 +19,21 @@ from utils import get_unified
 @api.route('/register')
 def register():
     data = {}
-    username = request.args.get('username', '').encode('utf8')
-    password = request.args.get('password')
-    mobile = request.args.get('mobile')
-    identity = request.args.get('identity')
-    email = request.args.get('email', '')
-    if User.query.filter_by(username=username).first():
+    local_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
+    username = request.values.get('username', u'', type=unicode)
+    password = request.values.get('password', '', type=str)
+    mobile = request.values.get('mobile', '', type=str)
+    identity = request.values.get('identity', '', type=str)
+    email = request.values.get('email', '', type=str)
+    verify_code = request.values.get('verify_code', '', type=str)
+
+    key = 'captcha:user:' + mobile
+    captcha = local_redis.get(key)
+    if captcha != verify_code:
+        data['status'] = VERIFY_CODE_INCORRECT
+    elif User.query.filter_by(username=username).first():
         data['status'] = USERNAME_EXIST
-        return json.dumps(data)
-    if username and password and mobile:
+    elif username and password and mobile:
         user = User(
             username=username,
             password=password,
@@ -86,28 +94,39 @@ def login():
     return json.dumps(data)
 
 
-seed()
-
-
 @api.route('/mobile_confirm')
 def mobile_confirm():
     data = {}
-    mobile = request.args.get('mobile')
+    mobile = request.values.get('mobile', '', type=str)
     if User.query.filter_by(mobile=mobile).first():
         data['status'] = MOBILE_EXIST
     elif mobile:
-        verify_code = randint(100000, 999999)
-        content = MESSAGE_API_CONTENT_TEST.format(verify_code=verify_code)
-        message_url = MESSAGE_API_URL.format(account=MESSAGE_API_ACCOUNT, password=MESSAGE_API_PASSWORD,
-                                             mobile=mobile, content=content)
-        response = urlopen(message_url.encode('utf8')).read()
-        doc = minidom.parseString(response)
-        code = doc.getElementsByTagName('code')[0].firstChild.nodeValue
-        if code != str(MESSAGE_API_SUCCESS):
-            data['status'] = MESSAGE_CONFIRM_FAIL
-        else:
+        status = send_captcha('user', mobile)
+        if status:
             data['status'] = SUCCESS
-            data['verify_code'] = verify_code
+        else:
+            data['status'] = MESSAGE_CONFIRM_FAIL
     else:
         data['status'] = PARAMETER_ERROR
+    return json.dumps(data)
+
+
+@api.route('/reset_password')
+def reset_password():
+    data = {}
+    local_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
+    password = request.values.get('password', '', type=str)
+    mobile = request.values.get('mobile', '', type=str)
+    verify_code = request.values.get('verify_code', '', type=str)
+
+    key = 'captcha:user:' + mobile
+    captcha = local_redis.get(key)
+    user = User.query.filter_by(mobile=mobile).first()
+    if captcha != verify_code:
+        data['status'] = VERIFY_CODE_INCORRECT
+    elif user:
+        user.password = password
+        data['status'] = SUCCESS
+    else:
+        data['status'] = USER_NOT_EXIST
     return json.dumps(data)

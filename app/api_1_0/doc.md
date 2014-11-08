@@ -17,18 +17,19 @@ mobile_confirm
 register
 ----
     URL:
-        /api/v1.0/register?&password=&mobile=&identity=&email=
+        /api/v1.0/register?&password=&mobile=&identity=&email=&verify_code=
     method:
         get
     parameters:
         password
         mobile
         email
-        identity: mobile + uuid + 0
+        identity: uuid
+        verify_code
     json:
         {"status": 0, "user": {"username": "", "mobile": "", "identity": "", "email": "", "unified": "", "chat_line": ""}}
         
-        status: 0 for success, 1002 for existing mobile, 1004 for existing username, 5000 for SQL exception
+        status: 0 for success, 1007 for verify code incorrect, 1002 for existing mobile, 1004 for existing username
         username
         mobile
         identity
@@ -39,7 +40,7 @@ register
 login
 ----
     URL:
-        /api/v1.0/login?username=&password=&identity=
+        /api/v1.0/login?mobile=&password=&identity=
     method:
         get
     parameters:
@@ -49,7 +50,7 @@ login
     json:
         {"status": 0,
          "user": {"username": "", "mobile": "", "email": "", "identity": "", "chat_line": "", "unified": ""}}
-             
+        
         status: 0 for success, 1000 for login failed
         username: if login fail, username, mobile, email, identity won't return
         mobile
@@ -57,6 +58,21 @@ login
         identity
         chat_line
         unified
+
+reset_password
+---
+    URL:
+        /api/v1.0/reset_password?mobile=&password=&verify_code=
+    method:
+        get
+    parameters:
+        mobile
+        password
+        verify_code
+    json:
+        {"status": 0}
+        
+        status: 0 for success, 1007 for verify code incorrect, 1003 for user not exist
 
 organization_filter
 ---
