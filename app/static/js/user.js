@@ -769,3 +769,8 @@ function talkget() {
         }
     });
 };
+$(function(){
+
+        $('#weixinbtn').popover('toggle');
+
+})
