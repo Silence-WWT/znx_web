@@ -12,8 +12,8 @@
         <div class="organname">
             <dl>
                 <dt><span>{{ org.name }}</span>
-                <address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>{{ url_for('org.home',
-                    id=org.id) }}
+                <address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>
+                <a href="{{ org.site }}">{{ org.site }}</a>
                 </address>
                 </dt>
                 <dd>——{{ org.slogan }}</dd>
