@@ -23,10 +23,11 @@ def home(id):
         page, per_page=current_app.config['ORG_COMMENT_PER_PAGE'],
         error_out=False)
     comments = pagination.items
-    activity.page_view = activity.page_view+1
+    activity.page_view = activity.page_view + 1
     db.session.add(activity)
     db.session.commit()
-    return render_template('organact_py.html', activity=activity,
+    org = activity.get_org()
+    return render_template('organact_py.html', activity=activity, org=org,
                            comments=comments, form=form, pagination=pagination)
 
 
