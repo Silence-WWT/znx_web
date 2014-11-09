@@ -75,6 +75,7 @@ def activity_sign_up():
     print('uuid', uuid)
     activity = Activity.query.filter_by(id=activity_id).first()
     if activity and age and mobile:
+        activity.get_org().add_orders()
         unified = get_unified(user_id, uuid)
         activity_order = ActivityOrder(
             activity_id=activity_id,
