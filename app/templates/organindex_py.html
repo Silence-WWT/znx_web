@@ -22,8 +22,8 @@
     </div>
     <div class="headdes">
         <div class="organmoredec">
-            <span class="organview"><i class="icon-eye-open"></i>1233</span>
-            <span class="organtalk"><i class="icon-comment"></i>3</span><br/>
+            <span class="organview"><i class="icon-eye-open"></i>{{ org.page_view }}</span>
+            <span class="organtalk"><i class="icon-comment"></i>{{ org.comment_count }}</span><br/>
             <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span><br/>
             <span class="organcall"><i class="  icon-bullhorn"></i>400-656-9191</span>
         </div>
@@ -186,21 +186,16 @@
                                     <br>
    <span> <div class="revinp">
 				<span class="level">
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
-				</span><b>{{ class.get_comment_count() }}</b>
+                    {{ class.stars|stars|safe }}
+				</span><b>{{ class.get_comment_count() }}人评论</b>
    </div>
    </span>
-                                    <span>适合年龄：{{ class.age_unicode }}</span>
-                                    <span>总课时：{# TODO: 课时 #}</span>
+                                    <span>适合年龄：{% for age in class.get_ages() %} {{ age.age }} {% endfor %}</span>
 
                                 </div>
                             </div>
                             <div class="classright">
-                                <span>{{ class.price_unicode }}</span>
+                                <span>{{ class.price }}</span>
                                 <a href="{{ url_for('course.home', id=class.id) }}">
                                     <button class=" btn-myred">查看详情</button>
                                 </a></div>
@@ -223,21 +218,17 @@
                                     <br>
    <span> <div class="revinp">
 				<span class="level">
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
-				</span><b>{{ activity.get_comment_count() }}</b>
+                    {{ activity.stars|stars|safe }}
+				</span><b>{{ activity.get_comment_count() }}人评价   {{ activity|activity_status }}</b>
    </div>
    </span>
-                                    <span>适合年龄：{{ activity.age_unicode }}</span>
-                                    <span>开始时间：{{ activity.start_time_unicode }}</span>
-                                    <span>结束时间：{{ activity.end_time_unicode }}</span>
+                                    <span>适合年龄：{% for age in activity.get_ages() %} {{ age.age }} {% endfor %}</span>
+                                    <span>开始时间：{{ activity.start_time|get_date_time }}</span>
+                                    <span>结束时间：{{ activity.end_time|get_date_time }}</span>
 
                                 </div>
                                 <div class="classright">
-                                    <span>￥{{ activity.price_unicode }}</span>
+                                    <span>{{ activity.price }}</span>
                                     <a href="{{ url_for('activity.home', id=activity.id) }}">
                                         <button class=" btn-myred">查看详情</button>
                                     </a></div>
