@@ -4,10 +4,12 @@ from . import chat
 from .. import db
 from flask import request, jsonify
 from flask.ext.login import current_user
+from ..permission import user_permission
 from ..models import ChatLine
 
 
 @chat.route('/chat', methods=['GET', 'POST'])
+@user_permission.require()
 def chat():
     channel_id = current_user.get_unified_id()
     organization_id = request.values.get('orgid', 0, type=int)
