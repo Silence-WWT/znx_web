@@ -129,6 +129,7 @@ def home(id):
     if form.validate_on_submit():
         if user_permission.can():
             comment = form.create_organization_comment(id)
+            org.set_star(comment.stars)
             db.session.add(comment)
             db.session.commit()
             return redirect(url_for('org.home', id=id))
