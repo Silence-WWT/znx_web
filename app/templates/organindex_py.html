@@ -8,7 +8,7 @@
 
 <div class="myhead">
     <div class="headtitle">
-        <div class="organlogo"><img src="{{ url_for('static', filename='images/organlogo.png') }}"  class="img-circle img-polaroid"/></div>
+        <div class="organlogo"><img src="{{ org.logo|picture }}"  class="img-circle img-polaroid"/></div>
         <div class="organname">
             <dl>
                 <dt><span>{{ org.name }}</span>
@@ -55,7 +55,7 @@
         <a href="#myzixun" role="button" data-toggle="modal">
             <button class="zixunbtn" id="zixunbtn">咨询客服</button>
         </a>
-        {% elseif %}
+        {% else %}
             <a href="{{ url_for('main.login') }}?next={{ url_for('org.home', id=org.id) }}" role="button" onClick="return confirm('登录后才可以咨询哦')">
             <button class="zixunbtn" id="zixunbtn">咨询客服</button>
         </a>
@@ -100,7 +100,7 @@
                         <dt>机构简介</dt>
                         <dd>
                             <div>
-                                <div id="boxmore">{{ org.detail }}
+                                <div id="boxmore">{{ org.detail|safe }}
                                 </div>
                             </div>
                         </dd>
@@ -178,7 +178,7 @@
                         <li>
                             <div class="classleft">
                                 <a href="{{ url_for('course.home', id=class.id) }}">
-                                <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
+                                <img src="{{ class.photo|picture }}"/>
                                 </a>
                                 <div class="classtest">
 
@@ -216,7 +216,7 @@
                         <li>
                             <div class="classleft">
                                 <a href="{{ url_for('activity.home', id=activity.id) }}">
-                                <img src="{{ url_for('static', filename='images/organclass.png') }}"/>
+                                <img src="{{ activity.photo|picture }}"/>
                                 </a>
                                 <div class="classtest">
                                     <h3>   <a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h3>

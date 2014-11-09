@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 from .models import Category, City
+from flask import current_app
 
 
 def stars(num):
@@ -49,3 +50,6 @@ def source(source_id):
     if source_id == 1:
         return u'web'
     return u'安卓'
+
+def picture(pic_file):
+    return current_app.config['STATIC_URL'] + pic_file
