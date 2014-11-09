@@ -225,6 +225,9 @@ class Organization(UserMixin, db.Model):
     def add_orders(self):
         self.orders += 1
 
+    def page_view_inc(self):
+        self.page_view += 1
+
     @property
     def location(self):
         location = Location.query.get(self.location_id)
