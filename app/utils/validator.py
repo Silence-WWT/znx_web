@@ -17,8 +17,8 @@ class Captcha(object):
         local_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
         key = 'captcha:'+self.user_or_org+':'+form[self.mobile_field].data
         redis_value = local_redis.get(key)
-        #if redis_value != field.data:
-        #    raise ValidationError(self.message)
+        if redis_value != field.data:
+            raise ValidationError(self.message)
 
 
 class EmptyEmail(Email):
