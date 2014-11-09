@@ -33,7 +33,7 @@ def organization_filter():
     elif type_:
         org_query = Organization.query.filter_by(type_id=type_.id)
     else:
-        data['status'] = TYPE_NOT_EXIST
+        data['status'] = SUCCESS
         return json.dumps(data)
 
     if city and district:
@@ -59,6 +59,7 @@ def organization_filter():
     else:
         org_list = org_query.paginate(page, PER_PAGE, False).items
     for org in org_list:
+        org.page_view_inc()
         location = Location.query.get(org.location_id)
         city = City.query.get(location.city_id)
         org_dict = {
@@ -88,6 +89,7 @@ def organization_detail():
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
         city = City.query.get(location.city_id)
+        organization.page_view_inc()
         org_dict = {
             'id': organization.id,
             'name': organization.name,

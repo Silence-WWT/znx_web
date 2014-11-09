@@ -51,7 +51,8 @@ def activity_detail():
             'address': activity.address,
             'traffic': activity.traffic,
             'contract_phone': activity.contract_phone,
-            'category': category.category
+            'category': category.category,
+            'stars': activity.stars
         }
         data['status'] = SUCCESS
     else:
