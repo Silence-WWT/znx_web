@@ -35,3 +35,6 @@ MESSAGE_API_CONTENT = u'尊敬的在哪学用户，您的验证码为{verify_cod
 MESSAGE_API_CONTENT_TEST = u'您的验证码是：{verify_code}。请不要把验证码泄露给其他人。'
 MESSAGE_API_URL = u'http://106.ihuyi.cn/webservice/sms.php?method=Submit&account={account}&password={password}' \
                   u'&mobile={mobile}&content={content}'
+
+
+STATIC_URL = 'http://static.znx.com:85/'

@@ -1031,11 +1031,21 @@ class Location(db.Model):
         db.session.add(Location(city_id=beijing.id, district=u'海淀区'))
         db.session.commit()
 
+
+class Province(db.Model):
+    __tablename__ = 'provinces'
+    id = db.Column(db.Integer, primary_key=True)
+    # 省份 5 Unicode
+    province = db.Column(db.Unicode(5), nullable=False, unique=True)
+
+
 class City(db.Model):
     __tablename__ = 'cities'
     id = db.Column(db.Integer, primary_key=True)
     # 城市 5 Unicode
     city = db.Column(db.Unicode(5), nullable=False, unique=True)
+    # 省份
+    province_id = db.Column(db.Integer, nullable=False)
 
 
 def generate_helper_data():

@@ -51,9 +51,15 @@
                     <p>评分</p></li>
             </ul>
         </div>
+        {% if current_user.is_authenticated() %}
         <a href="#myzixun" role="button" data-toggle="modal">
             <button class="zixunbtn" id="zixunbtn">咨询客服</button>
         </a>
+        {% elseif %}
+            <a href="{{ url_for('main.login') }}?next={{ url_for('org.home', id=org.id) }}" role="button" onClick="return confirm('登录后才可以咨询哦')">
+            <button class="zixunbtn" id="zixunbtn">咨询客服</button>
+        </a>
+        {% endif %}
         <div class="threesmall">
             <span id="editwrong">
                 <i class=" icon-edit"></i><a href="{{ url_for('main.report')}}" role="button"  target="_blank">纠错</a></span>
