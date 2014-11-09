@@ -15,13 +15,3 @@ def get_cities():
     city_list = City.query.filter(City.id.in_([location.city_id for location in location_list]))
     data['cities'] = [city.city for city in city_list]
     return json.dumps(data)
-
-
-@api.route('/get_provinces_cities')
-def get_cities_provinces():
-    data = {'status': SUCCESS, 'provinces': []}
-    provinces = Province.query.all()
-    for province in provinces:
-        cities = City.query.filter_by(province_id=province.id)
-        data['provinces'].append({province.province: [city.city for city in cities]})
-    return json.dumps(data)
