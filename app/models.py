@@ -213,7 +213,7 @@ class Organization(UserMixin, db.Model):
     # 评论数量
     comment_count = db.Column(db.Integer, default=0, nullable=False)
     # 评价
-    stars = db.Column(db.Float, default=0.0, nullable=False)
+    star = db.Column(db.Float, default=0.0, nullable=False)
     # 报名数
     orders = db.Column(db.Integer, default=0, nullable=False)
 
