@@ -84,7 +84,7 @@
             <li>
                 <div class="floorpic">
                     <a href="{{ url_for('org.home', id=org.id) }}">
-                        <img src="{{ org.photo|picture }}">
+                        <img src="{{ org.photo|picture }}" onerror="javascript:this.src='{{ url_for('static', filename='images/footerlogo.png') }}'">
                     </a>
                 </div>
                 <div class="floordec">
