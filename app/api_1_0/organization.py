@@ -33,7 +33,7 @@ def organization_filter():
     elif type_:
         org_query = Organization.query.filter_by(type_id=type_.id)
     else:
-        data['status'] = TYPE_NOT_EXIST
+        data['status'] = SUCCESS
         return json.dumps(data)
 
     if city and district:
