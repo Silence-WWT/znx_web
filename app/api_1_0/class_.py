@@ -46,7 +46,8 @@ def class_detail():
             'is_round': class_.is_round,
             'is_tastable': class_.is_tastable,
             'comments_count': class_.get_comment_count(),
-            'days': class_.days
+            'days': class_.days,
+            'stars': class_.stars
         }
         data['status'] = SUCCESS
     else:
