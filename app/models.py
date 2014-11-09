@@ -700,6 +700,18 @@ class Activity(db.Model):
     def get_time(self):
         return time.ctime(self.start_time)+'~'+time.ctime(self.end_time)
 
+    @property
+    def stars(self):
+        stars = db.session.query(ActivityComment.stars). \
+            filter(ActivityComment.class_id==self.id).all()
+        if stars:
+            sumary = 0
+            for star in stars:
+                sumary += star.stars
+            return sumary/len(stars)
+        else:
+            return 0
+
     @staticmethod
     def generate_fake(count=20):
         from faker import Factory
