@@ -226,7 +226,7 @@ class_detail
     json:
         {"status": 0,
          "class": {"id": "", "name": "", "age": "", "price": "", "intro": "", "is_tastable": "", "consult_time": "",
-            "comments_count": "", "days": ""}}
+            "comments_count": "", "days": "", "stars": ""}}
         
         status: 0 for success, 2001 for class not exist
         class: a dict of class
@@ -241,6 +241,7 @@ class_detail
             end_time
             comments_count
             days
+            stars
 
 class_sign_up
 ---
@@ -333,7 +334,7 @@ activity_detail
     json:
         {"status": 0,
          "activity": {"id": "", "name": "", "age": "", "price": "", "intro": "", "start_time": "", "end_time": "",
-            "comments_count": ""}}
+            "comments_count": "", "stars": ""}}
         
         status: 0 for success, 2002 fot activity not exist
         activity: a dict of activity
@@ -347,6 +348,7 @@ activity_detail
             start_time
             end_time
             comments_count
+            stars
 
 activity_sign_up
 ---

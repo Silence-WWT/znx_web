@@ -72,66 +72,29 @@
         </div>
     </div>
 </div>
-    {% for i in range(3) %}
+{% for org_row in orgs %}
 <div id="floor1">
     <div class="container">
 
-        <h3>幼儿早教</h3>
+        <h3>{{ professions_list[loop.index0].profession }}</h3>
 
         <div class="clearboth"></div>
         <ul class="inline unstyled">
+            {% for org in org_row %}
             <li>
                 <div class="floorpic">
-                    <a href="{{ url_for('org.home', id=orgs[4*i].id) }}">
-                        <img src="{{ url_for('static', filename='images/floorpic1.png') }}">
+                    <a href="{{ url_for('org.home', id=org.id) }}">
+                        <img src="{{ org.photo|picture }}">
                     </a>
                 </div>
                 <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i].id) }}">{{ orgs[4*i].name|truncate(12, true) }}</a></span>
+                    <span><a href="{{ url_for('org.home', id=org.id) }}">{{ org.name|truncate(12, true) }}</a></span>
 
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[0].location }}</address>
-
-                </div>
-            </li>
-            <li>
-                <div class="floorpic">
-                    <a href="{{ url_for('org.home', id=orgs[4*i + 1].id) }}">
-                        <img src="{{ url_for('static', filename='images/floorpic2.png') }}">
-                    </a>
-                </div>
-                <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i + 1].id) }}">{{ orgs[4*i + 1].name|truncate(12, true) }}</a></span>
-
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+1].location }}</address>
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ org.location }}</address>
 
                 </div>
             </li>
-            <li>
-                <div class="floorpic">
-                    <a href="{{ url_for('org.home', id=orgs[4*i + 2].id) }}">
-                        <img src="{{ url_for('static', filename='images/floorpic3.png') }}">
-                    </a>
-                </div>
-                <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i+2].id) }}">{{ orgs[4*i+2].name|truncate(12, true) }}</a></span>
-
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+2].location }}</address>
-
-                </div>
-            </li>
-            <li>
-                <div class="floorpic">
-                    <a href="{{ url_for('org.home', id=orgs[4*i + 3].id) }}">
-                        <img src="{{ url_for('static', filename='images/floorpic4.png') }}">
-                    </a>
-                </div>
-                <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i+3].id) }}">{{ orgs[4*i+3].name| truncate(12, true)}}</a></span>
-
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+3].location }}</address>
-
-                </div>
-            </li>
+            {% endfor %}
         </ul>
     </div>
 </div>
