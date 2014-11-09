@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-from ..models import Province, City, Organization, Location
+from ..models import City, Organization, Location
 from . import api
 from api_constants import *
 
