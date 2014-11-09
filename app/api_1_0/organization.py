@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import math
 import time
 
 from flask import request
@@ -66,8 +65,9 @@ def organization_filter():
             'name': org.name,
             'city': city.city,
             'district': location.district,
-            'photo': '',
-            'intro': org.detail,
+            'photo': STATIC_URL + org.photo if org.photo else '',
+            'logo': STATIC_URL + org.logo if org.logo else '',
+            'intro': org.detail
         }
         if distance:
             org_dict['distance'] = get_organization_distance(longitude, latitude, org.longitude, org.latitude)
@@ -96,8 +96,8 @@ def organization_detail():
         org_dict = {
             'id': organization.id,
             'name': organization.name,
-            'photo': organization.photo,
-            'logo': organization.logo,
+            'photo': STATIC_URL + organization.photo if organization.photo else '',
+            'logo': STATIC_URL + organization.logo,
             'city': city.city,
             'district': location.district,
             'intro': organization.detail,
@@ -194,8 +194,9 @@ def organization_search():
             'name': organization.name,
             'city': city.city,
             'district': location.district,
-            'photo': '',
-            'intro': organization.detail,
+            'photo': STATIC_URL + organization.photo if organization.photo else '',
+            'logo': STATIC_URL + organization.logo if organization.logo else '',
+            'intro': organization.detail
         }
         if distance:
             org_dict['distance'] = get_organization_distance(longitude, latitude,
