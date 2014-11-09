@@ -53,7 +53,8 @@
                     <div class="span3 catalog" id="allnav" >
                         {% for profession in professions %}
                         <dl>
-                            <dt class="text-left">{{ profession.profession }}</dt>
+                            <dt class="text-left"><a
+                                    href="{{ url_for('main.search', profession_id=profession.id) }}">{{ profession.profession }}</a></dt>
                         </dl>
                         {% endfor %}
                     </div>
