@@ -1773,7 +1773,7 @@ body {
 #classdet .picright {
     float: left;
     height: 158px;
-    margin: -4px 164px;
+    margin: -4px 128px;
 }
 
 #classdet .picright .revinp {
@@ -2709,6 +2709,10 @@ input[disabled] {
 #selectul .selepic img {
     float: left;
     margin-right: 20px;
+    max-height: 124px;
+    max-width: 124px;
+    width: 124px;
+    height: 124px;
 }
 
 #selectul .seledet {
