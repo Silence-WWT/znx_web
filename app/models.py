@@ -217,22 +217,19 @@ class Organization(UserMixin, db.Model):
     # 报名数
     orders = db.Column(db.Integer, default=0, nullable=False)
 
-    @property
-    def stars(self):
-        stars = db.session.query(OrganizationComment.stars).\
-            filter(OrganizationComment.organization_id==self.id).all()
-        if stars:
-            sumary = 0
-            for star in stars:
-                sumary += star.stars
-            return sumary/len(stars)
-        else:
-            return 0
+    def set_star(self, star):
+        stars = self.star * self.comment_count
+        self.comment_count += 1
+        self.star = (stars + star) / self.comment_count
+
+    def add_orders(self):
+        self.orders += 1
 
     @property
     def location(self):
         location = Location.query.get(self.location_id)
         return location.get_location()
+
     def get_comment_count(self):
         return OrganizationComment.query.\
             filter_by(organization_id=self.id).count()
