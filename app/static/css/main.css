@@ -1767,7 +1767,7 @@ body {
 
 #classdet h3 {
 
-    font-size: 30px;
+    font-size: 24px;
     font-weight: normal;
     float: left;
 }
@@ -1883,6 +1883,7 @@ body {
     margin: 42px 50px;
     font-weight: normal;
     outline: none;
+    top: 50%;
 }
 #arr1{
     margin: 42px 20px;
@@ -3196,5 +3197,5 @@ input[disabled] {
 #classdet  .classnamepic img{
     width:256px;
     max-width:256px;
-    height: 144px;
+    height: 160px;
 }
