@@ -703,7 +703,7 @@ class Activity(db.Model):
     @property
     def stars(self):
         stars = db.session.query(ActivityComment.stars). \
-            filter(ActivityComment.class_id==self.id).all()
+            filter(ActivityComment.activity_id==self.id).all()
         if stars:
             sumary = 0
             for star in stars:
