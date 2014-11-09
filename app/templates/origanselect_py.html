@@ -52,7 +52,7 @@
                     <li>
                         <div class="selepic">
                             <a href="{{ url_for('org.home', id=org.id) }}">
-                            <img src="{{ url_for('static', filename='images/selectpic.png') }}" class="img-circle"/>
+                            <img src="{{ org.logo|picture }}" class="img-circle"/>
                             </a>
                         </div>
                         <div class="seledet">
