@@ -12,6 +12,12 @@ $(function(){
         $("#weibo").toggle();
     })
 })
+$(function(){
+    $("#searchkey li a").click(function(){
+        var keyword=$(this).html();
+       $("#searchiput").val(keyword);
+    })
+})
 //控制提示内容
     $(function () {
 
@@ -768,4 +774,5 @@ function talkget() {
         }
     });
 };
+
 

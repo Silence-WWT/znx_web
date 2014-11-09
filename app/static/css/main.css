@@ -2048,6 +2048,7 @@ body {
 #askright .newasklearn {
     width: 340px;
     height: 305px;
+    display: none;
 }
 
 #askright .newasklearn ul li {
