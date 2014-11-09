@@ -45,7 +45,8 @@ def index():
     city_id = int(session['city_id'])
     orgs = Organization.query.filter(
         Organization.location_id.in_(
-            db.session.query(Location.id).filter(Location.city_id==city_id)))
+            db.session.query(Location.id).filter(Location.city_id==city_id))
+    ).filter(Organization.photo != u'')
 
     professions = Profession.query.limit(3).all()
     profession_ids_1 = db.session. \
