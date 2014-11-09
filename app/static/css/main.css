@@ -262,13 +262,13 @@ body {
 }
 
 #allnav dl {
-    height: 24px;
-    margin-bottom: 6px;
+    height: 30px;
+    margin-bottom: 5px;
 }
 
 #allnav dt {
-    margin-top: -5px;
-    margin-left: 20px;
+    margin-top: -2px;
+    margin-left: 42px;
 }
 
 #navbar i {
@@ -412,7 +412,7 @@ body {
 #indexcontent .catalog dl {
     border-bottom: 1px dotted #999;
     float: left;
-    width: 50%;
+    width: 100%;
 }
 
 #indexcontent .catalog .lasthr {
