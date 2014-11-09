@@ -138,6 +138,8 @@ def home(id):
     classes = Class.query.filter_by(organization_id=id).all()
     activities = Activity.query.filter_by(organization_id=id).all()
     page = request.args.get('page', 1, type=int)
+    org.page_view_inc()
+    db.session.commit()
     pagination = OrganizationComment.query.filter_by(organization_id=id).order_by(
         OrganizationComment.created.asc()).paginate(
         page, per_page=current_app.config['ORG_COMMENT_PER_PAGE'],

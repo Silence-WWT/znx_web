@@ -46,7 +46,7 @@
                         <span><small>学费</small>￥{{ course.price }}</span>
                         <h5>课程简介</h5>
 
-                        <p>{{ course.detail|truncate(180, true) }}</p>
+                        <p>{{ course.detail|safe |truncate(180, true) }}</p>
                     </div>
                 </li>
                 {% endfor %}

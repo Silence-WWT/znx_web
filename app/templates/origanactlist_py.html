@@ -47,7 +47,7 @@
                         <span><small>学费</small>￥{{ activity.price }}</span>
                         <h5>活动简介</h5>
 
-                        <p>{{ activity.detail|truncate(180, true) }}</p>
+                        <p>{{ activity.detail|safe |truncate(180, true) }}</p>
                     </div>
                 </li>
                 {% endfor %}

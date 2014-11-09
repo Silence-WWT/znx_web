@@ -100,7 +100,7 @@
                     </a>
                 </div>
                 <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i + 1].id) }}">{{ orgs[4*i + 1].name }}</a></span>
+                    <span><a href="{{ url_for('org.home', id=orgs[4*i + 1].id) }}">{{ orgs[4*i + 1].name|truncate(12, true) }}</a></span>
 
                     <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+1].location }}</address>
 
@@ -113,7 +113,7 @@
                     </a>
                 </div>
                 <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i+2].id) }}">{{ orgs[4*i+2].name }}</a></span>
+                    <span><a href="{{ url_for('org.home', id=orgs[4*i+2].id) }}">{{ orgs[4*i+2].name|truncate(12, true) }}</a></span>
 
                     <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+2].location }}</address>
 
@@ -126,7 +126,7 @@
                     </a>
                 </div>
                 <div class="floordec">
-                    <span><a href="{{ url_for('org.home', id=orgs[4*i+3].id) }}">{{ orgs[4*i+3].name }}</a></span>
+                    <span><a href="{{ url_for('org.home', id=orgs[4*i+3].id) }}">{{ orgs[4*i+3].name| truncate(12, true)}}</a></span>
 
                     <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ orgs[4*i+3].location }}</address>
 
