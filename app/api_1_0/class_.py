@@ -71,6 +71,7 @@ def class_sign_up():
 
     class_ = Class.query.filter_by(id=class_id).first()
     if class_ and name and address and age and mobile and sex and taste_time and email:
+        class_.get_org().add_orders()
         unified = get_unified(user_id, uuid)
         class_order = ClassOrder(
             class_id=class_id,
@@ -104,7 +105,7 @@ def class_comment():
     stars = request.values.get('stars', 0, type=int)
     user = User.query.filter_by(id=user_id).first()
     class_ = Class.query.filter_by(id=class_id).first()
-    if user and class_ and 1 <= stars <= 5 and comment:
+    if user and class_ and 1 <= stars <= 5:
         class_comment_ = ClassComment(
             class_id=class_.id,
             user_id=user.id,

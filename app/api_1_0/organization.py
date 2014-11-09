@@ -35,6 +35,7 @@ def organization_filter():
     else:
         data['status'] = TYPE_NOT_EXIST
         return json.dumps(data)
+
     if city and district:
         location = Location.query.filter_by(city_id=city.id, district=district).first()
         if location:
@@ -87,12 +88,6 @@ def organization_detail():
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
         city = City.query.get(location.city_id)
-        comments_count = organization.get_comment_count()
-        if comments_count:
-            start_count = sum([comment.stars for comment in organization.get_comments()])
-            stars = float(start_count) / comments_count
-        else:
-            stars = 0
         org_dict = {
             'id': organization.id,
             'name': organization.name,
@@ -103,8 +98,8 @@ def organization_detail():
             'intro': organization.detail,
             'address': organization.address,
             'mobile': organization.mobile,
-            'comments_count': comments_count,
-            'stars': stars,
+            'comments_count': organization.get_comment_count(),
+            'stars': organization.star,
             'traffic': organization.traffic
         }
         data['organization'] = org_dict
@@ -123,6 +118,7 @@ def organization_comment():
     user = User.query.filter_by(id=user_id).first()
     organization = Organization.query.filter_by(id=organization_id).first()
     if user and organization and 1 <= stars <= 5:
+        organization.set_star(stars)
         org_comment = OrganizationComment(
             organization_id=organization.id,
             user_id=user.id,
