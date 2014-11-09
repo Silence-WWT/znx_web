@@ -104,6 +104,8 @@ def search():
     locations = Location.query.filter_by(city_id=city_id).all()
     page = request.args.get('page', 1, type=int)
 
+    order_by = request.args.get('order', 0, type=int)
+
     query = Organization.query
     if profession_id:
         profession_ids = db.session.\
@@ -115,6 +117,14 @@ def search():
     else:
         location_ids = db.session.query(Location.id).filter(Location.city_id==city_id)
         query=query.filter(Organization.location_id.in_(location_ids))
+
+    if order_by:
+        if order_by == 1:
+            query.order_by(Organization.comment_count.desc())
+        elif order_by == 2:
+            query.order_by(Organization.page_view.desc())
+        elif order_by == 3:
+            query.order_by(Organization.orders.desc())
     pagination = query.filter(Organization.name.like(u'%'+name+u'%')).paginate(
         page, 20, error_out=False
     )
