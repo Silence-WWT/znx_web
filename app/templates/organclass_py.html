@@ -21,7 +21,8 @@
                 <ul class="unstyled">
                     <li>
                         <span class="organview"><i class="icon-eye-open"></i>{{ course.page_view }}</span>
-                        <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
+                        <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span>
+                        <span id="isover">课程已过期</span><br/>
                     </li>
                     {% if course.days %}
                     <li>总课时：{{ course.days }}天</li>
@@ -40,7 +41,7 @@
             </div>
 
         </div>
-
+              <span id="origanprice">这里放价格</span>
         <a href="{{ url_for('course.taste', id=course.id) }}">
             <button class="attendbtn"></button>
         </a>
