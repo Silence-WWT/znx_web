@@ -1773,7 +1773,7 @@ body {
 #classdet .picright {
     float: left;
     height: 158px;
-    padding-left: 20px;
+    margin: -4px 164px;
 }
 
 #classdet .picright .revinp {
@@ -3178,4 +3178,9 @@ input[disabled] {
 }
 #weixinimg{
     z-index:1000;
+}
+#classdet  .classnamepic img{
+    width:256px;
+    max-width:256px;
+    height: 144px;
 }
