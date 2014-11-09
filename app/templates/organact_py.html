@@ -22,7 +22,8 @@
                 <li>
                     <span class="organview"><i class="icon-eye-open"></i>{{ activity.page_view }}</span>
                     <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span>
-                   <span id="isover">活动已过期</span><br/>
+                   <span id="isover">{{ activity|activity_status }}</span>
+                    <br/>
 
                 </li>
                 <li>主办机构： <a href="{{ url_for('org.home', id=org.id) }}">{{ org.name }}</a></li>
@@ -36,7 +37,7 @@
         </div>
 
     </div>
-    <span id="origanprice">这里放价格</span>
+    <span id="origanprice">{{ activity.price }}</span>
     <a href="{{ url_for('activity.taste', id=activity.id) }}">
         <button class="attendbtn"></button>
     </a>
