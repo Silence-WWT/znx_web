@@ -15,13 +15,16 @@ def order_list():
     user_id = request.values.get('user_id', '', type=str)
     uuid = request.values.get('uuid', '', type=str)
     page = request.values.get('page', 1, type=int)
-    unified = UnifiedId.query.filter_by(user_id=user_id).limit(1).first()
-    if not unified:
-        UnifiedId.query.filter_by(mobile_key=uuid).limit(1).first()
-    if unified:
+    unified_user_id = list(UnifiedId.query.filter_by(user_id=user_id))
+    unified_uuid = list(UnifiedId.query.filter_by(mobile_key=uuid))
+    unified_list = []
+    unified_list.extend(unified_user_id)
+    unified_list.extend(unified_uuid)
+    unified_id_list = [unified.id for unified in unified_list]
+    if unified_id_list:
         class_order_list = []
         class_orders = ClassOrder.query.\
-            filter_by(unified_id=unified.id).\
+            filter(UnifiedId.id.in_(unified_id_list)).\
             order_by(-ClassOrder.created).\
             paginate(page, PER_PAGE, False).items
         for class_order in class_orders:
@@ -30,7 +33,7 @@ def order_list():
 
         activity_order_list = []
         activity_orders = ActivityOrder.query.\
-            filter_by(unified_id=unified.id).\
+            filter(UnifiedId.id.in_(unified_id_list)).\
             order_by(-ActivityOrder.created).\
             paginate(page, PER_PAGE, False).items
         for activity_order in activity_orders:
@@ -39,9 +42,7 @@ def order_list():
 
         data['activity_orders'] = sorted(activity_order_list, key=lambda x: x['created'], reverse=True)
         data['class_orders'] = sorted(class_order_list, key=lambda x: x['created'], reverse=True)
-        data['status'] = SUCCESS
-    else:
-        data['status'] = USER_NOT_EXIST
+    data['status'] = SUCCESS
     return json.dumps(data)
 
 

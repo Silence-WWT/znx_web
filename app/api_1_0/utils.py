@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 import math
-import time
 
 from app import db
 from app.models import *
