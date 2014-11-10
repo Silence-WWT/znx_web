@@ -73,12 +73,12 @@ def organization_filter():
     for org in org_list:
         org.page_view_inc()
         location = Location.query.get(org.location_id)
-        city = City.query.get(location.city_id)
+        city = City.query.get(location.city_id) if location else None
         org_dict = {
             'id': org.id,
             'name': org.name,
-            'city': city.city,
-            'district': location.district,
+            'city': city.city if city else '',
+            'district': location.district if location else '',
             'photo': STATIC_URL + org.photo if org.photo else '',
             'logo': STATIC_URL + org.logo if org.logo else '',
             'intro': org.detail
@@ -204,12 +204,12 @@ def organization_search():
 
     for organization in organization_list:
         location = Location.query.get(organization.location_id)
-        city = City.query.get(location.city_id)
+        city = City.query.get(location.city_id) if location else None
         org_dict = {
             'id': organization.id,
             'name': organization.name,
-            'city': city.city,
-            'district': location.district,
+            'city': city.city if city else '',
+            'district': location.district if location else '',
             'photo': STATIC_URL + organization.photo if organization.photo else '',
             'logo': STATIC_URL + organization.logo if organization.logo else '',
             'intro': organization.detail
