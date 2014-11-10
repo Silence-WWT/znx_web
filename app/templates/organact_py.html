@@ -13,12 +13,7 @@
 
             <div class="revinp">
 				<span class="level">
-             	    <i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_solid"></i>
-					<i class="level_hollow"></i>
-
+                {{ activity.stars|stars|safe }}
 				</span>
             </div>
 
@@ -26,18 +21,23 @@
             <ul class="unstyled">
                 <li>
                     <span class="organview"><i class="icon-eye-open"></i>{{ activity.page_view }}</span>
-                    <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span><br/>
+                    <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span>
+                   <span id="isover">{{ activity|activity_status }}</span>
+                    <br/>
+
                 </li>
+                <li>主办机构： <a href="{{ url_for('org.home', id=org.id) }}">{{ org.name }}</a></li>
                 <li class="firstli">适合年龄： {% for age in activity.get_ages() %} {{ age.age }} {% endfor %}
                 </li>
                 <li>开始时间：{{ activity.start_time|get_date_time }}</li>
                 <li>结束时间：{{ activity.end_time|get_date_time }}</li>
                 <li>活动类型：{{ activity.category_id|category }}</li>
+                <li>区域： {{ activity.location }}</li>
             </ul>
         </div>
 
     </div>
-
+    <span id="origanprice">{{ activity.price }}</span>
     <a href="{{ url_for('activity.taste', id=activity.id) }}">
         <button class="attendbtn"></button>
     </a>

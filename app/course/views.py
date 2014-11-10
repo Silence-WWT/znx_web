@@ -26,7 +26,8 @@ def home(id):
     course.page_view = course.page_view+1
     db.session.add(course)
     db.session.commit()
-    return render_template('organclass_py.html', course=course,
+    org = course.get_org()
+    return render_template('organclass_py.html', course=course, org=org,
                            comments=comments, form=form, pagination=pagination)
 
 

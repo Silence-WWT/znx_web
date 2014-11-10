@@ -45,8 +45,27 @@ def index():
     city_id = int(session['city_id'])
     orgs = Organization.query.filter(
         Organization.location_id.in_(
-            db.session.query(Location.id).filter(Location.city_id==city_id))).limit(12).all()
-    return render_template('index_py.html', registers=registers, orgs=orgs)
+            db.session.query(Location.id).filter(Location.city_id==city_id))
+    ).filter(Organization.photo != u'')
+
+    professions = Profession.query.limit(3).all()
+    profession_ids_1 = db.session. \
+        query(OrganizationProfession.organization_id). \
+        filter(OrganizationProfession.profession_id==professions[0].id)
+
+    profession_ids_2 = db.session. \
+        query(OrganizationProfession.organization_id). \
+        filter(OrganizationProfession.profession_id==professions[1].id)
+
+    profession_ids_3 = db.session. \
+        query(OrganizationProfession.organization_id). \
+        filter(OrganizationProfession.profession_id==professions[2].id)
+    orgs_1 = orgs.filter(Organization.id.in_(profession_ids_1)).limit(4)
+    orgs_2 = orgs.filter(Organization.id.in_(profession_ids_2)).limit(4)
+    orgs_3 = orgs.filter(Organization.id.in_(profession_ids_3)).limit(4)
+    org_list = [orgs_1, orgs_2, orgs_3]
+    return render_template('index_py.html', registers=registers,
+                           professions_list=professions, orgs=org_list)
 
 
 @main.route('/learn', methods=['GET', 'POST'])

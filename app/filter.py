@@ -53,3 +53,15 @@ def source(source_id):
 
 def picture(pic_file):
     return current_app.config['STATIC_URL'] + pic_file
+
+
+def activity_status(activity):
+    if activity.is_closed:
+        return u'活动被关闭'
+    now = time.time()
+    if now < activity.start_time:
+        return ''
+    if activity.start_time < now < activity.end_time:
+        return u'正在进行中'
+    return u'已经结束'
+

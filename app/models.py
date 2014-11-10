@@ -701,6 +701,11 @@ class Activity(db.Model):
         return time.ctime(self.start_time)+'~'+time.ctime(self.end_time)
 
     @property
+    def location(self):
+        location = Location.query.get(self.location_id)
+        return location.get_location()
+
+    @property
     def stars(self):
         stars = db.session.query(ActivityComment.stars). \
             filter(ActivityComment.activity_id==self.id).all()

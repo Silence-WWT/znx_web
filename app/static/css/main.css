@@ -61,7 +61,11 @@ input:-webkit-autofill,input:-webkit-autofill:focus{
 
 .carousel-control {
     top: 50%;
-    opacity: 0.2;
+    opacity: 0.4;
+    border-radius: 0;
+    left: 1px;
+    height: 70px;
+    width: 45px;
 }
 
 .carousel {
@@ -900,30 +904,35 @@ body {
 
 .carousel-control {
     border: 0px;
-    left: 5px;
-    width: 40px;
-    height: 60px;
-    margin-top: -32px;
-    font-size: 60px;
-    font-weight: 100;
-    line-height: 50px;
-    color: #fff;
-    text-align: center;
+    left: 1px;
+    width: 45px;
+    height: 70px;
     background: #222;
-    border-radius: 10px;
-    opacity: 0.2;
+    border-radius: 0;
+    opacity: 0.4;
 }
 .carousel-control{
     outline: none;
-    opacity: 0.2;
+    opacity: 0.4;
+    border-radius: 0;
+    left: 1px;
+    height: 70px;
+    width: 45px;
+    top: 155px;
 }
 .carousel-control:hover, .carousel-control:focus{
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .carousel-control.right {
-    right: 3px;
+    right: 0px;
+    background: url(../images/arrpic2.png);
 }
+.carousel-control.left {
+    left: 0px;
+    background: url(../images/arrpic1.png);
+}
+
 
 .btn-qudj {
     background: #fff;
@@ -1758,7 +1767,7 @@ body {
 
 #classdet h3 {
 
-    font-size: 30px;
+    font-size: 24px;
     font-weight: normal;
     float: left;
 }
@@ -1874,6 +1883,7 @@ body {
     margin: 42px 50px;
     font-weight: normal;
     outline: none;
+    top: 50%;
 }
 #arr1{
     margin: 42px 20px;
@@ -2048,6 +2058,7 @@ body {
 #askright .newasklearn {
     width: 340px;
     height: 305px;
+    display: none;
 }
 
 #askright .newasklearn ul li {
@@ -3186,5 +3197,18 @@ input[disabled] {
 #classdet  .classnamepic img{
     width:256px;
     max-width:256px;
-    height: 144px;
+    height: 160px;
+}
+#origanprice{
+    float: right;
+    margin-top: -130px;
+    margin-right: 109px;
+    width: 230px;
+    text-align: center;
+    color: #00B98D;
+    font-size: 18px;
+}
+#isover{
+    margin-left: 16px;
+    color: #FD8F6A;
 }

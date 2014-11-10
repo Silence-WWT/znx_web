@@ -35,7 +35,8 @@ def create_app(config_name):
 
     config_identity(app)
     from .filter import stars, sex, get_date_time, anonymous_mobile, \
-        anonymous_name, category, city, user_or_admin, source, picture
+        anonymous_name, category, city, user_or_admin, source, picture, \
+        activity_status
 
     app.jinja_env.filters['stars'] = stars
     app.jinja_env.filters['sex'] = sex
@@ -47,6 +48,7 @@ def create_app(config_name):
     app.jinja_env.filters['user_or_admin'] = user_or_admin
     app.jinja_env.filters['source'] = source
     app.jinja_env.filters['picture'] = picture
+    app.jinja_env.filters['activity_status'] = activity_status
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

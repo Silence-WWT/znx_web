@@ -37,3 +37,22 @@ def chat():
 
     return render_template('admin_talk.html', chat_groups=chat_groups, form=replyform)
 
+
+@admin.route('/register', methods=['GET'])
+def register():
+    return render_template('admin_asklearn.html')
+
+
+@admin.route('/org', methods=['GET'])
+def org():
+    return render_template('admin_indexorigan.html')
+
+
+@admin.route('/activity', methods=['GET'])
+def activity():
+    return render_template('admin_indexactivity.html')
+
+
+@admin.route('/admin', methods=['GET'])
+def admin():
+    return render_template('admin_origancome.html')

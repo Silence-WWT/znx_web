@@ -47,7 +47,7 @@
         <div class="rightabout">
             <div class="tab-content">
                 <div class="tab-pane active" id="talkadmin">
-                    <h3>留言反馈（3条）</h3>
+                    <h3>留言反馈</h3>
 
                     <div class="accordion" id="accordion2">
                         {% for chat_group in chat_groups %}
@@ -63,8 +63,9 @@
                                     回复（{{ chat_group.chatlines|length }}）
                                 </a>
                                 </li>
-                                    <li>
-                                        <a>已回复</a>
+                                    <li>{% if chat_group.chatlines[-1].is_user %}
+                                        <a>未回复</a>
+                                        {% endif %}
                                     </li>
                                 </ul>
                             </div>
