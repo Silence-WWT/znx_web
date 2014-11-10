@@ -41,7 +41,7 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        unified_id = current_user.get_unified_id()
+        unified_id = current_user.reg_unified_id()
         user = User(email=form.email.data,
                     username=form.username.data,
                     mobile=form.cellphone.data,
