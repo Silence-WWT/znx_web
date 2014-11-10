@@ -574,8 +574,9 @@ body {
 }
 
 #footeradd .footerlink, #footeradd span {
-    margin-left: 320px;
+    margin-left: 530px;
     font-size: 12px;
+    text-align: center;
 }
 
 #footeradd .footerlink ul {
