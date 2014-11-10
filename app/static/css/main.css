@@ -1742,7 +1742,7 @@ body {
 
 #classdet {
     background: #fff;
-    height: 160px;
+    height: 180px;
     padding: 34px 50px;
     border: 1px solid #ECE9E2;
     color: #000;
@@ -3239,4 +3239,8 @@ input[disabled] {
 #organregform .attendok span {
     color: #FD8F6A;
     margin: 0px;
+}
+
+#organregform .selectadd {
+    margin-left: 0px;
 }

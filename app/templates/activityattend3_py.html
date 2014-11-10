@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-活动报名-课程信息 {% endblock title %}
+{% block navbar %}
+{% include 'head.html' %}
+{% endblock navbar %}
+{% block content %}
+
+
+<div id="organregall">
+    <div class="container">
+
+        <h3 class="attendtitle1">活动报名下单成功</h3>
+
+        <div id="organregform">
+            <div class="attendok">
+                <p>亲爱的<span>{{ order.name }}</span>,你的活动<span>{{ course.name }}</span>下单成功,请于{{ order.get_time()
+                    }}日到<span>西安电子科技大学</span>参加。</p>
+
+                <p>现在你可以<a href="{{ url_for('main.login') }}">登录后台</a>查看你的订单信息,或者返回<a
+                        href="{{ url_for('main.index') }}">首页</a>继续浏览。</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
