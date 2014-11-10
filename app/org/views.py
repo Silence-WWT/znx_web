@@ -47,7 +47,8 @@ def register():
     if form.validate_on_submit():
         organization = Organization(mobile=form.cellphone.data,
                             password=form.password.data,
-                            created=time.time())
+                            created=time.time(),
+                            site=u'')
         db.session.add(organization)
         db.session.commit()
         # token = user.generate_confirmation_token()

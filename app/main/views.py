@@ -115,6 +115,10 @@ def report():
 
 @main.route('/search', methods=['GET', 'POST'])
 def search():
+    form = RegisterForm()
+    form.city_id.choices = [(t.id, t.city)
+                            for t in City.query.all()]
+
     professions = Profession.query.all()
     name = request.values.get('name', u'', type=unicode)
     profession_id = request.values.get('profession_id', 0, type=int)
@@ -123,7 +127,7 @@ def search():
     locations = Location.query.filter_by(city_id=city_id).all()
     page = request.args.get('page', 1, type=int)
 
-    order_by = request.args.get('order', 0, type=int)
+    order_by = request.args.get('order_by', 0, type=int)
 
     query = Organization.query
     if profession_id:
@@ -139,23 +143,25 @@ def search():
 
     if order_by:
         if order_by == 1:
-            query.order_by(Organization.comment_count.desc())
+            query=query.order_by(Organization.comment_count.desc())
         elif order_by == 2:
-            query.order_by(Organization.page_view.desc())
+            query=query.order_by(Organization.page_view.desc())
         elif order_by == 3:
-            query.order_by(Organization.orders.desc())
+            query=query.order_by(Organization.orders.desc())
     pagination = query.filter(Organization.name.like(u'%'+name+u'%')).paginate(
         page, 20, error_out=False
     )
     orgs = pagination.items
     return render_template('origanselect_py.html',
+                           form=form,
                            name=name,
                            location_id = location_id,
                            profession_id=profession_id,
                            orgs=orgs,
                            pagination = pagination,
                            locations=locations,
-                           professions=professions)
+                           professions=professions,
+                           order_by=order_by)
 
 
 @main.route('/admin_talk', methods=['GET', 'POST'])

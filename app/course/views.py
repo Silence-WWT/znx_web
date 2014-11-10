@@ -67,7 +67,10 @@ def confirm(id):
     if form.validate_on_submit():
         order.remark = form.remark.data
         order.is_confirmed = True
+        org = course.get_org()
+        org.orders += 1
         db.session.add(order)
+        db.session.add(org)
         db.session.commit()
         if current_user.is_authenticated():
             return redirect(url_for('user.home'))
