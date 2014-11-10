@@ -557,6 +557,28 @@ $(function(){
             $("#uploadok2").css('display','block');
         });
     });
+    $("#logoupload").click(function () {
+        $("#uploadlogopic").click();
+        $("#uploadlogopic").live('change', function () {
+            var objUrl = getObjectURL(this.files[0]);
+            console.log("objUrl = " + objUrl);
+            if (objUrl) {
+                $("#uploadpic3").attr("src", objUrl);
+                $("#uploadpic3").css('cursor', 'pointer');
+                var ei1 = $("#large3");
+                ei1.hide();
+                $("#uploadpic3").mousemove(function (e) {
+
+
+                    ei1.html('<img style="border:1px solid gray;" src="' + this.src + '" />').show();
+
+                }).mouseout(function () {
+                    ei1.hide("slow");
+                })
+            }
+            $("#uploadok3").css('display', 'block');
+        });
+    });
 
 })
 //显示全部
