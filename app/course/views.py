@@ -72,8 +72,16 @@ def confirm(id):
         db.session.add(order)
         db.session.add(org)
         db.session.commit()
-        if current_user.is_authenticated():
-            return redirect(url_for('user.home'))
-        return redirect(url_for('main.index'))
+        return redirect(url_for('course.success', id=order.id))
     return render_template('classattend3_py.html', form=form,
                            order=order, course=course)
+
+
+@course.route('/success/<int:id>')
+def success(id):
+    order = ClassOrder.query.get_or_404(id)
+    if order.unified_id != current_user.get_unified_id():
+        abort(404)
+    course = Class.query.get_or_404(order.class_id)
+    org = course.get_org()
+    return render_template('classattend4_py.html', org=org, order=order, course=course)
