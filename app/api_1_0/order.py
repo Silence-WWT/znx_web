@@ -66,7 +66,7 @@ def get_order_dict(order_type, order):
     org = Organization.query.get(obj.organization_id)
     order_dict = {
         order_type + '_order_id': order.id,
-        order_type + '_name': order.name,
+        order_type + '_name': obj.name,
         'org_name': org.name,
         'created': order.created,
         'price': obj.price,
