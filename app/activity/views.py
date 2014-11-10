@@ -53,7 +53,10 @@ def confirm(id):
     if form.validate_on_submit():
         order.remark = form.remark.data
         order.is_confirmed = True
+        org = activity.get_org()
+        org.orders += 1
         db.session.add(order)
+        db.session.add(org)
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('activityattend2_py.html', activity=activity,
