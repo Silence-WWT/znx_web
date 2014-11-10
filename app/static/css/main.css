@@ -739,7 +739,7 @@ body {
     color: #fff;
     font-size: 18px;
     text-shadow: none;
-    margin-left: 20px;
+    margin-left: 0px;
 }
 
 #twologin ul li a {
@@ -1610,7 +1610,7 @@ body {
 }
 
 #organclass ul li .classleft .classtest, #organplay ul li .classleft .classtest {
-    width: 272px;
+    width: 470px;
     float: left;
     color: #292929;
     margin-left: 25px;
@@ -1631,7 +1631,7 @@ body {
 }
 
 #organclass ul li .classleft h3 a, #organplay ul li .classleft h3 a{
-    font-size: 24px;
+    font-size: 20px;
     float: left;
     margin: -4px 2px 1px;
     font-weight: normal;
@@ -1641,17 +1641,20 @@ body {
 
 #organclass ul li .classright span, #organplay ul li .classright span {
     float: right;
-    font-size: 30px;
+    font-size: 20px;
     color: #00B98D;
     line-height: 30px;
     height: 30px;
-    width: 120px;
-    margin: 22px 2px 12px;
+    width: 320px;
+    margin: -72px 0px 0px;
     text-align: center;
 }
 
 #organclass ul li .classright a, #organplay ul li .classright a {
     display: block;
+    margin-top: -20px;
+    text-align: center;
+    width: 320px;
 }
 
 #zixunbtn {
