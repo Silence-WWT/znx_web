@@ -13,10 +13,10 @@
             <dl>
                 <dt><span>{{ org.name }}</span>
                 <address><img src="{{ url_for('static', filename='images/organindex.png') }}"/>
-                <a href="{{ org.site }}">{{ org.site }}</a>
+
                 </address>
                 </dt>
-                <dd>——{{ org.slogan }}</dd>
+                <dd><a href="{{ org.site }}" target="_blank">{{ org.site }}</a></dd>
             </dl>
         </div>
     </div>

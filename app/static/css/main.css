@@ -1203,7 +1203,7 @@ body {
 #myorgan > div > div.headtitle > div > dl > dd {
     font-size: 16px;
     color: #000;
-    margin-left: 0px;
+    margin-left: 5px;
 }
 
 #myorgan .organlogo {
@@ -2480,7 +2480,7 @@ body {
 }
 
 #regmessage {
-    width: 182px;
+    width: 220px;
     text-align: center;
     cursor: pointer;
 
@@ -2715,7 +2715,7 @@ input[disabled] {
 
 #selectul > .tab-pane > ul > li {
     padding: 15px 40px 25px;
-    height: 140px;
+    height: 132px;
     color: #727272;
     border-bottom: 1px solid #D6D6D6;
 }
@@ -2751,28 +2751,29 @@ input[disabled] {
 #tab3 > ul > li > div.seledet > p,
 #tab4 > ul > li > div.seledet > p {
     font-size: 16px;
+    display: none;
 
 }
 
 #tab1 > ul > li > div.selectscore, #tab2 > ul > li > div.selectscore, #tab3 > ul > li > div.selectscore, #tab4 > ul > li > div.selectscore {
     float: left;
     width: 568px;
-    margin: 10px -130px;
+    margin: 10px -95px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span, #tab2 > ul > li > div.selectscore > ul > li > span,
 #tab4 > ul > li > div.selectscore > ul > li > span, #tab3 > ul > li > div.selectscore > ul > li > span {
-    margin-right: 10px;
+    margin-right: 7px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab3 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,
 #tab2 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab4 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp {
-    margin: 11px 0 -4px;
+    margin: 37px 29px -40px -29px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
 #tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span {
-    margin-left: 29px;
+    margin-left: 23px;
 }
 
 #tab1 > ul > li > div.seledet > span > i, #tab1 > ul > li > div.selectscore > ul > li > span > i,
