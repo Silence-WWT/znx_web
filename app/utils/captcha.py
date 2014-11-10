@@ -35,7 +35,7 @@ def send_sms(number, content):
              'account': 'cf_zainaxue',
              'password': 'zainaxue',
              'mobile': number,
-             'content': MESSAGE_API_CONTENT_TEST % content}
+             'content': MESSAGE_API_CONTENT % content}
     r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query).text.encode('utf8')
     print r
     doc = minidom.parseString(r)
