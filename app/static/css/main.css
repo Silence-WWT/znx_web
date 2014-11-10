@@ -1505,6 +1505,11 @@ body {
 #organregall .container .attendtitle{
     width: 200px;
 }
+
+#organregall .container .attendtitle1 {
+    width: 293px;
+}
+
 #myComment .modal-header, #myeditwrong .modal-header {
     padding: 10px;
     height: 28px;
@@ -3217,4 +3222,21 @@ input[disabled] {
 #isover{
     margin-left: 16px;
     color: #FD8F6A;
+}
+
+#organregform .attendok {
+    height: 200px;
+    color: #333;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+#organregform .attendok a {
+    color: #00B98D;
+    margin: 0px;
+}
+
+#organregform .attendok span {
+    color: #FD8F6A;
+    margin: 0px;
 }
