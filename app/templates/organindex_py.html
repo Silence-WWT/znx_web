@@ -22,7 +22,8 @@
     </div>
     <div class="headdes">
         <div class="organmoredec">
-            <span class="organview"><i class="icon-eye-open"></i>{{ org.page_view }}</span>
+            <span class="organview"><a id="looknum" data-original-title="浏览数" data-toggle="tooltip" href="#"><i
+                    class="icon-eye-open"></i></a>{{ org.page_view }}</span>
             <span class="organtalk"><i class="icon-comment"></i>{{ org.comment_count }}</span><br/>
             <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span><br/>
             <span class="organcall"><i class="  icon-bullhorn"></i>400-656-9191</span>
@@ -251,6 +252,7 @@
     <script type="text/javascript">
      $(function(){
          show();
+         $('#looknum').tooltip('hide');
      })
     </script>
 {% endblock inscript %}

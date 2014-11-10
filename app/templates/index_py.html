@@ -185,5 +185,39 @@
     $(function(){
         $("#navbar ul.nav li:first-child").addClass('act');
     })
+    $(document).ready(function () {
+        var strCookie = document.cookie;
+        var arrCookie = strCookie.split("; ");
+        var cityname;
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            if ("cityname" == arr[0]) {
+                cityname = arr[1];
+                break;
+            }
+        }
+        // alert(cityname);
+        if (typeof(cityname) == "undefined") {
+            //  alert("da");
+            //  alert("da");
+            jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
+                // alert("province : "+remote_ip_info.province+", city : "+remote_ip_info.city);
+                var nowcityname = remote_ip_info.city;
+                document.cookie = "cityname=" + nowcityname;
+                var citylen = $("#citylist li").length;
+                $("#citylist li").each(function (index) {
+                    if ($(this).children().text() == nowcityname) {
+                        var citynum = index + 1;
+                        location.href = "/change_city/" + citynum;
+                    }
+                })
+
+            });
+        }
+        else {
+            return false;
+        }
+    });
+
 </script>
 {% endblock inscript %}
