@@ -129,6 +129,8 @@ class CertificationForm(Form):
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
     photo = FileField(validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+    logo = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
 
 
 class LoginForm(Form):

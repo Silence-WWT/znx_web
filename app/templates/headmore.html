@@ -13,8 +13,7 @@
 
                 <ul class="dropdown-menu" id="citylist">
                     {% for city in cities %}
-                        <li><a href="{{ url_for('main.change_city', city_id=city.id) }}">
-                        {{ city.city }}</a>
+                        <li><a href="{{ url_for('main.change_city', city_id=city.id) }}">{{ city.city }}</a>
                         </li>
                     {% endfor %}
                 </ul>
