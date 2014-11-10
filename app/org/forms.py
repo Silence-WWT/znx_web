@@ -205,6 +205,9 @@ class CourseForm(Form):
         self.days.data = course.days
         self.detail.data = course.detail
 
+        class_ages = ClassAge.query.filter_by(class_id=class_id).all()
+        self.ages.data = [age.age_id for age in class_ages]
+
     def update_course(self, class_id):
         course = Class.query.get_or_404(class_id)
         course.name = self.name.data

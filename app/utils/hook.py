@@ -4,7 +4,7 @@ from ..models import City, Profession
 
 def city_session():
     if 'city_id' not in session:
-        session['city_id'] = 1
+        session['city_id'] = 2
 
 def cities():
     return dict(
