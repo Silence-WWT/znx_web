@@ -317,6 +317,7 @@ body {
 .acte {
     float: left;
     margin-top: 12px;
+    display: none;
 }
 #contenthead .caret1 > img{
     width: 10px;
