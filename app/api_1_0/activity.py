@@ -15,7 +15,7 @@ from utils import get_ages, get_unified
 def activity_list():
     data = {'activities': []}
     page = request.values.get('page', 1, type=int)
-    organization_id = request.args.get('organization')
+    organization_id = request.values.get('organization')
     activity_list_ = Activity.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for activity in activity_list_:
         activity_dict = {
@@ -34,8 +34,8 @@ def activity_list():
 @api.route('/activity_detail')
 def activity_detail():
     data = {'activity': {}}
-    activity_id = request.args.get('activity')
-    activity = Activity.query.filter_by(id=activity_id).first()
+    activity_id = request.values.get('activity')
+    activity = Activity.query.get(activity_id)
     if activity:
         category = Category.query.get(activity.category_id)
         data['activity'] = {
@@ -66,15 +66,14 @@ def activity_sign_up():
     activity_id = request.values.get('activity', '', type=str)
     user_id = request.values.get('user_id')
     uuid = request.values.get('uuid', '', type=str)
-    address = request.args.get('address', u'', type=unicode)
+    address = request.values.get('address', u'', type=unicode)
     name = request.values.get('name', u'', type=unicode)
     remark = request.values.get('remark', u'', type=unicode)
     mobile = request.values.get('mobile', '', type=str)
     age = request.values.get('age', '', type=str)
     sex = request.values.get('sex', '', type=str)
     email = request.values.get('email', '', type=str)
-    print('uuid', uuid)
-    activity = Activity.query.filter_by(id=activity_id).first()
+    activity = Activity.query.get(activity_id)
     if activity and age and mobile:
         activity.get_org().add_orders()
         unified = get_unified(user_id, uuid)
@@ -103,12 +102,12 @@ def activity_sign_up():
 @api.route('/activity_comment')
 def activity_comment():
     data = {}
-    activity_id = request.args.get('activity')
+    activity_id = request.values.get('activity')
     stars = request.values.get('stars', 0, type=int)
-    user_id = request.args.get('user_id')
-    comment = request.args.get('comment', '').encode('utf8')
-    user = User.query.filter_by(id=user_id).first()
-    activity = Activity.query.filter_by(id=activity_id).first()
+    user_id = request.values.get('user_id')
+    comment = request.values.get('comment', u'', type=unicode)
+    user = User.query.get(user_id)
+    activity = Activity.query.get(activity_id)
     if user and activity and 1 <= stars <= 5:
         activity_comment_ = ActivityComment(
             activity_id=activity.id,
@@ -131,8 +130,8 @@ def activity_comment():
 def activity_comment_list():
     data = {'activity_comments': []}
     page = request.values.get('page', 1, type=int)
-    activity_id = request.args.get('activity')
-    activity = Activity.query.filter_by(id=activity_id).first()
+    activity_id = request.values.get('activity')
+    activity = Activity.query.get(activity_id)
     if activity:
         comment_list = ActivityComment.query.\
             filter_by(activity_id=activity_id).\

@@ -15,7 +15,7 @@ from utils import get_ages, get_unified
 def class_list():
     data = {'classes': []}
     page = request.values.get('page', 1, type=int)
-    organization_id = request.args.get('organization')
+    organization_id = request.values.get('organization')
     class_list_ = Class.query.filter_by(organization_id=organization_id).paginate(page, PER_PAGE, False).items
     for class_ in class_list_:
         class_dict = {
@@ -34,7 +34,7 @@ def class_list():
 def class_detail():
     data = {'class': {}}
     class_id = request.args.get('class')
-    class_ = Class.query.filter_by(id=class_id).first()
+    class_ = Class.query.get(class_id)
     if class_:
         data['class'] = {
             'id': class_.id,
@@ -70,7 +70,7 @@ def class_sign_up():
     email = request.args.get('email')
     taste_time = request.args.get('time')
 
-    class_ = Class.query.filter_by(id=class_id).first()
+    class_ = Class.query.get(class_id)
     if class_ and name and address and age and mobile and sex and taste_time and email:
         class_.get_org().add_orders()
         unified = get_unified(user_id, uuid)
@@ -104,8 +104,8 @@ def class_comment():
     comment = request.args.get('comment', u'', type=unicode)
     class_id = request.args.get('class')
     stars = request.values.get('stars', 0, type=int)
-    user = User.query.filter_by(id=user_id).first()
-    class_ = Class.query.filter_by(id=class_id).first()
+    user = User.query.get(user_id)
+    class_ = Class.query.get(class_id)
     if user and class_ and 1 <= stars <= 5:
         class_comment_ = ClassComment(
             class_id=class_.id,
@@ -129,7 +129,7 @@ def class_comment_list():
     data = {'class_comments': []}
     page = request.values.get('page', 1, type=int)
     class_id = request.args.get('class')
-    class_ = Class.query.filter_by(id=class_id).first()
+    class_ = Class.query.get(class_id)
     if class_:
         comment_list = ClassComment.query.filter_by(class_id=class_id).\
             order_by(-ClassComment.created).\
