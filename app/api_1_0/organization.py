@@ -8,20 +8,22 @@ from app import db
 from ..models import User, Organization, OrganizationProfession, OrganizationComment, Type, Profession, Location, City
 from . import api
 from api_constants import *
-from utils import organization_filter_by_distance, get_organization_distance
+from utils import organization_filter_by_distance, get_organization_distance, cmp_distance, paginate
 
 
 @api.route('/organization_filter')
 def organization_filter():
     data = {'organizations': []}
     page = request.values.get('page', 1, type=int)
-    city = request.args.get('city', '').encode('utf8')
-    district = request.args.get('district', '').encode('utf8')
-    profession = request.args.get('profession', '').encode('utf8')
+    city = request.values.get('city', u'', type=unicode)
+    district = request.values.get('district', u'', type=unicode)
+    profession = request.values.get('profession', u'', type=unicode)
     distance = request.values.get('distance', 0.0, type=float)
-    org_type = request.args.get('type', u'机构', type=unicode)
+    org_type = request.values.get('type', u'机构', type=unicode)
+    name = request.values.get('name', u'', type=unicode)
     type_ = Type.query.filter_by(type=org_type).first()
     city = City.query.filter_by(city=city).first()
+
     if distance:
         latitude = request.values.get('latitude', 0.0, type=float)
         longitude = request.values.get('longitude', 0.0, type=float)
@@ -36,14 +38,17 @@ def organization_filter():
         data['status'] = SUCCESS
         return json.dumps(data)
 
-    if city and district:
+    if name:
+        org_query = org_query.filter(Organization.name.like(u'%' + name + u'%'))
+
+    if city and district and not distance and not name:
         location = Location.query.filter_by(city_id=city.id, district=district).first()
         if location:
-            org_list = org_query.filter_by(location_id=location.id).paginate(page, PER_PAGE, False).items
+            org_list = org_query.filter_by(location_id=location.id)
         else:
             data['status'] = CITY_NOT_EXIST
             return json.dumps(data)
-    elif city and profession:
+    elif profession and not name:
         profession = Profession.query.filter_by(profession=profession).first()
         if profession:
             location_list = Location.query.filter_by(city_id=city.id)
@@ -51,13 +56,20 @@ def organization_filter():
             organization_profession_list = OrganizationProfession.query.filter_by(profession_id=profession.id)
             organization_id_list = [org_profession.organization_id for org_profession in organization_profession_list]
             org_list = org_query.filter(Organization.id.in_(organization_id_list),
-                                        Organization.location_id.in_(location_id_list))\
-                .paginate(page, PER_PAGE, False).items
+                                        Organization.location_id.in_(location_id_list))
         else:
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
     else:
-        org_list = org_query.paginate(page, PER_PAGE, False).items
+        org_list = org_query
+
+    if distance:
+        cmp_list = [(org, longitude, latitude) for org in org_query]
+        org_list = paginate(sorted(cmp_list, cmp=cmp_distance), page)
+        org_list = [org[0] for org in org_list]
+    else:
+        org_list = org_list.paginate(page, PER_PAGE, False).items
+
     for org in org_list:
         org.page_view_inc()
         location = Location.query.get(org.location_id)
@@ -73,9 +85,10 @@ def organization_filter():
         }
         if distance:
             org_dict['distance'] = get_organization_distance(longitude, latitude, org.longitude, org.latitude)
-        data['organizations'].append(org_dict)
-    if distance:
-        data['organizations'].sort(key=lambda x: x['distance'])
+            if org_dict['distance'] <= distance:
+                data['organizations'].append(org_dict)
+        else:
+            data['organizations'].append(org_dict)
     data['status'] = SUCCESS
     return json.dumps(data)
 
@@ -88,15 +101,15 @@ def organization_detail():
     if organization:
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
-        city = City.query.get(location.city_id)
+        city = City.query.get(location.city_id) if location else None
         organization.page_view_inc()
         org_dict = {
             'id': organization.id,
             'name': organization.name,
             'photo': STATIC_URL + organization.photo if organization.photo else '',
             'logo': STATIC_URL + organization.logo,
-            'city': city.city,
-            'district': location.district,
+            'city': city.city if city else '',
+            'district': location.district if location else '',
             'intro': organization.detail,
             'address': organization.address,
             'mobile': organization.mobile,
@@ -181,9 +194,14 @@ def organization_search():
             return json.dumps(data)
     else:
         org_query = Organization.query
-    organization_list = org_query.filter(Organization.name.like(u'%' + name + u'%')).\
-        paginate(page, PER_PAGE, False).items
-    print(len(organization_list))
+    organization_list = org_query.filter(Organization.name.like(u'%' + name + u'%'))
+    if distance:
+        cmp_list = [(org, longitude, latitude) for org in organization_list]
+        organization_list = paginate(sorted(cmp_list, cmp=cmp_distance), page)
+        organization_list = [org[0] for org in organization_list]
+    else:
+        organization_list = organization_list.paginate(page, PER_PAGE, False).items
+
     for organization in organization_list:
         location = Location.query.get(organization.location_id)
         city = City.query.get(location.city_id)
@@ -199,6 +217,9 @@ def organization_search():
         if distance:
             org_dict['distance'] = get_organization_distance(longitude, latitude,
                                                              organization.longitude, organization.latitude)
-        data['organizations'].append(org_dict)
+            if org_dict['distance'] <= distance:
+                data['organizations'].append(org_dict)
+        else:
+            data['organizations'].append(org_dict)
     data['status'] = SUCCESS
     return json.dumps(data)
