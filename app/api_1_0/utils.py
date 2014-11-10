@@ -65,3 +65,13 @@ def get_organization_distance(longitude, latitude, org_longitude, org_latitude):
     delta_y = delta_longitude * (EARTH_CIRCUMFERENCE * math.sin(math.radians(90 - latitude))) / 360
     distance = math.sqrt(delta_x ** 2 + delta_y ** 2)
     return distance
+
+
+def cmp_distance(x, y):
+    distance_x = get_organization_distance(x[1], x[2], x[0].longitude, x[0].latitude)
+    distance_y = get_organization_distance(y[1], y[2], y[0].longitude, y[0].latitude)
+    return int((distance_x - distance_y) * 10000)
+
+
+def paginate(iterable, page, per_page=10):
+    return iterable[(page - 1) * per_page: page * per_page]
