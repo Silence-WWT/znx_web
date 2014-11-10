@@ -21,9 +21,10 @@
             <ul class="unstyled" id="actlistul">
                 {% for class_order in class_orders %}
                 {% set class = class_order.get_class() %}
+                {% set org = class.get_org() %}
                 <li>
 
-                    <div class="actleft"><a href="{{ url_for('course.home', id=class.id) }}" target="_blank"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
+                    <div class="actleft"><a href="{{ url_for('course.home', id=class.id) }}" target="_blank"><img src="{{ class.photo|picture }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('course.home', id=class.id) }}">{{ class.name }}</a></h4>
@@ -37,11 +38,13 @@
                                 </a>
                             </div>
                         </div>
-                        <p class="spanli">费用:{{ class.price }}</p>
+                        <p class="spanli">费用: {{ class.price }}</p>
 
-                        <p class="spanli">时间：{{ class.get_time() }}</p>
+                        <p class="spanli">时间：{{ class_order.time|get_date_time }}</p>
 
-                        <p class="spanli">地点：西安电子科技大学</p>
+                        <p class="spanli">机构：{{ org.name }}</p>
+
+                        <p class="spanli">地点：{{ org.location }}  {{ org.address }}</p>
                     </div>
                 </li>
                 {% endfor %}
@@ -51,8 +54,9 @@
             <ul class="unstyled" id="actlistul2">
                 {% for activity_order in activity_orders %}
                 {% set activity = activity_order.get_activity() %}
+                {% set org = activity.get_org() %}
                 <li>
-                    <div class="actleft"><a href="{{ url_for('activity.home', id=activity.id) }}" target="_blank"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
+                    <div class="actleft"><a href="{{ url_for('activity.home', id=activity.id) }}" target="_blank"><img src="{{ activity.photo|picture }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></h4>
@@ -66,11 +70,14 @@
                                 </a>
                             </div>
                         </div>
-                        <p class="spanli">费用:{{ activity.price }}</p>
+                        <p class="spanli">费用: {{ activity.price }}</p>
 
-                        <p class="spanli">开始结束时间：{{ activity.get_time() }}</p>
+                        <p class="spanli">开始时间：{{ activity.start_time|get_date_time }}</p>
+                        <p class="spanli">结束时间：{{ activity.end_time|get_date_time }}</p>
 
-                        <p class="spanli">地点：{{ activity.address }}</p>
+                        <p class="spanli">机构：{{ org.name }}</p>
+
+                        <p class="spanli">地点：{{ activity.location }} {{ activity.address }}</p>
                     </div>
                 </li>
                 {% endfor %}
