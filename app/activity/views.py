@@ -58,6 +58,16 @@ def confirm(id):
         db.session.add(order)
         db.session.add(org)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('activity.success', id=order.id))
     return render_template('activityattend2_py.html', activity=activity,
                            order=order, form=form)
+
+@activity.route('/success/<int:id>')
+def success(id):
+    order = ActivityOrder.query.get_or_404(id)
+    if order.unified_id != current_user.get_unified_id():
+        abort(404)
+    activity = Activity.query.get_or_404(order.activity_id)
+    org = activity.get_org()
+    return render_template('activityattend3_py.html', org=org,
+                           order=order, activity=activity)
