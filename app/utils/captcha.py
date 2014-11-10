@@ -37,6 +37,7 @@ def send_sms(number, content):
              'mobile': number,
              'content': MESSAGE_API_CONTENT_TEST % content}
     r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query).text.encode('utf8')
+    print r
     doc = minidom.parseString(r)
     status = doc.getElementsByTagName('code')[0].firstChild.nodeValue
     if status != MESSAGE_API_SUCCESS:
