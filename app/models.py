@@ -9,20 +9,36 @@ from flask import session
 
 class AnonymousUser(AnonymousUserMixin):
     def get_unified_id(self):
-        if 'uuid' not in session:
-            uuid = uuid4().hex
-            unified_id = UnifiedId(user_id=0,
-                                   web_key=uuid,
-                                   mobile_key='',
-                                   created=time.time())
-            db.session.add(unified_id)
-            db.session.commit()
-            session['uuid'] = uuid
-            return unified_id.id
-        uuid = session['uuid']
-        unified_id = UnifiedId.query.filter_by(web_key=uuid).first_or_404()
+        if 'uuid' in session:
+            uuid = session['uuid']
+            unified_id = UnifiedId.query.filter_by(web_key=uuid).first()
+            if unified_id:
+                return unified_id.id
+        uuid = uuid4().hex
+        unified_id = UnifiedId(user_id=0,
+                               web_key=uuid,
+                               mobile_key='',
+                               created=time.time())
+        db.session.add(unified_id)
+        db.session.commit()
+        session['uuid'] = uuid
         return unified_id.id
 
+    def reg_unified_id(self):
+        if 'uuid' in session:
+            uuid = session['uuid']
+            unified_id = UnifiedId.query.filter_by(web_key=uuid).first()
+            if unified_id and (unified_id.user_id == 0):
+                return unified_id.id
+        uuid = uuid4().hex
+        unified_id = UnifiedId(user_id=0,
+                               web_key=uuid,
+                               mobile_key='',
+                               created=time.time())
+        db.session.add(unified_id)
+        db.session.commit()
+        session['uuid'] = uuid
+        return unified_id.id
 
 login_manager.anonymous_user = AnonymousUser
 
