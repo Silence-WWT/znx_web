@@ -76,13 +76,14 @@ def get_order_dict(order_type, order):
         'user_sex': order.sex,
         'user_mobile': order.mobile,
         'user_email': order.email,
-        'user_address': order.address,
         'user_remark': order.remark,
         'comments_count': obj.get_comment_count()
     }
     if isinstance(order, ClassOrder):
         order_dict['days'] = obj.days
+        order_dict['user_address'] = obj.get_org().address
     else:
         order_dict['start_time'] = obj.start_time
         order_dict['end_time'] = obj.end_time
+        order_dict['user_address'] = obj.address
     return order_dict
