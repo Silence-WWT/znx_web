@@ -21,8 +21,8 @@ def organization_filter():
     distance = request.values.get('distance', 0.0, type=float)
     org_type = request.values.get('type', u'机构', type=unicode)
     name = request.values.get('name', u'', type=unicode)
-    type_ = Type.query.filter_by(type=org_type).first()
-    city = City.query.filter_by(city=city).first()
+    type_ = Type.query.filter_by(type=org_type).limit(1).first()
+    city = City.query.filter_by(city=city).limit(1).first()
 
     if distance:
         latitude = request.values.get('latitude', 0.0, type=float)
@@ -42,14 +42,14 @@ def organization_filter():
         org_query = org_query.filter(Organization.name.like(u'%' + name + u'%'))
 
     if city and district and not distance and not name:
-        location = Location.query.filter_by(city_id=city.id, district=district).first()
+        location = Location.query.filter_by(city_id=city.id, district=district).limit(1).first()
         if location:
             org_list = org_query.filter_by(location_id=location.id)
         else:
             data['status'] = CITY_NOT_EXIST
             return json.dumps(data)
     elif profession and not name:
-        profession = Profession.query.filter_by(profession=profession).first()
+        profession = Profession.query.filter_by(profession=profession).limit(1).first()
         if profession:
             location_list = Location.query.filter_by(city_id=city.id)
             location_id_list = [location.id for location in location_list]
@@ -97,7 +97,7 @@ def organization_filter():
 def organization_detail():
     data = {}
     organization_id = request.args.get('organization')
-    organization = Organization.query.filter_by(id=organization_id).first()
+    organization = Organization.query.get(organization_id)
     if organization:
         data['status'] = SUCCESS
         location = Location.query.get(organization.location_id)
@@ -130,8 +130,8 @@ def organization_comment():
     comment = request.values.get('comment', u'', type=unicode)
     organization_id = request.args.get('organization')
     stars = request.values.get('stars', 0, type=int)
-    user = User.query.filter_by(id=user_id).first()
-    organization = Organization.query.filter_by(id=organization_id).first()
+    user = User.query.get(user_id)
+    organization = Organization.query.get(organization_id)
     if user and organization and 1 <= stars <= 5:
         organization.set_star(stars)
         org_comment = OrganizationComment(
@@ -158,7 +158,7 @@ def organization_comment_list():
     data = {'organization_comments': []}
     page = request.values.get('page', 1, type=int)
     organization_id = request.args.get('organization')
-    organization = Organization.query.filter_by(id=organization_id).first()
+    organization = Organization.query.get(organization_id)
     if organization:
         comment_list = OrganizationComment.query.filter_by(organization_id=organization_id).\
             order_by(-OrganizationComment.created).\
