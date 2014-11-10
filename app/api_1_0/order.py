@@ -24,7 +24,7 @@ def order_list():
     if unified_id_list:
         class_order_list = []
         class_orders = ClassOrder.query.\
-            filter(UnifiedId.id.in_(unified_id_list)).\
+            filter(ClassOrder.unified_id.in_(unified_id_list)).\
             order_by(-ClassOrder.created).\
             paginate(page, PER_PAGE, False).items
         for class_order in class_orders:
@@ -33,7 +33,7 @@ def order_list():
 
         activity_order_list = []
         activity_orders = ActivityOrder.query.\
-            filter(UnifiedId.id.in_(unified_id_list)).\
+            filter(ActivityOrder.unified_id.in_(unified_id_list)).\
             order_by(-ActivityOrder.created).\
             paginate(page, PER_PAGE, False).items
         for activity_order in activity_orders:
