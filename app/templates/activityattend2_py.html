@@ -26,7 +26,7 @@
                     <label class="control-label">真实姓名</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.name }}"/>
+                        <input type="text" class="form-control" value="{{ order.name }}" readonly/>
 
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <label class="control-label">年龄</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.age }}"/>
+                        <input type="text" class="form-control" value="{{ order.age }}" readonly/>
 
                     </div>
                 </div>
@@ -43,8 +43,8 @@
                     <label class="control-label">学员性别</label>
 
                     <div class="controls">
-                        <select class="form-control-more">
-                            {% if order.sex %}
+                        <select class="form-control-more selectadd">
+                        {% if order.sex %}
                             <option value="1">男</option>
                             {% else %}
                             <option value="0">女</option>
@@ -57,7 +57,7 @@
                     <label class="control-label">联系电话</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.mobile }}"/>
+                        <input type="text" class="form-control" value="{{ order.mobile }}" readonly/>
 
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     <label class="control-label">活动名称</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ activity.name }}"/>
+                        <input type="text" class="form-control" value="{{ activity.name }}" readonly/>
 
                     </div>
                 </div>

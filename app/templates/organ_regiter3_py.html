@@ -40,13 +40,17 @@
                         </li>
                         <li>
                             <h3>我的
-                                <button type="button" class="btn-next anotherbtn" id="organupload">上传本地照片</button></h3>
+                                <button type="button" class="btn-next anotherbtn" id="organupload">上传本地照片</button>
+                            </h3>
                             <i class="icon-ok" id="uploadok1"></i>
-                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display: none;">
+                            <input type="file" name="{{ form.certification.name }}" id="uploadorginpic"
+                                   style="display: none;">
 
                             <h3>
 
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/footerlogo.png') }}" class="img-polaroid" id="uploadpic1"/></div>
+                                <div class="anlipic"><img
+                                        src="{{ url_for('static', filename='images/footerlogo.png') }}"
+                                        class="img-polaroid" id="uploadpic1"/></div>
                             </h3>
                         </li>
                     </ul>
@@ -68,19 +72,51 @@
                         </li>
                         <li>
                             <h3>我的
-                                <button type="button" class="btn-next anotherbtn" id="shopupload">上传本地照片 </button>
+                                <button type="button" class="btn-next anotherbtn" id="shopupload">上传本地照片</button>
                             </h3>
                             <i class="icon-ok" id="uploadok2"></i>
-                                <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
+                            <input type="file" name="{{ form.photo.name }}" id="uploadshoppic" style="display:none">
 
                             <h3>
-                                <div class="anlipic"><img src="{{ url_for('static', filename='images/footerlogo.png') }}" class="img-polaroid"
+                                <div class="anlipic"><img
+                                        src="{{ url_for('static', filename='images/footerlogo.png') }}"
+                                        class="img-polaroid"
                                         id="uploadpic2"/></div>
                             </h3>
                         </li>
                     </ul>
                 </div>
                 <div id="large2"></div>
+                <div style="clear:both;"></div>
+                <div class="upload3">
+                    <h3 id="about-header3">上传机构logo图片</h3>
+
+                    <ul class="inline unstyled">
+                        <li>
+
+                            <h3>参考案例</h3>
+
+                            <div class="anlipic">
+                                <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
+                            </div>
+                        </li>
+                        <li>
+                            <h3>我的
+                                <button type="button" class="btn-next anotherbtn" id="logoupload">上传本地照片</button>
+                            </h3>
+                            <i class="icon-ok" id="uploadok3"></i>
+                            <input type="file" name="{{ form.logo.name }}" id="uploadlogopic" style="display:none">
+
+                            <h3>
+                                <div class="anlipic"><img
+                                        src="{{ url_for('static', filename='images/footerlogo.png') }}"
+                                        class="img-polaroid"
+                                        id="uploadpic3"/></div>
+                            </h3>
+                        </li>
+                    </ul>
+                </div>
+                <div id="large3"></div>
                 <div class="controls">
                     <button type="submit" class="btn-next btn-final">完成</button>
                 </div>

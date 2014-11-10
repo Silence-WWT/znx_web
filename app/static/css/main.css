@@ -825,7 +825,7 @@ body {
     width: 320px;
 }
 
-#about-header1, #about-header2 {
+#about-header1, #about-header2, #about-header3 {
     font-size: 20px;
     color: #000;
     text-align: center;
@@ -833,32 +833,32 @@ body {
     font-weight: normal;
 }
 
-#organregform .upload1, #organregform .upload2 {
+#organregform .upload1, #organregform .upload2, #organregform .upload3 {
     width: 860px;
 }
 
-#organregform .upload1 ul li, #organregform .upload2 ul li {
+#organregform .upload1 ul li, #organregform .upload2 ul li, #organregform .upload3 ul li {
     width: 360px;
     float: left;
     height: 300px;
 }
 
-#organregform .upload1 ul li:first-child, #organregform .upload2 ul li:first-child {
+#organregform .upload1 ul li:first-child, #organregform .upload2 ul li:first-child, #organregform .upload3 ul li:first-child {
     margin-left: 65px
 }
 
-#organregform .upload1 ul li:last-child, #organregform .upload2 ul li:last-child {
+#organregform .upload1 ul li:last-child, #organregform .upload2 ul li:last-child, #organregform .upload3 ul li:last-child {
     margin-left: 33px
 }
 
-#organregform .upload1 ul li h3, #organregform .upload2 ul li h3 {
+#organregform .upload1 ul li h3, #organregform .upload2 ul li h3, #organregform .upload3 ul li h3 {
     text-align: center;
     font-size: 20px;
     font-weight: normal;
     color: #727272;
 }
 
-#organregform .upload1 ul li h3:first-child, #organregform .upload2 ul li h3:first-child {
+#organregform .upload1 ul li h3:first-child, #organregform .upload2 ul li h3:first-child, #organregform .upload3 ul li h3:first-child {
     float: left;
     margin-left: 100px;
 }
@@ -875,9 +875,10 @@ body {
 #twologin  a.form-feedback{
     color: #333;
 }
-#organregform .upload1 ul li img, #organregform .upload2 ul li img {
+
+#organregform .upload1 ul li img, #organregform .upload2 ul li img, #organregform .upload3 ul li img {
     width: 260px;
-    height: 190px;
+    height: 195px;
 }
 
 .btn-final {
@@ -1504,6 +1505,11 @@ body {
 #organregall .container .attendtitle{
     width: 200px;
 }
+
+#organregall .container .attendtitle1 {
+    width: 293px;
+}
+
 #myComment .modal-header, #myeditwrong .modal-header {
     padding: 10px;
     height: 28px;
@@ -1620,7 +1626,7 @@ body {
 #organclass ul li .classleft span, #organplay ul li .classleft span {
 
     float: left;
-    width: 240px;
+    width: 470px;
     font-size: 16px;
     line-height: 22px;
     height: 22px;
@@ -1736,7 +1742,7 @@ body {
 
 #classdet {
     background: #fff;
-    height: 160px;
+    height: 180px;
     padding: 34px 50px;
     border: 1px solid #ECE9E2;
     color: #000;
@@ -2937,7 +2943,7 @@ input[disabled] {
     float: left;
 }
 
-#uploadok1,#uploadok2{
+#uploadok1, #uploadok2, #uploadok3 {
     margin: 26px 14px 0px;
     display: none;
     float: left;
@@ -3216,4 +3222,25 @@ input[disabled] {
 #isover{
     margin-left: 16px;
     color: #FD8F6A;
+}
+
+#organregform .attendok {
+    height: 200px;
+    color: #333;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+#organregform .attendok a {
+    color: #00B98D;
+    margin: 0px;
+}
+
+#organregform .attendok span {
+    color: #FD8F6A;
+    margin: 0px;
+}
+
+#organregform .selectadd {
+    margin-left: 0px;
 }

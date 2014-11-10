@@ -29,7 +29,7 @@
                     <label class="control-label">真实姓名</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.name }}"/>
+                        <input type="text" class="form-control" value="{{ order.name }}" readonly/>
 
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <label class="control-label">年龄</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.age }}"/>
+                        <input type="text" class="form-control" value="{{ order.age }}" readonly/>
 
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <label class="control-label">联系电话</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.mobile }}"/>
+                        <input type="text" class="form-control" value="{{ order.mobile }}" readonly/>
 
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <label class="control-label">电子邮箱</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value=""/>
+                        <input type="text" class="form-control" value="" placeholder="请输入你的电子邮箱"/>
 
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <label class="control-label">课程名称</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ course.name }}"/>
+                        <input type="text" class="form-control" value="{{ course.name }}" readonly/>
 
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <label class="control-label">试听时间</label>
 
                     <div class="controls">
-                        <input type="text" class="form-control" value="{{ order.get_time() }}"/>
+                        <input type="text" class="form-control" value="{{ order.get_time() }}" readonly/>
 
                     </div>
                 </div>
