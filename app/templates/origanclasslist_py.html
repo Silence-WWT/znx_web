@@ -24,7 +24,7 @@
             <ul class="unstyled" id="actlistul">
                 {% for course in courses %}
                 <li>
-                    <div class="actleft"><a href="{{ url_for('course.home', id=course.id) }}"><img src="{{ url_for('static', filename='images/actpic.png') }}"/></a></div>
+                    <div class="actleft"><a href="{{ url_for('course.home', id=course.id) }}"><img src="{{ course.photo|picture }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>

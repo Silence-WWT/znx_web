@@ -281,7 +281,23 @@ class ActivityForm(Form):
         self.location = Location.query.all()
         self.ages.choices = [(t.id, t.age)
                              for t in Age.query.all()]
+    def save_pic(self):
+        path = current_app.config['PHOTO_DIR']
+        org_id = current_user.id
+        relative_path = generate_dir_path(org_id)
+        dir_path = os.path.join(path, relative_path)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+
+        ext = self.photo.data.filename.rsplit('.', 1)[-1]
+        photo = uuid4().hex + '.' + ext
+        file_path = os.path.join(dir_path, photo)
+        self.photo.data.save(file_path)
+
+        return os.path.join(relative_path, photo)
+
     def create_activity(self):
+        pic = self.save_pic()
         activity = Activity(organization_id=current_user.id,
                             name=self.name.data,
                             price=self.price.data,
@@ -296,7 +312,8 @@ class ActivityForm(Form):
                             landmark=self.landmark.data,
                             traffic=self.traffic.data,
                             contract_phone=self.contact_phone.data,
-                            detail=self.detail.data)
+                            detail=self.detail.data,
+                            photo=pic)
         db.session.add(activity)
         db.session.commit()
         for age_id in self.ages.data:
@@ -319,6 +336,7 @@ class ActivityForm(Form):
         self.detail.data = activity.detail
 
     def update_activity(self, activity_id):
+        pic = self.save_pic()
         activity = Activity.query.get_or_404(activity_id)
         activity.name = self.name.data
         activity.price = self.price.data
@@ -333,6 +351,7 @@ class ActivityForm(Form):
         activity.traffic = self.traffic.data
         activity.contract_phone = self.contact_phone.data
         activity.detail = self.detail.data
+        activity.photo = pic
         return activity
 
 class CommentForm(Form):

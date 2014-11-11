@@ -246,7 +246,7 @@ def add_activity():
     form.create_choices()
     if form.validate_on_submit():
         form.create_activity()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.activity_list'))
     return render_template('origanactadd_py.html', form=form)
 
 

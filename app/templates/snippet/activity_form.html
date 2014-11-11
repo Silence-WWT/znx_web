@@ -1,5 +1,5 @@
 {% from 'snippet/field_error.html' import field_errors %}
-<form class="form-horizontal" method="post">
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="control-group">
         <label class="control-label"><i class="form-required"></i>活动名称</label>
@@ -13,7 +13,8 @@
 
         <div class="controls">
 
-            <input type="file" class="form-control" name="activitypic"><span>上传256px*144px大小的活动图片</span>
+            {{ form.photo(class="form-control")}}<span>上传256px*144px大小的课程图片</span>
+            <span class="inputwrong">{{ field_errors(form.photo) }}</span>
         </div>
     </div>
     <div class="control-group">
