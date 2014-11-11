@@ -212,6 +212,7 @@ def edit_course(id):
         class_times = ClassTime.query.filter_by(class_id=id).all()
         for class_time in class_times:
             db.session.delete(class_time)
+        db.session.flush()
         for time_id in course_form.class_time.data:
             class_time = ClassTime(class_id=course.id, time_id=time_id)
             db.session.add(class_time)
@@ -219,6 +220,7 @@ def edit_course(id):
         class_ages = ClassAge.query.filter_by(class_id=id).all()
         for class_age in class_ages:
             db.session.delete(class_age)
+        db.session.flush()
         for age_id in course_form.ages.data:
             class_age = ClassAge(class_id=course.id, age_id=age_id)
             db.session.add(class_age)
@@ -264,7 +266,7 @@ def edit_activity(id):
         activity_ages = ActivityAge.query.filter_by(activity_id=id).all()
         for activity_age in activity_ages:
             db.session.delete(activity_age)
-        db.session.commit()
+        db.session.flush()
         for age_id in activity_form.ages.data:
             activity_age = ActivityAge(activity_id=id, age_id=age_id)
             db.session.add(activity_age)

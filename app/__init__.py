@@ -6,9 +6,11 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.mail import Mail
 from flask.ext.rq import RQ
 from flask.ext.principal import Principal
+from flask.ext.admin import Admin
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
 from .permission import config_identity
+
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
@@ -19,6 +21,7 @@ login_manager = LoginManager()
 debug_tool_bar = DebugToolbarExtension()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'main.login'
+admin = Admin()
 
 
 def create_app(config_name):
@@ -32,6 +35,7 @@ def create_app(config_name):
     login_manager.init_app(app)
     debug_tool_bar.init_app(app)
     principal.init_app(app)
+    admin.init_app(app)
 
     config_identity(app)
     from .filter import stars, sex, get_date_time, anonymous_mobile, \
@@ -76,7 +80,7 @@ def create_app(config_name):
     app.register_blueprint(char_blueprint, url_prefix='/chat')
 
     from .admin import admin as admin_blueprint
-    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    app.register_blueprint(admin_blueprint, url_prefix='/znx_admin')
 
     from utils import hook
     app.context_processor(hook.cities)
