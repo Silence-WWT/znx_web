@@ -197,6 +197,7 @@ def delete_course(id):
     db.session.commit()
     return redirect(url_for('org.course_list'))
 
+
 @org.route('/course/edit/<int:id>', methods=['GET', 'POST'])
 @org_permission.require()
 def edit_course(id):

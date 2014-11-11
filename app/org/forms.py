@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import uuid
+import os
 import time
+from uuid import uuid4
 from datetime import datetime
+from flask import current_app
 from flask.ext.wtf import Form
 from wtforms import StringField, PasswordField, SelectField,\
     SelectMultipleField, TextAreaField, BooleanField, RadioField, \
@@ -16,6 +18,7 @@ from ..models import Organization, Age, Class, Activity, OrganizationComment,\
 from flask.ext.login import current_user
 from ..utils.validator import Captcha
 from ..utils.query import select_multi_checkbox
+from ..utils.validator import generate_dir_path
 
 
 class RegistrationForm(Form):
@@ -162,6 +165,10 @@ class CourseForm(Form):
                                      validators=[DataRequired(u'至少选一项')],
                                      coerce=int,
                                      widget=select_multi_checkbox)
+
+    photo = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
+
     ages = SelectMultipleField('ages',
                                validators=[DataRequired(u'至少选一项')],
                                coerce=int,
@@ -173,9 +180,25 @@ class CourseForm(Form):
         self.class_time.choices = [(time.id, time.time)
                                    for time in Time.query.all()]
 
+    def save_pic(self):
+        path = current_app.config['PHOTO_DIR']
+        org_id = current_user.id
+        relative_path = generate_dir_path(org_id)
+        dir_path = os.path.join(path, relative_path)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+
+        ext = self.photo.data.filename.rsplit('.', 1)[-1]
+        photo = uuid4().hex + '.' + ext
+        file_path = os.path.join(dir_path, photo)
+        self.photo.data.save(file_path)
+
+        return os.path.join(relative_path, photo)
+
     def create_course(self):
         # TODO: check is org not user.
         # TODO: class time.
+        pic = self.save_pic()
         course = Class(organization_id=current_user.id,
                        name=self.name.data,
                        price=self.price.data,
@@ -184,7 +207,8 @@ class CourseForm(Form):
                        is_round=bool(self.is_round.data),
                        days=self.days.data,
                        detail=self.detail.data,
-                       created=time.time())
+                       created=time.time(),
+                       photo=pic)
         db.session.add(course)
         db.session.commit()
 
@@ -209,8 +233,11 @@ class CourseForm(Form):
 
         class_ages = ClassAge.query.filter_by(class_id=class_id).all()
         self.ages.data = [age.age_id for age in class_ages]
+        class_times = ClassTime.query.filter_by(class_id=class_id).all()
+        self.class_time.data = [time.time_id for time in class_times]
 
     def update_course(self, class_id):
+        pic = self.save_pic()
         course = Class.query.get_or_404(class_id)
         course.name = self.name.data
         course.price = self.price.data
@@ -219,12 +246,15 @@ class CourseForm(Form):
         course.is_round = bool(self.is_round.data)
         course.days = self.days.data
         course.detail = self.detail.data
+        course.photo = pic
         return course
 
 
 class ActivityForm(Form):
     name = StringField('name', validators=[DataRequired(u'必填'),
                                            Length(1, 30, u'30字符以内')])
+    photo = FileField(validators=[
+        FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
     price = StringField('prince')
     start_time = DateTimeField('start_time', format='%Y/%m/%d %H:%M')
     end_time = DateTimeField('end_time', format='%Y/%m/%d %H:%M')
