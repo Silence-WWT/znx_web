@@ -62,7 +62,9 @@
                 {% for register in registers %}
                 <li>
                     <h5>{{ register.need }}</h5>
-                   <p><span class="regname">{{ register.name|anonymous_name }}</span><span class="regmob">{{ register.mobile|anonymous_mobile }}</span><span class="regtime">{{ register.get_date() }}</span></p>
+
+                    <p><span class="regname">{{ register.name|anonymous_name }}</span><span class="regmob">{{ register.mobile|anonymous_mobile }}</span><span
+                            class="regtime">{{ register.get_date() }}</span></p>
                 </li>
                 {% endfor %}
             </ul>
@@ -84,13 +86,15 @@
             <li>
                 <div class="floorpic">
                     <a href="{{ url_for('org.home', id=org.id) }}">
-                        <img src="{{ org.photo|picture }}" onerror="javascript:this.src='{{ url_for('static', filename='images/footerlogo.png') }}'">
+                        <img src="{{ org.photo|picture }}"
+                             onerror="javascript:this.src='{{ url_for('static', filename='images/footerlogo.png') }}'">
                     </a>
                 </div>
                 <div class="floordec">
                     <span><a href="{{ url_for('org.home', id=org.id) }}">{{ org.name|truncate(12, true) }}</a></span>
 
-                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ org.location }}</address>
+                    <address><img src="{{ url_for('static', filename='images/place.png') }}">{{ org.location }}
+                    </address>
 
                 </div>
             </li>
@@ -98,7 +102,7 @@
         </ul>
     </div>
 </div>
-    {% endfor %}
+{% endfor %}
 <div id="floorp">
     <div class="container">
 
@@ -114,7 +118,7 @@
                     <div class="stepcont">
                         <span>1、搜索机构</span>
 
-                        <p>  在种类丰富的培训机构中，你可以按照多种条件进行筛选（如区域类型、类型），找到心仪的机构。众多机构，总有适合你的。</p>
+                        <p> 在种类丰富的培训机构中，你可以按照多种条件进行筛选（如区域类型、类型），找到心仪的机构。众多机构，总有适合你的。</p>
                     </div>
                 </div>
                 <div class="arrstep">
@@ -147,7 +151,7 @@
                     <div class="stepcont">
                         <span>3、预约报名</span>
 
-                        <p>  对于满意的课程、活动，用户可以在平台上进行预约报名，我们第一时间把您的需求递交给机构，让您获得最快的反馈。</p>
+                        <p> 对于满意的课程、活动，用户可以在平台上进行预约报名，我们第一时间把您的需求递交给机构，让您获得最快的反馈。</p>
                     </div>
                 </div>
                 <div class="arrstep">
@@ -182,8 +186,41 @@
             return false;
         })
     })
-    $(function(){
+    $(function () {
         $("#navbar ul.nav li:first-child").addClass('act');
     })
+    $(document).ready(function () {
+        var locacity = $.trim($("#locacity").text());
+        var strCookie = document.cookie;
+        var arrCookie = strCookie.split("; ");
+        var cityname;
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            if ("cityname" == arr[0]) {
+                cityname = arr[1];
+                break;
+            }
+        }
+        //alert(locacity);
+        if (cityname != locacity) {
+            //  alert("da");
+            //  alert("da");
+            jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
+                // alert("province : "+remote_ip_info.province+", city : "+remote_ip_info.city);
+                var nowcityname = remote_ip_info.city;
+                // var nowcityname = "深圳";
+                document.cookie = "cityname=" + nowcityname;
+                var citylen = $("#citylist li").length;
+                $("#citylist li").each(function (index) {
+                    if ($(this).children().text() == nowcityname) {
+                        location.href = $(this).children().attr('href');
+                    }
+                })
+            });
+        }
+        else {
+            return false;
+        }
+    });
 </script>
 {% endblock inscript %}

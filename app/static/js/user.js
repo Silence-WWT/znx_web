@@ -384,7 +384,7 @@ $(function () {
             $(this).next().text('');
 
         }else {
-            $(this).next().text('请输入联系电话');
+            $(this).next().text('请输入正确长度联系人');
         }
 
     });

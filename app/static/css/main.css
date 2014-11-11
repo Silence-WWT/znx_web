@@ -1245,7 +1245,7 @@ body {
 }
 
 #myorgan .headdes .organknown .lastspan {
-    margin: 0px 0px;
+    margin: 15px 0px;
     float: left;
     font-size: 12px;
     color: #000;
@@ -1253,7 +1253,7 @@ body {
 
 #myorgan > div > div.headdes > div.organtotal > ul > li.organknown {
     FLOAT: left;
-    margin: 6px -30px;
+    margin: 6px -16px;
     padding-right: 50px;
 }
 
@@ -2746,6 +2746,7 @@ input[disabled] {
 #tab1 > ul > li > div.seledet > h3 > img, #tab2 > ul > li > div.seledet > h3 > img,
 #tab3 > ul > li > div.seledet > h3 > img, #tab4 > ul > li > div.seledet > h3 > img {
     float: right;
+    display: none;
 }
 
 #tab1 > ul > li > div.seledet > h3 > span, #tab2 > ul > li > div.seledet > h3 > span,
