@@ -70,8 +70,9 @@ def send_sms():
     # TODO: return 200 401
     mobile = request.values.get('mobile', '', type=str)
     if mobile:
-        send_captcha('org', mobile)
-    return 'ok', 200
+        if send_captcha('org', mobile):
+            return 'ok', 200
+    return 'false', 401
 
 @org.route('/detail', methods=['GET', 'POST'])
 @org_permission.require()
