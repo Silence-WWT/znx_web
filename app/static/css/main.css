@@ -2237,7 +2237,7 @@ body {
     font-size: 20px;
     height: 24px;
     line-height: 24px;
-    margin: 0px 332px;
+    margin: 0 256px;
 }
 
 #myuser > div.myuserright .orderinfo {
@@ -3035,9 +3035,21 @@ input[disabled] {
 }
 #myactset #ages {
     margin: 5px 3px;
+    width: 435px;
 }
+
+#myclassset #ages {
+    width: 435px;
+    float: left;
+    margin-left: 4px;
+}
+
 #myactset #ages label{
-    margin-right: 5px;
+    margin-right: 24px;
+}
+
+#myactset #ages .checkbox {
+    margin-left: 0px;
 }
 #myactset #category_id{
 

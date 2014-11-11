@@ -52,7 +52,12 @@
                     </div>
                 </li>
                 {% else %}
-                    暂无 {{ url_for('org.add_activity') }}
+                <div class="orderinfo">
+                    <span class="noorder"><img
+                            src="{{ url_for('static', filename='images/noorder.png') }}">
+                        机构暂时还没有添加活动,赶紧去<a href=" {{ url_for('org.add_activity') }}">添加</a>把!</span>
+                </div>
+
                 {% endfor %}
             </ul>
         </div>
