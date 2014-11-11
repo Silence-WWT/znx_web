@@ -38,9 +38,10 @@
                                     <a href="{{ url_for('org.edit_activity', id=activity.id) }}">
                                         <button class="btn-edit">编辑</button>
                                     </a>
-                                    <a class="deleclass"  href="{{ url_for('org.delete_activity', id=activity.id) }}" onClick="return confirm('关闭活动吗？')">
-                                        <button class="btn-det">关闭</button>
-                                    </a>
+                                <a class="deleclass" href="{{ url_for('org.delete_activity', id=activity.id) }}"
+                                   onClick="return confirm('确定删除该活动订单？')">
+                                    <button class="btn-det">关闭</button>
+                                </a>
                                 {% endif %}
                             </div>
                         </div>

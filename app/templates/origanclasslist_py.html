@@ -36,7 +36,8 @@
                                 <a href="{{ url_for('org.edit_course', id=course.id) }}">
                                     <button class="btn-edit">编辑</button>
                                 </a>
-                                <a class="deleclass"  href="{{ url_for('org.delete_course', id=course.id) }}" onClick="return confirm('关闭课程吗？')">
+                                <a class="deleclass" href="{{ url_for('org.delete_course', id=course.id) }}"
+                                   onClick="return confirm('确定删除该课程订单？')">
                                     <button class="btn-det">关闭</button>
                                 </a>
                                 {% endif %}
