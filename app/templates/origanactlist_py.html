@@ -51,6 +51,8 @@
                         <p>{{ activity.detail|safe |truncate(180, true) }}</p>
                     </div>
                 </li>
+                {% else %}
+                    暂无 {{ url_for('org.add_activity') }}
                 {% endfor %}
             </ul>
         </div>

@@ -264,6 +264,7 @@ def edit_activity(id):
         activity_ages = ActivityAge.query.filter_by(activity_id=id).all()
         for activity_age in activity_ages:
             db.session.delete(activity_age)
+        db.session.commit()
         for age_id in activity_form.ages.data:
             activity_age = ActivityAge(activity_id=id, age_id=age_id)
             db.session.add(activity_age)

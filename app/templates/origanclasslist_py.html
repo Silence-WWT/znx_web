@@ -50,6 +50,8 @@
                         <p>{{ course.detail|safe |truncate(180, true) }}</p>
                     </div>
                 </li>
+                    {% else %}
+                    暂无课程  {{ url_for('org.add_course') }}
                 {% endfor %}
             </ul>
         </div>
