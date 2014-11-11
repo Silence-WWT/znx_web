@@ -71,7 +71,7 @@ def class_sign_up():
     taste_time = request.args.get('time')
 
     class_ = Class.query.get(class_id)
-    if class_ and name and address and age and mobile and sex and taste_time and email:
+    if class_ and name and address and age and mobile and sex and taste_time:
         class_.get_org().add_orders()
         unified = get_unified(user_id, uuid)
         class_order = ClassOrder(
