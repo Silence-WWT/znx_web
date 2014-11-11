@@ -41,34 +41,33 @@ def organization_filter():
     if name:
         org_query = org_query.filter(Organization.name.like(u'%' + name + u'%'))
 
-    if city and district and not distance and not name:
+    if city and district and district != u'all' and not distance and not name:
         location = Location.query.filter_by(city_id=city.id, district=district).limit(1).first()
         if location:
-            org_list = org_query.filter_by(location_id=location.id)
+            org_query = org_query.filter_by(location_id=location.id)
         else:
             data['status'] = CITY_NOT_EXIST
             return json.dumps(data)
-    elif profession and not name:
+
+    if profession and profession != u'all' and not name:
         profession = Profession.query.filter_by(profession=profession).limit(1).first()
         if profession:
             location_list = Location.query.filter_by(city_id=city.id)
             location_id_list = [location.id for location in location_list]
             organization_profession_list = OrganizationProfession.query.filter_by(profession_id=profession.id)
             organization_id_list = [org_profession.organization_id for org_profession in organization_profession_list]
-            org_list = org_query.filter(Organization.id.in_(organization_id_list),
-                                        Organization.location_id.in_(location_id_list))
+            org_query = org_query.filter(Organization.id.in_(organization_id_list),
+                                         Organization.location_id.in_(location_id_list))
         else:
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
-    else:
-        org_list = org_query
 
     if distance:
         cmp_list = [(org, longitude, latitude) for org in org_query]
         org_list = paginate(sorted(cmp_list, cmp=cmp_distance), page)
         org_list = [org[0] for org in org_list]
     else:
-        org_list = org_list.paginate(page, PER_PAGE, False).items
+        org_list = org_query.paginate(page, PER_PAGE, False).items
 
     for org in org_list:
         org.page_view_inc()
