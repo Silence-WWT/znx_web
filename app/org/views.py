@@ -17,6 +17,7 @@ from flask import redirect, url_for, render_template,\
 from ..utils.query import get_location
 from ..permission import org_permission, anonymous_permission, user_permission
 from ..utils.captcha import send_captcha
+from ..utils.validator import generate_dir_path
 
 
 @org.route('/login', methods=['POST'])
@@ -105,18 +106,30 @@ def certification():
         #           'auth/mail/confirm', user=user)
         #flash('A confirmation email has been sent to you by email.')
         path = current_app.config['PHOTO_DIR']
+        org_id = current_user.id
+        relative_path = generate_dir_path(org_id)
+        dir_path = os.path.join(path, relative_path)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
 
         ext = form.certification.data.filename.rsplit('.', 1)[-1]
         certification = uuid4().hex + '.' + ext
-        file_path = os.path.join(path, certification)
+        file_path = os.path.join(dir_path, certification)
         form.certification.data.save(file_path)
 
         ext = form.photo.data.filename.rsplit('.', 1)[-1]
         photo = uuid4().hex + '.' + ext
-        file_path = os.path.join(path, photo)
+        file_path = os.path.join(dir_path, photo)
         form.photo.data.save(file_path)
-        current_user.authorization = certification
-        current_user.photo = photo
+
+        ext = form.logo.data.filename.rsplit('.', 1)[-1]
+        logo = uuid4().hex + '.' + ext
+        file_path = os.path.join(dir_path, logo)
+        form.logo.data.save(file_path)
+
+        current_user.authorization = os.path.join(relative_path, certification)
+        current_user.photo = os.path.join(relative_path, photo)
+        current_user.logo = os.path.join(relative_path, logo)
         db.session.add(current_user)
         db.session.commit()
         return redirect(url_for('org.course_list'))

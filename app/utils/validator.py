@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # TODO: mobile unicode 验证码 timefield: convert str time to epoch time.
 import redis
+import hashlib
+from uuid import uuid4
 from wtforms import Field
 from wtforms.validators import ValidationError, Email
 
@@ -28,3 +30,6 @@ class EmptyEmail(Email):
     def __call__(self, form, field):
         if field.data:
             super(EmptyEmail, self).__call__(form, field)
+
+def generate_dir_path(org_id):
+    return '%s/jigou_%s/' % (org_id%100, hashlib.sha1(str(org_id)).hexdigest())

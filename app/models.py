@@ -206,7 +206,7 @@ class Organization(UserMixin, db.Model):
     # 地址 100 Unicode
     address = db.Column(db.Unicode(100), default=u'', nullable=False)
     # 执照照片
-    authorization = db.Column(db.CHAR(36), default='', nullable=False)
+    authorization = db.Column(db.String(255), default='', nullable=False)
     # 门店照片
     photo = db.Column(db.String(255), default='', nullable=False)
     # LOGO照片
