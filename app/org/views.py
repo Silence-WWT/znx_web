@@ -301,11 +301,11 @@ def order_list():
     id = current_user.id
     class_orders = ClassOrder.query.filter(ClassOrder.class_id.in_(
         db.session.query(Class.id).filter(Class.organization_id==id)
-    ))
+    )).all()
 
     activity_orders = ActivityOrder.query.filter(ActivityOrder.activity_id.in_(
         db.session.query(Activity.id).filter(Activity.organization_id==id)
-    ))
+    )).all()
     return render_template('origanorderlist_py.html', class_orders=class_orders,
                            activity_orders=activity_orders)
 

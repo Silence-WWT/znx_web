@@ -334,6 +334,8 @@ class ActivityForm(Form):
         self.traffic.data = activity.traffic
         self.contact_phone.data = activity.contract_phone
         self.detail.data = activity.detail
+        activity_ages = ActivityAge.query.filter_by(activity_id=activity_id).all()
+        self.ages.data = [age.age_id for age in activity_ages]
 
     def update_activity(self, activity_id):
         pic = self.save_pic()
