@@ -2233,6 +2233,24 @@ body {
     border: 1px solid #F0F0F0;
 }
 
+#myuser > div.myuserright .noorder {
+    font-size: 20px;
+    height: 24px;
+    line-height: 24px;
+    margin: 0px 332px;
+}
+
+#myuser > div.myuserright .orderinfo {
+    margin-bottom: 100px;
+    margin-top: 50px;
+}
+
+#myuser > div.myuserright .noorder img {
+    margin: -1px 4px 0px;
+
+    height: 20px;
+}
+
 #myuser > div.myuserright > h3 {
     background: none repeat scroll 0% 0% #F0F0F0;
     margin-top: 0px;
