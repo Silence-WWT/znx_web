@@ -22,7 +22,7 @@
             <label class="control-label"><i class="form-required"></i>用户名</label>
 
             <div class="controls">
-                {{ form.username(class="form-control", placeholder="请输入用户名", id="username") }}
+                {{ form.username(class="form-control", placeholder="长度为4到64位的用户名,中文占2位", id="username") }}
                 <span>{{ helper.field_errors(form.username) }}</span>
                 <input type="hidden" value="{{ url_for('user.account') }}" id="userurl"/>
                 <input type="hidden" value="" id="userstatus"/>
@@ -32,7 +32,7 @@
             <label class="control-label"><i class="form-required"></i>手机号</label>
 
             <div class="controls">
-                {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入有效手机号") }}
+                {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入11位的手机号") }}
                 <span>{{ helper.field_errors(form.cellphone) }}</span>
                 <input type="hidden" value="" id="cellphonestatus"/>
             </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputEmail">邮箱</label>
+            <label class="control-label">邮箱</label>
 
             <div class="controls">
                 {{ form.email(id="inputemail", class="form-control") }}

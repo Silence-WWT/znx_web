@@ -28,7 +28,7 @@
                     <label class="control-label" for="{{ form.cellphone.id }}"><i class="form-required"></i>手机号</label>
 
                     <div class="controls">
-                        {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入有效手机号") }}
+                        {{ form.cellphone(id="cellphone", class="form-control", placeholder="请输入11位手机号") }}
                         <span>{{ helper.field_errors(form.cellphone) }}</span>
                         <input type="hidden" value="" id="cellphonestatus"/>
                         <input type="hidden" value="{{ url_for('org.account') }}" id="userurl"/>

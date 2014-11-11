@@ -52,8 +52,8 @@ $(function () {
     }).blur(function () {
         var username = $(this).val();
         var userurl = $("#userurl").val();
-        var usernameok = username.replace(/[^\x00-\xff]/g, "rrr").length;
-        if (usernameok >= 6 && usernameok <= 64) {
+        var usernameok = username.replace(/[^\x00-\xff]/g, "rr").length;
+        if (usernameok >= 4 && usernameok <= 64) {
             $.ajax({
                 type: "POST", //用POST方式传输
                 dataType: "text", //数据格式:JSON
@@ -372,7 +372,7 @@ $(function () {
             $(this).next().text('机构名不能为空');
         }
         else {
-            $(this).next().text('请输入长度为2到30位的机构名称');
+            $(this).next().text('请输入长度为1到30位的机构名称');
         }
 
     });
