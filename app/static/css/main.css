@@ -1613,6 +1613,10 @@ body {
     float: right;
 }
 
+#organclass ul li .classright {
+    margin-top: 30px;
+}
+
 #organclass ul li .classleft img, #organclass ul li .classleft span, #organplay ul li .classleft img, #organplay ul li .classleft span {
     float: left;
 }
@@ -1654,13 +1658,13 @@ body {
     line-height: 30px;
     height: 30px;
     width: 320px;
-    margin: -72px 0px 0px;
+    margin: -100px 0 0;
     text-align: center;
 }
 
 #organclass ul li .classright a, #organplay ul li .classright a {
     display: block;
-    margin-top: -20px;
+    margin-top: -60px;
     text-align: center;
     width: 320px;
 }
