@@ -166,7 +166,7 @@ class CourseForm(Form):
                                      coerce=int,
                                      widget=select_multi_checkbox)
 
-    photo = FileField(validators=[
+    photo = FileField('photo', validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
 
     ages = SelectMultipleField('ages',

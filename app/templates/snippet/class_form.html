@@ -14,7 +14,8 @@
 
         <div class="controls">
 
-            {{ form.photo(class="form-control", name="classpic")}}<span>上传256px*144px大小的课程图片</span>
+            <input type="file" class="form-control" name="photo"><span>上传256px*144px大小的课程图片</span>
+            <span class="inputwrong">{{ field_errors(form.photo) }}</span>
         </div>
     </div>
     <div class="control-group">
