@@ -968,6 +968,11 @@ body {
 #floor1 ul.inline > li a,#floor3 ul.inline > li a,#floor3 ul.inline > li a {
     display: block;
 }
+
+#floor1 ul.inline > li a:hover, #floor3 ul.inline > li a:hover, #floor3 ul.inline > li a:hover {
+    color: #00B98D;
+}
+
 #floor1 .floorpic a img,#floor2 .floorpic a img,#floor3 .floorpic a img{
     width: 273px;
     height: 182px;
