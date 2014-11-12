@@ -7,7 +7,7 @@
         </div>
         <div class="city">
             <div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                {{ session['city_id']|city }}
+                {{ session.get('city_id', 2)|city }}
                 <span class="caret"></span>
             </a>
                 <ul class="dropdown-menu" id="citylist">
