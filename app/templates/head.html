@@ -10,7 +10,6 @@
                 {{ session['city_id']|city }}
                 <span class="caret"></span>
             </a>
-
                 <ul class="dropdown-menu" id="citylist">
                     {% for city in cities %}
                         <li><a href="{{ url_for('main.change_city', city_id=city.id) }}">
@@ -25,7 +24,7 @@
                 <div class="input-append">
                     <input class="search"  id="searchiput"  placeholder="搜索你要找的培训机构" type="search"
                            name="name">
-                    <button type="submit" class="btn btn-success" id="searchbtn">搜索</button>
+                    <button type="submit" class="btn btn-success" id="searchbtn">搜 索</button>
                 </div>
             </form>
             <ul id="searchkey" class="inline unstyled">
@@ -43,6 +42,5 @@
             </a>
         </div>
     </div>
-
 </div>
 <hr class="longhr"/>

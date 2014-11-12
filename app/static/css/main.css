@@ -219,6 +219,7 @@ body {
     border: 0px;
     box-shadow: none;
     font-family: '微软雅黑';
+    text-shadow: none;
 }
 
 #searchkey a {
@@ -1946,10 +1947,15 @@ body {
     border: 1px solid #fff;
     width: 120px;
     text-align: center;
+
 }
 
 #myCarousel li.active {
-    border: 1px solid #fff;
+    border: 0px solid #00B98D;
+}
+
+#myCarousel .carousel-indicators {
+    cursor: pointer;
 }
 
 #myCarousel .anothercar {

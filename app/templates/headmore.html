@@ -10,7 +10,6 @@
                 session.get('city_id', 2)|city }}<span class="caret1"><img
                         src="{{ url_for('static', filename='images/citybtn.png') }}"/> </span>
             </a>
-
                 <ul class="dropdown-menu" id="citylist">
                     {% for city in cities %}
                         <li><a href="{{ url_for('main.change_city', city_id=city.id) }}">{{ city.city }}</a>
@@ -24,7 +23,7 @@
                 <div class="input-append">
                     <input class="search"  id="searchiput"  placeholder="搜索你要找的培训机构" type="search"
                             name="name">
-                    <button type="submit" class="btn btn-success" id="searchbtn">搜索</button>
+                    <button type="submit" class="btn btn-success" id="searchbtn">搜 索</button>
                 </div>
             </form>
             <ul id="searchkey" class="inline unstyled">
@@ -46,7 +45,6 @@
         <div class="nocolor"><a class="brand span3" href="#" id="navorgan">培训机构
             <i class="icon-chevron-down icon-white" id="iconcheck"></i>
         </a>
-
             <div id="indexcontent">
                 <div class="row">
                     <div class="span3 catalog" id="allnav" >
