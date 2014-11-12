@@ -41,6 +41,10 @@ input:-webkit-autofill,input:-webkit-autofill:focus{
     color: #00B98D;
 }
 
+button {
+    font-family: "微软雅黑";
+}
+
 .nocolor {
     background: #fff;
     border: 0;
@@ -419,7 +423,7 @@ body {
 }
 
 #indexcontent .catalog dl {
-    border-bottom: 1px dotted #999;
+    border-bottom: 1px dotted #AAAAAA;
     float: left;
     width: 100%;
 }
@@ -748,6 +752,14 @@ body {
     margin-left: 0px;
 }
 
+.btn-look {
+    padding: 10px 42px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 170px;
+}
+
 #twologin ul li a {
     width: 162px;
     padding: 0px;
@@ -984,7 +996,7 @@ body {
 #floor1 ul.inline > li .floordec span a,#floor2 ul.inline > li .floordec span a,#floor3 ul.inline > li .floordec span a
 
 {
-    color:#333;
+    color: #000;
     margin-bottom: 10px;
 }
 
@@ -1006,7 +1018,7 @@ body {
 }
 
 #floor1 ul.inline > li .floordec address ,#floor2 ul.inline > li .floordec address ,#floor3 ul.inline > li .floordec address {
-    color: #000;
+    color: #727272;
     margin-top: 5px;
 }
 
@@ -1060,7 +1072,7 @@ body {
 
 #floorp ul.inline > li .picstep p {
     margin-top: 15px;
-    color: #000;
+    color: #727272;
     text-align: left;
 }
 
@@ -1265,7 +1277,8 @@ body {
     line-height: 20px;
     color: #727272;
 }
-#myorgan .headdes .organmoredec .icon-eye-open{
+
+.icon-eye-open {
     margin-left: 5px;
     background: url("../images/organview.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     height: 12px;
@@ -1273,14 +1286,14 @@ body {
     margin-top: 6px;
 }
 
-#myorgan .headdes .organmoredec .icon-comment {
+.icon-comment {
     background: url("../images/organtest.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     height: 15px;
     width: 16px;
     margin-left: 10px;
 }
 
-#myorgan .headdes .organmoredec .icon-map-marker {
+.icon-map-marker {
     background: url("../images/organplace.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
     height: 19px;
     width: 14px;
@@ -1564,16 +1577,45 @@ body {
     text-indent: 0;
 }
 
-.threesmall span.organcall i.icon-phone {
+i.icon-phone {
     background: url("../images/icon-phone.png");
     height: 22px;
     margin: -2px 0px;
     width: 22px;
 }
-
 #usercomment1 .popover-content .commentin .commenttime {
     float: right;
     margin-right: 34px;
+}
+
+#tab1 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
+#tab2 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
+#tab3 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
+#tab4 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open {
+    margin: 6px 4px 0 5px;
+}
+
+#tab1 > ul > li > div.selectscore > ul > li > span > b,
+#tab2 > ul > li > div.selectscore > ul > li > span > b,
+#tab3 > ul > li > div.selectscore > ul > li > span > b,
+#tab4 > ul > li > div.selectscore > ul > li > span > b {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+#tab1 > ul > li > div.selectscore > ul > li > span > i.icon-phone,
+#tab2 > ul > li > div.selectscore > ul > li > span > i.icon-phone,
+#tab3 > ul > li > div.selectscore > ul > li > span > i.icon-phone,
+#tab4 > ul > li > div.selectscore > ul > li > span > i.icon-phone {
+    margin: -3px 4px;
+}
+
+#tab1 > ul > li > div.seledet > h3 > span a,
+#tab2 > ul > li > div.seledet > h3 > span a,
+#tab4 > ul > li > div.seledet > h3 > span a,
+#tab3 > ul > li > div.seledet > h3 > span a {
+    color: #000;
+    margin-left: 3px;
 }
 
 #icommnet {
@@ -1683,11 +1725,20 @@ body {
     height: 40px;
 }
 
+#organclass ul, #organplay ul {
+    padding: 40px 75px;
+}
+
+#organclass ul li .classleft span b, #organplay ul li .classleft span b {
+    font-weight: normal;
+}
+
 #organclass ul li, #organplay ul li {
-    padding: 22px 80px 36px;
-    border-bottom: 1px solid #DDDDDD;
-    height: 130px;
-    width: 1040px;
+
+    border-bottom: 1px solid #D6D6D6;
+    height: 168px;
+    margin-bottom: 40px;
+    padding-bottom: 1px;
 }
 #organclass ul li a img, #organplay ul li a img{
     width: 256px;
@@ -1710,9 +1761,9 @@ body {
 }
 
 #organclass ul li .classleft .classtest, #organplay ul li .classleft .classtest {
-    width: 470px;
+    width: 570px;
     float: left;
-    color: #292929;
+    color: #2a2a2a;
     margin-left: 25px;
 }
 
@@ -1745,14 +1796,42 @@ body {
     color: #00B98D;
     line-height: 30px;
     height: 30px;
-    width: 320px;
-    margin: -100px 0 0;
+    width: 160px;
+    margin: -113px 0 0;
     text-align: center;
+}
+
+.divhr {
+    margin-top: -5px;
+    border: 0px;
+    border-bottom: 1px solid #DCD4C9;
+
+}
+
+.divhr2 {
+    margin-top: -13px;
+    border: 0px;
+    border-bottom: 1px solid #DCD4C9;
+
+}
+
+.divhr3 {
+    margin-top: 9px;
+    border: 0px;
+    border-bottom: 1px solid #DCD4C9;
+
+}
+
+.divhr4 {
+    margin-top: 9px;
+    border: 0px;
+    border-bottom: 1px solid #DCD4C9;
+
 }
 
 #organclass ul li .classright a, #organplay ul li .classright a {
     display: block;
-    margin-top: -60px;
+    margin-top: -53px;
     text-align: center;
     width: 320px;
 }
@@ -1894,6 +1973,10 @@ body {
     float: left;
     margin-top: 21px;
     margin-left: 10px;
+}
+
+#organplay ul li .classright a {
+    margin-top: -74px;
 }
 
 .attendbtn {
@@ -2766,7 +2849,7 @@ input[disabled] {
 
 #origanselect > .selecttop {
     background: #fff;
-    padding: 20px 40px 60px;
+    padding: 20px 40px 40px;
     margin: 25px 0;
     border: 1px solid #ECE9E2;
 }
@@ -2791,12 +2874,12 @@ input[disabled] {
 }
 
 #origanselect > .selecttop dd ul li {
-    padding: 0 10px;
+    padding: 0px 10px 1px;
 }
 
 #origanselect > .selecttop dd ul li.active {
     background: #FD8F6A;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 #origanselect > .selecttop dd ul li.active a {
@@ -2804,12 +2887,12 @@ input[disabled] {
 }
 
 #origanselect > div.selectbottom > div.tabbable > ul.nav-tabs > li > a {
-    width: 80px;
+    width: 53px;
     padding: 15px 50px;
     text-align: center;
     cursor: pointer;
-    color: #000;
-    font-size: 18px;
+    color: #727272;
+    font-size: 16px;
     border: 0;
     outline: none;
 }
@@ -2827,7 +2910,11 @@ input[disabled] {
 }
 
 #origanselect > div.selectbottom > div > ul > li.active {
-    border-bottom: 3px solid #00B98D;
+    border-bottom: 2px solid #00b98d;
+}
+
+#origanselect > div.selectbottom > div.tabbable > ul.nav-tabs > li.active > a {
+    color: #000;
 }
 
 #selectbottom .tabbable {
@@ -2837,20 +2924,25 @@ input[disabled] {
     border: 1px solid #ECE9E2;
 }
 
+#selectul > .tab-pane > ul {
+    padding: 15px 50px 25px;
+}
+
 #selectul > .tab-pane > ul > li {
-    padding: 15px 40px 25px;
-    height: 132px;
+
+    height: 163px;
     color: #727272;
     border-bottom: 1px solid #D6D6D6;
+    margin-bottom: 20px;
 }
 
 #selectul .selepic img {
     float: left;
     margin-right: 20px;
-    max-height: 124px;
-    max-width: 124px;
-    width: 124px;
-    height: 124px;
+    max-height: 120px;
+    max-width: 120px;
+    width: 120px;
+    height: 120px;
 }
 
 #selectul .seledet {
@@ -2883,7 +2975,7 @@ input[disabled] {
 #tab1 > ul > li > div.selectscore, #tab2 > ul > li > div.selectscore, #tab3 > ul > li > div.selectscore, #tab4 > ul > li > div.selectscore {
     float: left;
     width: 568px;
-    margin: 10px -95px;
+    margin: 5px -95px 0px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span, #tab2 > ul > li > div.selectscore > ul > li > span,
@@ -2893,25 +2985,29 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab3 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,
 #tab2 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab4 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp {
-    margin: 37px 29px -40px -29px;
+    margin: 37px 29px -42px -29px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
 #tab4 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab3 > ul > li > div.selectscore > ul > li:nth-child(2) > span {
-    margin-left: 23px;
+    margin-left: 19px;
 }
 
 #tab1 > ul > li > div.seledet > span > i, #tab1 > ul > li > div.selectscore > ul > li > span > i,
 #tab2 > ul > li > div.seledet > span > i, #tab2 > ul > li > div.selectscore > ul > li > span > i,
 #tab3 > ul > li > div.seledet > span > i, #tab3 > ul > li > div.selectscore > ul > li > span > i,
 #tab4 > ul > li > div.seledet > span > i, #tab4 > ul > li > div.selectscore > ul > li > span > i {
-    margin: 4px 4px 0px;
+    margin: 0px 4px 0;
+}
+
+#selectasklearn .form-horizontal .control-group {
+    margin-bottom: 5px;
 }
 
 #origanselect > div.asklearn {
     float: left;
-    width: 384px;
-    margin-left: 30px;
+    width: 391px;
+    margin-left: 24px;
     border: 1px solid #ECE9E2;
     color: #727272;
 
@@ -2925,9 +3021,9 @@ input[disabled] {
     color: #fff;
     background: #00B98D;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0px;
-    padding-left: 20px;
+    padding-left: 25px;
 }
 
 #selectasklearn .control-label {
@@ -2937,27 +3033,43 @@ input[disabled] {
 }
 
 #selectasklearn .form-control-more, #selectasklearn .form-control, #selectasklearn .form-textarea {
-    width: 180px;
+    width: 227px;
     float: left;
     margin-left: 10px;
+    resize: none;
+}
+
+#selectasklearn .form-textarea {
+    margin-top: 10px;
 }
 
 #selectasklearn .form-horizontal .controls {
     margin-left: 100px;
 }
 
+#selectasklearn .form-horizontal .wanttolearn {
+    margin-top: 15px;
+}
+
+#selectasklearn .form-horizontal {
+    margin-top: -15px;
+}
+
 #selectasklearn .form-control-more {
     height: 32px;
-    width: 195px;
+    width: 240px;
     font-size: 14px;
+    margin-bottom: 5px;
 
 }
 
 #selectasklearn .seleaskbtn {
-    margin: -4px 10px;
-    height: 40px;
-    width: 200px;
+    margin: 26px 10px 20px;
+    height: 50px;
+    width: 240px;
     border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 #selectul .myselectlist {

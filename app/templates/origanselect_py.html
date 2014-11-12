@@ -31,6 +31,7 @@
             </ul>
         </dd>
     </dl>
+    <hr class="divhr4">
 </div>
 
 <div class="selectbottom" id="selectbottom">
@@ -72,9 +73,12 @@
 
                                     </div>
                                 </li>
-                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：{{ org.page_view }}</span></li>
-                                <li><span class="organtalk"><i class="icon-comment"></i>评论：{{ org.comment_count }}</span><br/></li>
-                                <li><span class="organtalk"><i class="icon-plus"></i>报名：{{ org.orders }}</span><br/>
+                                <li><span class="organview"><i class="icon-eye-open"></i>浏览：<b>{{ org.page_view
+                                    }}</b></span></li>
+                                <li><span class="organtalk"><i class="icon-comment"></i>评论：<b>{{ org.comment_count
+                                    }}</b></span><br/></li>
+                                <li><span class="organtalk"><i class="icon-phone"></i>报名：<b>{{ org.orders
+                                    }}</b></span><br/>
                                 </li>
                             </ul>
 
@@ -121,7 +125,7 @@
             </div>
 
             <div class="control-group">
-                <label class="control-label">想学什么</label>
+                <label class="control-label wanttolearn">想学什么</label>
 
                 <div class="controls">
                     <textarea rows="4" name="{{ form.need.name }}" class="form-textarea" required></textarea>
