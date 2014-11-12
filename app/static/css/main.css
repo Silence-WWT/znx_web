@@ -212,11 +212,13 @@ body {
 }
 
 #headsearch .btn {
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
     background: #00B98D;
     border-radius: 0px;
     border: 0px;
+    box-shadow: none;
+    font-family: '微软雅黑';
 }
 
 #searchkey a {
@@ -574,7 +576,7 @@ body {
 }
 
 #footeradd .footerlink, #footeradd span {
-    margin-left: 530px;
+    margin-left: 451px;
     font-size: 12px;
     text-align: center;
 }
@@ -927,6 +929,10 @@ body {
     opacity: 0.6;
 }
 
+#piclist .carousel-control {
+    display: none;
+}
+
 .carousel-control.right {
     right: 0px;
     background: url(../images/arrpic2.png);
@@ -969,10 +975,6 @@ body {
     display: block;
 }
 
-#floor1 ul.inline > li a:hover, #floor3 ul.inline > li a:hover, #floor3 ul.inline > li a:hover {
-    color: #00B98D;
-}
-
 #floor1 .floorpic a img,#floor2 .floorpic a img,#floor3 .floorpic a img{
     width: 273px;
     height: 182px;
@@ -983,6 +985,12 @@ body {
     color:#333;
     margin-bottom: 10px;
 }
+
+#floor1 ul.inline > li .floordec span a:hover, #floor2 ul.inline > li .floordec span a:hover,
+#floor3 ul.inline > li .floordec span a:hover {
+    color: #00B98D;
+}
+
 #floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
     text-align: center;
