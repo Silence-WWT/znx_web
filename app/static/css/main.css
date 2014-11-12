@@ -1595,6 +1595,13 @@ i.icon-phone {
     margin: 6px 4px 0 5px;
 }
 
+#tab1 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
+#tab2 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
+#tab3 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
+#tab4 > ul > li > div.selectscore > ul > li > span > i.icon-comment {
+    margin: 3px 4px;
+}
+
 #tab1 > ul > li > div.selectscore > ul > li > span > b,
 #tab2 > ul > li > div.selectscore > ul > li > span > b,
 #tab3 > ul > li > div.selectscore > ul > li > span > b,
@@ -1823,9 +1830,10 @@ i.icon-phone {
 }
 
 .divhr4 {
-    margin-top: 9px;
     border: 0px;
     border-bottom: 1px solid #DCD4C9;
+    margin-bottom: 0;
+    padding: 0;
 
 }
 
@@ -2849,7 +2857,7 @@ input[disabled] {
 
 #origanselect > .selecttop {
     background: #fff;
-    padding: 20px 40px 40px;
+    padding: 20px 40px 59px;
     margin: 25px 0;
     border: 1px solid #ECE9E2;
 }
@@ -2857,6 +2865,7 @@ input[disabled] {
 #origanselect > .selecttop > h3 {
     border-bottom: 1px solid #D6D6D6;
     font-size: 16px;
+    margin-bottom: 20px;
 }
 
 #origanselect > .selecttop > h3 > span {
@@ -2925,7 +2934,7 @@ input[disabled] {
 }
 
 #selectul > .tab-pane > ul {
-    padding: 15px 50px 25px;
+    padding: 20px 50px 25px;
 }
 
 #selectul > .tab-pane > ul > li {
@@ -2949,6 +2958,7 @@ input[disabled] {
     float: left;
     margin-left: 20px;
     width: 500px;
+    margin-bottom: 33px;
 }
 
 #tab1 > ul > li > div.seledet > h3 > img, #tab2 > ul > li > div.seledet > h3 > img,
@@ -2975,7 +2985,7 @@ input[disabled] {
 #tab1 > ul > li > div.selectscore, #tab2 > ul > li > div.selectscore, #tab3 > ul > li > div.selectscore, #tab4 > ul > li > div.selectscore {
     float: left;
     width: 568px;
-    margin: 5px -95px 0px;
+    margin: 6px -95px 0px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span, #tab2 > ul > li > div.selectscore > ul > li > span,
@@ -2985,7 +2995,7 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab3 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,
 #tab2 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab4 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp {
-    margin: 37px 29px -42px -29px;
+    margin: 10px 25px -3px -24px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
@@ -2997,7 +3007,7 @@ input[disabled] {
 #tab2 > ul > li > div.seledet > span > i, #tab2 > ul > li > div.selectscore > ul > li > span > i,
 #tab3 > ul > li > div.seledet > span > i, #tab3 > ul > li > div.selectscore > ul > li > span > i,
 #tab4 > ul > li > div.seledet > span > i, #tab4 > ul > li > div.selectscore > ul > li > span > i {
-    margin: 0px 4px 0;
+    margin: 0px 4px;
 }
 
 #selectasklearn .form-horizontal .control-group {
