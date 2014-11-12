@@ -8,7 +8,7 @@
 
 <div class="myhead">
     <div class="headtitle">
-        <div class="organlogo"><img src="{{ org.logo|picture }}"  class="img-circle img-polaroid"/></div>
+        <div class="organlogo"><img src="{{ org.logo|picture }}" class="img-circle"/></div>
         <div class="organname">
             <dl>
                 <dt><span>{{ org.name }}</span>
@@ -16,7 +16,8 @@
 
                 </address>
                 </dt>
-                <dd><a href="{{ org.site }}" target="_blank">{{ org.site }}</a></dd>
+                <dd><a href="{{ org.site }}" target="_blank">
+                    <img src="{{ url_for('static', filename='images/origanurl.png') }}">{{ org.site }}</a></dd>
             </dl>
         </div>
     </div>
@@ -24,9 +25,10 @@
         <div class="organmoredec">
             <span class="organview"><a id="looknum" data-original-title="浏览数" data-toggle="tooltip" href="#"><i
                     class="icon-eye-open"></i></a>{{ org.page_view }}</span>
-            <span class="organtalk"><i class="icon-comment"></i>{{ org.comment_count }}</span><br/>
-            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</span><br/>
-            <span class="organcall"><i class="  icon-bullhorn"></i>400-656-9191</span>
+            <span class="organtalk"><i class="icon-comment"></i>{{ org.comment_count }}</span>
+
+            <p class="organplace"><i class=" icon-map-marker"></i>{{ org.location }}</p>
+
         </div>
 
 
@@ -60,6 +62,7 @@
         </a>
         {% endif %}
         <div class="threesmall">
+            <span class="organcall"><i class="icon-phone"></i>400-656-9191</span>
             <span id="editwrong">
                 <a href="{{ url_for('main.report')}}" role="button" target="_blank"><i
                         class=" icon-edit"></i>纠错</a></span>
@@ -98,8 +101,8 @@
                 <div class="organallknow">
                     <dl class="dl-horizontal">
                         <dt>机构简介</dt>
-                        <dd>
-                            <div>
+                        <dd class="pdd">
+                        <div>
                                 <div id="boxmore">{{ org.detail|safe }}
                                 </div>
                             </div>

@@ -8,15 +8,16 @@
         <div class="popover right" id="usercomment1">
             <div class="arrow"></div>
             <div class="popover-content">
-                <div class="commentin"><span>评分：</span>
+                <div class="commentin">
                      <span>
                          <div class="revinp">
 				         <span class="level">
                     {{ comment.stars|stars|safe }}
 				    </span>
-                <span>{{ comment.created|get_date_time }}</span>
+
                          </div>
                      </span>
+                    <span class="commenttime"><img src="{{ url_for('static', filename='images/commenttime.png') }}">{{ comment.created|get_date_time }}</span>
                 </div>
                 <div class="commment">
                     <p>{{ comment.body }}</p>
