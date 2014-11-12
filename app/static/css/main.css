@@ -212,11 +212,15 @@ body {
 }
 
 #headsearch .btn {
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
     background: #00B98D;
     border-radius: 0px;
     border: 0px;
+    box-shadow: none;
+    font-family: '微软雅黑';
+    text-shadow: none;
+    font-weight: 600;
 }
 
 #searchkey a {
@@ -574,7 +578,7 @@ body {
 }
 
 #footeradd .footerlink, #footeradd span {
-    margin-left: 530px;
+    margin-left: 451px;
     font-size: 12px;
     text-align: center;
 }
@@ -927,6 +931,10 @@ body {
     opacity: 0.6;
 }
 
+#piclist .carousel-control {
+    display: none;
+}
+
 .carousel-control.right {
     right: 0px;
     background: url(../images/arrpic2.png);
@@ -969,10 +977,6 @@ body {
     display: block;
 }
 
-#floor1 ul.inline > li a:hover, #floor3 ul.inline > li a:hover, #floor3 ul.inline > li a:hover {
-    color: #00B98D;
-}
-
 #floor1 .floorpic a img,#floor2 .floorpic a img,#floor3 .floorpic a img{
     width: 273px;
     height: 182px;
@@ -983,6 +987,12 @@ body {
     color:#333;
     margin-bottom: 10px;
 }
+
+#floor1 ul.inline > li .floordec span a:hover, #floor2 ul.inline > li .floordec span a:hover,
+#floor3 ul.inline > li .floordec span a:hover {
+    color: #00B98D;
+}
+
 #floor1 ul.inline > li .floordec,#floor2 ul.inline > li .floordec,#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
     text-align: center;
@@ -1170,7 +1180,7 @@ body {
 }
 
 #myorgan .myhead {
-    height: 366px;
+    height: 370px;
     border: 1px solid #ECE9E2;
     background: #fff;
     border-top:0px;
@@ -1178,9 +1188,26 @@ body {
 
 #myorgan .headtitle {
     height: 200px;
-    background: #E1D49C;
+    background: url("../images/origanbac.png");
     float: left;
-    width: 1198px;
+    width: 1206px;
+    margin-left: -9px;
+    margin-top: -10px;
+}
+
+#myorgan > div > div.headtitle > div > dl > dd a {
+    color: #877F61;
+    font-size: 15px;
+}
+
+#myorgan > div > div.headtitle > div > dl > dd a img {
+    margin: 0 4px 3px;
+}
+
+#myorgan .organlogo img {
+    width: 160px;
+    height: 160px;
+    background: #f2f2f2;
 }
 
 #myorgan .headdes {
@@ -1190,6 +1217,7 @@ body {
 
 #myorgan .headtitle dl {
     margin-top: 0px;
+    margin-left: 26px;
 }
 
 #myorgan > div > div.headtitle > div > dl > dt > span {
@@ -1205,7 +1233,7 @@ body {
 
 #myorgan > div > div.headtitle > div > dl > dt > address {
     color: #909090;
-    padding-top: 6px;
+    padding-top: 3px;
     font-weight: normal;
     margin-bottom: 10px;
 }
@@ -1213,32 +1241,52 @@ body {
 #myorgan > div > div.headtitle > div > dl > dd {
     font-size: 16px;
     color: #000;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 #myorgan .organlogo {
     float: left;
-    margin-left: 50px;
-    margin-top: 110px;
+    margin-left: 83px;
+    margin-top: 125px;
 }
 
 #myorgan .headdes .organmoredec {
     float: left;
-    margin: 13px 245px;
+    margin: 20px 265px;
 }
 #editwrong i{
-    margin: 4px;
+    margin: 3px 4px 0px 10px;
+    background: url("../images/setwrong.png");
 }
 #myorgan .headdes .organmoredec span {
-    font-size: 16px;
+    font-size: 18px;
     margin-right: 14px;
     height: 20px;
     line-height: 20px;
-    color: #000;
+    color: #727272;
 }
 #myorgan .headdes .organmoredec .icon-eye-open{
-    margin-left: 7px;
+    margin-left: 5px;
+    background: url("../images/organview.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 12px;
+    width: 16px;
+    margin-top: 6px;
 }
+
+#myorgan .headdes .organmoredec .icon-comment {
+    background: url("../images/organtest.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 15px;
+    width: 16px;
+    margin-left: 10px;
+}
+
+#myorgan .headdes .organmoredec .icon-map-marker {
+    background: url("../images/organplace.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 19px;
+    width: 14px;
+    margin-right: 4px;
+}
+
 #myorgan .headdes .organmoredec span i {
     margin: 4px 5px 5px;
 }
@@ -1252,7 +1300,7 @@ body {
 }
 
 #myorgan .headdes .organknown .lastspan {
-    margin: 15px 0px;
+    margin: 15px 40px 9px -42px;
     float: left;
     font-size: 12px;
     color: #000;
@@ -1260,23 +1308,22 @@ body {
 
 #myorgan > div > div.headdes > div.organtotal > ul > li.organknown {
     FLOAT: left;
-    margin: 6px -16px;
-    padding-right: 50px;
+    margin: 6px 0 0 -12px;
 }
 
 #myorgan .headdes .organtotal {
     float: left;
-    margin: -7px 95px;
+    margin: 3px 130px;
 }
 
 #myorgan .headdes .organtotal ul li {
     border-right: 1px solid #DEDEDE;
-    padding-right: 30px;
-    height: 50px;
+    padding-right: 40px;
+    height: 48px;
     margin-top: 5px;
-    padding-left: 30px;
+    padding-left: 40px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 
 #myorgan .headdes .organtotal ul li span {
@@ -1285,10 +1332,9 @@ body {
 }
 
 #myorgan .headdes .organtotal ul li p {
-    padding-left: 20px;
-    color: #000;
+    color: #727272;
     margin-top: 4px;
-    margin-left: 10px;
+    text-align: center;
 }
 
 #myorgan .headdes .organtotal .lastli {
@@ -1296,7 +1342,6 @@ body {
 }
 
 #myorgan .headdes .organtotal .lastli p {
-    margin-left: -30px;
 }
 
 #organthree {
@@ -1323,30 +1368,30 @@ body {
     text-align: center;
     /* border-left: 1px solid #ECE9E2; */
     border-radius: 0px;
-    font-weight: 600;
     border-top: 0px;
     outline: none;
 }
 
 #organthree .tabbable .nav-tabs > .active > a, #organthree .tabbable .nav-tabs > .active > a:focus {
-    border-bottom: 3px solid #00B98D;
+    border-bottom: 2px solid #00b98d;
     border-right: 0;
     border-left: 0;
+    color: #000;
 }
 
 #organthree #tab1 .organallknow {
-    padding: 25px 41px;
+    padding: 25px 43px;
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dt {
-    width: 1060px;
+    width: 1076px;
     height: 40px;
     background: #F4F4F4;
     font-size: 20px;
     color: #000;
     text-align: left;
     line-height: 40px;
-    padding-left: 20px;
+    padding-left: 16px;
     font-weight: normal;
     white-space: normal;
 }
@@ -1355,9 +1400,12 @@ body {
     margin-left: 0;
     padding: 56px 16px 0px;
     width: 1060px;
-    text-indent: 2em;
     font-size: 16px;
     line-height: 25px;
+}
+
+#organthree #tab1 .organallknow .dl-horizontal dd.pdd {
+    text-indent: 2em;
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dd .amoremore {
@@ -1367,7 +1415,7 @@ body {
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dd p.organplace {
-    margin: 6px -33px 4px;
+    margin: 6px 0px 4px;
 }
 
 .clearfix:after {
@@ -1454,31 +1502,37 @@ body {
 }
 
 #usertest li .leftuser {
-    width: 70px;
+    width: 100px;
     float: left;
     margin-top: 5px;
+    text-align: center;
+}
+
+#usercomment1 .popover-content .commentin .commenttime img {
+    margin-right: 2px;
+    margin-top: -2px;
 }
 
 #usertest li .leftuser img {
 
     float: left;
-    margin: 10px 12px;
+    margin: 10px 12px 2px;
     width: 70px;
     height: 70px;
 }
 
 #usertest li .leftuser span {
-    float: left;
-    margin-left: -25px;
 }
 
 #usercomment1, #usercomment2 {
     display: block;
     position: relative;
     float: left;
-    max-width: 950px;
-    margin-left: 32px;
+    max-width: 970px;
+    margin-left: 5px;
     height: auto;
+    border: 1px solid #ddd;
+    box-shadow: none;
 }
 
 #usercomment1 .popover-title, #usercomment1 .popover-title {
@@ -1495,18 +1549,37 @@ body {
 
 #usercomment1 .popover-content span, #usercomment .popover-content b, #usercomment2 .popover-content span, #usercomment .popover-content b {
     float: left;
+    margin-left: 15px;
+    margin-left: 10px;
 }
 
 #usercomment1 .commment, #usercomment2 .commment {
-    margin-top: 15px;
+    margin-top: 10px;
     margin-top: 15px;
     padding: 20px 0px 0px;
+}
+
+#usercomment1 .commment p {
+    padding: 0 25px 0px 20px;
+    text-indent: 0;
+}
+
+.threesmall span.organcall i.icon-phone {
+    background: url("../images/icon-phone.png");
+    height: 22px;
+    margin: -2px 0px;
+    width: 22px;
+}
+
+#usercomment1 .popover-content .commentin .commenttime {
+    float: right;
+    margin-right: 34px;
 }
 
 #icommnet {
     float: right;
     vertical-align: middle;
-    margin: -2px 5px;
+    margin: -2px 35px;
     cursor: pointer;
     outline: none;
 }
@@ -1518,6 +1591,10 @@ body {
     width: 293px;
 }
 
+#editwrong {
+    margin: 1px;
+}
+
 #myComment .modal-header, #myeditwrong .modal-header {
     padding: 10px;
     height: 28px;
@@ -1526,6 +1603,10 @@ body {
     font-size: 16px;
     color: #fff;
     font-weight: normal;
+}
+
+#myorgan .headdes .organmoredec .organplace {
+    margin: 4px 5px;
 }
 
 #myComment .modal-header .close, #myeditwrong .modal-header .close, #myzixun .modal-header .close {
@@ -1677,13 +1758,13 @@ body {
 }
 
 #zixunbtn {
-    width: 115px;
-    height: 40px;
+    width: 232px;
+    height: 46px;
     background: #00B98D;
     border: 0px;
     border-radius: 6px;
     float: right;
-    margin: -26px 129px;
+    margin: 16px 65px;
     outline: none;
     color: #fff;
     font-size: 20px;
@@ -1691,8 +1772,9 @@ body {
 
 .threesmall {
     float: right;
-    margin: 43px 12px;
+    margin: -62px -292px;
     cursor: pointer;
+    color: #727272;
 }
 .threesmall1 {
     float: right;
@@ -1938,10 +2020,15 @@ body {
     border: 1px solid #fff;
     width: 120px;
     text-align: center;
+
 }
 
 #myCarousel li.active {
-    border: 1px solid #fff;
+    border: 0px solid #00B98D;
+}
+
+#myCarousel .carousel-indicators {
+    cursor: pointer;
 }
 
 #myCarousel .anothercar {
@@ -3020,8 +3107,8 @@ input[disabled] {
     margin-left: 20px;
 }
 .righttest .popover-content{
-    padding: 20px 26px;
-    width: 900px;
+    padding: 20px 0;
+    width: 930px;
     font-size: 14px;
 }
 #actlistul li .actleft a{
@@ -3286,4 +3373,9 @@ input[disabled] {
 
 #organregform .selectadd {
     margin-left: 0px;
+}
+
+#asklearn > h4:nth-child(1) > img:nth-child(2) {
+    margin-top: -11px;
+    margin-left: 5px;
 }
