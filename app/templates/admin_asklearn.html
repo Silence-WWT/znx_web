@@ -44,7 +44,7 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="asklearnadmin">
-                    <h3>求学登记记录（30条）<a href="#" id="asklearnexcel">导出</a> </h3>
+                    <h3>求学登记记录（条）<a href="#" id="asklearnexcel">导出</a> </h3>
                     <ul class="unstyled">
                         {% for register in registers %}
                         <li>
@@ -59,27 +59,9 @@
 
                         </li>
                         {% endfor %}
-                        <li>
-                            <dl>
-                                <dt>想学英语</dt>
-                                <dd><span>用户：可不啦啦啦啦</span>
-                                    <span>手机号：15029268189</span>
-                                    <span>时间:2014-10-15 16:40:25</span>
-                                </dd>
-                            </dl>
-
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>想学英语</dt>
-                                <dd><span>用户：可不啦啦啦啦</span>
-                                    <span>手机号：15029268189</span>
-                                    <span>时间:2014-10-15 16:40:25</span>
-                                </dd>
-                            </dl>
-
-                        </li>
                     </ul>
+                    {% from 'snippet/pagination.html' import pagination_widget %}
+                    {{ pagination_widget(pagination, 'znx_admin.register', fragment='#asklearnadmin') }}
                 </div>
 
                 </div>
