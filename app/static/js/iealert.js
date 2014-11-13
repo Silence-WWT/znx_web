@@ -16,11 +16,11 @@
             + "<p> " + text + "</p>"
             + "<div class='browser'>"
             + "<ul>"
-            + "<li><a class='chrome' href='https://www.google.com/chrome/' target='_blank'></a></li>"
-            + "<li><a class='firefox' href='http://www.mozilla.org/en-US/firefox/new/' target='_blank'></a></li>"
-            + "<li><a class='ie9' href='http://windows.microsoft.com/en-US/internet-explorer/downloads/ie/' target='_blank'></a></li>"
-            + "<li><a class='safari' href='http://www.apple.com/safari/download/' target='_blank'></a></li>"
-            + "<li><a class='opera' href='http://www.opera.com/download/' target='_blank'></a></li>"
+            + "<li><a class='chrome' href='http://www.google.cn/intl/zh-CN/chrome/' target='_blank'></a></li>"
+            + "<li><a class='firefox' href='http://www.firefox.com.cn/' target='_blank'></a></li>"
+            + "<li><a class='ie9' href='http://www.microsoft.com/zh-cn/download/internet-explorer.aspx' target='_blank'></a></li>"
+            + "<li><a class='safari' href='http://www.apple.com/cn/safari/' target='_blank'></a></li>"
+            + "<li><a class='opera' href='http://www.opera.com/zh-cn' target='_blank'></a></li>"
             + "<ul>"
             + "</div>";
 
