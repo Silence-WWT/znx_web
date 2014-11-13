@@ -778,14 +778,18 @@ $(function () {
 })
 function talkget() {
     var tid = $("#talkid").val();
+    var tid = parseInt(tid);
     var orgid = $("#orginid").val();
     $.ajax({
         type: 'GET',
-        url: '/chat/chat',
+        url: 'chat/chat',
         dataType: "json",
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
-            $("#talkid").val(data.id);
+            var dataid = parseInt(data.id);
+            $("#talkid").val(dataid);
+
+            // alert(dataid);
             var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
             $("#talkpost li:last-child").after(ytalkdiv);
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
