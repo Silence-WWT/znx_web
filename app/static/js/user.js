@@ -760,7 +760,8 @@ $(function () {
             dataType: "text", //数据格式:JSON
             url: '/chat/chat', //目标地址
             data: "context=" + talkcontent + "&orgid=" + orgid,
-            success: function () {
+            success: function (data) {
+                $("#talkid").val(data.id);
                 $("#talkpost li:last-child").after(talkdiv);
                 $("#talkcontent").val('');
                 $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
@@ -784,12 +785,9 @@ function talkget() {
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
             $("#talkid").val(data.id);
-            if (data.content != "") {
-                var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
-                $("#talkpost li:last-child").after(ytalkdiv);
-                $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
-            }
-
+            var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
+            $("#talkpost li:last-child").after(ytalkdiv);
+            $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
 
         }
     });
