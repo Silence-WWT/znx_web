@@ -46,16 +46,20 @@
                 <div class="tab-pane active" id="origancomeadmin">
                     <h3>机构学校审核列表</h3>
                     <ul class="unstyled" id="organlist">
+                        {% for org in orgs %}
                         <li>
-                            <p><span>机构名称:西安电子科技大学</span><span>入驻状态:未入驻</span><span>提交审核时间:2014-10-10 12:12</span></p>
+                            <p><span>机构名称:{{ org.name }}</span><span>入驻状态:{{ org.is_confirmed|is_confirmed }}</span><span>提交审核时间:{{ org.created|get_date_time }}</span></p>
 
-                            <p><span>类型:机构</span><span>城市:西安</span><span>区域:长安区</span><span>联系电话:15029269197</span></p>
-                            <a href="#">
+                            <p><span>类型:{{ org.type_id|type }}</span><span>{{ org.location }}</span><span>联系电话:{{ org.mobile }}</span></p>
+                            <a href="{{ url_for('znx_admin.confirm', org_id=org.id) }}">
                                 <button type="button" class="btn-next adminbtn">详细</button>
                             </a>
                         </li>
+                        {% endfor %}
                     </ul>
                 </div>
+                {% from 'snippet/pagination.html' import pagination_widget %}
+                {{ pagination_widget(pagination, 'znx_admin.confirm_list', fragment='#organlist') }}
 
             </div>
         </div>

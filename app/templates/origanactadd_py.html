@@ -21,8 +21,12 @@
             <h3><span>增加活动</span></h3>
 
             <div id="myactset">
-             <!--活动form-->
-                {% include 'snippet/activity_form.html' %}
+                {% if current_user.is_confirmed %}
+                    <!--活动form-->
+                    {% include 'snippet/activity_form.html' %}
+                {% else %}
+                    贵机构暂未通过审核，请在接收到审核通过信息后再发布活动。
+                {% endif %}
             </div>
         </div>
     </div>
