@@ -2,8 +2,8 @@
 import time
 from . import admin
 from .. import db
-from flask import render_template, request
-from ..models import ChatLine, Organization, UnifiedId
+from flask import render_template, request, current_app
+from ..models import ChatLine, Organization, UnifiedId, Register
 from .form import ReplyForm
 
 @admin.route('/chat', methods=['GET', 'POST'])
@@ -40,7 +40,15 @@ def chat():
 
 @admin.route('/register', methods=['GET'])
 def register():
-    return render_template('admin_asklearn.html')
+    page = request.args.get('page', 1, type=int)
+    pagination = Register.query.order_by(
+        Register.created.asc()).paginate(
+        page, per_page=current_app.config['ADMIN_REGISTER_PER_PAGE'],
+        error_out=False)
+    registers = pagination.items
+    return render_template('admin_asklearn.html',
+                           registers=registers,
+                           pagination=pagination)
 
 
 @admin.route('/org', methods=['GET'])

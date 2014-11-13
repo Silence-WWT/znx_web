@@ -46,16 +46,19 @@
                 <div class="tab-pane active" id="asklearnadmin">
                     <h3>求学登记记录（30条）<a href="#" id="asklearnexcel">导出</a> </h3>
                     <ul class="unstyled">
+                        {% for register in registers %}
                         <li>
                             <dl>
-                                <dt>想学英语</dt>
-                                <dd><span>用户：可不啦啦啦啦</span>
-                                    <span>手机号：15029268189</span>
-                                    <span>时间:2014-10-15 16:40:25</span>
+                                <dt>{{ register.need }}</dt>
+                                <dd><span>姓名：{{ register.name }}</span>
+                                    <span>城市：{{ register.city_id|city }}</span>
+                                    <span>手机号：{{ register.mobile }}</span>
+                                    <span>时间:{{ register.created|get_date_time }}</span>
                                 </dd>
                             </dl>
 
                         </li>
+                        {% endfor %}
                         <li>
                             <dl>
                                 <dt>想学英语</dt>
