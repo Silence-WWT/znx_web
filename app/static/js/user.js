@@ -762,6 +762,7 @@ $(function () {
             data: "context=" + talkcontent + "&orgid=" + orgid,
             success: function (data) {
                 $("#talkid").val(data.id);
+                alert(data.id);
                 $("#talkpost li:last-child").after(talkdiv);
                 $("#talkcontent").val('');
                 $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
