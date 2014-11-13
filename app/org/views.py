@@ -133,8 +133,14 @@ def certification():
         current_user.logo = os.path.join(relative_path, logo)
         db.session.add(current_user)
         db.session.commit()
-        return redirect(url_for('org.course_list'))
+        return redirect(url_for('org.success'))
     return render_template('organ_regiter3_py.html', form=form)
+
+
+@org.route('/success')
+@org_permission.require()
+def success():
+    return render_template('origanreg4_py.html')
 
 
 @org.route('/home/<int:id>', methods=['GET', 'POST'])

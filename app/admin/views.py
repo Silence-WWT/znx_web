@@ -3,8 +3,9 @@ import time
 from . import admin
 from .. import db
 from flask import render_template, request, current_app, redirect, url_for, flash
-from ..models import ChatLine, Organization, UnifiedId, Register
-from .form import ReplyForm
+from ..models import ChatLine, Organization, UnifiedId,\
+    Register, RecommendedActivity, RecommendedOrg
+from .form import ReplyForm, RecommendedActivityForm, RecommendedOrgForm
 from ..utils.captcha import send_confirm_sms
 
 @admin.route('/chat', methods=['GET', 'POST'])
@@ -52,6 +53,18 @@ def register():
                            pagination=pagination)
 
 
+@admin.route('/add_org/<int:org_id>', methods=['GET', 'POST'])
+def add_org(org_id):
+    Organization.query.get_or_404(org_id)
+    form = RecommendedOrgForm()
+    form.org_id.data = org_id
+    form.url.data = url_for('org.home', id=org_id)
+    if form.validate_on_submit():
+       org = RecommendedOrg(org_id=form.org_id.data,
+                            photo=form.photo.data,)
+        # TODO: complete.
+    return
+
 @admin.route('/org', methods=['GET'])
 def org():
     return render_template('admin_indexorigan.html')
@@ -87,7 +100,7 @@ def set_confirm(org_id):
         org.is_confirmed = True
         db.session.add(org)
         db.session.commit()
-        if send_confirm_sms(org.mobile, org.name):
+        if send_confirm_sms(str(org.mobile)):
             flash(u'设置成功')
         else:
             flash(u'发送失败')

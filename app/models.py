@@ -1075,6 +1075,20 @@ class City(db.Model):
     # 城市 5 Unicode
     city = db.Column(db.Unicode(5), nullable=False, unique=True)
 
+class RecommendedOrg(db.Model):
+    __tablename__ = 'recommended_org'
+    id = db.Column(db.Integer, primary_key=True)
+    org_id = db.Column(db.Integer, nullable=False)
+    photo = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String(255), nullable=False)
+    created = db.Column(db.Integer, nullable=False)
+
+class RecommendedActivity(db.Model):
+    __tablename__ = 'recommended_activity'
+    id = db.Column(db.Integer, primary_key=True)
+    photo = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String(255), nullable=False)
+    created = db.Column(db.Integer, nullable=False)
 
 def generate_helper_data():
     Location.generate()
