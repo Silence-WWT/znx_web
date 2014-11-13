@@ -784,9 +784,12 @@ function talkget() {
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
             $("#talkid").val(data.id);
-            var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
-            $("#talkpost li:last-child").after(ytalkdiv);
-            $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
+            if (data.content != "") {
+                var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
+                $("#talkpost li:last-child").after(ytalkdiv);
+                $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
+            }
+
 
         }
     });
