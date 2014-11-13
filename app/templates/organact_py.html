@@ -5,7 +5,7 @@
 {% endblock navbar %}
 {% block content %}
 <div class="container" id="myorgan">
-    <div class="classdet" id="classdet">
+    <div class="classdet" id="actdet">
         <div class="classnamepic">
             <img src="{{ activity.photo|picture }}"/></div>
         <div class="picright">
@@ -19,7 +19,7 @@
 
 
             <ul class="unstyled">
-                <li>
+                <li class="actlook">
                     <span class="organview"><a id="looknum" data-original-title="浏览数" data-toggle="tooltip" href="#"><i
                             class="icon-eye-open"></i></a>{{ activity.page_view }}</span>
                     <span class="organtalk"><i class="icon-comment"></i>{{ pagination.total }}</span>
@@ -38,14 +38,17 @@
         </div>
 
     </div>
+
     <span id="origanprice">{{ activity.price }}</span>
     <a href="{{ url_for('activity.taste', id=activity.id) }}">
         <button class="attendbtn"></button>
     </a>
-    <div class="threesmall1">
+
+    <div class="threesmall2">
         <span id="editwrong"><a href="{{ url_for('main.report')}}" role="button" target="_blank"><i
                 class=" icon-edit"></i>纠错</a></span>
     </div>
+    <hr class="divhr hr3">
 </div>
 
 <div class="container" id="organthree">
@@ -108,6 +111,7 @@
             </div>
         </div>
     </div>
+    <hr class="divhr hr2">
 </div>
 {% endblock content %}
 

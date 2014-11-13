@@ -1043,7 +1043,8 @@ body {
 }
 
 #floorp ul.inline > li {
-    width: 258px;
+    width: 256px;
+    width: 241 px\9;
     height: 317px;
     margin-left: 14px;
 }
@@ -1757,7 +1758,7 @@ i.icon-phone {
     height: 144px;
 }
 #organclass, #organplay {
-    margin-bottom: 100px;
+    margin-bottom: 18px;
 }
 
 #organclass ul li .classright, #organplay ul li .classright {
@@ -1818,8 +1819,8 @@ i.icon-phone {
     color: #00B98D;
     line-height: 30px;
     height: 30px;
-    width: 160px;
-    margin: -113px 0 0;
+    width: 267px;
+    margin: -113px -52px 0;
     text-align: center;
 }
 
@@ -1850,6 +1851,18 @@ i.icon-phone {
     margin-bottom: 0;
     padding: 0;
 
+}
+
+.hr4 {
+    margin: 64px 0 -50px;
+}
+
+.hr5 {
+    margin: -28px 0 30px;
+}
+
+.hr6 {
+    margin: 23px 0 0;
 }
 
 #organclass ul li .classright a, #organplay ul li .classright a {
@@ -1883,6 +1896,13 @@ i.icon-phone {
     margin: -180px 68px 0;
     cursor: pointer;
 }
+
+.threesmall2 {
+    float: right;
+    margin: -229px 68px 0;
+    cursor: pointer;
+}
+
 #wrongtext {
     width: 458px;
     margin-left: 30px;
@@ -1936,13 +1956,25 @@ i.icon-phone {
     color: #727272;
 }
 
-#classdet {
+#classdet, #actdet {
     background: #fff;
     height: 142px;
     padding: 34px 50px 30px;
     border: 1px solid #ECE9E2;
     color: #000;
     margin-top: 20px;
+}
+
+#actdet {
+    height: 190px;
+}
+
+#actdet .classnamepic {
+    float: left;
+}
+
+#actdet .actlook {
+    margin-bottom: 6px;
 }
 
 #classdet .classmargin, #actdet .classmargin {
@@ -2006,10 +2038,28 @@ i.icon-phone {
     font-size: 18px;
 }
 
-#classdet .picright, #actdet .picright {
+#classdet .picright {
     float: left;
     height: 158px;
     margin: -4px 128px;
+}
+
+#actdet .picright {
+    float: left;
+    height: 158px;
+    margin: -15px 26px;
+}
+
+#classdet .classnamepic img {
+    width: 256px;
+    max-width: 256px;
+    height: 144px;
+}
+
+#actdet .classnamepic img {
+    width: 256px;
+    max-width: 256px;
+    height: 192px;
 }
 
 #classdet .picright .revinp, #actdet .picright .revinp {
@@ -2020,7 +2070,7 @@ i.icon-phone {
 }
 
 #organplay ul li .classright a {
-    margin-top: -74px;
+    margin-top: -45px;
 }
 
 .attendbtn {
@@ -2117,8 +2167,19 @@ i.icon-phone {
     top: 50%;
 }
 #arr1{
-    margin: 42px 20px;
+    margin: 113px 50px;
+    background: url("../images/arrleft.png");
+    height: 113px;
+    width: 60px;
 }
+
+#arr2 {
+    margin: 113px 50px;
+    background: url("../images/arrright.png");
+    height: 113px;
+    width: 60px;
+}
+
 #cartop {
     height: 100px;
     background: #fff;
@@ -2967,6 +3028,8 @@ input[disabled] {
     width: 780px;
     background: #fff;
     border: 1px solid #ECE9E2;
+    margin-bottom: 105px;
+    padding-bottom: 50px;
 }
 
 #selectul > .tab-pane > ul {
@@ -3129,6 +3192,7 @@ input[disabled] {
 
 #selectul .pagination ul > .active > a, #selectul .pagination ul > .active > span {
     background: #00B98D;
+    color: #fff;
 }
 
 #selectul .myselectlist > ul > li.active a {
@@ -3508,11 +3572,7 @@ input[disabled] {
 #weixinimg{
     z-index:1000;
 }
-#classdet  .classnamepic img{
-    width:256px;
-    max-width:256px;
-    height: 144px;
-}
+
 #origanprice{
     float: right;
     margin-top: -118px;
@@ -3520,6 +3580,7 @@ input[disabled] {
     text-align: center;
     color: #00B98D;
     font-size: 18px;
+    margin-right: 68px;
 }
 #isover{
     margin-left: 16px;

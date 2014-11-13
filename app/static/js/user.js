@@ -792,4 +792,73 @@ function talkget() {
     });
 };
 
+(function ($) {
+    $.fn.goup = function (options) {
+        $.fn.goup.defaultOpts = {
+            appear: 200,
+            scrolltime: 800,
+            imgsrc: "http://news.csdn.net/images/top_arrow.png",
+            width: 90,
+            place: "bottom-right",
+            fadein: 500,
+            fadeout: 500,
+            opacity: 0.5
+        };
+        var opts = $.extend({}, $.fn.goup.defaultOpts, options);
+        return this.each(function () {
+            var goup = $(this);
+            goup.html("<a><img /></a>");
+            var goupa = $("#goup a");
+            var goupimg = $("#goup a img");
+            goup.css({
+                "position": "fixed",
+                "display": "block",
+                "width": "'" + opts.width + "px'",
+                "z-index": "9"
+            });
+            goupa.css("opacity", opts.opacity);
+            goupimg.attr("src", opts.imgsrc);
+            goupimg.width(opts.width);
+            goupimg.hide();
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > opts.appear) goupimg.fadeIn(opts.fadein);
+                    else goupimg.fadeOut(opts.fadeout)
+                });
+                $(goupa).hover(function () {
+                    $(this).css("opacity", "1.0");
+                    $(this).css("cursor", "pointer")
+                }, function () {
+                    $(this).css("opacity", opts.opacity)
+                });
+                $(goupa).click(function () {
+                    $("body,html").animate({
+                        scrollTop: 0
+                    }, opts.scrolltime);
+                    return false
+                })
+            });
+            if (opts.place === "top-right") goup.css({
+                "top": "2%",
+                "right": "1%"
+            });
+            else if (opts.place === "top-left") goup.css({
+                "top": "2%",
+                "left": "1%"
+            });
+            else if (opts.place === "bottom-right") goup.css({
+                "bottom": "2%",
+                "right": "1%"
+            });
+            else if (opts.place === "bottom-left") goup.css({
+                "bottom": "2%",
+                "left": "1%"
+            });
+            else goup.css({
+                    "bottom": "2%",
+                    "right": "1%"
+                })
+        })
+    }
+})(jQuery);
 

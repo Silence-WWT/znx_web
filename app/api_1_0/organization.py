@@ -62,6 +62,10 @@ def organization_filter():
             data['status'] = PROFESSION_NOT_EXIST
             return json.dumps(data)
 
+    if city and (district == u'all' or profession == u'all'):
+        location_query = Location.query.filter_by(city_id=city.id)
+        org_query = org_query.filter(Organization.location_id.in_([location.id for location in location_query]))
+
     if distance:
         cmp_list = [(org, longitude, latitude) for org in org_query]
         org_list = paginate(sorted(cmp_list, cmp=cmp_distance), page)
