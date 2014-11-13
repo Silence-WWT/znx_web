@@ -757,7 +757,7 @@ $(function () {
         //alert(talkcontent);
         $.ajax({
             type: "POST", //用POST方式传输
-            dataType: "text", //数据格式:JSON
+            dataType: "json", //数据格式:JSON
             url: '/chat/chat', //目标地址
             data: "context=" + talkcontent + "&orgid=" + orgid,
             success: function (data) {
