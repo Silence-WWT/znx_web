@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-from .models import Category, City
+from .models import Category, City, Type
 from flask import current_app
 
 
@@ -65,3 +65,12 @@ def activity_status(activity):
         return u'正在进行中'
     return u'已经结束'
 
+
+def get_type(type_id):
+    return Type.query.get(type_id).type
+
+
+def is_confirmed(confirmed):
+    if confirmed:
+        return u'审核通过'
+    return u'未审核'

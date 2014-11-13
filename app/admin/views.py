@@ -2,9 +2,10 @@
 import time
 from . import admin
 from .. import db
-from flask import render_template, request, current_app
+from flask import render_template, request, current_app, redirect, url_for, flash
 from ..models import ChatLine, Organization, UnifiedId, Register
 from .form import ReplyForm
+from ..utils.captcha import send_confirm_sms
 
 @admin.route('/chat', methods=['GET', 'POST'])
 def chat():
@@ -61,6 +62,38 @@ def activity():
     return render_template('admin_indexactivity.html')
 
 
-@admin.route('/admin', methods=['GET'])
-def admin():
-    return render_template('admin_origancome.html')
+@admin.route('/confirm_list', methods=['GET'])
+def confirm_list():
+    page = request.args.get('page', 1, type=int)
+    pagination = Organization.query.filter_by(source_site_id=0).\
+        order_by(Organization.id.desc()).paginate(
+        page, per_page=current_app.config['ADMIN_ORG_PER_PAGE'], error_out=False)
+    orgs = pagination.items
+    return render_template('admin_origanlist.html',
+                           orgs=orgs,
+                           pagination=pagination)
+
+
+@admin.route('/confirm/<int:org_id>')
+def confirm(org_id):
+    org = Organization.query.get_or_404(org_id)
+    return render_template('admin_origancome.html', org=org)
+
+
+@admin.route('/set_confirm/<int:org_id>')
+def set_confirm(org_id):
+    org = Organization.query.get_or_404(org_id)
+    if org.is_confirmed == False:
+        org.is_confirmed = True
+        db.session.add(org)
+        db.session.commit()
+        if send_confirm_sms(org.mobile, org.name):
+            flash(u'设置成功')
+        else:
+            flash(u'发送失败')
+
+    else:
+        org.is_confirmed = False
+        db.session.add(org)
+        db.session.commit()
+    return redirect(url_for('znx_admin.confirm', org_id=org_id))

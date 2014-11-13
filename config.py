@@ -18,6 +18,7 @@ class Config:
     PHOTO_DIR = '/web/static/'
     ORG_COMMENT_PER_PAGE = 10
     ADMIN_REGISTER_PER_PAGE = 10
+    ADMIN_ORG_PER_PAGE = 20
     STATIC_URL = 'http://static.znx.com:85/'
 
 
