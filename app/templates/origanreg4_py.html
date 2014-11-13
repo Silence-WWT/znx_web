@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}在哪学-免费试听课程报名-课程信息 {% endblock title %}
+{% block navbar %}
+{% include 'head.html' %}
+{% endblock navbar %}
+{% block content %}
+
+
+<div id="organregall">
+    <div class="container">
+
+        <h3 class="attendtitle1">你已经成功完成机构注册</h3>
+
+        <div id="organregform">
+            <div class="attendok">
+                <p>恭喜贵机构提交入驻申请成功，我们会在1-2天人工内完成入驻审核。
+                    一旦审核通过我们将采用发送短信或者邮件的方式给与通知，审核通过后贵机构将获得一个月的免费试用期，
+                    在此期间贵机构可以免费发布课程或者活动，更多问题请致电400-656-9191。</p>
+
+                <p>现在你可以返回<a href="{{ url_for('main.index') }}">首页</a>继续浏览。</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
