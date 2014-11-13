@@ -19,7 +19,7 @@
 
 
                 <ul class="unstyled">
-                    <li>
+                    <li class="classmargin">
                         <span class="organview"><a id="looknum" data-original-title="浏览数" data-toggle="tooltip"
                                                    href="#"><i
                                 class="icon-eye-open"></i></a>{{ course.page_view }}</span>
@@ -44,14 +44,16 @@
             </div>
 
         </div>
-              <span id="origanprice">{{ course.price }}</span>
-        <a href="{{ url_for('course.taste', id=course.id) }}">
-            <button class="attendbtn"></button>
-        </a>
         <div class="threesmall1">
             <span id="editwrong"><a href="{{ url_for('main.report')}}" role="button" target="_blank"><i
                     class=" icon-edit"></i>纠错</a></span>
         </div>
+        <span id="origanprice">{{ course.price }}</span>
+        <a href="{{ url_for('course.taste', id=course.id) }}">
+            <button class="attendbtn"></button>
+        </a>
+
+        <hr class="divhr hr3">
     </div>
 
     <div class="container" id="organthree">
@@ -120,7 +122,7 @@
 
         </div>
 
-
+        <hr class="divhr hr2">
     </div>
 
 {% endblock content %}

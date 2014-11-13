@@ -1196,6 +1196,7 @@ body {
     border: 1px solid #ECE9E2;
     background: #fff;
     border-top:0px;
+    margin-bottom: -8px;
 }
 
 #myorgan .headtitle {
@@ -1359,9 +1360,10 @@ body {
 
 #organthree {
     background: #fff;
-    margin-top: 33px;
+    margin-top: 0px;
     border: 1px solid #ECE9E2;
     /* height: 431px; */
+    margin-bottom: 125px;
 }
 
 #organthree .tabbable .nav {
@@ -1377,7 +1379,7 @@ body {
 
 #organthree .tabbable .nav li a {
     line-height: 40px;
-    width: 150px;
+    width: 130px;
     text-align: center;
     /* border-left: 1px solid #ECE9E2; */
     border-radius: 0px;
@@ -1397,7 +1399,7 @@ body {
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dt {
-    width: 1076px;
+    width: 1073px;
     height: 40px;
     background: #F4F4F4;
     font-size: 20px;
@@ -1425,6 +1427,8 @@ body {
     float: right;
     font-size: 16px;
     margin-right: 10px;
+    color: #888;
+    margin-top: 10px;
 }
 
 #organthree #tab1 .organallknow .dl-horizontal dd p.organplace {
@@ -1738,6 +1742,7 @@ i.icon-phone {
 
 #organclass ul li .classleft span b, #organplay ul li .classleft span b {
     font-weight: normal;
+    color: #D2D2D2;
 }
 
 #organclass ul li, #organplay ul li {
@@ -1768,10 +1773,19 @@ i.icon-phone {
 }
 
 #organclass ul li .classleft .classtest, #organplay ul li .classleft .classtest {
-    width: 570px;
+    width: 546px;
     float: left;
     color: #2a2a2a;
     margin-left: 25px;
+}
+
+#organclass ul li .classleft .classtest {
+    margin-top: -10px;
+}
+
+#organclass ul li .classleft span.classplace {
+    margin-top: 41px;
+    font-size: 14px;
 }
 
 #organclass ul li .classleft span, #organplay ul li .classleft span {
@@ -1782,6 +1796,7 @@ i.icon-phone {
     line-height: 22px;
     height: 22px;
     margin-bottom: 3px;
+    color: #727272;
 }
 
 #organclass ul li .classleft span.level, #organplay ul li .classleft span.level {
@@ -1789,7 +1804,7 @@ i.icon-phone {
 }
 
 #organclass ul li .classleft h3 a, #organplay ul li .classleft h3 a{
-    font-size: 20px;
+    font-size: 24px;
     float: left;
     margin: -4px 2px 1px;
     font-weight: normal;
@@ -1839,7 +1854,7 @@ i.icon-phone {
 
 #organclass ul li .classright a, #organplay ul li .classright a {
     display: block;
-    margin-top: -53px;
+    margin-top: -74px;
     text-align: center;
     width: 320px;
 }
@@ -1865,7 +1880,7 @@ i.icon-phone {
 }
 .threesmall1 {
     float: right;
-    margin: -26px 12px;
+    margin: -180px 68px 0;
     cursor: pointer;
 }
 #wrongtext {
@@ -1923,10 +1938,15 @@ i.icon-phone {
 
 #classdet {
     background: #fff;
-    height: 180px;
-    padding: 34px 50px;
+    height: 142px;
+    padding: 34px 50px 30px;
     border: 1px solid #ECE9E2;
     color: #000;
+    margin-top: 20px;
+}
+
+#classdet .classmargin {
+    margin-bottom: 7px;
 }
 
 #classdet .classnamepic {
@@ -1952,8 +1972,21 @@ i.icon-phone {
 #classdet .picright ul li span i{
     margin: 4px;
 }
+
+#classdet .picright ul li span.organview, #classdet .picright ul li span.organtalk {
+    font-size: 18px;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 14px;
+}
+
+#classdet .picright ul li span i.icon-eye-open {
+    margin: 6px 4px 0 0;
+}
+
 #classdet ul {
     margin-top: 60px;
+    color: #727272;
 }
 
 #classdet h3 {
@@ -1995,7 +2028,7 @@ i.icon-phone {
     border-radius: 0px;
     float: right;
     outline: none;
-    margin: -91px 110px;
+    margin: -74px 64px;
 }
 
 #cartop .ul .li .active h3
@@ -2306,7 +2339,7 @@ i.icon-phone {
     margin: -4px 5px 0px;
 }
 
-#userindexhead > div.indexright > img {
+#userindexhead > div.indexright > a img {
     margin: -3px 4px 0;
 }
 
@@ -2995,7 +3028,7 @@ input[disabled] {
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab3 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp,
 #tab2 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp, #tab4 > ul > li > div.selectscore > ul > li:nth-child(1) > .revinp {
-    margin: 10px 25px -3px -24px;
+    margin: 10px 29px -3px -29px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li:nth-child(2) > span, #tab2 > ul > li > div.selectscore > ul > li:nth-child(2) > span,
@@ -3277,8 +3310,22 @@ input[disabled] {
 }
 #pages{
     text-align: center;
-    margin: 35px 0 30px;
+    margin: 0px 0 20px;
 }
+
+#pages ul li a {
+    color: #000;
+    background: #fff;
+}
+
+#pages ul li.active a {
+}
+
+#pages ul li {
+    width: 36px;
+    height: 36px;
+}
+
 #talkadmin h3,#asklearnadmin h3,#origancomeadmin h3,#indexactivity h3,#indexorigan h3{
     width: 872px;
     padding: 0 28px;
@@ -3460,12 +3507,11 @@ input[disabled] {
 #classdet  .classnamepic img{
     width:256px;
     max-width:256px;
-    height: 160px;
+    height: 144px;
 }
 #origanprice{
     float: right;
-    margin-top: -130px;
-    margin-right: 109px;
+    margin-top: -118px;
     width: 230px;
     text-align: center;
     color: #00B98D;
@@ -3500,4 +3546,19 @@ input[disabled] {
 #asklearn > h4:nth-child(1) > img:nth-child(2) {
     margin-top: -11px;
     margin-left: 5px;
+}
+
+.hr1 {
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.hr2 {
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+.hr3 {
+    margin-bottom: 15px;
+    margin-top: -3px;
 }
