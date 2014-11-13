@@ -668,6 +668,10 @@ body {
     background: #FCFBF8;
 }
 
+#organregall .container .breadcrumb li {
+    width: 100px;
+}
+
 #organregform {
     padding: 50px 180px;
 }

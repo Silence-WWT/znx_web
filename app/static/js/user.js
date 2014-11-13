@@ -758,7 +758,7 @@ $(function () {
         $.ajax({
             type: "POST", //用POST方式传输
             dataType: "json", //数据格式:JSON
-            url: '/chat/chat', //目标地址
+            url: 'chat/chat', //目标地址
             data: "context=" + talkcontent + "&orgid=" + orgid,
             success: function (data) {
                 $("#talkid").val(data.id);
@@ -782,7 +782,7 @@ function talkget() {
     var orgid = $("#orginid").val();
     $.ajax({
         type: 'GET',
-        url: '/chat/chat',
+        url: 'chat/chat',
         dataType: "json",
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
