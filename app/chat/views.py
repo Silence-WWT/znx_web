@@ -5,13 +5,15 @@ from .. import db
 from flask import request, jsonify
 from flask.ext.login import current_user
 from ..permission import user_permission
-from ..models import ChatLine
+from ..models import ChatLine, UnifiedId
 
 
 @chat.route('/chat', methods=['GET', 'POST'])
 @user_permission.require()
 def chat():
     channel_id = current_user.get_unified_id()
+    if not UnifiedId.query.get_or_404(channel_id).user_id:
+        return 'false', 404
     organization_id = request.values.get('orgid', 0, type=int)
     if request.method == 'GET':
         last_id = request.values.get('id', 1, type=int)
@@ -24,6 +26,7 @@ def chat():
             if chatline:
                 return jsonify({'id': chatline.id,
                                 'content': chatline.content})
+            return 'false', 500
         else:
             return 'false', 500
 
@@ -44,3 +47,4 @@ def chat():
             except:
                 db.session.rollback()
                 raise
+        return 'false', 500

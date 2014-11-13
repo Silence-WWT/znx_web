@@ -149,7 +149,7 @@ def search():
         elif order_by == 3:
             query=query.order_by(Organization.orders.desc())
     pagination = query.filter(Organization.name.like(u'%'+name+u'%')).paginate(
-        page, 20, error_out=False
+        page, 10, error_out=False
     )
     orgs = pagination.items
     return render_template('origanselect_py.html',
