@@ -3598,3 +3598,18 @@ input[disabled] {
     margin-left: 140px;
     margin-top: -20px;
 }
+
+#organlist li {
+    padding: 15px 20px;
+    border: 1px solid #999;
+}
+
+#organlist li .btn-next {
+    float: right;
+    margin: -50px 0px;
+}
+
+#organlist li p span {
+    width: 270px;
+    margin-right: 70px;
+}
