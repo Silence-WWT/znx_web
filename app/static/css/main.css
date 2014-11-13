@@ -3413,7 +3413,8 @@ input[disabled] {
 }
 #asklearnadmin ul dl dd span{
     float: left;
-    margin-right: 120px;
+    margin-right: 69px;
+    min-width: 150px;
 }
 #asklearnadmin ul dl dt{
     margin:10px;
