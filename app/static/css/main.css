@@ -87,7 +87,6 @@ button {
 #navbar {
     margin-bottom: 0px;
 }
-
 #headnav > div > div > div > ul > li:nth-child(1) > a > img {
     margin-right: 1px;
 }
@@ -149,6 +148,7 @@ body {
 #headnav .navbar-inner {
     background: #f5f5f5;
     border-width: 0px;
+    box-shadow: none;
 }
 
 #navbar .nav > li > a {
