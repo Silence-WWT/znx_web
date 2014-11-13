@@ -42,7 +42,7 @@ def chat():
 def register():
     page = request.args.get('page', 1, type=int)
     pagination = Register.query.order_by(
-        Register.created.asc()).paginate(
+        Register.created.desc()).paginate(
         page, per_page=current_app.config['ADMIN_REGISTER_PER_PAGE'],
         error_out=False)
     registers = pagination.items
