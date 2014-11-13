@@ -35,15 +35,7 @@
         </div>
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
-        <div class="leftabout">
-            <ul class="unstyled" id="adminTab">
-                <li class="active"><a href="{{ url_for('znx_admin.chat') }}">用户留言</a></li>
-                <li><a href="admin_asklearn.html">求学登记</a></li>
-                <li><a href="admin_origancome.html">机构学校审核</a></li>
-                <li><a href="admin_indexactivity.html">首页推荐活动</a></li>
-                <li ><a href="admin_indexorigan.html">首页推荐机构</a></li>
-            </ul>
-        </div>
+        {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
             <div class="tab-content">
                 <div class="tab-pane active" id="talkadmin">
