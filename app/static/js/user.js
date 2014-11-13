@@ -782,7 +782,7 @@ function talkget() {
     var orgid = $("#orginid").val();
     $.ajax({
         type: 'GET',
-        url: 'chat/chat',
+        url: '/chat/chat',
         dataType: "json",
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
