@@ -232,6 +232,10 @@ class Organization(UserMixin, db.Model):
     star = db.Column(db.Float, default=0.0, nullable=False)
     # 报名数
     orders = db.Column(db.Integer, default=0, nullable=False)
+    # 来源
+    source_site_id = db.Column(db.Integer, default=0, nullable=False)
+    # 审核时间
+    confirmed_time = db.Column(db.Integer, default=0, nullable=False)
 
     def set_star(self, star):
         stars = self.star * self.comment_count
@@ -1063,6 +1067,7 @@ class Location(db.Model):
         db.session.add(Location(city_id=xian.id, district=u'长安区'))
         db.session.add(Location(city_id=beijing.id, district=u'海淀区'))
         db.session.commit()
+
 
 class City(db.Model):
     __tablename__ = 'cities'
