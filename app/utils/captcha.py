@@ -45,15 +45,15 @@ def send_sms(number, content):
     else:
         return True
 
-CONFIRM_MESSAGE = u'恭喜贵机构%s已通过在哪学网人工审核，登陆账号后可以正常添加课程和活动，更多问题请致电400-656-9191'
+CONFIRM_MESSAGE = u'恭喜贵机构已通过在哪学网人工审核，登陆账号后可以正常添加课程和活动，更多问题请致电400-656-9191'
 
 
-def send_confirm_sms(number, org_name):
+def send_confirm_sms(number):
     query = {'method': 'Submit',
              'account': 'cf_zainaxue',
              'password': 'zainaxue',
              'mobile': number,
-             'content': CONFIRM_MESSAGE % org_name}
+             'content': CONFIRM_MESSAGE }
     r = requests.get("http://106.ihuyi.cn/webservice/sms.php", params=query).text.encode('utf8')
     print r
     doc = minidom.parseString(r)

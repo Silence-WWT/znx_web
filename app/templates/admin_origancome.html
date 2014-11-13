@@ -46,6 +46,8 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="maininfo">
                             <ul class="unstyled">
+                                <li>注册手机号:{{ org.mobile }}</li>
+                                <li>注册时间:{{ org.created|get_date_time }}</li>
                                 <li>类型:{{ org.type_id|type }}</li>
                                 <li>名称:{{ org.name }}</li>
                                 <li>广告语:{{ org.slogan }}</li>
