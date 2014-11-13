@@ -757,7 +757,7 @@ $(function () {
         //alert(talkcontent);
         $.ajax({
             type: "POST", //用POST方式传输
-            dataType: "text", //数据格式:JSON
+            dataType: "json", //数据格式:JSON
             url: '/chat/chat', //目标地址
             data: "context=" + talkcontent + "&orgid=" + orgid,
             success: function (data) {
@@ -778,6 +778,7 @@ $(function () {
 })
 function talkget() {
     var tid = $("#talkid").val();
+    var tid = parseInt(tid);
     var orgid = $("#orginid").val();
     $.ajax({
         type: 'GET',
@@ -785,7 +786,10 @@ function talkget() {
         dataType: "json",
         data: "id=" + tid + "&orgid=" + orgid,
         success: function (data) {
-            $("#talkid").val(data.id);
+            var dataid = parseInt(data.id);
+            $("#talkid").val(dataid);
+
+            // alert(dataid);
             var ytalkdiv = "<li ><p class=\'badge badge-success ytalk\'>" + data.content + "</p></li>";
             $("#talkpost li:last-child").after(ytalkdiv);
             $("#talkbody").animate({scrollTop: $("#talkcontent").offset().top}, 800);
