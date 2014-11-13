@@ -88,7 +88,9 @@
             </div>
         </div>
     </div>
+
 </div>
+<hr class="divhr hr1">
 <div class="container" id="organthree">
     <div class="tabbable"> <!-- Only required for left/right tabs -->
         <ul class="nav nav-tabs">
@@ -194,13 +196,13 @@
    </div>
    </span>
                                     <span>适合年龄：{% for age in class.get_ages() %} {{ age.age }} {% endfor %}</span>
-
+                                    <span class="classplace"><i class=" icon-map-marker"></i>{{ org.location }} {{ org.address }}</span>
                                 </div>
                             </div>
                             <div class="classright">
                                 <span>{{ class.price }}</span>
                                 <a href="{{ url_for('course.home', id=class.id) }}">
-                                    <button class=" btn-myred btn-look">查看详情</button>
+                                    <button class=" btn-myred btn-look">课程详情</button>
                                 </a></div>
                         </li>
                         {% endfor %}
@@ -233,7 +235,7 @@
                                 <div class="classright">
                                     <span>{{ activity.price }}</span>
                                     <a href="{{ url_for('activity.home', id=activity.id) }}">
-                                        <button class=" btn-myred btn-look">查看详情</button>
+                                        <button class=" btn-myred btn-look">活动详情</button>
                                     </a></div>
                             </div>
                         </li>
@@ -244,7 +246,7 @@
             </div>
         </div>
     </div>
-
+    <hr class="divhr hr2">
 </div>
 
 
