@@ -43,7 +43,7 @@ def chat():
             db.session.add(chat_line)
             try:
                 db.session.commit()
-                return 'ok'
+                return jsonify({'id': chat_line.id})
             except:
                 db.session.rollback()
                 raise

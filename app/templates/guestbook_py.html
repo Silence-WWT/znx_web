@@ -9,7 +9,6 @@
 <div class="container" id="guestbook">
     <form class="form-horizontal" method="post">
         {{ form.hidden_tag() }}
-        {{ wtf.form_errors(form) }}
         <h3><img src="{{ url_for('static', filename='images/proposal.png') }}"/></h3>
 
         <div class="controls">

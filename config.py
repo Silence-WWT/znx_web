@@ -20,13 +20,14 @@ class Config:
     ADMIN_REGISTER_PER_PAGE = 10
     ADMIN_ORG_PER_PAGE = 20
     STATIC_URL = 'http://static1.znx.com/'
+    ADMIN_COMMENT_PER_PAGE = 20
 
 
 class DevelopmentConfig(Config):
-    DEBUG = False
+    DEBUG = True
     PHOTO_DIR = os.path.join(basedir, 'photos')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'mysql+pymysql://dbuser:usER_2014@node1.db/znx?charset=utf8'
+        'mysql+pymysql://dev:devpassword@localhost/znx?charset=utf8'
 
 
 class TestingConfig(Config):
@@ -36,8 +37,9 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+                              'mysql+pymysql://dbuser:usER_2014@node1.db/znx?charset=utf8'
 
 # TODO: replace sqlite with mysql
 

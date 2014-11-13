@@ -4,7 +4,7 @@ from . import admin
 from .. import db
 from flask import render_template, request, current_app, redirect, url_for, flash
 from ..models import ChatLine, Organization, UnifiedId,\
-    Register, RecommendedActivity, RecommendedOrg
+    Register, RecommendedActivity, RecommendedOrg, SiteComment
 from .form import ReplyForm, RecommendedActivityForm, RecommendedOrgForm
 from ..utils.captcha import send_confirm_sms
 
@@ -50,6 +50,19 @@ def register():
     registers = pagination.items
     return render_template('admin_asklearn.html',
                            registers=registers,
+                           pagination=pagination)
+
+
+@admin.route('/comment', methods=['GET'])
+def comment():
+    page = request.args.get('page', 1, type=int)
+    pagination = SiteComment.query.order_by(
+        Register.created.desc()).paginate(
+        page, per_page=current_app.config['ADMIN_COMMENTS_PER_PAGE'],
+        error_out=False)
+    comments = pagination.items
+    return render_template('admin_asklearn.html',
+                           comments=comments,
                            pagination=pagination)
 
 
