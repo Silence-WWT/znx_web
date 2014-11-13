@@ -3542,6 +3542,16 @@ input[disabled] {
     width: 930px;
 }
 
+#maininfo ul {
+    padding: 25px 200px;
+    font-size: 16px;
+}
+
+#maininfo ul li {
+    line-height: 20px;
+    height: 26px;
+}
+
 #organregform .attendok span {
     color: #FD8F6A;
     margin: 0px;
@@ -3569,4 +3579,22 @@ input[disabled] {
 .hr3 {
     margin-bottom: 15px;
     margin-top: -3px;
+}
+
+#proveinfo img {
+    width: 400px;
+    height: 300px;
+}
+
+#proveinfo ul {
+    padding: 50px 100px;
+}
+
+#proveinfo ul li {
+    margin-bottom: 20px;
+}
+
+#proveinfo .btn-long {
+    margin-left: 140px;
+    margin-top: -20px;
 }

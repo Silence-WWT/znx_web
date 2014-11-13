@@ -64,10 +64,26 @@
                                 <li>联系电话:</li>
                                 <li>城市:</li>
                                 <li>区域:</li>
+                                <li>详细地址:</li>
+                                <li>机构简介:</li>
                             </ul>
 
                         </div>
-                        <div class="tab-pane" id="proveinfo">...</div>
+                        <div class="tab-pane" id="proveinfo">
+                            <ul class="unstyled">
+                                <li>
+                                    <h4>机构营业执照</h4>
+                                    <img src="">
+                                </li>
+
+                                <li>
+                                    <h4>机构门店照片</h4>
+                                    <img src="">
+                                </li>
+                            </ul>
+                            <button class="btn  btn-long">审核通过</button>
+
+                        </div>
 
                     </div>
                 </div>
@@ -78,3 +94,9 @@
 </div>
 </body>
 </html>
+<script>
+    $('#origaninfoTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+</script>
