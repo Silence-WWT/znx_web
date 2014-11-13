@@ -1945,7 +1945,7 @@ i.icon-phone {
     margin-top: 20px;
 }
 
-#classdet .classmargin {
+#classdet .classmargin, #actdet .classmargin {
     margin-bottom: 7px;
 }
 
@@ -1955,41 +1955,43 @@ i.icon-phone {
     height: 158px;
 }
 
-#classdet .organmoredec {
+#classdet .organmoredec, #actdet .organmoredec {
 
     float: left;
     width: 117px;
     font-size: 18px;
 }
 
-#classdet .calssinfo {
+#classdet .calssinfo, #actdet .calssinfo {
     float: left;
 }
 
-#classdet .organmoredec span i {
+#classdet .organmoredec span i, #actdet .organmoredec span i {
     margin: 6px;
 }
-#classdet .picright ul li span i{
+
+#classdet .picright ul li span i, #actdet .picright ul li span i {
     margin: 4px;
 }
 
-#classdet .picright ul li span.organview, #classdet .picright ul li span.organtalk {
+#classdet .picright ul li span.organview, #classdet .picright ul li span.organtalk,
+#actdet .picright ul li span.organview, #actdet .picright ul li span.organtalk {
     font-size: 18px;
     height: 20px;
     line-height: 20px;
     margin-right: 14px;
 }
 
-#classdet .picright ul li span i.icon-eye-open {
+#classdet .picright ul li span i.icon-eye-open, #actdet .picright ul li span i.icon-eye-open {
     margin: 6px 4px 0 0;
 }
 
-#classdet ul {
+#classdet ul, #actdet ul {
     margin-top: 60px;
     color: #727272;
 }
 
-#classdet h3 {
+#classdet h3, #actdet h3 {
 
     font-size: 24px;
     font-weight: normal;
@@ -1999,17 +2001,18 @@ i.icon-phone {
     font-size: 16px;
     font-weight: normal;
 }
-#classdet h3 span {
+
+#classdet h3 span, #actdet h3 span {
     font-size: 18px;
 }
 
-#classdet .picright {
+#classdet .picright, #actdet .picright {
     float: left;
     height: 158px;
     margin: -4px 128px;
 }
 
-#classdet .picright .revinp {
+#classdet .picright .revinp, #actdet .picright .revinp {
 
     float: left;
     margin-top: 21px;
@@ -3532,6 +3535,10 @@ input[disabled] {
 #organregform .attendok a {
     color: #00B98D;
     margin: 0px;
+}
+
+#asklearnadmin {
+    width: 930px;
 }
 
 #organregform .attendok span {
