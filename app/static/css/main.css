@@ -1883,6 +1883,13 @@ i.icon-phone {
     margin: -180px 68px 0;
     cursor: pointer;
 }
+
+.threesmall2 {
+    float: right;
+    margin: -229px 68px 0;
+    cursor: pointer;
+}
+
 #wrongtext {
     width: 458px;
     margin-left: 30px;
@@ -1936,13 +1943,25 @@ i.icon-phone {
     color: #727272;
 }
 
-#classdet {
+#classdet, #actdet {
     background: #fff;
     height: 142px;
     padding: 34px 50px 30px;
     border: 1px solid #ECE9E2;
     color: #000;
     margin-top: 20px;
+}
+
+#actdet {
+    height: 190px;
+}
+
+#actdet .classnamepic {
+    float: left;
+}
+
+#actdet .actlook {
+    margin-bottom: 6px;
 }
 
 #classdet .classmargin, #actdet .classmargin {
@@ -2006,10 +2025,28 @@ i.icon-phone {
     font-size: 18px;
 }
 
-#classdet .picright, #actdet .picright {
+#classdet .picright {
     float: left;
     height: 158px;
     margin: -4px 128px;
+}
+
+#actdet .picright {
+    float: left;
+    height: 158px;
+    margin: -15px 26px;
+}
+
+#classdet .classnamepic img {
+    width: 256px;
+    max-width: 256px;
+    height: 144px;
+}
+
+#actdet .classnamepic img {
+    width: 256px;
+    max-width: 256px;
+    height: 192px;
 }
 
 #classdet .picright .revinp, #actdet .picright .revinp {
@@ -3508,11 +3545,7 @@ input[disabled] {
 #weixinimg{
     z-index:1000;
 }
-#classdet  .classnamepic img{
-    width:256px;
-    max-width:256px;
-    height: 144px;
-}
+
 #origanprice{
     float: right;
     margin-top: -118px;
@@ -3520,6 +3553,7 @@ input[disabled] {
     text-align: center;
     color: #00B98D;
     font-size: 18px;
+    margin-right: 68px;
 }
 #isover{
     margin-left: 16px;
