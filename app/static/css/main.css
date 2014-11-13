@@ -855,6 +855,11 @@ body {
     margin-left: 110px;
 }
 
+#professions label, #ages label {
+    margin-left: 0px;
+    width: 60px;
+}
+
 #orgreg1 {
     margin: 70px 0;
 }
