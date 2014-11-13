@@ -173,3 +173,7 @@ def change_city(city_id):
     City.query.get_or_404(city_id)
     session['city_id'] = city_id
     return redirect(url_for('main.index'))
+
+@main.route('/news/1')
+def news():
+    return render_template('web_news_py.html')

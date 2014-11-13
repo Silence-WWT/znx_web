@@ -28,7 +28,7 @@ class SiteCommentForm(Form):
     body = TextAreaField()
 
     def create_comment(self):
-        comment = SiteComment(mobile=self.mobile.data,
+        comment = SiteComment(contact=self.mobile.data,
                               body=self.body.data,
                               created=time.time())
         return comment
