@@ -11,8 +11,7 @@ class ReplyForm(Form):
 
 
 class OrgForm(Form):
-    org_id = IntegerField('id', validators=[DataRequired(u'必填字段')])
-
+    org_id = IntegerField('org_id')
     def validate_org_id(self, field):
         if not Organization.query.filter_by(id=field.data).first():
             raise ValidationError(u'机构不存在')

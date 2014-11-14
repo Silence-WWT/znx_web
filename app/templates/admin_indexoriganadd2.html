@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>在哪学-管理后台</title>
-    <link href="../static/css/znx.min.css" rel="stylesheet" media="screen">
-    <link href="../static/css/main.css" rel="stylesheet"/>
-    <script src="../static/js/jquery.js" type="text/javascript"></script>
-    <script src="../static/js/znx.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../static/js/user.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/znx.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/znx.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/user.js') }}" type="text/javascript"></script>
     <meta charset="utf-8">
 </head>
 <body>
@@ -37,13 +37,17 @@
         <div class="tab-content">
             <div class="tab-pane active" id="indexorigan">
                 <h3>推荐机构设置</h3>
+                {{ org.name }}
 
-                <form class="indexoriganform">
+                <form class="indexoriganform" method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    {{ form.org_id }}
+                    {{ form.url }}
                     <div class="indexoriganpicup">
                         <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button>
                         <span>请添加XXXXXX大小图片</span>
                         <i class="icon-ok" id="uploadok1"></i>
-                        <input type="file" name="{{ form.certification.name }}" id="uploadorginpic"
+                        <input type="file" name="{{ form.photo.name }}" id="uploadorginpic"
                                style="display: none;">
 
                         <div class="anlipic"><img src="../static/images/footerlogo.png" class="img-polaroid"

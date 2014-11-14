@@ -76,15 +76,15 @@ def search_org():
 
 @admin.route('/add_org/<int:org_id>', methods=['GET', 'POST'])
 def add_org(org_id):
-    Organization.query.get_or_404(org_id)
+    org = Organization.query.get_or_404(org_id)
     form = RecommendedOrgForm()
-    form.org_id.data = org_id
-    form.url.data = url_for('org.home', id=org_id)
     if form.validate_on_submit():
-       org = RecommendedOrg(org_id=form.org_id.data,
+       recommended_org = RecommendedOrg(org_id=form.org_id.data,
                             photo=form.photo.data,)
         # TODO: complete.
-    return render_template('admin_indexoriganadd2.html')
+    form.org_id.data = org_id
+    form.url.data = url_for('org.home', id=org_id)
+    return render_template('admin_indexoriganadd2.html', org=org, form=form)
 
 @admin.route('/org', methods=['GET'])
 def org():

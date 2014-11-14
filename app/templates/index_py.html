@@ -77,7 +77,7 @@
     </div>
 </div>
 {% for org_row in orgs %}
-<div id="floor1">
+<div id="floor{{ loop.index }}">
     <div class="container">
 
         <h3>{{ professions_list[loop.index0].profession }}</h3>
