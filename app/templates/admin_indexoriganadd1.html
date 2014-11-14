@@ -1,3 +1,4 @@
+{% from "snippet/field_error.html" import field_errors %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +40,14 @@
                 <h3>推荐机构设置</h3>
 
                 <div class="input-append searchinput">
-                    <input type="text" class="span2 search-query" id="adminindexsearch">
+                    <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    {{ form.org_id(class="span2 search-query", id="adminindexsearch") }}
                     <button type="submit" class="btn search-btn btn-next">搜索</button>
+                    </form>
+                    <p>
+                        {{ field_errors(form.org_id) }}
+                    </p>
                 </div>
 
             </div>
