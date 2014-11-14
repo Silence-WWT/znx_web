@@ -183,6 +183,7 @@
 {% endblock content %}
 {% block inscript %}
 <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ url_for('static', filename='js/iealert.js') }}" type="text/javascript"></script>
 <script type="text/javascript">
     $("#allnav").css('display', 'block');
@@ -196,19 +197,16 @@
     $(function () {
         $("#navbar ul.nav li:first-child").addClass('act');
     })
+
+
     $(document).ready(function () {
         var locacity = $.trim($("#locacity").text());
         var cityname = $.cookie("cityname");
-        //alert(locacity);
-        if (cityname != locacity) {
-            //  alert("da");
-            //  alert("da");
+
+        if (cityname == "") {
             jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
-                // alert("province : "+remote_ip_info.province+", city : "+remote_ip_info.city);
-                //var nowcityname = remote_ip_info.city;
-                var nowcityname = "深圳";
-                //document.cookie = "cityname=" + nowcityname;
-                $.cookie("cityname", nowcityname, {expires: 10});
+                var nowcityname = remote_ip_info.city;
+                $.cookie('cityname', nowcityname, {expires: 10000});
                 var citylen = $("#citylist li").length;
                 $("#citylist li").each(function (index) {
                     if ($(this).children().text() == nowcityname) {
