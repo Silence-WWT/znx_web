@@ -10,6 +10,13 @@ class ReplyForm(Form):
     content = TextAreaField('content', validators=[DataRequired()])
 
 
+class OrgForm(Form):
+    org_id = IntegerField('id', validators=[DataRequired(u'必填字段')])
+
+    def validate_org_id(self, field):
+        if not Organization.query.filter_by(id=field.data).first():
+            raise ValidationError(u'机构不存在')
+
 class RecommendedOrgForm(Form):
     org_id = IntegerField('org_id')
     photo = FileField(validators=[

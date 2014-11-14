@@ -5,7 +5,7 @@ from .. import db
 from flask import render_template, request, current_app, redirect, url_for, flash
 from ..models import ChatLine, Organization, UnifiedId,\
     Register, RecommendedActivity, RecommendedOrg, SiteComment
-from .form import ReplyForm, RecommendedActivityForm, RecommendedOrgForm
+from .form import ReplyForm, RecommendedActivityForm, RecommendedOrgForm, OrgForm
 from ..utils.captcha import send_confirm_sms
 
 @admin.route('/chat', methods=['GET', 'POST'])
@@ -66,6 +66,14 @@ def comment():
                            pagination=pagination)
 
 
+@admin.route('/add_org', methods=['GET', 'POST'])
+def search_org():
+    form = OrgForm()
+    if form.validate_on_submit():
+        return redirect(url_for('.add_org', org_id=form.org_id.data))
+    return render_template('admin_indexoriganadd1.html', form=form)
+
+
 @admin.route('/add_org/<int:org_id>', methods=['GET', 'POST'])
 def add_org(org_id):
     Organization.query.get_or_404(org_id)
@@ -76,7 +84,7 @@ def add_org(org_id):
        org = RecommendedOrg(org_id=form.org_id.data,
                             photo=form.photo.data,)
         # TODO: complete.
-    return
+    return render_template('admin_indexoriganadd2.html')
 
 @admin.route('/org', methods=['GET'])
 def org():
