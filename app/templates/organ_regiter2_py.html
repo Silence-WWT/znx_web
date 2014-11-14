@@ -71,8 +71,8 @@
                         <span class="inputwrong">{{ helper.field_errors(form.ages) }}</span>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label"><i class="form-required"></i>联系人</label>
+                <div class="control-group contactcon">
+                <label class="control-label"><i class="form-required"></i>联系人</label>
 
                     <div class="controls">
                         {{ form.contact(class="form-control", id="org_contact") }}
@@ -87,8 +87,8 @@
                         <span>{{ helper.field_errors(form.contact_phone) }}</span>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label"><i class="form-required"></i>城市</label>
+                <div class="control-group citycon">
+                <label class="control-label"><i class="form-required"></i>城市</label>
 
                     <div class="controls ">
 
@@ -133,8 +133,8 @@
 
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label"><i class="form-required"></i>详细介绍</label>
+                <div class="control-group introcon">
+                <label class="control-label"><i class="form-required"></i>详细介绍</label>
 
                     <div class="controls">
                         {{ form.detail(class="form-textarea", row="4", id="org_intro") }}
