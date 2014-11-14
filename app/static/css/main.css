@@ -774,8 +774,8 @@ body {
 
 .btn-long {
     width: 330px;
-    margin-left: 0px;
-    margin-top: 20px;
+    margin-left: 108px;
+    margin-top: 45px;
     border: 0;
     background: #00B98D;
     height: 50px;
@@ -1058,8 +1058,12 @@ body {
     background: #fff;
 }
 
-#floor1, #floor2, #floor3 {
-    margin-bottom: 50px;
+#floor1, #floor2, #floor3, #floorp {
+    margin-top: 10px;
+}
+
+#floor1 {
+    margin: 10px 0;
 }
 
 #floor1 h3, #floorp h3, #floor2 h3, #floor3 h3, #floorp h3 {
@@ -1067,6 +1071,8 @@ body {
     color: #000;
     font-weight: normal;
     margin-left: 5px;
+    margin: 15px 0 10px;
+    margin: 15px 3px 10px;
 }
 
 #floor1 ul.inline > li, #floor2 ul.inline > li, #floor3 ul.inline > li {
@@ -1130,7 +1136,6 @@ body {
 
 #floorp {
     margin-bottom: 50px;
-    margin-top: 30px;
 }
 
 #floorp ul.inline {
@@ -3729,7 +3734,7 @@ input[disabled] {
 }
 
 .indexoriganpicup #organupload {
-    margin: 15px;
+    margin: 15px 0 15px 125px;
 }
 
 .indexoriganpicup .anlipic {
@@ -4031,7 +4036,37 @@ input[disabled] {
     margin: 0 4px 0 0;
 }
 
+#origaninfourl {
+    margin: 22px 259px 70px;
+    height: 90px;
 
+}
+
+#origaninfourl label {
+    float: left;
+    font-size: 18px;
+    height: 45px;
+    line-height: 45px;
+    width: 80px;
+}
+
+#origaninfourl input {
+    float: left;
+    font-size: 18px;
+    height: 40px;
+    width: 270px;
+
+}
+
+#origaninfourl .control-group {
+    width: 375px;
+}
+
+#indexorigan .indexoriganname {
+    margin: 48px 0px 0 329px;
+    font-size: 20px;
+    font-weight: normal;
+}
 
 
 

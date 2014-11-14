@@ -32,32 +32,48 @@
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
         {% include 'snippet/admin_nav.html' %}
-    </div>
-    <div class="rightabout">
+
+        <div class="rightabout">
         <div class="tab-content">
             <div class="tab-pane active" id="indexorigan">
                 <h3>推荐机构设置</h3>
-                {{ org.name }}
+                <h4 class="indexoriganname">{{ org.name }}</h4>
 
                 <form class="indexoriganform" method="post" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
-                    {{ form.org_id }}
-                    {{ form.url }}
+                    <div id="origaninfourl">
+                        <div class="control-group">
+                            <label class="control-label">机构id</label>
+
+                            <div class="controls">
+                                {{ form.org_id(class="form-control",readonly="true") }}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">机构网址</label>
+
+                            <div class="controls">
+                                {{ form.url(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
                     <div class="indexoriganpicup">
                         <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button>
-                        <span>请添加XXXXXX大小图片</span>
+                        <span>请添加630px*340px大小图片</span>
                         <i class="icon-ok" id="uploadok1"></i>
                         <input type="file" name="{{ form.photo.name }}" id="uploadorginpic"
                                style="display: none;">
 
-                        <div class="anlipic"><img src="../static/images/footerlogo.png" class="img-polaroid"
-                                                  id="uploadpic1"/></div>
+                        <div class="anlipic"><img src="{{ url_for('static', filename='images/02.png') }}"
+                                                  class="img-polaroid"
+                                                  id="uploadpic1" mousemove="return false;"/></div>
                         <button type="submit" class=" btn btn-long">添加推荐机构</button>
                     </div>
                 </form>
                 <div id="large1"></div>
             </div>
 
+        </div>
         </div>
     </div>
 </div>
