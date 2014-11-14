@@ -1083,6 +1083,10 @@ class RecommendedOrg(db.Model):
     url = db.Column(db.String(255), nullable=False)
     created = db.Column(db.Integer, nullable=False)
 
+    @property
+    def org(self):
+        return Organization.query.get_or_404(self.org_id)
+
 class RecommendedActivity(db.Model):
     __tablename__ = 'recommended_activity'
     id = db.Column(db.Integer, primary_key=True)
