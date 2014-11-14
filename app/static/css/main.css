@@ -2851,6 +2851,13 @@ i.icon-phone {
     cursor: pointer;
 }
 
+#indexorigan .origansearchp {
+    float: left;
+    margin: 8px 300px;
+    color: #F00;
+    font-size: 16px;
+}
+
 #aboutus .leftabout li a {
     color: #000;
 }
