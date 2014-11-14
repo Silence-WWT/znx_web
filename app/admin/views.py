@@ -79,16 +79,33 @@ def add_org(org_id):
     org = Organization.query.get_or_404(org_id)
     form = RecommendedOrgForm()
     if form.validate_on_submit():
-       recommended_org = RecommendedOrg(org_id=form.org_id.data,
-                            photo=form.photo.data,)
-        # TODO: complete.
+        pic = form.save_pic()
+        recommended_org = RecommendedOrg(
+            org_id=form.org_id.data,
+            photo=pic,
+            url=form.url.data,
+            created=time.time())
+
+        db.session.add(recommended_org)
+        db.session.commit()
+        return redirect(url_for('.org'))
     form.org_id.data = org_id
     form.url.data = url_for('org.home', id=org_id)
     return render_template('admin_indexoriganadd2.html', org=org, form=form)
 
+
+@admin.route('/delete_org/<int:org_id>', methods=['GET'])
+def delete_org(org_id):
+    recommended_org = RecommendedOrg.query.get_or_404(org_id)
+    db.session.delete(recommended_org)
+    db.session.commit()
+    return redirect(url_for('.org'))
+
+
 @admin.route('/org', methods=['GET'])
 def org():
-    return render_template('admin_indexorigan.html')
+    recommended_org = RecommendedOrg.query.all()
+    return render_template('admin_indexorigan.html', orgs=recommended_org)
 
 
 @admin.route('/activity', methods=['GET'])
