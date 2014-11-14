@@ -5,141 +5,159 @@
 {% endblock navbar %}
 {% block content %}
 <div class="container" id="origanselect">
-<div class="selecttop">
-    <h3>机构筛选，找到<span>“{{ request.values.get('name', '') }}”
+    <div class="selecttop">
+        <h3>机构筛选，找到<span>“{{ request.values.get('name', '') }}”
 </span>相关机构 <span>{{ pagination.total }}</span> 个</h3>
-    <dl>
-        <dt>机构类别</dt>
-        <dd>
-            <ul class="unstyled inline">
-                <li {% if profession_id==0 %} class="active" {% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}">全部</a></li>
-                {% for profession in professions %}
-                    <li {% if profession_id==profession.id %}class="active"{% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession.id }}">{{ profession.profession }}</a></li>
-                {% endfor %}
-            </ul>
-        </dd>
-    </dl>
-    <br>
-    <dl>
-        <dt>所在区域</dt>
-        <dd>
-            <ul class="unstyled inline">
-                <li {% if location_id==0 %}class="active"{% endif %}><a href="/search?name={{ name }}&profession_id={{ profession_id }}">全部</a></li>
-                {% for location in locations %}
-                <li {% if location_id==location.id %} class="active" {% endif %}><a href="/search?name={{ name }}&location_id={{ location.id }}&profession_id={{ profession_id }}">{{ location.district }}</a></li>
-                {% endfor %}
-            </ul>
-        </dd>
-    </dl>
-</div>
+        <dl>
+            <dt>机构类别</dt>
+            <dd>
+                <ul class="unstyled inline">
+                    <li
+                    {% if profession_id==0 %} class="active" {% endif %}><a
+                        href="/search?name={{ name }}&location_id={{ location_id }}">全部</a></li>
+                    {% for profession in professions %}
+                    <li
+                    {% if profession_id==profession.id %}class="active"{% endif %}><a
+                        href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession.id }}">{{
+                    profession.profession }}</a></li>
+                    {% endfor %}
+                </ul>
+            </dd>
+        </dl>
+        <br>
+        <dl>
+            <dt>所在区域</dt>
+            <dd>
+                <ul class="unstyled inline">
+                    <li
+                    {% if location_id==0 %}class="active"{% endif %}><a
+                        href="/search?name={{ name }}&profession_id={{ profession_id }}">全部</a></li>
+                    {% for location in locations %}
+                    <li
+                    {% if location_id==location.id %} class="active" {% endif %}><a
+                        href="/search?name={{ name }}&location_id={{ location.id }}&profession_id={{ profession_id }}">{{
+                    location.district }}</a></li>
+                    {% endfor %}
+                </ul>
+            </dd>
+        </dl>
+    </div>
     <hr class="divhr4 hr5">
     <div class="selectbottom" id="selectbottom">
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-        <ul class="nav nav-tabs">
-            <li {% if order_by ==0  %}class="active"{% endif %}><a href="#tab1" data-toggle="tab">全部</a></li>
-            <li {% if order_by ==1  %}class="active"{% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=1" >评论数</a></li>
-            <li {% if order_by ==2  %}class="active"{% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=2">浏览数</a></li>
-            <li {% if order_by ==3  %}class="active"{% endif %}><a href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=3">报名数</a></li>
-        </ul>
-        <div class="tab-content" id="selectul">
+        <div class="tabbable"> <!-- Only required for left/right tabs -->
+            <ul class="nav nav-tabs">
+                <li
+                {% if order_by ==0 %}class="active"{% endif %} class="firstli"><a href="#tab1"
+                                                                                  data-toggle="tab">全部</a></li>
+                <li
+                {% if order_by ==1 %}class="active"{% endif %}><a
+                    href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=1">评论数</a></li>
+                <li
+                {% if order_by ==2 %}class="active"{% endif %}><a
+                    href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=2">浏览数</a></li>
+                <li
+                {% if order_by ==3 %}class="active"{% endif %}><a
+                    href="/search?name={{ name }}&location_id={{ location_id }}&profession_id={{ profession_id }}&order_by=3">报名数</a></li>
+            </ul>
+            <div class="tab-content" id="selectul">
 
-            <div class="tab-pane active" id="tab1">
-                <ul class="unstyled">
-                    {% for org in orgs %}
+                <div class="tab-pane active" id="tab1">
+                    <ul class="unstyled">
+                        {% for org in orgs %}
 
 
+                        <li>
+                            <div class="selepic">
+                                <a href="{{ url_for('org.home', id=org.id) }}">
+                                    <img src="{{ org.logo|picture }}" class="img-circle"/>
+                                </a>
+                            </div>
+                            <div class="seledet">
+                                <h3><span><a href="{{ url_for('org.home', id=org.id) }}"> {{ org.name }}</a></span><img
+                                        src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
 
-                    <li>
-                        <div class="selepic">
-                            <a href="{{ url_for('org.home', id=org.id) }}">
-                            <img src="{{ org.logo|picture }}" class="img-circle"/>
-                            </a>
-                        </div>
-                        <div class="seledet">
-                            <h3><span><a href="{{ url_for('org.home', id=org.id) }}"> {{ org.name }}</a></span><img
-                                    src="{{ url_for('static', filename='images/selectren.png') }}"/></h3>
-
-                            <p>---{{ org.slogan }}</p>
-                            <span class="organplace"><i class=" icon-map-marker"></i>{{ org.address }}</span>
-                        </div>
-                        <div class="selectscore">
-                            <ul class="unstyled inline">
-                                <li class="nth1">
-                                <div class="revinp">
+                                <p>---{{ org.slogan }}</p>
+                                <span class="organplace"><i class=" icon-map-marker"></i>{{ org.address }}</span>
+                            </div>
+                            <div class="selectscore">
+                                <ul class="unstyled inline">
+                                    <li class="nth1">
+                                        <div class="revinp">
 				<span class="level">
                     {{ org.star|stars|safe }}
 				</span>
 
-                                    </div>
-                                </li>
-                                <li class="nth2"><span class="organview"><i class="icon-eye-open"></i>浏览：<b>{{
-                                    org.page_view
-                                    }}</b></span></li>
-                                <li><span class="organtalk"><i class="icon-comment"></i>评论：<b>{{ org.comment_count
-                                    }}</b></span><br/></li>
-                                <li><span class="organtalk"><i class="icon-phone"></i>报名：<b>{{ org.orders
-                                    }}</b></span><br/>
-                                </li>
-                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="nth2"><span class="organview"><i class="icon-eye-open"></i>浏览：<b>{{
+                                        org.page_view
+                                        }}</b></span></li>
+                                    <li><span class="organtalk"><i class="icon-comment"></i>评论：<b>{{ org.comment_count
+                                        }}</b></span><br/></li>
+                                    <li><span class="organtalk"><i class="icon-phone"></i>报名：<b>{{ org.orders
+                                        }}</b></span><br/>
+                                    </li>
+                                </ul>
 
-                        </div>
-                    </li>
-                    {% endfor %}
+                            </div>
+                        </li>
+                        {% endfor %}
 
-                </ul>
-                {% from 'snippet/pagination.html' import pagination_widget %}
-                {{ pagination_widget(pagination, 'main.search', fragment='#selectul', profession_id=profession_id, location_id=location_id) }}
+                    </ul>
+                    {% from 'snippet/pagination.html' import pagination_widget %}
+                    {{ pagination_widget(pagination, 'main.search', fragment='#selectul', profession_id=profession_id,
+                    location_id=location_id) }}
+                </div>
             </div>
+            <hr class="divhr4 hr4">
         </div>
-        <hr class="divhr4 hr4">
+
     </div>
+    <div class="asklearn">
 
-</div>
-<div class="asklearn">
+        <h3>快速帮你找到培训机构</h3>
 
-    <h3>快速帮你找到培训机构</h3>
+        <div id="selectasklearn">
+            <form class="form-horizontal" method="post" action="{{ url_for('main.learn') }}">
+                {{ form.hidden_tag() }}
+                <div class="control-group">
+                    <label class="control-label">你在哪里</label>
 
-    <div id="selectasklearn">
-        <form class="form-horizontal" method="post" action="{{ url_for('main.learn') }}">
-            {{ form.hidden_tag() }}
-            <div class="control-group">
-                <label class="control-label">你在哪里</label>
-
-                <div class="controls">
-                    {{ form.city_id(class="form-control-more") }}
+                    <div class="controls">
+                        {{ form.city_id(class="form-control-more") }}
+                    </div>
                 </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">你的姓名</label>
+                <div class="control-group">
+                    <label class="control-label">你的姓名</label>
 
-                <div class="controls">
-                    <input type="text" name="{{ form.name.name }}" class="form-control" required/>
+                    <div class="controls">
+                        <input type="text" name="{{ form.name.name }}" class="form-control" required/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="control-group">
-                <label class="control-label">你的手机号</label>
+                <div class="control-group">
+                    <label class="control-label">你的手机号</label>
 
-                <div class="controls">
-                    <input type="text" name="{{ form.mobile.name }}" class="form-control" required/>
+                    <div class="controls">
+                        <input type="text" name="{{ form.mobile.name }}" class="form-control" required/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="control-group">
-                <label class="control-label wanttolearn">想学什么</label>
+                <div class="control-group">
+                    <label class="control-label wanttolearn">想学什么</label>
 
-                <div class="controls">
-                    <textarea rows="4" name="{{ form.need.name }}" class="form-textarea" required></textarea>
+                    <div class="controls">
+                        <textarea rows="4" name="{{ form.need.name }}" class="form-textarea" required></textarea>
 
+                    </div>
                 </div>
-            </div>
-            <div class="controls">
-                <button type="submit" class="btn-next seleaskbtn">立即开始</button>
-            </div>
-        </form>
+                <div class="controls">
+                    <button type="submit" class="btn-next seleaskbtn">立即开始</button>
+                </div>
+            </form>
+        </div>
+        <hr class="divhr4">
     </div>
-    <hr class="divhr4">
-</div>
 
 </div>
 {% endblock content %}

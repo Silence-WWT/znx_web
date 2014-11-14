@@ -35,26 +35,26 @@
         {% include 'snippet/admin_nav.html' %}
 
         <div class="rightabout">
-        <div class="tab-content">
-            <div class="tab-pane active" id="indexorigan">
-                <h3>推荐机构设置</h3>
+            <div class="tab-content">
+                <div class="tab-pane active" id="indexorigan">
+                    <h3>推荐机构设置</h3>
 
-                <div class="input-append searchinput">
-                    <form action="" method="post">
-                    {{ form.hidden_tag() }}
-                    {{ form.org_id(class="span2 search-query", id="adminindexsearch") }}
-                    <button type="submit" class="btn search-btn btn-next">搜索</button>
-                    </form>
+                    <div class="input-append searchinput">
+                        <form action="" method="post">
+                            {{ form.hidden_tag() }}
+                            {{ form.org_id(class="span2 search-query", id="adminindexsearch") }}
+                            <button type="submit" class="btn search-btn btn-next">搜索</button>
+                        </form>
 
-                </div>
-                <p class="origansearchp">
-                {{ field_errors(form.org_id) }}
+                    </div>
+                    <p class="origansearchp">
+                        {{ field_errors(form.org_id) }}
                     </p>
-            </div>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 </body>

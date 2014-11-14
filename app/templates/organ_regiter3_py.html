@@ -23,23 +23,23 @@
         </ul>
         <div id="organregform">
             <form action="" method="POST" enctype="multipart/form-data" class="upform">
-            {{ form.hidden_tag() }}
+                {{ form.hidden_tag() }}
                 {{ wtf.form_errors(form) }}
                 <div class="upload1">
 
                     <h3 id="about-header1">上传营业执照</h3>
 
                     <ul class="inline unstyled">
-                        <li>
+                        <li class="firstchild">
 
-                            <h3>参考案例</h3>
+                            <h3 class="first-child">参考案例</h3>
 
                             <div class="anlipic">
                                 <img src="{{ url_for('static', filename='images/anli1.jpg') }}" class="img-polaroid">
                             </div>
                         </li>
-                        <li>
-                            <h3>我的
+                        <li class="last-child">
+                            <h3 class="first-child">我的
                                 <button type="button" class="btn-next anotherbtn" id="organupload">上传本地照片</button>
                             </h3>
                             <i class="icon-ok" id="uploadok1"></i>
@@ -62,16 +62,16 @@
                     <h3 id="about-header2">上传门店照片</h3>
 
                     <ul class="inline unstyled">
-                        <li>
+                        <li class="firstchild">
 
-                            <h3>参考案例</h3>
+                            <h3 class="first-child">参考案例</h3>
 
                             <div class="anlipic">
                                 <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
                             </div>
                         </li>
-                        <li>
-                            <h3>我的
+                        <li class="last-child">
+                            <h3 class="first-child">我的
                                 <button type="button" class="btn-next anotherbtn" id="shopupload">上传本地照片</button>
                             </h3>
                             <i class="icon-ok" id="uploadok2"></i>
@@ -92,16 +92,16 @@
                     <h3 id="about-header3">上传机构logo图片</h3>
 
                     <ul class="inline unstyled">
-                        <li>
+                        <li class="firstchild">
 
-                            <h3>参考案例</h3>
+                            <h3 class="first-child">参考案例</h3>
 
                             <div class="anlipic">
                                 <img src="{{ url_for('static', filename='images/mendian1.jpg') }}" class="img-polaroid">
                             </div>
                         </li>
-                        <li>
-                            <h3>我的
+                        <li class="last-child">
+                            <h3 class="first-child">我的
                                 <button type="button" class="btn-next anotherbtn" id="logoupload">上传本地照片</button>
                             </h3>
                             <i class="icon-ok" id="uploadok3"></i>

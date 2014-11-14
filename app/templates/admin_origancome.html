@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>在哪学-管理后台</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/znx.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/znx.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"/>
     <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/znx.min.js') }}" type="text/javascript"></script>
     <script src="{{ url_for('static', filename='js/user.js') }}" type="text/javascript"></script>
@@ -34,15 +34,12 @@
         {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
             <div class="tab-content">
-
                 <div class="tab-pane active" id="origancomeadmin">
                     <h3>机构学校审核</h3>
                     <ul class="nav nav-tabs" id="origaninfoTab">
                         <li class="active"><a href="#maininfo">主要信息</a></li>
                         <li><a href="#proveinfo">资质信息</a></li>
-
                     </ul>
-
                     <div class="tab-content">
                         <div class="tab-pane active" id="maininfo">
                             <ul class="unstyled">
@@ -52,8 +49,10 @@
                                 <li>名称:{{ org.name }}</li>
                                 <li>广告语:{{ org.slogan }}</li>
                                 <li>官方网站:{{ org.site }}</li>
-                                <li>行业:{% for profession in org.get_professions() %} {{ profession.profession }} {% endfor %} </li>
-                                <li>适合年龄: {% for age in org.get_ages() %} {{ age.age }} {% endfor %} </li>
+                                <li>行业:{% for profession in org.get_professions() %} {{ profession.profession }} {%
+                                    endfor %}
+                                </li>
+                                <li>适合年龄: {% for age in org.get_ages() %} {{ age.age }} {% endfor %}</li>
                                 <li>联系人:{{ org.contact }}</li>
                                 <li>联系电话:{{ org.contract_phone }}</li>
                                 <li>城市区域: {{ org.location }}</li>
@@ -75,9 +74,13 @@
                                 </li>
                             </ul>
                             {% if org.is_confirmed %}
-                                <a href="{{ url_for('znx_admin.set_confirm', org_id=org.id) }}"><button class="btn  btn-long">已审核通过， 取消审核</button></a>
+                            <a href="{{ url_for('znx_admin.set_confirm', org_id=org.id) }}">
+                                <button class="btn  btn-long">已审核通过， 取消审核</button>
+                            </a>
                             {% else %}
-                                <a href="{{ url_for('znx_admin.set_confirm', org_id=org.id) }}"><button class="btn  btn-long">审核通过</button></a>
+                            <a href="{{ url_for('znx_admin.set_confirm', org_id=org.id) }}">
+                                <button class="btn  btn-long">审核通过</button>
+                            </a>
                             {% endif %}
 
                         </div>
