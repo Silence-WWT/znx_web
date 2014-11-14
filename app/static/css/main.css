@@ -1063,10 +1063,10 @@ body {
 }
 
 #floor1 {
-    margin: 10px 0;
+    margin: -40px 0 0;
 }
 
-#floor1 h3, #floorp h3, #floor2 h3, #floor3 h3, #floorp h3 {
+#floor1 h3, #floor2 h3, #floor3 h3, #floorp h3 {
     font-size: 28px;
     color: #000;
     font-weight: normal;
@@ -1099,32 +1099,48 @@ body {
     height: 182px;
 }
 
-#floor1 ul.inline > li .floordec span a, #floor2 ul.inline > li .floordec span a, #floor3 ul.inline > li .floordec span a {
+#floor1 ul.inline > li .floordec span a,
+#floor2 ul.inline > li .floordec span a,
+#floor3 ul.inline > li .floordec span a {
     color: #000;
     margin-bottom: 10px;
 }
 
-#floor1 ul.inline > li .floordec span a:hover, #floor2 ul.inline > li .floordec span a:hover,
+#floor1 ul.inline > li .floordec span a:hover,
+#floor2 ul.inline > li .floordec span a:hover,
 #floor3 ul.inline > li .floordec span a:hover {
     color: #00B98D;
 }
 
-#floor1 ul.inline > li .floordec, #floor2 ul.inline > li .floordec, #floor3 ul.inline > li .floordec {
+#floor1 ul.inline > li .floordec,
+#floor2 ul.inline > li .floordec,
+#floor3 ul.inline > li .floordec {
     padding: 21px 10px 0px;
     text-align: center;
 
 }
 
-#floor1 ul.inline > li .floordec span, #floor2 ul.inline > li .floordec span, #floor3 ul.inline > li .floordec span {
+#floor2 ul.inline > li .floordec {
+    padding: 25px 10px 0;
+
+}
+
+#floor1 ul.inline > li .floordec span,
+#floor2 ul.inline > li .floordec span,
+#floor3 ul.inline > li .floordec span {
     font-size: 18px;
 }
 
-#floor1 ul.inline > li .floordec address, #floor2 ul.inline > li .floordec address, #floor3 ul.inline > li .floordec address {
+#floor1 ul.inline > li .floordec address,
+#floor2 ul.inline > li .floordec address,
+#floor3 ul.inline > li .floordec address {
     color: #727272;
     margin-top: 5px;
 }
 
-#floor1 ul.inline > li .floordec address img, #floor2 ul.inline > li .floordec address img {
+#floor1 ul.inline > li .floordec address img,
+#floor2 ul.inline > li .floordec address img,
+#floor3 ul.inline > li .floordec address img {
     margin-right: 4px;
 }
 
