@@ -106,6 +106,7 @@ class DetailForm(Form):
             filter_by(organization_id=current_user.id).all()
         for org_profession in org_professions:
             db.session.delete(org_profession)
+        db.session.flush()
         for profession_id in self.professions.data:
             org_profession = OrganizationProfession(
                 organization_id=current_user.id,
@@ -119,6 +120,7 @@ class DetailForm(Form):
             filter_by(organization_id=current_user.id).all()
         for org_age in org_ages:
             db.session.delete(org_age)
+        db.session.flush()
         for age_id in self.ages.data:
             org_age = OrganizationAge(
                 organization_id=current_user.id,
