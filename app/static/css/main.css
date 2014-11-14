@@ -87,8 +87,10 @@ button {
 #navbar {
     margin-bottom: 0px;
 }
-#headnav > div > div > div > ul > li:nth-child(1) > a > img {
-    margin-right: 1px;
+
+#headnav > div > div > div > ul > li > a.manlogin > img {
+    margin-right: 5px;
+    margin-top: -3px;
 }
 
 #headnav > div > div > div > ul > li.linehr {

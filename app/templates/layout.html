@@ -48,8 +48,8 @@
                         </li>
                         {% else %}
                         <li>
-                            <a href="{{ url_for('main.login') }}">
-                                <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
+                            <a href="{{ url_for('main.login') }}" class="manlogin">
+                            <img src="{{ url_for('static', filename='images/man.png') }}">登录</a>
                         </li>
                         <li style="color: #E0E0E0;line-height:40px;">|</li>
                         <li><a href="{{ url_for('main.register') }}">注册</a>
