@@ -203,7 +203,7 @@
         var locacity = $.trim($("#locacity").text());
         var cityname = $.cookie("cityname");
 
-        if (cityname == "") {
+        if (typeof(cityname) == "undefined") {
             jQuery.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js", function () {
                 var nowcityname = remote_ip_info.city;
                 $.cookie('cityname', nowcityname, {expires: 10000});
