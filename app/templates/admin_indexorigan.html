@@ -40,12 +40,13 @@
                         {% for org in orgs %}
                         <li><span class="acttitle">{{ org.org.name }}</span>
                             <span>添加时间：{{ org.created|get_date_time }}</span>
-                            <a href="{{ url_for('znx_admin.delete_org', org_id=org.id) }}"><button type="button" class="btn-next adminbtn">解除推荐</button></a>
+                            <a href="{{ url_for('znx_admin.delete_org', org_id=org.id) }}">
+                                <button type="button" class="btn-next adminbtn">解除推荐</button>
+                            </a>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
