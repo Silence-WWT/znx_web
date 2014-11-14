@@ -181,7 +181,7 @@ body {
     line-height: 40px;
 }
 
-#headnav > div > div > div > ul > li:nth-child(1) > a > span {
+#headnav ul li > a > span.usernamespan {
     padding: 0px 5px;
     line-height: 40px;
     color: #00B98D;
@@ -3376,6 +3376,20 @@ input[disabled] {
     border: 1px solid #ECE9E2;
 }
 
+#oragannews {
+    padding: 10px 120px 50px;
+}
+
+#oragannews h5 {
+    font-size: 20px;
+    color: #727272;
+    line-height: 40px;
+}
+
+#oragannews p {
+    padding: 0 7px;
+}
+
 #guestbook .form-horizontal .controls {
     margin: 0px;
 }
@@ -3817,7 +3831,7 @@ input[disabled] {
     margin-left: 0px;
 }
 
-#asklearn > h4:nth-child(1) > img:nth-child(2) {
+#asklearn > h4 > img.hotasklearn {
     margin-top: -11px;
     margin-left: 5px;
 }

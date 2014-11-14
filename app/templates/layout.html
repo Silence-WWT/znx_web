@@ -41,7 +41,8 @@
                         <li><a href="{{ url_for('org.course_list') }}"><span>{{current_user.get_name()}}</span>的在哪学</a>
                         </li>
                         {% else %}
-                        <li><a href="{{ url_for('user.home') }}"><span>{{current_user.get_name()}}</span>的在哪学</a></li>
+                        <li><a href="{{ url_for('user.home') }}"><span
+                                class="usernamespan">{{current_user.get_name()}}</span>的在哪学</a></li>
                         {% endif %}
                         <li style="color: #E0E0E0;line-height:40px;">|</li>
                         <li><a href="{{ url_for('main.logout') }}">退出</a>
