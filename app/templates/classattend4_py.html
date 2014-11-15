@@ -16,7 +16,7 @@
                 <p>亲爱的<span>{{ order.name }}</span>,你的免费试听课程<span>{{ course.name }}</span>下单成功,请于{{ order.get_time()
                     }}到<span>{{ org.location }} {{ org.address }}</span>的<span>{{ org.name }}</span>参加。</p>
 
-                <p>现在你可以<a href="{{ url_for('main.login') }}">登录后台</a>查看你的订单信息,或者返回<a
+                <p>现在你可以<a href=" {% if current_user.is_authenticated() %}{{ url_for('user.home') }} {% else %}{{ url_for('main.login') }}{% endif %}">登录后台</a>查看你的订单信息,或者返回<a
                         href="{{ url_for('main.index') }}">首页</a>继续浏览。</p>
             </div>
         </div>
