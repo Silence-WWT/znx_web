@@ -698,7 +698,6 @@ body {
     border: 1px solid #E2E0DB;
     border-radius: 0;
     resize: none;
-    box-shadow: none;
 }
 
 #organregform {
@@ -730,7 +729,6 @@ body {
     padding-left: 10px;
     background: #fff;
     border-radius: 0;
-    box-shadow: none;
     margin-bottom: -5px;
 }
 
@@ -2248,13 +2246,13 @@ i.icon-phone {
 }
 
 #datetimepicker > .form-control, #datetimepicker1 > .form-control, #datetimepicker2 > .form-control {
-    width: 283px;
+    width: 273px;
 }
 
 #datetimepicker span.add-on, #datetimepicker1 span.add-on, #datetimepicker2 span.add-on {
     margin: 0px;
-    height: 20px;
-    padding: 10px;
+    height: 16px;
+    padding: 16px;
     cursor: pointer;
 }
 
@@ -4099,5 +4097,24 @@ input[disabled] {
     font-weight: normal;
 }
 
+.classattend {
+    width: 300px;
+    border-radius: 4px;
+    margin: 57px 4px 4px;
+}
+
+.classattend2 {
+    width: 300px;
+    border-radius: 4px;
+    margin: 80px 15px 49px;
+}
+
+.sexmore {
+    width: 335px;
+    height: 50px;
+    border-radius: 0;
+    border-right: 0;
+    margin-left: 20px;
+}
 
 
