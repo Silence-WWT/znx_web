@@ -1777,6 +1777,10 @@ i.icon-phone {
     width: 293px;
 }
 
+#organregall .container .attendtitle2 {
+    width: 200px;
+}
+
 #editwrong {
     margin: 1px;
 }
@@ -3843,6 +3847,8 @@ input[disabled] {
     color: #333;
     font-size: 18px;
     line-height: 32px;
+    margin-left: -267px;
+    padding: 0 100px;
 }
 
 #organregform .attendok a {
