@@ -1090,6 +1090,7 @@ class RecommendedOrg(db.Model):
 class RecommendedActivity(db.Model):
     __tablename__ = 'recommended_activity'
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
     photo = db.Column(db.String(255), nullable=False)
     url = db.Column(db.String(255), nullable=False)
     created = db.Column(db.Integer, nullable=False)

@@ -31,25 +31,32 @@
         </div>
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
+        {% set active_page = 'activity' -%}
         {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
             <div class="tab-content">
                 <div class="tab-pane active" id="indexactivity">
                     <h3>推荐活动设置</h3>
+                    <form class="indexoriganform" method="post" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
 
                     <div class="control-group indexactivity" >
                         <label class="control-label" >请输入活动名称:</label>
                         <div class="controls">
-                            <input type="text"  name="indexactivity" class="form-control" id="adminaddactivity">
+                            <input type="text"  name="{{ form.name.name }}" class="form-control" id="adminaddactivity">
                         </div>
                     </div>
+                    <div class="control-group">
+                        <label class="control-label">活动网址</label>
 
-
-                    <form class="indexoriganform">
+                        <div class="controls">
+                            {{ form.url(class="form-control") }}
+                        </div>
+                    </div>
                     <div class="indexactivitypicup" >
-                        <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button><span>请添加XXXXXX大小banner</span>
+                        <button type="button" class="btn-next anotherbtn" id="organupload">上传照片</button><span>请添加226px*89px大小banner</span>
                                 <i class="icon-ok" id="uploadok1"></i>
-                                <input type="file" name="{{ form.certification.name }}" id="uploadorginpic" style="display: none;">
+                                <input type="file" name="{{ form.photo.name }}" id="uploadorginpic" style="display: none;">
 
                                     <div class="anlipic"><img src="../static/images/footerlogo.png" class="img-polaroid" id="uploadpic1"/></div>
                                <button type="submit" class=" btn btn-long">上传</button>

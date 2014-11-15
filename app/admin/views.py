@@ -114,6 +114,23 @@ def org():
     return render_template('admin_indexorigan.html', orgs=recommended_org)
 
 
+@admin.route('/add_activity', methods=['GET', 'POST'])
+def add_activity():
+    form = RecommendedActivityForm()
+    if form.validate_on_submit():
+        pic = form.save_pic()
+        activity = RecommendedActivity(
+            name=form.name.data,
+            photo=pic,
+            url=form.url.data,
+            created=time.time()
+        )
+        db.session.add(activity)
+        db.session.commit()
+        return redirect(url_for('.activity'))
+    return render_template('admin_indexactivityadd.html', form=form)
+
+
 @admin.route('/activity', methods=['GET'])
 def activity():
     return render_template('admin_indexactivity.html')
