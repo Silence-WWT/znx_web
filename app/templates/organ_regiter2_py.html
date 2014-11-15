@@ -12,13 +12,13 @@
         <h3>机构注册</h3>
 
         <ul class="breadcrumb">
-            <li><a href="{{ url_for('org.register') }}">1、账号注册</a> <span class="divider"><img
+            <li><a href="#">1、账号注册</a> <span class="divider"><img
                     src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
             </li>
             <li class="active"><a href="{{ url_for('org.detail') }}">2、填写详细信息</a> <span class="divider"><img
                     src="{{ url_for('static', filename='images/lefterr.png') }}"></span>
             </li>
-            <li><a href="{{ url_for('org.certification') }}">3、上传资质证明</a>
+            <li><a href="#">3、上传资质证明</a>
             </li>
         </ul>
         <div id="organregform">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label"><i class="form-required"></i>官方网址</label>
+                    <label class="control-label">官方网址</label>
 
                     <div class="controls">
                         {{ form.site(class="form-control", id="org_site") }}
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="control-group contactcon">
-                <label class="control-label"><i class="form-required"></i>联系人</label>
+                    <label class="control-label"><i class="form-required"></i>联系人</label>
 
                     <div class="controls">
                         {{ form.contact(class="form-control", id="org_contact") }}
@@ -82,17 +82,18 @@
                 </div>
                 <div class="control-group">
                     <label class="control-label"><i class="form-required"></i>联系电话</label>
+
                     <div class="controls">
                         {{ form.contact_phone(class="form-control", id="org_contact_phone",required="required") }}
                         <span>{{ helper.field_errors(form.contact_phone) }}</span>
                     </div>
                 </div>
                 <div class="control-group citycon">
-                <label class="control-label"><i class="form-required"></i>城市</label>
+                    <label class="control-label"><i class="form-required"></i>城市</label>
 
                     <div class="controls ">
 
-                        <select id="dropLang" class="district" >
+                        <select id="dropLang" class="district">
                             <option selected="selected" value="0">----请选择城市----</option>
                             {% for city in form.city_id %}
                             <option value="{{ city.id }}">{{ city.city }}</option>
@@ -106,11 +107,12 @@
                     <div class="controls">
                         <select name="{{ form.location_id.name }}" class="district" id="dropFrame">
                             <option selected="selected" value="0">----请选择区域----</option>
-                        {% for location in form.location %}
+                            {% for location in form.location %}
 
-                            <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}</option>
+                            <option value="{{ location.id }}" parentid="{{location.city_id }}">{{ location.district }}
+                            </option>
 
-                        {% endfor %}
+                            {% endfor %}
                         </select>
                         <span>{{ helper.field_errors(form.location_id) }}</span>
                     </div>
@@ -125,7 +127,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label"><i class="form-required"></i>附近交通</label>
+                    <label class="control-label">附近交通</label>
 
                     <div class="controls">
                         {{ form.traffic(class="form-textarea", row="4", id="org_traffic") }}
@@ -134,7 +136,7 @@
                     </div>
                 </div>
                 <div class="control-group introcon">
-                <label class="control-label"><i class="form-required"></i>详细介绍</label>
+                    <label class="control-label"><i class="form-required"></i>详细介绍</label>
 
                     <div class="controls">
                         {{ form.detail(class="form-textarea", row="4", id="org_intro") }}
@@ -153,29 +155,29 @@
 {% endblock content %}
 {% block inscript %}
 
-    <script type="text/javascript" language="javascript">
-        $(function(){
-            $("#dropLang").unbind("change", eDropLangChange).bind("change", eDropLangChange);
-            $("#dropFrame").unbind("change", eDropFrameChange).bind("change", eDropFrameChange);
+<script type="text/javascript" language="javascript">
+    $(function () {
+        $("#dropLang").unbind("change", eDropLangChange).bind("change", eDropLangChange);
+        $("#dropFrame").unbind("change", eDropFrameChange).bind("change", eDropFrameChange);
+    });
+
+    var eDropLangChange = function () {
+        var selectedValue = $(this).val();
+
+        $("#dropFrame").children("span").each(function () {
+            $(this).children().clone().replaceAll($(this));
         });
 
-        var eDropLangChange = function(){
-            var selectedValue = $(this).val();
+        if (parseInt(selectedValue) != 0) {
 
-            $("#dropFrame").children("span").each(function(){
-                $(this).children().clone().replaceAll($(this));
+            $("#dropFrame").children("option[parentid!='" + selectedValue + "'][value!='0']").each(function () {
+                $(this).wrap("<span style='display:none'></span>");
             });
+        }
+    };
 
-            if(parseInt(selectedValue) != 0){
-
-                $("#dropFrame").children("option[parentid!='" + selectedValue + "'][value!='0']").each(function(){
-                    $(this).wrap("<span style='display:none'></span>");
-                });
-            }
-        };
-
-        var eDropFrameChange = function(){
-            $("#dropLang").val($(this).children("option:selected").attr("parentid"));
-        };
-    </script>
+    var eDropFrameChange = function () {
+        $("#dropLang").val($(this).children("option:selected").attr("parentid"));
+    };
+</script>
 {% endblock inscript %}

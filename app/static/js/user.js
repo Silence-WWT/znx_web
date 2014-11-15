@@ -50,7 +50,7 @@ $(function () {
     // 验证用户名
     $('#username').focus(function () {
     }).blur(function () {
-        var username = $(this).val();
+        var username = $.trim($("#username").val());
         var userurl = $("#userurl").val();
         var usernameok = username.replace(/[^\x00-\xff]/g, "rr").length;
         if (usernameok >= 4 && usernameok <= 64) {
@@ -172,7 +172,7 @@ $('#userregbtn').click(function () {
     var ok4 = false;
     var ok5 = false;
     var ok6 = false;
-    var username = $("#username").val();
+    var username = $.trim($("#username").val());
     var usernameok = username.replace(/[^\x00-\xff]/g, "rrr").length;
     var userurl = $("#userurl").val();
     if (usernameok >= 6 && usernameok <= 64) {

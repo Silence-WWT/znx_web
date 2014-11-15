@@ -33,11 +33,12 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="inputConfirmPassword">试听时间</label>
+                    <label class="control-label">试听时间</label>
 
                     <div class="controls">
                         <div id="datetimepicker" class="input-append date">
-                            <input type="text" name="{{ form.time.name }}" class="form-control shortinput"></input>
+                            <input type="text" name="{{ form.time.name }}" class="form-control shortinput"
+                                   required="true"></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
       </span>
@@ -46,10 +47,11 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button type="submit" class="btn-next">下一步</button>
+                    <button type="submit" class="btn-next classattend">下一步</button>
                 </div>
             </form>
         </div>
+        <hr class="divhr4 hr6">
     </div>
 </div>
 {% endblock content %}
