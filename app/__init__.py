@@ -7,6 +7,7 @@ from flask.ext.mail import Mail
 from flask.ext.rq import RQ
 from flask.ext.principal import Principal
 from flask.ext.admin import Admin
+from flask.ext.cdn import CDN
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
 from .permission import config_identity
@@ -22,6 +23,7 @@ debug_tool_bar = DebugToolbarExtension()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'main.login'
 admin = Admin()
+cdn = CDN()
 
 
 def create_app(config_name):
@@ -36,6 +38,8 @@ def create_app(config_name):
     debug_tool_bar.init_app(app)
     principal.init_app(app)
     admin.init_app(app)
+    cdn.init_app(app)
+
 
     config_identity(app)
     from .filter import stars, sex, get_date_time, anonymous_mobile, \
