@@ -23,6 +23,7 @@ def chat():
                            created=time.time())
             db.session.add(chat)
             db.session.commit()
+        return redirect(url_for('.chat'))
     channels = db.session.query(ChatLine.unified_id, ChatLine.organization_id).\
         group_by(ChatLine.unified_id, ChatLine.organization_id).\
         order_by(ChatLine.id.desc())
