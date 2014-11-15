@@ -1920,10 +1920,14 @@ i.icon-phone {
 }
 
 #organclass ul li .classleft .classtest, #organplay ul li .classleft .classtest {
-    width: 546px;
+    width: 590px;
     float: left;
     color: #2a2a2a;
     margin-left: 25px;
+}
+
+#organplay ul li .classleft .classtest {
+    margin-top: -5px;
 }
 
 #organclass ul li .classleft .classtest {
@@ -1946,6 +1950,10 @@ i.icon-phone {
     color: #727272;
 }
 
+#organplay ul li .classleft span.activityspan {
+    margin: 3px 0 4px;
+}
+
 #organclass ul li .classleft span.level, #organplay ul li .classleft span.level {
     width: 85px;
 }
@@ -1966,12 +1974,16 @@ i.icon-phone {
     line-height: 30px;
     height: 30px;
     width: 267px;
-    margin: -85px -52px 0;
+
     text-align: center;
 }
 
 #organclass ul li .classright span {
-    margin: -110px -52px 0;
+    margin: -162px -26px 0;
+}
+
+#organplay ul li .classright span {
+    margin: -123px -23px 0;
 }
 
 .divhr {
@@ -2024,6 +2036,21 @@ i.icon-phone {
     margin-top: -74px;
     text-align: center;
     width: 320px;
+}
+
+#organclass ul li .classright a.freeattend {
+    margin: -120px 0 80px 30px;
+}
+
+#organplay ul li .classright a.freeattend {
+    margin: -84px 0 52px 30px;
+}
+
+#organclass ul li .classright a.freeattend .btn-next, #organplay ul li .classright a.freeattend .btn-next {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
 }
 
 #zixunbtn {

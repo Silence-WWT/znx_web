@@ -204,9 +204,14 @@
                             </div>
                             <div class="classright">
                                 <span>{{ class.price }}</span>
+                                <a href="{{ url_for('course.taste', id=class.id) }}" class="freeattend">
+                                    <button class="btn-next ">免费试听</button>
+                                </a>
                                 <a href="{{ url_for('course.home', id=class.id) }}">
                                     <button class=" btn-myred btn-look">课程详情</button>
-                                </a></div>
+                                </a>
+
+                            </div>
                         </li>
                         {% endfor %}
                     </ul>
@@ -226,7 +231,7 @@
                                     <h3><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a>
                                     </h3>
                                     <br>
-   <span> <div class="revinp">
+   <span class="activityspan"> <div class="revinp">
 				<span class="level">
                     {{ activity.stars|stars|safe }}
 				</span><b>{{ activity.get_comment_count() }}人评价 </b><b class="redb"> {{ activity|activity_status }}</b>
@@ -239,6 +244,9 @@
                                 </div>
                                 <div class="classright">
                                     <span>{{ activity.price }}</span>
+                                    <a href="{{ url_for('activity.taste', id=activity.id) }}" class="freeattend">
+                                        <button class="btn-next ">免费试听</button>
+                                    </a>
                                     <a href="{{ url_for('activity.home', id=activity.id) }}">
                                         <button class=" btn-myred btn-look">活动详情</button>
                                     </a></div>
