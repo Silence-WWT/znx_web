@@ -21,10 +21,12 @@ class Config:
     ADMIN_ORG_PER_PAGE = 20
     STATIC_URL = 'http://static1.znx.com/'
     ADMIN_COMMENT_PER_PAGE = 20
+    CDN_DOMAIN = 'static1.znx.com'
 
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    CDN_DEBUG = False
     PHOTO_DIR = os.path.join(basedir, 'photos')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'mysql+pymysql://dev:devpassword@localhost/znx?charset=utf8'

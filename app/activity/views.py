@@ -50,6 +50,8 @@ def confirm(id):
     activity = Activity.query.get_or_404(order.activity_id)
     if order.unified_id != current_user.get_unified_id():
         abort(404)
+    if order.is_submitted:
+        abort(404)
     if form.validate_on_submit():
         order.remark = form.remark.data
         order.is_confirmed = True
