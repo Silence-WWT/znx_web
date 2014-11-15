@@ -139,7 +139,7 @@ class CertificationForm(Form):
 
 
 class LoginForm(Form):
-    cellphone = StringField(validators=[DataRequired(), Length(11, 11)])
+    cellphone = StringField(validators=[DataRequired()])
     password = PasswordField(validators=[DataRequired()])
     remember_me = BooleanField()
 

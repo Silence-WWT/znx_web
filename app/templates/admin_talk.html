@@ -15,7 +15,7 @@
     <meta charset="utf-8">
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="margin: 0 auto;">
     <div class="navbar navbar-static-top" id="headnav">
         <div class="navbar-inner ">
             <div class="container">
@@ -78,6 +78,8 @@
                         </div>
                         {% endfor %}
                     </div>
+                    {% from 'snippet/pagination.html' import pagination_widget %}
+                    {{ pagination_widget(pagination, 'znx_admin.chat', fragment='#accordion2') }}
                 </div>
             </div>
         </div>

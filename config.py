@@ -17,6 +17,7 @@ class Config:
     ZNX_MAIL_SENDER = 'Notification <Notification@znx.com>'
     PHOTO_DIR = '/web/static/'
     ORG_COMMENT_PER_PAGE = 10
+    ADMIN_SESSIONS_PER_PAGE = 20
     ADMIN_REGISTER_PER_PAGE = 10
     ADMIN_ORG_PER_PAGE = 20
     STATIC_URL = 'http://static1.znx.com/'

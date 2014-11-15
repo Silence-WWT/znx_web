@@ -24,9 +24,13 @@ def chat():
             db.session.add(chat)
             db.session.commit()
         return redirect(url_for('.chat'))
-    channels = db.session.query(ChatLine.unified_id, ChatLine.organization_id).\
-        group_by(ChatLine.unified_id, ChatLine.organization_id).\
-        order_by(ChatLine.id.desc())
+    page = request.args.get('page', 1, type=int)
+    pagination = ChatLine.query.\
+        group_by(ChatLine.unified_id, ChatLine.organization_id). \
+        order_by(ChatLine.id.desc()).paginate(
+        page, per_page=current_app.config['ADMIN_SESSIONS_PER_PAGE'],
+        error_out=False)
+    channels = pagination.items
     chat_groups = list()
     for channel in channels:
         session = dict()
@@ -38,7 +42,8 @@ def chat():
         session['channel'] = channel
         chat_groups.append(session)
 
-    return render_template('admin_talk.html', chat_groups=chat_groups, form=replyform)
+    return render_template('admin_talk.html', chat_groups=chat_groups,
+                           form=replyform, pagination=pagination)
 
 
 @admin.route('/register', methods=['GET'])
