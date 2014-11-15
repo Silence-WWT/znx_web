@@ -224,7 +224,7 @@ body {
     height: 32px;
     padding-left: 20px;
     font-size: 14px;
-    line-height: 40px;
+    line-height: 1;
 }
 
 #headsearch .form-search {
@@ -729,7 +729,7 @@ body {
     background: #fff;
     border-radius: 0;
     margin-bottom: -5px;
-    line-height: 50px;
+    line-height: 1;
 }
 
 #myactset select.form-control {
@@ -854,7 +854,7 @@ body {
     height: 30px;
     border-radius: 0;
     color: #000;
-    line-height: 40px;
+    line-height: 1;
 }
 
 #twologin .controls .last-control {
@@ -2484,7 +2484,7 @@ i.icon-phone {
     font-size: 18px;
     padding-left: 10px;
     background: #fff;
-    line-height: 46px;
+    line-height: 100%;
 }
 
 #asklearnform .form-textarea {
@@ -4183,7 +4183,7 @@ input[disabled] {
     border-radius: 0;
     border-right: 0;
     margin-left: 0px;
-    line-height: 50px;
+    line-height: 1;
 }
 
 .sexmore1 {
@@ -4192,7 +4192,7 @@ input[disabled] {
     border-radius: 0;
     border-right: 0;
     margin-left: 20px;
-    line-height: 50px;
+    line-height: 1;
 }
 
 #nosearch {
