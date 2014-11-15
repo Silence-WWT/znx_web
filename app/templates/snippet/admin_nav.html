@@ -1,9 +1,17 @@
+{% set navigation_bar = [
+    ('znx_admin.chat', 'chat', '用户聊天'),
+    ('znx_admin.register', 'register', '求学登记'),
+    ('znx_admin.confirm_list', 'confirm_list', '机构学校审核'),
+    ('znx_admin.activity', 'activity', '首页推荐活动'),
+    ('znx_admin.org', 'org', '首页推荐机构'),
+] -%}
+
+{% set active_page = active_page|default('chat') -%}
+
 <div class="leftabout">
     <ul class="unstyled" id="adminTab">
-        <li><a href="{{ url_for('znx_admin.chat') }}">用户聊天</a></li>
-        <li class="active"><a href="{{ url_for('znx_admin.register') }}">求学登记</a></li>
-        <li><a href="{{ url_for('znx_admin.confirm_list') }}">机构学校审核</a></li>
-        <li><a href="{{ url_for('znx_admin.activity') }}">首页推荐活动</a></li>
-        <li><a href="{{ url_for('znx_admin.org') }}">首页推荐机构</a></li>
+        {% for href, id, caption in navigation_bar %}
+        <li {% if id == active_page %} class="active" {% endif %}><a href="{{ url_for(href) }}">{{ caption }}</a></li>
+        {% endfor %}
     </ul>
 </div>

@@ -49,6 +49,8 @@ def detail(id):
     order = ClassOrder.query.get_or_404(id)
     if order.unified_id != current_user.get_unified_id():
         abort(404)
+    if order.is_submitted:
+        abort(404)
     if form.validate_on_submit():
         form.set_ord(order)
         db.session.add(order)
@@ -63,6 +65,8 @@ def confirm(id):
     order = ClassOrder.query.get_or_404(id)
     course = Class.query.get_or_404(order.class_id)
     if order.unified_id != current_user.get_unified_id():
+        abort(404)
+    if order.is_submitted:
         abort(404)
     if form.validate_on_submit():
         order.remark = form.remark.data
