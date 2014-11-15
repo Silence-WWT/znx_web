@@ -15,10 +15,6 @@ img {
     outline: none;
 }
 
-#warp {
-    color: #727272;
-}
-
 .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .container {
     width: 1200px;
 }
@@ -146,7 +142,8 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    /* Negative indent footer by it's height */
+    color: #727272;
+    overflow: hidden;
     margin: 0 auto -310px;
 }
 
