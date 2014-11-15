@@ -2512,6 +2512,7 @@ i.icon-phone {
     margin-top: 25px;
     width: 330px;
     margin-left: 0px;
+    border-radius: 4px;
 }
 
 #askright .newasklearn {
@@ -3353,7 +3354,6 @@ input[disabled] {
     width: 240px;
     border-radius: 5px;
     font-size: 20px;
-    font-weight: 600;
 }
 
 #selectul .myselectlist {
