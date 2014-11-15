@@ -31,7 +31,7 @@
 
                             <div class="actrighta">
                                 <a href="{{ url_for('user.course_order_detail', id=class_order.id) }}">
-                                    <button class="btn-edit">订单详情</button>
+                                    <button class="btn-edit" onclick="this.parentNode.click();">订单详情</button>
                                 </a>
                                 <a class="deleclass" id="myclass1">
                                     <button class="btn-det">删除</button>
@@ -63,7 +63,7 @@
 
                             <div class="actrighta">
                                 <a href="{{ url_for('user.activity_order_detail', id=activity_order.id) }}">
-                                    <button class="btn-edit">订单详情</button>
+                                    <button class="btn-edit" onclick="this.parentNode.click();">订单详情</button>
                                 </a>
                                 <a class="deleclass" id="myclass1">
                                     <button class="btn-det">删除</button>
@@ -89,20 +89,4 @@
 
 {% endblock content %}
 {% block inscript %}
-<script type="text/javascript">
-    $(function () {
-        $(".deleclass").click(function () {
-            var id = $(this).attr("id");
-            //alert(id);
-            var r = confirm("删除课程？");
-            if (r == true) {
-                alert("你删除的课程是" + id);
-            }
-            else {
-                //alert("You pressed Cancel!");
-            }
-        })
-
-    })
-</script>
 {% endblock inscript %}

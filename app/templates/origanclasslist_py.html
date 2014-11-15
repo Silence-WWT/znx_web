@@ -9,10 +9,13 @@
     <div class="container" id="myuser">
         <div class="myuserleft">
             <ul class="unstyled">
-                <li class="active"><a href="{{ url_for('org.course_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set1.png') }}"/>我的课程</a></li>
-                <li><a href="{{ url_for('org.activity_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set2.png') }}"/>我的活动</a>
+                <li class="active"><a href="{{ url_for('org.course_list') }}" class="aandli"><img
+                        src="{{ url_for('static', filename='images/set1.png') }}"/>我的课程</a></li>
+                <li><a href="{{ url_for('org.activity_list') }}" class="aandli"><img
+                        src="{{ url_for('static', filename='images/set2.png') }}"/>我的活动</a>
                 </li>
-                <li><a href="{{ url_for('org.order_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set3.png') }}"/>我的订单</a>
+                <li><a href="{{ url_for('org.order_list') }}" class="aandli"><img
+                        src="{{ url_for('static', filename='images/set3.png') }}"/>我的订单</a>
                 </li>
 
             </ul>
@@ -24,21 +27,22 @@
             <ul class="unstyled" id="actlistul">
                 {% for course in courses %}
                 <li>
-                    <div class="actleft"><a href="{{ url_for('course.home', id=course.id) }}"><img src="{{ course.photo|picture }}"/></a></div>
+                    <div class="actleft"><a href="{{ url_for('course.home', id=course.id) }}"><img
+                            src="{{ course.photo|picture }}"/></a></div>
                     <div class="actright">
                         <div class="actrighttop">
                             <h4><a href="{{ url_for('course.home', id=course.id) }}">{{ course.name }}</a></h4>
 
                             <div class="actrighta">
                                 {% if course.is_closed %}
-                                    <button class="closebtn">已关闭</button>
+                                <button class="closebtn">已关闭</button>
                                 {% else %}
                                 <a href="{{ url_for('org.edit_course', id=course.id) }}">
-                                    <button class="btn-edit">编辑</button>
+                                    <button class="btn-edit" onclick="this.parentNode.click();">编辑</button>
                                 </a>
                                 <a class="deleclass" href="{{ url_for('org.delete_course', id=course.id) }}"
                                    onClick="return confirm('确定删除该课程订单？')">
-                                    <button class="btn-det">关闭</button>
+                                    <button class="btn-det" onclick="this.parentNode.click();">关闭</button>
                                 </a>
                                 {% endif %}
 
@@ -50,7 +54,7 @@
                         <p>{{ course.detail|safe |truncate(180, true) }}</p>
                     </div>
                 </li>
-                    {% else %}
+                {% else %}
                 <div class="orderinfo">
                     <span class="noorder"><img
                             src="{{ url_for('static', filename='images/noorder.png') }}">

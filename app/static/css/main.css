@@ -15,10 +15,6 @@ img {
     outline: none;
 }
 
-#warp {
-    color: #727272;
-}
-
 .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container, .container {
     width: 1200px;
 }
@@ -146,7 +142,8 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    /* Negative indent footer by it's height */
+    color: #727272;
+    overflow: hidden;
     margin: 0 auto -310px;
 }
 
@@ -701,7 +698,6 @@ body {
     border: 1px solid #E2E0DB;
     border-radius: 0;
     resize: none;
-    box-shadow: none;
 }
 
 #organregform {
@@ -733,7 +729,6 @@ body {
     padding-left: 10px;
     background: #fff;
     border-radius: 0;
-    box-shadow: none;
     margin-bottom: -5px;
 }
 
@@ -907,6 +902,7 @@ body {
     color: #fff;
     font-size: 20px;
     margin-left: 110px;
+    border-radius: 4px;
 }
 
 #professions label, #ages label {
@@ -2251,13 +2247,13 @@ i.icon-phone {
 }
 
 #datetimepicker > .form-control, #datetimepicker1 > .form-control, #datetimepicker2 > .form-control {
-    width: 283px;
+    width: 273px;
 }
 
 #datetimepicker span.add-on, #datetimepicker1 span.add-on, #datetimepicker2 span.add-on {
     margin: 0px;
-    height: 20px;
-    padding: 10px;
+    height: 16px;
+    padding: 16px;
     cursor: pointer;
 }
 
@@ -2515,6 +2511,7 @@ i.icon-phone {
     margin-top: 25px;
     width: 330px;
     margin-left: 0px;
+    border-radius: 4px;
 }
 
 #askright .newasklearn {
@@ -3356,7 +3353,6 @@ input[disabled] {
     width: 240px;
     border-radius: 5px;
     font-size: 20px;
-    font-weight: 600;
 }
 
 #selectul .myselectlist {
@@ -4102,5 +4098,32 @@ input[disabled] {
     font-weight: normal;
 }
 
+.classattend {
+    width: 300px;
+    border-radius: 4px;
+    margin: 57px 4px 4px;
+}
+
+.classattend2 {
+    width: 300px;
+    border-radius: 4px;
+    margin: 65px 15px 30px;
+}
+
+.sexmore {
+    width: 335px;
+    height: 50px;
+    border-radius: 0;
+    border-right: 0;
+    margin-left: 0px;
+}
+
+.sexmore1 {
+    width: 335px;
+    height: 50px;
+    border-radius: 0;
+    border-right: 0;
+    margin-left: 20px;
+}
 
 
