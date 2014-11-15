@@ -3777,7 +3777,7 @@ input[disabled] {
 }
 
 .indexactivitypicup {
-    margin: 0 200px;
+    margin: -17px 290px;
 }
 
 .indexoriganform #uploadok1 {
@@ -3806,7 +3806,6 @@ input[disabled] {
     /* line-height: 40px; */
     border-radius: 0px;
     font-size: 18px;
-    margin-left: 20px;
 }
 
 #contenthead .dropdown-menu > li > a {
@@ -4077,12 +4076,25 @@ input[disabled] {
 
 }
 
+#activityinfourl {
+    margin: 56px 0 67px 200px;
+    height: 122px;
+}
+
 #origaninfourl label {
     float: left;
     font-size: 18px;
     height: 45px;
     line-height: 45px;
     width: 80px;
+}
+
+#activityinfourl label {
+    float: left;
+    font-size: 18px;
+    height: 45px;
+    line-height: 45px;
+    width: 90px;
 }
 
 #origaninfourl input {
@@ -4093,8 +4105,21 @@ input[disabled] {
 
 }
 
+#activityinfourl input {
+    float: left;
+    font-size: 18px;
+    height: 40px;
+    width: 270px;
+
+}
+
 #origaninfourl .control-group {
     width: 375px;
+}
+
+#activityinfourl .control-group {
+    width: 481px;
+    height: 58px;
 }
 
 #indexorigan .indexoriganname {
@@ -4142,4 +4167,10 @@ input[disabled] {
     text-align: center;
 }
 
+#indexactivity .activepic {
+    margin: 29px 1px 0px;
+}
 
+#indexactivity .btn-long {
+    margin-left: -10px;
+}
