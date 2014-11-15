@@ -133,7 +133,9 @@ def add_activity():
 
 @admin.route('/activity', methods=['GET'])
 def activity():
-    return render_template('admin_indexactivity.html')
+    recommended_activity = RecommendedActivity.query.all()
+    return render_template('admin_indexactivity.html',
+                           activities=recommended_activity)
 
 
 @admin.route('/confirm_list', methods=['GET'])
