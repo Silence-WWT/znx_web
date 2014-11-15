@@ -4,10 +4,9 @@ from random import randint
 from . import user
 from .. import db
 from flask.ext.principal import identity_changed, Identity
-from .forms import LoginForm, RegistrationForm
+from .forms import LoginForm, RegistrationForm, ResetPasswordForm
 from ..models import User, ActivityOrder, ClassOrder, UnifiedId
 from ..permission import anonymous_permission, user_permission
-from ..email import send_email
 from ..org.forms import LoginForm as OrgLoginForm
 from flask.ext.login import login_user, current_user
 from flask import redirect, url_for, render_template, flash, \
@@ -111,3 +110,17 @@ def account():
             return 'false', 500
         return 'true', 200
     return 'false', 500
+
+
+@user.route('/reset_password', methods=['GET', 'POST'])
+@anonymous_permission.require()
+def reset_password():
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(mobile=form.cellphone.data).first_or_404()
+        user.password=form.password.data
+        db.session.add(user)
+        db.session.commit()
+        flash(u'密码修改成功')
+        return redirect(url_for('main.login'))
+    return render_template('password_forget.html', form=form)
