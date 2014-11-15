@@ -46,6 +46,23 @@ class RecommendedOrgForm(Form):
         return os.path.join(relative_path, photo)
 
 class RecommendedActivityForm(Form):
+    name = StringField('name', validators=[DataRequired(u'必填'),
+                                           Length(1, 50, u'长度小于50')])
     photo = FileField(validators=[
         FileRequired(), FileAllowed(['jpg', 'png'], 'Images only!')])
     url = StringField('url', validators=[Length(0, 255)])
+
+    def save_pic(self):
+        path = current_app.config['PHOTO_DIR']
+        org_id = 0
+        relative_path = generate_dir_path(org_id)
+        dir_path = os.path.join(path, relative_path)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+
+        ext = self.photo.data.filename.rsplit('.', 1)[-1]
+        photo = uuid4().hex + '.' + ext
+        file_path = os.path.join(dir_path, photo)
+        self.photo.data.save(file_path)
+
+        return os.path.join(relative_path, photo)

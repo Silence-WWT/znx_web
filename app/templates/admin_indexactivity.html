@@ -31,12 +31,13 @@
         </div>
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
+        {% set active_page = 'activity' -%}
         {% include 'snippet/admin_nav.html' %}
 
         <div class="rightabout">
             <div class="tab-content">
                 <div class="tab-pane active" id="indexactivity">
-                    <h3>推荐活动设置<a href="admin_indexactivityadd.html">添加活动</a></h3>
+                    <h3>推荐活动设置<a href="{{ url_for('znx_admin.add_activity') }}">添加活动</a></h3>
                     <ul class="unstyled">
                         <li><span class="acttitle">小孩亲子活动大本营</span>
                             <a href="#">
