@@ -45,7 +45,7 @@
                         <div class="controls">
                             <button type="submit" class="btn-long1" id="organLoginSubmit">登录</button>
                         </div>
-                        <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
+                        <div class="form-auxlinks"><a class="form-forget" href="{{ url_for('user.reset_password') }}">忘记密码</a>
 
                             <div class="form-right"><a class="form-signup" href="{{ url_for('main.register') }}">免费注册</a>
                                 <a href="{{ url_for('main.report')}}" class="form-feedback" target="_blank" ><span
