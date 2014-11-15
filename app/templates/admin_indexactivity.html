@@ -39,30 +39,14 @@
                 <div class="tab-pane active" id="indexactivity">
                     <h3>推荐活动设置<a href="{{ url_for('znx_admin.add_activity') }}">添加活动</a></h3>
                     <ul class="unstyled">
-                        <li><span class="acttitle">小孩亲子活动大本营</span>
-                            <a href="#">
-                                <button type="button" class="btn-next adminbtn">编辑</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="btn-next adminbtn">删除</button>
-                            </a>
-                        </li>
-                        <li><span class="acttitle">小孩亲子活动大本营</span>
-                            <a href="#">
-                                <button type="button" class="btn-next adminbtn">编辑</button>
-                            </a>
+                        {% for activity in activities %}
+                        <li><span class="acttitle">{{ activity.name }}</span>
+                            <span>添加时间:{{ activity.created|get_date_time }}</span>
                             <a href="#">
                                 <button type="button" class="btn-next adminbtn">删除</button>
                             </a>
                         </li>
-                        <li><span class="acttitle">小孩亲子活动大本营</span>
-                            <a href="#">
-                                <button type="button" class="btn-next adminbtn">编辑</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="btn-next adminbtn">删除</button>
-                            </a>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
