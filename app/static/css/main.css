@@ -4126,4 +4126,15 @@ input[disabled] {
     margin-left: 20px;
 }
 
+#nosearch {
+    border: 1px solid #F3EEDB;
+    background: #FFFBEE;
+    color: #fd8f6a;
+    font-size: 16px;
+    height: 45px;
+    line-height: 45px;
+    margin: 38px 38px 0;
+    text-align: center;
+}
+
 
