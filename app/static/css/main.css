@@ -143,8 +143,7 @@ body {
     height: auto !important;
     height: 100%;
     color: #727272;
-    overflow: hidden;
-    margin: 0 auto -310px;
+    overflow-x: hidden;
 }
 
 #headnav {
