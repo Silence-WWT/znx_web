@@ -62,9 +62,6 @@
             <div class="tab-content" id="selectul">
 
                 <div class="tab-pane active" id="tab1">
-                    <div id="nosearch">
-                        很抱歉未能搜索到该类型的机构，建议您换个关键词试试！
-                    </div>
                     <ul class="unstyled">
                         {% for org in orgs %}
 
@@ -104,6 +101,10 @@
 
                             </div>
                         </li>
+                        {% else %}
+                            <div id="nosearch">
+                                很抱歉未能搜索到该类型的机构，建议您换个关键词试试！
+                            </div>
                         {% endfor %}
 
                     </ul>
