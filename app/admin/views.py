@@ -37,7 +37,8 @@ def chat():
         session['chatlines']=ChatLine.query.filter(
             ChatLine.unified_id==channel.unified_id,
             ChatLine.organization_id==channel.organization_id).all()
-        session['org'] = Organization.query.get(channel.organization_id)
+        session['org'] = db.session.query(Organization.name).\
+            filter(Organization.id==ChatLine.organization_id).first()
         session['mobile'] = UnifiedId.query.get(channel.unified_id).get_mobile()
         session['channel'] = channel
         chat_groups.append(session)
@@ -63,11 +64,11 @@ def register():
 def comment():
     page = request.args.get('page', 1, type=int)
     pagination = SiteComment.query.order_by(
-        Register.created.desc()).paginate(
+        SiteComment.created.desc()).paginate(
         page, per_page=current_app.config['ADMIN_COMMENTS_PER_PAGE'],
         error_out=False)
     comments = pagination.items
-    return render_template('admin_asklearn.html',
+    return render_template('admin_guestbook.html',
                            comments=comments,
                            pagination=pagination)
 
@@ -110,7 +111,8 @@ def delete_org(org_id):
 
 @admin.route('/org', methods=['GET'])
 def org():
-    recommended_org = RecommendedOrg.query.all()
+    recommended_org = RecommendedOrg.query.\
+        order_by(RecommendedOrg.created.desc()).all()
     return render_template('admin_indexorigan.html', orgs=recommended_org)
 
 
@@ -131,9 +133,18 @@ def add_activity():
     return render_template('admin_indexactivityadd.html', form=form)
 
 
+@admin.route('/delete_activity/<int:activity_id>', methods=['GET'])
+def delete_activity(activity_id):
+    recommended_activity = RecommendedActivity.query.get_or_404(activity_id)
+    db.session.delete(recommended_activity)
+    db.session.commit()
+    return redirect(url_for('.activity'))
+
+
 @admin.route('/activity', methods=['GET'])
 def activity():
-    recommended_activity = RecommendedActivity.query.all()
+    recommended_activity = RecommendedActivity.query.\
+        order_by(RecommendedActivity.created.desc()).all()
     return render_template('admin_indexactivity.html',
                            activities=recommended_activity)
 
