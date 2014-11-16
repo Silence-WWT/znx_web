@@ -602,6 +602,50 @@ function show() {
     box.appendChild(newBox);
     box.appendChild(btn);
 }
+function showabout() {
+    var box = document.getElementById("boxmore");
+    var text = box.innerHTML;
+    var newBox = document.createElement("div");
+    var btn = document.createElement("a");
+    btn.className = "amoremore";
+    newBox.innerHTML = text.substring(0, 2000);
+    btn.innerHTML = text.length > 2000 ? "...查看全部" : "";
+    btn.href = "###";
+    btn.onclick = function () {
+        if (btn.innerHTML == "...查看全部") {
+            btn.innerHTML = "收起";
+            newBox.innerHTML = text;
+        } else {
+            btn.innerHTML = "...查看全部";
+            newBox.innerHTML = text.substring(0, 2000);
+        }
+    }
+    box.innerHTML = "";
+    box.appendChild(newBox);
+    box.appendChild(btn);
+}
+function showaboutrule() {
+    var box = document.getElementById("boxmorerule");
+    var text = box.innerHTML;
+    var newBox = document.createElement("div");
+    var btn = document.createElement("a");
+    btn.className = "amoremore";
+    newBox.innerHTML = text.substring(0, 1350);
+    btn.innerHTML = text.length > 1350 ? "...查看全部" : "";
+    btn.href = "###";
+    btn.onclick = function () {
+        if (btn.innerHTML == "...查看全部") {
+            btn.innerHTML = "收起";
+            newBox.innerHTML = text;
+        } else {
+            btn.innerHTML = "...查看全部";
+            newBox.innerHTML = text.substring(0, 1350);
+        }
+    }
+    box.innerHTML = "";
+    box.appendChild(newBox);
+    box.appendChild(btn);
+}
 var degree = ['', '很差', '差', '中', '良', '优', '未评分'];
 //重新点评
 function addComment2(e, inid, opt, id) {
