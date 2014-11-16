@@ -197,6 +197,12 @@ def course_orders():
                            pagination=pagination)
 
 
+@admin.route('/course_order/<int:id>')
+def course_order_detail(id):
+    class_order = ClassOrder.query.get_or_404(id)
+    return render_template('admin_class_order_det.html', order=class_order)
+
+
 @admin.route('/activity_orders')
 def activity_orders():
     page = request.args.get('page', 1, type=int)
@@ -207,3 +213,9 @@ def activity_orders():
     return render_template('admin_act_order.html',
                            orders=orders,
                            pagination=pagination)
+
+
+@admin.route('/activity_order/<int:id>')
+def activity_order_detail(id):
+    activity_order = ActivityOrder.query.get_or_404(id)
+    return render_template('admin_act_order_det.html', order=activity_order)
