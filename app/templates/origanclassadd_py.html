@@ -16,7 +16,6 @@
                 </li>
 
             </ul>
-
         </div>
         <div class="myuserright">
             {% if add %}
@@ -30,7 +29,7 @@
                 {% include 'snippet/class_form.html' %}
                 {% else %}
                 <div class="orderinfo">
-                    <span class="noorder"><img src="{{ url_for('static', filename='images/noorder.png') }}"> 贵机构暂未通过审核，请在接收到审核通过信息后再发布课程。</span>
+                    <span class="noorder1"><img src="{{ url_for('static', filename='images/noorder.png') }}"> 贵机构暂未通过审核，请在接收到审核通过信息后再发布课程。</span>
                 </div>
                 {% endif %}
             </div>
@@ -41,22 +40,6 @@
 {% block inscript %}
 <link href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet"/>
 <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".deleclass").click(function () {
-            var id = $(this).attr("id");
-            //alert(id);
-            var r = confirm("删除课程？");
-            if (r == true) {
-                alert("你删除的课程是" + id);
-            }
-            else {
-                //alert("You pressed Cancel!");
-            }
-        })
-
-    })
-</script>
 <script type="text/javascript">
     $('#datetimepicker1').datetimepicker({
         format: 'yyyy/MM/dd hh:mm',
