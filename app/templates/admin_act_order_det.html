@@ -56,12 +56,10 @@
                                 <dl>
                                     <dt>学员信息:</dt>
                                     <dd>
-                                        <ul class="unstyled inline">
-                                            <li>姓名：{{ order.name }}</li>
+                                        <ul class="unstyled inline" id="order_user_info">
+                                        <li>姓名：{{ order.name }}</li>
                                             <li>性别：{{ order.sex|sex }}</li>
                                             <li class="longli">联系地址：{{ order.address }}</li>
-                                        </ul>
-                                        <ul class="unstyled inline">
                                             <li>年龄：{{ order.age }}</li>
                                             <li>联系电话：{{ order.mobile }}</li>
                                             <li>邮箱：{{ }}</li>

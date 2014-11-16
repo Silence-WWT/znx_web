@@ -3833,6 +3833,18 @@ input[disabled] {
     line-height: 20px;
 }
 
+#order_class_det {
+    width: 800px;
+}
+
+#asklearnadmin #order_class_det > li {
+    height: 100px;
+}
+
+#aboutus .order_det {
+    overflow: hidden;
+}
+
 #asklearnadmin #adminorder li dl dd span.order_det {
     float: right;
 }
@@ -3949,6 +3961,18 @@ input[disabled] {
 
 #asklearnadmin {
     width: 930px;
+    overflow: hidden;
+}
+
+#asklearnadmin .order_user_info {
+    padding: 20px 0;
+}
+
+#asklearnadmin #order_user_info li {
+    height: 28px;
+    border: 0px;
+    min-width: 200px;
+    width: 96px;
 }
 
 #maininfo ul {
@@ -4280,4 +4304,9 @@ input[disabled] {
     float: left;
     font-size: 18px;
     margin: 10px;
+}
+
+#asklearnadmin #order_class_det > li {
+    height: 140px;
+
 }

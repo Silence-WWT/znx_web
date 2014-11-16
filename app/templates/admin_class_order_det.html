@@ -34,13 +34,13 @@
     {% set active_page='register' %}
         {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
-            <div class="tab-content">
+            <div class="tab-content" class="order_det">
 
                 <div class="tab-pane active" id="asklearnadmin">
                     <h3>课程订单详情</h3>
 
                     <div class="myorderxq">
-                        <ul class="unstyled">
+                        <ul class="unstyled" id="order_class_det">
                             <li>
                                 <dl>
                                     <dt>课程信息:</dt>
@@ -54,12 +54,10 @@
                                 <dl>
                                     <dt>学员信息:</dt>
                                     <dd>
-                                        <ul class="unstyled inline">
+                                        <ul class="unstyled inline" id="order_user_info">
                                             <li>姓名：{{ order.name }}</li>
                                             <li>性别：{{ order.sex|sex }}</li>
                                             <li class="longli">联系地址：{{ order.address }}</li>
-                                        </ul>
-                                        <ul class="unstyled inline">
                                             <li>年龄：{{ order.age }}</li>
                                             <li>联系电话：{{ order.mobile }}</li>
                                             <li>邮箱：{{ order.email }}</li>
