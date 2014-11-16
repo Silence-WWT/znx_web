@@ -156,8 +156,6 @@ def home(id):
             return redirect(url_for('org.home', id=id))
         else:
             flash(u'用户登录后才可以评论')
-    classes = Class.query.filter_by(organization_id=id).all()
-    activities = Activity.query.filter_by(organization_id=id).all()
     page = request.args.get('page', 1, type=int)
     org.page_view_inc()
     db.session.commit()
@@ -170,8 +168,7 @@ def home(id):
                            org=org,
                            comments=comments,
                            pagination=pagination,
-                           classes=classes,
-                           activities=activities, form=form)
+                           form=form)
 
 
 from .forms import CourseForm
