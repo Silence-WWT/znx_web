@@ -31,6 +31,8 @@
         </div>
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
+
+        {% set active_page = 'comment' -%}
         {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
             <div class="tab-content">
@@ -38,14 +40,12 @@
                 <div class="tab-pane active" id="asklearnadmin">
                     <h3>意见反馈<a href="#" id="asklearnexcel">导出</a></h3>
                     <ul class="unstyled">
-                        {% for register in registers %}
+                        {% for comment in comments %}
                         <li>
                             <dl>
-                                <dt>{{ }}</dt>
-                                <dd><span>姓名：{{  }}</span>
-                                    <span>城市：{{  }}</span>
-                                    <span>联系方式：{{  }}</span>
-                                    <span>时间:{{  }}</span>
+                                <dt>{{ comment.body }}</dt>
+                                    <span>联系方式：{{ comment.contact }}</span>
+                                    <span>时间:{{ comment.created|get_date_time }}</span>
                                 </dd>
                             </dl>
 
@@ -53,7 +53,7 @@
                         {% endfor %}
                     </ul>
                     {% from 'snippet/pagination.html' import pagination_widget %}
-                    {{ pagination_widget(pagination, 'znx_admin.register', fragment='#asklearnadmin') }}
+                    {{ pagination_widget(pagination, 'znx_admin.comment', fragment='#asklearnadmin') }}
                 </div>
 
             </div>

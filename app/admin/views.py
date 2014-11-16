@@ -63,11 +63,11 @@ def register():
 def comment():
     page = request.args.get('page', 1, type=int)
     pagination = SiteComment.query.order_by(
-        Register.created.desc()).paginate(
+        SiteComment.created.desc()).paginate(
         page, per_page=current_app.config['ADMIN_COMMENTS_PER_PAGE'],
         error_out=False)
     comments = pagination.items
-    return render_template('admin_asklearn.html',
+    return render_template('admin_guestbook.html',
                            comments=comments,
                            pagination=pagination)
 
