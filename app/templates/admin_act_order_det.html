@@ -37,24 +37,52 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="asklearnadmin">
-                    <h3>课程订单列表（条）<a href="#" id="asklearnexcel">导出</a> </h3>
-                    <ul class="unstyled">
-                        {% for register in registers %}
-                        <li>
-                            <dl>
-                                <dt>课程名称:{{ register.need }}</dt>
-                                <dd><span>姓名：{{ register.name }}</span>
-                                    <span>手机号：{{ register.mobile }}</span>
-                                    <span>地址：{{ register.city_id|city }}</span>
-                                    <span>试听时间:{{ register.created|get_date_time }}</span>
-                                </dd>
-                            </dl>
+                    <h3>活动订单详情</h3>
 
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    {% from 'snippet/pagination.html' import pagination_widget %}
-                    {{ pagination_widget(pagination, 'znx_admin.register', fragment='#asklearnadmin') }}
+                    <div class="myorderxq">
+                        <ul class="unstyled">
+                            <li>
+                                <dl>
+                                    <dt>活动信息:</dt>
+                                    <dd><p>活动名称：{{ order.get_class().name }}</p>
+
+                                        <p>试听时间：{{ order.get_time() }}</p>
+
+                                        <p>机构名:{{}}</p>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>学员信息:</dt>
+                                    <dd>
+                                        <ul class="unstyled inline">
+                                            <li>姓名：{{ order.name }}</li>
+                                            <li>性别：{{ order.sex|sex }}</li>
+                                            <li class="longli">联系地址：{{ order.address }}</li>
+                                        </ul>
+                                        <ul class="unstyled inline">
+                                            <li>年龄：{{ order.age }}</li>
+                                            <li>联系电话：{{ order.mobile }}</li>
+                                            <li>邮箱：{{ }}</li>
+                                            <li class="longli">备注：{{ order.remark }}</li>
+                                        </ul>
+
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>订单信息:</dt>
+                                    <dd><p>订单编号：{{ order.id }}
+                                    </p>
+
+                                        <p> 成交时间：{{ order.created|get_date_time }}</p>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 </div>
