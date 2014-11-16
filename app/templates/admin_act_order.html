@@ -47,12 +47,12 @@
                                     <dt><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></dt>
                                     <dd><span>姓名：{{ activity_order.name }}</span>
                                         <span>手机号：{{ activity_order.mobile }}</span>
-                                        <span>机构：{{ org.name }}</span>
+                                        <span>机构： <a href="{{ url_for('org.home', id=org.id) }}">{{ org.name }}</a></span>
                                         <span>下单时间:{{ activity_order.created|get_date_time }}</span>
                                         <span>开始时间：{{ activity.start_time|get_date_time }}</span>
                                         <span>结束时间：{{ activity.end_time|get_date_time }}</span>
                                         <span>机构地址：{{ org.location }} {{ org.address }}</span>
-                                        <span class="order_det"><a href="#">订单详情</a></span>
+                                        <span class="order_det"><a href="{{ url_for('znx_admin.activity_order_detail', id=activity_order.id) }}">订单详情</a></span>
 
                                     </dd>
                                 </dl>
