@@ -47,7 +47,7 @@
                                 <dt><a href="{{ url_for('course.home', id=class.id) }}" target="_blank">课程名称:{{ class.name }}</a></dt>
                                 <dd><span>姓名：{{ class_order.name }}</span>
                                     <span>手机号：{{ class_order.mobile }}</span>
-                                    <span>机构：{{ org.name }}</span>
+                                    <span>机构： <a href="{{ url_for('org.home', id=org.id) }}">{{ org.name }}</a></span>
                                     <span>下单时间:{{ class_order.created|get_date_time }}</span>
                                     <span>试听时间：{{ class_order.time|get_date_time }}</span>
                                     <span>机构地址：{{ org.location }} {{ org.address }}</span>
