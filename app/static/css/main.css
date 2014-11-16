@@ -4251,3 +4251,15 @@ input[disabled] {
 #indexactivity .btn-long {
     margin-left: -10px;
 }
+
+#aboutjoin #boxmore .amoremore {
+    float: left;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#aboutrule #boxmorerule .amoremore {
+    float: left;
+    font-size: 18px;
+    margin: 10px;
+}
