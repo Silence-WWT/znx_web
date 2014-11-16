@@ -21,7 +21,8 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="userLogin">
-                    <form class="form-horizontal" action="{{ url_for('user.login') }}?next={{ request.values.get('next', '') }}" method="post">
+                    <form class="form-horizontal"
+                          action="{{ url_for('user.login') }}?next={{ request.values.get('next', '') }}" method="post">
                         {{ user_form.hidden_tag() }}
                         <div class="control-group">
                             <div class="controls">
@@ -47,9 +48,10 @@
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="{{ url_for('user.reset_password') }}">忘记密码</a>
 
-                            <div class="form-right"><a class="form-signup" href="{{ url_for('main.register') }}">免费注册</a>
-                                <a href="{{ url_for('main.report')}}" class="form-feedback" target="_blank" ><span
-                                    class="fengge">|</span>意见反馈</a>
+                            <div class="form-right"><a class="form-signup"
+                                                       href="{{ url_for('main.register') }}">免费注册</a>
+                                <a href="{{ url_for('main.report')}}" class="form-feedback" target="_blank"><span
+                                        class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
                     </form>
@@ -84,15 +86,16 @@
                         </div>
                         <div class="form-auxlinks"><a class="form-forget" href="#">忘记密码</a>
 
-                            <div class="form-right"><a class="form-signup" href="{{ url_for('main.register') }}">免费注册</a>
-                                <a href="{{ url_for('main.report')}}"  class="form-feedback"  target="_blank" ><span class="fengge">|</span>意见反馈</a>
+                            <div class="form-right"><a class="form-signup"
+                                                       href="{{ url_for('main.register') }}">免费注册</a>
+                                <a href="{{ url_for('main.report')}}" class="form-feedback" target="_blank"><span
+                                        class="fengge">|</span>意见反馈</a>
                             </div>
                         </div>
                     </form>
                 </div>
 
             </div>
-            <hr class="divhr4 hr6">
         </div>
 
     </div>

@@ -29,7 +29,9 @@
              <!--课程增加模板-->
                 {% include 'snippet/class_form.html' %}
                 {% else %}
-                    贵机构暂未通过审核，请在接收到审核通过信息后再发布课程。
+                <div class="orderinfo">
+                    <span class="noorder"><img src="{{ url_for('static', filename='images/noorder.png') }}"> 贵机构暂未通过审核，请在接收到审核通过信息后再发布课程。</span>
+                </div>
                 {% endif %}
             </div>
         </div>

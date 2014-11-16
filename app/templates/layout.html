@@ -38,7 +38,8 @@
                     <ul class="nav pull-right">
                         {% if current_user.is_authenticated() %}
                         {% if current_user.is_org() %}
-                        <li><a href="{{ url_for('org.course_list') }}"><span>{{current_user.get_name()}}</span>的在哪学</a>
+                        <li><a href="{{ url_for('org.course_list') }}"
+                               class="myznx"><span>{{current_user.get_name()}}</span>的在哪学</a>
                         </li>
                         {% else %}
                         <li><a href="{{ url_for('user.home') }}"><span

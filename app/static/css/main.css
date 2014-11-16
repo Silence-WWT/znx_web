@@ -177,6 +177,10 @@ body {
     line-height: 40px;
 }
 
+#headnav a.myznx span {
+    color: #00B98D;
+}
+
 #headnav ul li > a > span.usernamespan {
     padding: 0px 5px;
     line-height: 40px;
@@ -221,10 +225,11 @@ body {
     width: 540px;
     border-radius: 0;
     border: 0px;
-    height: 32px;
+    height: 22px;
     padding-left: 20px;
     font-size: 14px;
-    line-height: 1;
+    line-height: 22px;
+    padding: 10px 0 8px 20px;
 }
 
 #headsearch .form-search {
@@ -722,14 +727,21 @@ body {
 
 #organregform .form-control, #myactset .form-control, #myclassset .form-control {
     width: 322px;
-    height: 48px;
-    padding: 0;
+    height: 18px;
+    padding: 16px 0 14px 10px;
     font-size: 18px;
-    padding-left: 10px;
     background: #fff;
     border-radius: 0;
     margin-bottom: -5px;
-    line-height: 1;
+    line-height: 20px;
+}
+
+#organregform .form-control #org_type_id {
+    margin-top: -15px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 0 0 10px;
+    width: 336px;
 }
 
 #myactset select.form-control {
@@ -802,7 +814,7 @@ body {
 
 #twologin {
     width: 326px;
-    height: 326px;
+    height: 306px;
     float: left;
     margin: 70px 30px;
 }
@@ -850,15 +862,16 @@ body {
 }
 
 #twologin .controls .form-control {
-    margin-top: 30px;
-    height: 30px;
+    margin-top: 20px;
+    height: 18px;
     border-radius: 0;
     color: #000;
-    line-height: 1;
+    line-height: 20px;
+    padding: 10px 0 10px 10px;
 }
 
 #twologin .controls .last-control {
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .btn-long1 {
@@ -984,15 +997,20 @@ body {
     color: #333;
 }
 
-#organregform .upload1 ul li img, #organregform .upload2 ul li img, #organregform .upload3 ul li img {
+#organregform .upload1 ul li img, #organregform .upload2 ul li img {
     width: 260px;
     height: 195px;
+}
+
+#organregform .upload3 ul li img {
+    width: 260px;
+    height: 260px;
 }
 
 .btn-final {
     width: 140px;
     margin-left: 360px;
-    margin-top: 20px;
+    margin-top: 80px;
 }
 
 #contentright {
@@ -2027,7 +2045,7 @@ i.icon-phone {
 }
 
 .hr6 {
-    margin: 23px 0 0;
+    margin: 23px 0 0 0;
 }
 
 #floorp ul.inline #firstpic {
@@ -2445,7 +2463,7 @@ i.icon-phone {
     padding-left: 10px;
     background: #fff;
     margin-left: 0px;
-    width: 335px;
+    width: 336px;
     height: 50px;
     border-radius: 0px;
     box-shadow: none;
@@ -2479,16 +2497,16 @@ i.icon-phone {
 #asklearnform .form-control {
     margin-left: 3px;
     width: 320px;
-    height: 44px;
-    padding: 0;
-    font-size: 18px;
+    height: 18px;
+    padding: 13px 0 13px 10px;
+    font-size: 16px;
     padding-left: 10px;
     background: #fff;
-    line-height: 100%;
+    line-height: 20px;
 }
 
 #asklearnform .form-textarea {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #askright {
@@ -2712,7 +2730,7 @@ i.icon-phone {
     font-size: 20px;
     height: 24px;
     line-height: 24px;
-    margin: 0 256px;
+    margin: 0 0 0 100px;
 }
 
 #myuser > div.myuserright .orderinfo {
@@ -2724,6 +2742,7 @@ i.icon-phone {
     margin: -1px 4px 0px;
 
     height: 20px;
+    width: 20px;
 }
 
 #myuser > div.myuserright > h3 {
@@ -2853,7 +2872,7 @@ i.icon-phone {
 }
 
 #myactset, #myclassset {
-    padding: 50px 10px 50px 120px
+    padding: 50px 10px 40px 120px
 }
 
 #myactset .btn-next, #myclassset .btn-next {
@@ -3351,10 +3370,11 @@ input[disabled] {
 #selectasklearn .control-label {
     float: left;
     width: 100px;
-    line-height: 30px;
+    line-height: 36px;
+    margin-top: 0px;
 }
 
-#selectasklearn .form-control-more, #selectasklearn .form-control, #selectasklearn .form-textarea {
+#selectasklearn .form-control-more, #selectasklearn .form-textarea {
     width: 227px;
     float: left;
     margin-left: 10px;
@@ -3362,8 +3382,20 @@ input[disabled] {
     line-height: 30px;
 }
 
+#selectasklearn .form-control {
+    width: 227px;
+    float: left;
+    margin-left: 10px;
+    resize: none;
+    line-height: 20px;
+    height: 20px;
+    padding: 7px 0 7px 10px;
+    margin-top: 0px;
+}
+
 #selectasklearn .form-textarea {
     margin-top: 10px;
+    height: 100px;
 }
 
 #selectasklearn .form-horizontal .controls {
@@ -3379,11 +3411,11 @@ input[disabled] {
 }
 
 #selectasklearn .form-control-more {
-    height: 32px;
+    height: 36px;
     width: 240px;
     font-size: 14px;
-    margin-bottom: 5px;
-    line-height: 32px;
+    margin-bottom: 0px;
+    line-height: 36px;
 
 }
 
@@ -4178,7 +4210,7 @@ input[disabled] {
 }
 
 .sexmore {
-    width: 335px;
+    width: 334px;
     height: 50px;
     border-radius: 0;
     border-right: 0;
@@ -4187,7 +4219,7 @@ input[disabled] {
 }
 
 .sexmore1 {
-    width: 335px;
+    width: 334px;
     height: 50px;
     border-radius: 0;
     border-right: 0;
