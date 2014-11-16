@@ -37,7 +37,8 @@ def chat():
         session['chatlines']=ChatLine.query.filter(
             ChatLine.unified_id==channel.unified_id,
             ChatLine.organization_id==channel.organization_id).all()
-        session['org'] = Organization.query.get(channel.organization_id)
+        session['org'] = db.session.query(Organization.name).\
+            filter(Organization.id==ChatLine.organization_id).first()
         session['mobile'] = UnifiedId.query.get(channel.unified_id).get_mobile()
         session['channel'] = channel
         chat_groups.append(session)
