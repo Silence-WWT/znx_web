@@ -110,7 +110,8 @@ def delete_org(org_id):
 
 @admin.route('/org', methods=['GET'])
 def org():
-    recommended_org = RecommendedOrg.query.all()
+    recommended_org = RecommendedOrg.query.\
+        order_by(RecommendedOrg.created.desc()).all()
     return render_template('admin_indexorigan.html', orgs=recommended_org)
 
 
@@ -141,7 +142,8 @@ def delete_activity(activity_id):
 
 @admin.route('/activity', methods=['GET'])
 def activity():
-    recommended_activity = RecommendedActivity.query.all()
+    recommended_activity = RecommendedActivity.query.\
+        order_by(RecommendedActivity.created.desc()).all()
     return render_template('admin_indexactivity.html',
                            activities=recommended_activity)
 

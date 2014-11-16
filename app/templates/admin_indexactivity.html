@@ -40,7 +40,10 @@
                     <h3>推荐活动设置<a href="{{ url_for('znx_admin.add_activity') }}">添加活动</a></h3>
                     <ul class="unstyled">
                         {% for activity in activities %}
-                        <li><span class="acttitle">{{ activity.name }}</span>
+                        <li>
+                            <a href="{{ activity.url }}">
+                            <span class="acttitle">{{ activity.name }}</span>
+                            </a>
                             <span>添加时间:{{ activity.created|get_date_time }}</span>
                             <a href="{{ url_for('znx_admin.delete_activity', activity_id=activity.id) }}">
                                 <button type="button" class="btn-next adminbtn">删除</button>

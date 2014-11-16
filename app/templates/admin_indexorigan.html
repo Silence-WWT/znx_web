@@ -39,7 +39,10 @@
                     <h3>推荐机构设置<a href="{{ url_for('znx_admin.search_org') }}">添加机构</a></h3>
                     <ul class="unstyled">
                         {% for org in orgs %}
-                        <li><span class="acttitle">{{ org.org.name }}</span>
+                        <li>
+                            <a href="{{ org.url }}">
+                                <span class="acttitle">{{ org.org.name }}</span>
+                            </a>
                             <span>添加时间：{{ org.created|get_date_time }}</span>
                             <a href="{{ url_for('znx_admin.delete_org', org_id=org.id) }}">
                                 <button type="button" class="btn-next adminbtn" style="width: 100px">解除推荐</button>
