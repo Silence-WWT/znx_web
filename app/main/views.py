@@ -9,7 +9,7 @@ from flask import redirect, url_for, \
 from ..user.forms import LoginForm as UserLoginForm
 from ..org.forms import LoginForm as OrgLoginForm
 from ..models import City, Register, Organization, Location, Profession,\
-    OrganizationProfession
+    OrganizationProfession, RecommendedActivity, RecommendedOrg
 
 
 @main.route('/login', methods=['GET'])
@@ -64,8 +64,13 @@ def index():
     orgs_2 = orgs.filter(Organization.id.in_(profession_ids_2)).limit(4)
     orgs_3 = orgs.filter(Organization.id.in_(profession_ids_3)).limit(4)
     org_list = [orgs_1, orgs_2, orgs_3]
+
+    recommended_orgs = RecommendedOrg.query.all()
+    recommended_activities = RecommendedActivity.query.limit(3).all()
     return render_template('index_py.html', registers=registers,
-                           professions_list=professions, orgs=org_list)
+                           professions_list=professions, orgs=org_list,
+                           recommended_orgs=recommended_orgs,
+                           recommended_activities=recommended_activities)
 
 
 @main.route('/learn', methods=['GET', 'POST'])
