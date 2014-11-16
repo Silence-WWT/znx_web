@@ -131,6 +131,14 @@ def add_activity():
     return render_template('admin_indexactivityadd.html', form=form)
 
 
+@admin.route('/delete_activity/<int:activity_id>', methods=['GET'])
+def delete_activity(activity_id):
+    recommended_activity = RecommendedActivity.query.get_or_404(activity_id)
+    db.session.delete(recommended_activity)
+    db.session.commit()
+    return redirect(url_for('.activity'))
+
+
 @admin.route('/activity', methods=['GET'])
 def activity():
     recommended_activity = RecommendedActivity.query.all()

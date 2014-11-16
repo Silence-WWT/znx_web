@@ -42,7 +42,7 @@
                         {% for activity in activities %}
                         <li><span class="acttitle">{{ activity.name }}</span>
                             <span>添加时间:{{ activity.created|get_date_time }}</span>
-                            <a href="#">
+                            <a href="{{ url_for('znx_admin.delete_activity', activity_id=activity.id) }}">
                                 <button type="button" class="btn-next adminbtn">删除</button>
                             </a>
                         </li>
