@@ -31,33 +31,35 @@
         </div>
     </div>
     <div class="container" id="aboutus" style="margin-top: 0px;">
-    {% set active_page='register' %}
+        {% set active_page='activity_orders' %}
         {% include 'snippet/admin_nav.html' %}
         <div class="rightabout">
             <div class="tab-content">
 
                 <div class="tab-pane active" id="asklearnadmin">
-                    <h3>课程订单列表（条）<a href="#" id="asklearnexcel">导出</a> </h3>
+                    <h3>活动订单列表{{ pagination.total }}（条）<a href="#" id="asklearnexcel">导出</a> </h3>
                     <ul class="unstyled">
-                        {% for register in registers %}
-                        <li>
-                            <dl>
-                                <dt>课程名称:{{ register.need }}</dt>
+                        {% for activity_order in orders %}
+                            {% set activity = activity_order.get_activity() %}
+                            {% set org = activity.get_org() %}
+                            <li>
+                                <dl>
+                                    <dt><a href="{{ url_for('activity.home', id=activity.id) }}">{{ activity.name }}</a></dt>
+                                    <dd><span>姓名：{{ activity_order.name }}</span>
+                                        <span>手机号：{{ activity_order.mobile }}</span>
+                                        <span>机构：{{ org.name }}</span>
+                                        <span>机构地址：{{ org.location }} {{ org.address }}</span>
+                                        <span>下单时间:{{ activity_order.created|get_date_time }}</span>
+                                        <span>开始时间：{{ activity.start_time|get_date_time }}</span>
+                                        <span>结束时间：{{ activity.end_time|get_date_time }}</span>
+                                    </dd>
+                                </dl>
 
-                                <dd>
-                                    <span>机构名：{{  }}</span>
-                                    <span>姓名：{{ register.name }}</span>
-                                    <span>手机号：{{ register.mobile }}</span>
-                                    <span>地址：{{ register.city_id|city }}</span>
-                                    <span>试听时间:{{ register.created|get_date_time }}</span>
-                                </dd>
-                            </dl>
-
-                        </li>
+                            </li>
                         {% endfor %}
                     </ul>
                     {% from 'snippet/pagination.html' import pagination_widget %}
-                    {{ pagination_widget(pagination, 'znx_admin.register', fragment='#asklearnadmin') }}
+                    {{ pagination_widget(pagination, 'znx_admin.activity_orders', fragment='#asklearnadmin') }}
                 </div>
 
                 </div>

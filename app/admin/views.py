@@ -3,8 +3,8 @@ import time
 from . import admin
 from .. import db
 from flask import render_template, request, current_app, redirect, url_for, flash
-from ..models import ChatLine, Organization, UnifiedId,\
-    Register, RecommendedActivity, RecommendedOrg, SiteComment
+from ..models import ChatLine, Organization, UnifiedId, Register, \
+    RecommendedActivity, RecommendedOrg, SiteComment, ClassOrder, ActivityOrder
 from .form import ReplyForm, RecommendedActivityForm, RecommendedOrgForm, OrgForm
 from ..utils.captcha import send_confirm_sms
 
@@ -184,3 +184,26 @@ def set_confirm(org_id):
         db.session.add(org)
         db.session.commit()
     return redirect(url_for('znx_admin.confirm', org_id=org_id))
+
+
+@admin.route('/course_orders')
+def course_orders():
+    page = request.args.get('page', 1, type=int)
+    pagination = ClassOrder.query.paginate(
+        page, per_page=current_app.config['ADMIN_SESSIONS_PER_PAGE'],
+    error_out=False)
+    orders = pagination.items
+    return render_template('admin_class_order.html', orders=orders,
+                           pagination=pagination)
+
+
+@admin.route('/activity_orders')
+def activity_orders():
+    page = request.args.get('page', 1, type=int)
+    pagination = ActivityOrder.query.paginate(
+        page, per_page=current_app.config['ADMIN_SESSIONS_PER_PAGE'],
+        error_out=False)
+    orders = pagination.items
+    return render_template('admin_act_order.html',
+                           orders=orders,
+                           pagination=pagination)
