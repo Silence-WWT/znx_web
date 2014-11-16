@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>在哪学-管理后台</title>
+    <link href="../static/css/znx.min.css" rel="stylesheet" media="screen">
+    <link href="../static/css/main.css" rel="stylesheet"/>
+    <script src="../static/js/jquery.js" type="text/javascript"></script>
+    <script src="../static/js/znx.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../static/js/user.js"></script>
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="wrap">
+    <div class="navbar navbar-static-top" id="headnav">
+        <div class="navbar-inner ">
+            <div class="container">
+                <a class="brand" href="#" style="padding: 0 26px;">
+                    在哪学运营后台</a>
+
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+                        <li>
+                            <a href="{{ url_for('main.index') }}">
+                                网站首页
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container" id="aboutus" style="margin-top: 0px;">
+    {% set active_page='register' %}
+        {% include 'snippet/admin_nav.html' %}
+        <div class="rightabout">
+            <div class="tab-content">
+
+                <div class="tab-pane active" id="asklearnadmin">
+                    <h3>活动订单详情</h3>
+
+                    <div class="myorderxq">
+                        <ul class="unstyled">
+                            <li>
+                                <dl>
+                                    <dt>活动信息:</dt>
+                                    <dd><p>活动名称：{{ order.get_class().name }}</p>
+
+                                        <p>试听时间：{{ order.get_time() }}</p>
+
+                                        <p>机构名:{{}}</p>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>学员信息:</dt>
+                                    <dd>
+                                        <ul class="unstyled inline">
+                                            <li>姓名：{{ order.name }}</li>
+                                            <li>性别：{{ order.sex|sex }}</li>
+                                            <li class="longli">联系地址：{{ order.address }}</li>
+                                        </ul>
+                                        <ul class="unstyled inline">
+                                            <li>年龄：{{ order.age }}</li>
+                                            <li>联系电话：{{ order.mobile }}</li>
+                                            <li>邮箱：{{ }}</li>
+                                            <li class="longli">备注：{{ order.remark }}</li>
+                                        </ul>
+
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>订单信息:</dt>
+                                    <dd><p>订单编号：{{ order.id }}
+                                    </p>
+
+                                        <p> 成交时间：{{ order.created|get_date_time }}</p>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
