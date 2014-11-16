@@ -2049,6 +2049,10 @@ i.icon-phone {
     margin: 23px 0 0 0;
 }
 
+.hr9 {
+    margin: 100px -51px -17px;
+}
+
 #floorp ul.inline #firstpic {
     margin-left: 45px;
 }
@@ -2472,10 +2476,11 @@ i.icon-phone {
 }
 
 #organregall .askleft {
-    width: 680px;
+    width: 678px;
     background: #fff;
     float: left;
     padding: 10px 50px 17px;
+    border: 1px solid #ECE9E2;
 }
 
 #organregall .askleft h3.asklearntitle {
