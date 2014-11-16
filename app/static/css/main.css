@@ -935,6 +935,7 @@ body {
     border-radius: 4px;
     margin: 51px 70px -21px;
 }
+
 .form-horizontal .control-label {
     padding: 0px;
 }
@@ -2920,6 +2921,7 @@ i.icon-phone {
     border: 1px solid #DCD4C9;
     margin-top: 50px;
     height: auto;
+    margin-bottom: 50px;
 }
 
 #aboutus .leftabout {
@@ -2936,7 +2938,8 @@ i.icon-phone {
 #aboutus .leftabout #myTab, #aboutus .leftabout #adminTab {
     background: #F4F2EE;
     margin: 0px;
-    height: 780px;
+    height: 600px;
+    min-height: 690px;
 }
 
 #aboutus .leftabout #myTab li, #aboutus .leftabout #adminTab li {
@@ -2989,7 +2992,7 @@ i.icon-phone {
 }
 
 #aboutknow, #aboutnew, #aboutrule, #aboutjoin, #abouttalk {
-    padding: 40px 50px;
+    padding: 40px 50px 0px;
     float: left;
     width: 827px;
 }
@@ -3098,7 +3101,7 @@ input[disabled] {
 }
 
 #abouttalk ul.link li {
-    line-height: 35px;
+    line-height: 24px;
     border-bottom: 1px dashed #CCC;
     padding-bottom: 0px;
 }
