@@ -3819,6 +3819,19 @@ input[disabled] {
     float: right;
 }
 
+#asklearnadmin #adminorder li {
+    height: 100px;
+}
+
+#asklearnadmin #adminorder li dl dd span {
+    min-width: 188px;
+    line-height: 20px;
+}
+
+#asklearnadmin #adminorder li dl dd span.order_det {
+    float: right;
+}
+
 #origanaddhide {
     display: none;
 }

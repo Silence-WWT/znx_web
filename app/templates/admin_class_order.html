@@ -37,8 +37,8 @@
             <div class="tab-content">
 
                 <div class="tab-pane active" id="asklearnadmin">
-                    <h3>课程订单列表{{ pagination.total }}（条）<a href="#" id="asklearnexcel">导出</a></h3>
-                    <ul class="unstyled">
+                    <h3>课程订单列表（{{ pagination.total }}条）<a href="#" id="asklearnexcel">导出</a></h3>
+                    <ul class="unstyled" id="adminorder">
                         {% for class_order in orders %}
                         {% set class = class_order.get_class() %}
                         {% set org = class.get_org() %}
@@ -48,9 +48,10 @@
                                 <dd><span>姓名：{{ class_order.name }}</span>
                                     <span>手机号：{{ class_order.mobile }}</span>
                                     <span>机构：{{ org.name }}</span>
-                                    <span>机构地址：{{ org.location }} {{ org.address }}</span>
                                     <span>下单时间:{{ class_order.created|get_date_time }}</span>
                                     <span>试听时间：{{ class_order.time|get_date_time }}</span>
+                                    <span>机构地址：{{ org.location }} {{ org.address }}</span>
+                                    <span class="order_det"><a href="#">订单详情</a></span>
                                 </dd>
                             </dl>
 
