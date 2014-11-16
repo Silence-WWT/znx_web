@@ -34,6 +34,8 @@ def get_date_time(timestamp):
 
 
 def anonymous_name(name):
+    if len(name) == 0:
+        return u''
     return name[0]+u'同学'
 
 

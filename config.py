@@ -22,7 +22,8 @@ class Config:
     ADMIN_ORG_PER_PAGE = 20
     STATIC_URL = 'http://static1.znx.com/'
     ADMIN_COMMENT_PER_PAGE = 20
-    CDN_DOMAIN = 'static1.znx.com'
+    #CDN_DOMAIN = 'static1.znx.com'
+    DEBUG = True
 
 
 class DevelopmentConfig(Config):
@@ -51,5 +52,5 @@ config = {
     'testing': TestingConfig,
     'production': ProductionConfig,
 
-    'default': DevelopmentConfig
+    'default': ProductionConfig
 }
