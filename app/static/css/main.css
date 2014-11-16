@@ -2726,21 +2726,24 @@ i.icon-phone {
     border: 1px solid #F0F0F0;
 }
 
-#myuser > div.myuserright .noorder {
+#myuser > div.myuserright .noorder, #myuser > div.myuserright .noorder1 {
     font-size: 20px;
     height: 24px;
     line-height: 24px;
-    margin: 0 0 0 100px;
+    margin: 0 0 0 287px;
+}
+
+#myuser > div.myuserright .noorder1 {
+    margin: 0 0 0 44px;
 }
 
 #myuser > div.myuserright .orderinfo {
-    margin-bottom: 100px;
-    margin-top: 50px;
+    margin-bottom: 80px;
+    margin-top: 60px;
 }
 
-#myuser > div.myuserright .noorder img {
+#myuser > div.myuserright .noorder img, #myuser > div.myuserright .noorder1 img {
     margin: -1px 4px 0px;
-
     height: 20px;
     width: 20px;
 }

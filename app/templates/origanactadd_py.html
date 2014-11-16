@@ -12,7 +12,7 @@
                 <li><a href="{{ url_for('org.course_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set1.png') }}"/>我的课程</a>
                 </li>
                 <li class="active"><a href="{{ url_for('org.activity_list') }}" class="aandli"><img
-                        src="{{ url_for('static', filename='images/set2.png') }}"/>我的活动</a></li>
+                        src="{{ url_for('static', filename='images/set2on.png') }}"/>我的活动</a></li>
                 <li><a href="{{ url_for('org.order_list') }}" class="aandli"><img src="{{ url_for('static', filename='images/set3.png') }}"/>我的订单</a>
                 </li>
             </ul>
@@ -26,7 +26,7 @@
                     {% include 'snippet/activity_form.html' %}
                 {% else %}
                 <div class="orderinfo">
-                    <span class="noorder"><img src="{{ url_for('static', filename='images/noorder.png') }}"> 贵机构暂未通过审核，请在接收到审核通过信息后再发布活动。</span>
+                    <span class="noorder1"><img src="{{ url_for('static', filename='images/noorder.png') }}"> 贵机构暂未通过审核，请在接收到审核通过信息后再发布活动。</span>
                 </div>
 
                 {% endif %}
