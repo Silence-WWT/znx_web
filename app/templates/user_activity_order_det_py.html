@@ -30,9 +30,11 @@
                         <li>
                             <dl>
                                 <dt>活动信息:</dt>
-                                <dd><p>活动名称：{{ order.get_activity().name }}</p>
+                                {% set activity = order.get_activity() %}
+                                <dd><p>活动名称：{{ activity.name }}</p>
 
-                                    <p>时间：{{ order.get_activity().get_time() }}</p>
+                                    <p>时间：{{ activity.start_time|get_date_time }}</p>
+                                    <p>时间：{{ activity.end_time|get_date_time }}</p>
                                 </dd>
                             </dl>
                         </li>
