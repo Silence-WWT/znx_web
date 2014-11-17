@@ -132,7 +132,7 @@ class Register(db.Model):
     created = db.Column(db.Integer, nullable=False)
 
     def get_date(self):
-        return time.strftime('[%Y-%m-%d]', time.localtime(self.created))
+        return time.strftime('%Y-%m-%d', time.localtime(self.created))
 
 
     @staticmethod
