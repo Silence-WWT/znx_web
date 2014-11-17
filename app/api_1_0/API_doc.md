@@ -12,7 +12,7 @@ mobile_confirm
     json:
         {"status": 0}
         
-        status: 0 for success, 1002 for mobile exist, 5003 for message confirm fail
+        status: 0 for success, 5003 for message confirm fail
 
 register
 ----
@@ -30,12 +30,13 @@ register
         {"status": 0, "user": {"username": "", "mobile": "", "identity": "", "email": "", "unified": "", "chat_line": ""}}
         
         status: 0 for success, 1007 for verify code incorrect, 1002 for existing mobile, 1004 for existing username
-        username
-        mobile
-        identity
-        email
-        unified
-        chat_line
+        user: a dictionary of user's information
+            username
+            mobile
+            identity
+            email
+            unified
+            chat_line: the last id for chat_line
 
 login
 ----
@@ -52,12 +53,13 @@ login
          "user": {"username": "", "mobile": "", "email": "", "identity": "", "chat_line": "", "unified": ""}}
         
         status: 0 for success, 1000 for login failed
-        username: if login fail, username, mobile, email, identity won't return
-        mobile
-        email
-        identity
-        chat_line
-        unified
+        user: a dictionary of user's information
+            username: if login fail, username, mobile, email, identity won't return
+            mobile
+            email
+            identity
+            chat_line
+            unified
 
 reset_password
 ---
@@ -77,33 +79,32 @@ reset_password
 organization_filter
 ---
     URL:
-        /api/v1.0/organization_filter?city=&district=&page=&type=
-        /api/v1.0/organization_filter?city=&profession=&page=&type=
+        /api/v1.0/organization_filter?city=&district=&profession&page=&type=
         /api/v1.0/organization_filter?distance=&latitude=&longitude=&page=&type=
     method:
         get
     parameters:
-        city: name of a city
-        district: name of a district
-        profession: name of  profession
-        distance
-        latitude
-        longitude
-        page
-        type: 学校 or 机构 or other type
-        distance can coexist with another parameter (location OR profession)
+        city: unicode name of a city 
+        district: unicode name of a district, if value is 'all', will return all organizations in the city by pagination
+        profession: unicode name of  profession, if value is 'all', will return all organizations in the city by pagination
+        distance: optional, nearby distance. if value is not empty, latitude and longitude can't be empty, return nearby organizations
+        latitude: optional
+        longitude: optional
+        page: default first page
+        type: unicode of 学校 or 机构 or other type
     json:
         {"status": 0,
-         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": ""}]}
+         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "logo": "", "intro": ""}]}
          
         status: 0 for success, 5001 for parameter error
         organizations: a list of organizations
             id
-            name
-            city
-            district
+            name: unicode
+            city: unicode
+            district: unicode
             photo: url of photo
-            intro
+            logo: url of logo
+            intro: unicode
 
 organization_search
 ---
@@ -113,12 +114,12 @@ organization_search
         get
     parameters:
         name: key of search organization
-        distance
+        distance: optional, nearby distance. if value is not empty, latitude and longitude can't be empty
         longitude
         latitude
     json:
         {"status": 0,
-        "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "intro": "", "distance": ""}]}
+         "organizations": [{"id": "", "name": "", "city": "", "district": "", "photo": "", "logo": "", "intro": "", "distance": ""}]}
         
         status: 0 for success
         organizations: a list of organizations
@@ -127,6 +128,7 @@ organization_search
             city
             district
             photo
+            logo
             intro
             distance
 
@@ -156,7 +158,7 @@ organization_detail
             mobile
             comments_count
             stars: a float number for stars
-            traffic
+            traffic: nearby traffic information
 
 organization_comment
 ---
@@ -172,7 +174,7 @@ organization_comment
     json:
         {"status": 0}
         
-        status: 0 for success, 2000 for organization not exist, 5000 for sql exception, 5001 for parameter error
+        status: 0 for success, 2000 for organization not exist, 5001 for parameter error
 
 organization_comment_list
 ---
@@ -191,7 +193,7 @@ organization_comment_list
         organization_comments: a list of organization_comments
             comment
             stars
-            created
+            created: unix timestamp, seconds from 1970.1.1 00:00:00
             username
 
 class_list
@@ -259,7 +261,7 @@ class_sign_up
         address
         remark
         email
-        time: seconds since 1970
+        time: unix timestamp, time of class
     json:
         {"status": 0}
         
@@ -357,15 +359,15 @@ activity_sign_up
     method:
         get
     parameters:
-        class: id of class
+        activity: id of activity
         user_id
         name
         mobile
         age
-        sex
+        sex: 0 for female, 1 for male
         address
         remark
-        email
+        email: optional
     json:
         {"status": 0}
         
@@ -435,10 +437,10 @@ order_list_or_detail
             org_name
             user_name: user's name
             user_age
-            user_sex
+            user_sex: 0 for female, 1 for male
             user_mobile
             user_email
-            user_address: user's address
+            user_address: address of activity or organization
             user_remark: user's remark of this class
             comments_count
 
@@ -503,7 +505,7 @@ get_district_profession
         
         status: 0 for success, 3000 for city not exist
         districts: a list of districts in city
-        professions: a list of professions
+        professions: a list of all professions
 
 get_cities
 ---
@@ -515,7 +517,7 @@ get_cities
         {"status": 0, "cities": [""]}
         
         status: 0 for success
-        cities: a list of the name of cities
+        cities: a list of the unicode name of all cities
 
 chat_get
 ---
@@ -565,6 +567,7 @@ CONSTANTS
     USERNAME_EXIST = 1004
     ACCESS_RESTRICTED = 1005
     ORDER_NOT_EXIST = 1006
+    VERIFY_CODE_INCORRECT = 1007
     
     ORGANIZATION_NOT_EXIST = 2000
     CLASS_NOT_EXIST = 2001
@@ -572,6 +575,7 @@ CONSTANTS
     
     CITY_NOT_EXIST = 3000
     PROFESSION_NOT_EXIST = 3001
+    TYPE_NOT_EXIST = 3002
     
     SQL_EXCEPTION = 5000
     PARAMETER_ERROR = 5001
