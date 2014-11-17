@@ -1764,14 +1764,14 @@ i.icon-phone {
 #tab2 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
 #tab3 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
 #tab4 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open {
-    margin: 6px 4px 0 5px;
+    margin: 3px 4px 0 5px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
 #tab2 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
 #tab3 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
 #tab4 > ul > li > div.selectscore > ul > li > span > i.icon-comment {
-    margin: 4px 4px;
+    margin: 2px 4px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span > b,
@@ -3392,7 +3392,7 @@ input[disabled] {
 #tab2 > ul > li > div.seledet > span > i, #tab2 > ul > li > div.selectscore > ul > li > span > i,
 #tab3 > ul > li > div.seledet > span > i, #tab3 > ul > li > div.selectscore > ul > li > span > i,
 #tab4 > ul > li > div.seledet > span > i, #tab4 > ul > li > div.selectscore > ul > li > span > i {
-    margin: 4px 3px 0 4px;
+    margin: 2px 3px 0 4px;
 }
 
 #selectasklearn .form-horizontal .control-group {
