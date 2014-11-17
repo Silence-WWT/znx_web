@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from config import Config
+
 SUCCESS = 0
 
 LOGIN_FAILED = 1000
@@ -37,4 +39,4 @@ MESSAGE_API_URL = u'http://106.ihuyi.cn/webservice/sms.php?method=Submit&account
                   u'&mobile={mobile}&content={content}'
 
 
-STATIC_URL = 'http://static.znx.com:85/'
+STATIC_URL = Config.STATIC_URL
