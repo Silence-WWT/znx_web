@@ -40,7 +40,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 }
 
 button {
-    font-family: "微软雅黑";
+    font-family: 'Arial', 'Microsoft YaHei';
 }
 
 .nocolor {
@@ -98,14 +98,14 @@ button {
 
 body {
     height: 100%;
-    font-family: "微软雅黑";
+    font-family: 'Arial', 'Microsoft YaHei';
     /* The html and body elements cannot have any padding or margin. */
     background: #FAF7F2;
     min-width: 1230px;
 }
 
 input, button, select, textarea {
-    font-family: "微软雅黑";
+    font-family: 'Arial', 'Microsoft YaHei';
 }
 
 #alert-warning {
@@ -249,7 +249,7 @@ input, button, select, textarea {
     border-radius: 0px;
     border: 0px;
     box-shadow: none;
-    font-family: '微软雅黑';
+    font-family: 'Arial', 'Microsoft YaHei';
     text-shadow: none;
     font-weight: 600;
 }
@@ -1170,7 +1170,7 @@ input, button, select, textarea {
 }
 
 #floorp ul.inline {
-    height: 280px;
+    height: 277px;
     background: #fff;
     padding: 55px 40px;
 }
@@ -1182,6 +1182,7 @@ input, button, select, textarea {
 #floorp ul.inline {
     border: 1px solid #ECE9E2;
     padding: 55px 40px;
+    height: 277px;
 }
 
 #floorp ul.inline > li {
@@ -1210,14 +1211,17 @@ input, button, select, textarea {
 }
 
 #floorp ul.inline > li .picstep span {
-    margin-left: 7px;
+    margin-left: 0px;
     font-size: 20px;
+    color: #000;
 }
 
 #floorp ul.inline > li .picstep p {
-    margin-top: 15px;
+    margin-top: 26px;
     color: #727272;
     text-align: left;
+    font-size: 12px;
+    margin-left: 7px;
 }
 
 #floorp ul.inline > li .arrstep {
@@ -1226,8 +1230,8 @@ input, button, select, textarea {
 }
 
 #floorp ul.inline > li .arrstep img {
-    margin-top: 62px;
-    margin-left: 30px;
+    margin-top: 77px;
+    margin-left: 20px;
 }
 
 #bigheadnav .navbar-inner {
@@ -4134,7 +4138,7 @@ input[disabled] {
     _top: expression(300+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+'px'); /* top:300px hack for IE6 */
 
     /* font settings */
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-family: 'Arial', 'Microsoft YaHei';
     font-weight: bold;
     color: #333;
     line-height: 1.5em;
