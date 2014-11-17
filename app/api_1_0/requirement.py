@@ -16,15 +16,16 @@ def requirement_list():
     page = request.values.get('page', 1, type=int)
     register_list = Register.query.order_by(-Register.created).paginate(page, PER_PAGE, False).items
     for register in register_list:
-        city = City.query.get(register.city_id)
-        register_dict = {
-            'name': register.name[0] + u'同学',
-            'mobile': register.mobile[:3] + '*' * 4 + register.mobile[-4:],
-            'need': register.need,
-            'time': register.created,
-            'city': city.city
-        }
-        data['registers'].append(register_dict)
+        if register.name and len(register.mobile) == 11 and register.need and register.city_id:
+            city = City.query.get(register.city_id)
+            register_dict = {
+                'name': register.name[0] + u'同学',
+                'mobile': register.mobile[:3] + '*' * 4 + register.mobile[-4:],
+                'need': register.need,
+                'time': register.created,
+                'city': city.city
+            }
+            data['registers'].append(register_dict)
     data['status'] = SUCCESS
     return json.dumps(data)
 
