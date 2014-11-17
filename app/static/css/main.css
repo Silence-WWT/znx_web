@@ -104,6 +104,10 @@ body {
     min-width: 1230px;
 }
 
+input, button, select, textarea {
+    font-family: "微软雅黑";
+}
+
 #alert-warning {
     text-align: center;
     position: fixed;
@@ -4343,5 +4347,12 @@ input[disabled] {
 
 #asklearnadmin #order_class_det > li {
     height: 140px;
+
+}
+
+#appdown1 {
+    position: absolute;
+    margin: -501px -74px;
+    bottom: 0px;
 
 }
