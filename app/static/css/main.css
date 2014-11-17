@@ -167,7 +167,8 @@ body {
 
 #navbar .nav > li > a:focus, #navbar .nav > li > a:hover, #navbar .nav > li.act a {
     border-bottom: 2px solid #00B98D;
-    color: #00B98D
+    color: #00B98D;
+    padding-bottom: 11px;
 }
 
 #headnav a, #headnav span {
@@ -234,7 +235,7 @@ body {
 
 #headsearch .form-search {
     border: 2px solid #00B98D;
-    margin: 0 0 5px;
+    margin: 0 0 2px;
 }
 
 #headsearch .btn {
@@ -307,7 +308,7 @@ body {
 }
 
 #navbar i {
-    margin: 4px 45px 3px;
+    margin: 4px 2px 3px;
 }
 
 #navbar i.icon-chevron-down {
@@ -323,7 +324,7 @@ body {
     width: 200px;
     height: 100px;
     float: left;
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 #header > span {
@@ -332,7 +333,7 @@ body {
 
 .city {
     float: left;
-    margin: 45px 0px 0px 4px;
+    margin: 45px 0 0 -12px;
 }
 
 .act img {
@@ -517,8 +518,8 @@ body {
 }
 
 #asklearn ul li p .regname {
-    margin-right: 10px;
-    width: 50px;
+    margin-right: 0px;
+    width: 42px;
     display: inline-block;
 
 }
@@ -679,6 +680,7 @@ body {
     text-align: center;
     padding: 0px;
     background: #FCFBF8;
+    border: 1px solid #ECE9E2;
 }
 
 #organregall .container .breadcrumb li {
@@ -1315,7 +1317,7 @@ body {
     border: 0px;
     margin-top: 15px;
     background: url(../images/organregbtn.png);
-    margin-left: 19px;
+    margin-left: 8px;
 }
 
 #tworeg {
@@ -1353,9 +1355,9 @@ body {
     height: 200px;
     background: url("../images/origanbac.png");
     float: left;
-    width: 1206px;
+    width: 1207px;
     margin-left: -9px;
-    margin-top: -10px;
+    margin-top: -11px;
 }
 
 #myorgan > div > div.headtitle > div > dl > dd a {
@@ -1930,11 +1932,9 @@ i.icon-phone {
 }
 
 #organclass ul li .classright, #organplay ul li .classright {
+    margin-top: -49px;
     float: right;
-}
-
-#organclass ul li .classright {
-    margin-top: 30px;
+    margin: -50px 0;
 }
 
 #organclass ul li .classleft img, #organclass ul li .classleft span, #organplay ul li .classleft img, #organplay ul li .classleft span {
@@ -1989,24 +1989,7 @@ i.icon-phone {
     line-height: 36px;
 }
 
-#organclass ul li .classright span, #organplay ul li .classright span {
-    float: right;
-    font-size: 20px;
-    color: #00B98D;
-    line-height: 30px;
-    height: 30px;
-    width: 267px;
 
-    text-align: center;
-}
-
-#organclass ul li .classright span {
-    margin: -162px -26px 0;
-}
-
-#organplay ul li .classright span {
-    margin: -123px -28px 0;
-}
 
 .divhr {
     margin-top: -5px;
@@ -2059,24 +2042,74 @@ i.icon-phone {
 
 #organclass ul li .classright a, #organplay ul li .classright a {
     display: block;
-    margin-top: -74px;
-    text-align: center;
-    width: 320px;
-}
-
-#organclass ul li .classright a.freeattend {
-    margin: -121px 0 81px 30px;
+    height: 40px;
+    padding: 0;
+    width: 128px;
 }
 
 #organplay ul li .classright a.freeattend {
-    margin: -84px 0 52px 30px;
+    margin: 0 0 0 10px;
+    float: right;
 }
 
-#organclass ul li .classright a.freeattend .btn-next, #organplay ul li .classright a.freeattend .btn-next {
-    width: 148px;
+#organplay ul li .classright a.actinfo {
+    margin: 0px;
+    float: right;
+}
+
+#organplay ul li .classright a.freeattend .btn-next, #organplay ul li .classright a.actinfo .btn-next {
+    width: 128px;
     font-size: 16px;
     font-weight: 600;
     height: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#organplay ul li .classright a.freeattend .btn-next {
+    background: #FD8F6A;
+}
+
+#organclass ul li .classright a .btn-next, #organplay ul li .classright a.btn-next {
+    width: 128px;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#organclass ul li .classright a.freeattend {
+    margin: 4px 0 0px 10px;
+    float: right;
+}
+
+#organclass ul li .classright a.freeattend .btn-next {
+    background: #fd8f6a;
+}
+
+#organclass ul li .classright a.classinfo {
+    margin: 5px 0px 0 0;
+    float: right;
+}
+
+#organclass ul li .classright span, #organplay ul li .classright span {
+    float: right;
+    font-size: 20px;
+    color: #00B98D;
+    line-height: 30px;
+    height: 30px;
+    margin: -40px 0;
+    text-align: right;
+
+}
+
+#organplay ul li .classright span {
+    margin: -45px 0;
+}
+
+#organplay ul li .classright {
+    margin: -38px 0;
 }
 
 #zixunbtn {
@@ -3309,10 +3342,11 @@ input[disabled] {
     display: none;
 }
 
-#tab1 > ul > li > div.seledet > h3 > span, #tab2 > ul > li > div.seledet > h3 > span,
-#tab4 > ul > li > div.seledet > h3 > span, #tab3 > ul > li > div.seledet > h3 > span {
-    font-size: 24px;
+#tab1 > ul > li > div.seledet > h3, #tab2 > ul > li > div.seledet > h3,
+#tab4 > ul > li > div.seledet > h3, #tab3 > ul > li > div.seledet > h3 {
+    font-size: 18px;
     font-weight: normal;
+    margin-bottom: 0px;
 }
 
 #tab1 > ul > li > div.seledet > p,

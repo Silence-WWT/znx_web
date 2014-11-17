@@ -207,8 +207,8 @@
                                 <a href="{{ url_for('course.taste', id=class.id) }}" class="freeattend">
                                     <button class="btn-next ">免费试听</button>
                                 </a>
-                                <a href="{{ url_for('course.home', id=class.id) }}">
-                                    <button class=" btn-myred btn-look">课程详情</button>
+                                <a href="{{ url_for('course.home', id=class.id) }}" class="classinfo">
+                                    <button class="btn-next">课程详情</button>
                                 </a>
 
                             </div>
@@ -245,10 +245,10 @@
                                 <div class="classright">
                                     <span>{{ activity.price }}</span>
                                     <a href="{{ url_for('activity.taste', id=activity.id) }}" class="freeattend">
-                                        <button class="btn-next ">免费试听</button>
+                                        <button class="btn-next">免费试听</button>
                                     </a>
-                                    <a href="{{ url_for('activity.home', id=activity.id) }}">
-                                        <button class=" btn-myred btn-look">活动详情</button>
+                                    <a href="{{ url_for('activity.home', id=activity.id) }}" class="actinfo">
+                                        <button class="btn-next">活动详情</button>
                                     </a></div>
                             </div>
                         </li>
