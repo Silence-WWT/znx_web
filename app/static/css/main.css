@@ -1430,7 +1430,7 @@ input, button, select, textarea {
 }
 
 #editwrong i {
-    margin: 3px 4px 0px 10px;
+    margin: 2px 3px 0 10px;
     background: url("../images/setwrong.png");
 }
 
@@ -1465,11 +1465,11 @@ input, button, select, textarea {
 }
 
 #myorgan .headdes .organmoredec span i {
-    margin: 5px 5px 0 4px;
+    margin: 4px 5px 0 4px;
 }
 
 #myorgan .headdes .organmoredec .organplace i.icon-map-marker {
-    margin: 4px 4px 0 0px;
+    margin: 0 4px 0 1px;
 }
 
 #myorgan .headdes .organmoredec .organplace img {
@@ -1751,7 +1751,7 @@ input, button, select, textarea {
 i.icon-phone {
     background: url("../images/icon-phone.png");
     height: 14px;
-    margin: 4px 4px;
+    margin: 2px 2px;
     width: 16px;
 }
 

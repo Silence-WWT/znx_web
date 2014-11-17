@@ -586,8 +586,8 @@ function show() {
     var newBox = document.createElement("div");
     var btn = document.createElement("a");
     btn.className = "amoremore";
-    newBox.innerHTML = text.substring(0, 262);
-    btn.innerHTML = text.length > 262 ? "...查看全部" : "";
+    newBox.innerHTML = text.substring(0, 360);
+    btn.innerHTML = text.length > 3060 ? "...查看全部" : "";
     btn.href = "###";
     btn.onclick = function () {
         if (btn.innerHTML == "...查看全部") {
@@ -595,7 +595,7 @@ function show() {
             newBox.innerHTML = text;
         } else {
             btn.innerHTML = "...查看全部";
-            newBox.innerHTML = text.substring(0, 262);
+            newBox.innerHTML = text.substring(0, 360);
         }
     }
     box.innerHTML = "";
