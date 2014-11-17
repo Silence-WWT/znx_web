@@ -3556,6 +3556,7 @@ input[disabled] {
 
 #oragannews p {
     padding: 0 7px;
+    color: #727272;
 }
 
 #guestbook .form-horizontal .controls {
