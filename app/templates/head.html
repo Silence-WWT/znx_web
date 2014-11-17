@@ -8,7 +8,7 @@
         <div class="city">
             <div class="btn-group"><a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                 {{ session.get('city_id', 2)|city }}
-                <span class="caret"></span>
+                <span class="caret1"><img src="{{ url_for('static', filename='images/citybtn.png') }}"/> </span>
             </a>
                 <ul class="dropdown-menu" id="citylist">
                     {% for city in cities %}
