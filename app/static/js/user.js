@@ -587,7 +587,7 @@ function show() {
     var btn = document.createElement("a");
     btn.className = "amoremore";
     newBox.innerHTML = text.substring(0, 360);
-    btn.innerHTML = text.length > 3060 ? "...查看全部" : "";
+    btn.innerHTML = text.length > 360 ? "...查看全部" : "";
     btn.href = "###";
     btn.onclick = function () {
         if (btn.innerHTML == "...查看全部") {

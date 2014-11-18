@@ -3396,6 +3396,15 @@ input[disabled] {
     margin: 2px 3px 0 4px;
 }
 
+#tab1 > ul > li > div.seledet > span,
+#tab2 > ul > li > div.seledet > span,
+#tab3 > ul > li > div.seledet > span,
+#tab4 > ul > li > div.seledet > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 #selectasklearn .form-horizontal .control-group {
     margin-bottom: 5px;
 }
