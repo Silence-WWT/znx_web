@@ -86,7 +86,7 @@ button {
 
 #headnav > div > div > div > ul > li > a.manlogin > img {
     margin-right: 5px;
-    margin-top: -3px;
+    margin-top: -2px;
 }
 
 #headnav > div > div > div > ul > li.linehr {
@@ -308,7 +308,7 @@ input, button, select, textarea {
 
 #allnav dt {
     margin-top: -2px;
-    margin-left: 42px;
+    margin-left: 8px;
 }
 
 #navbar i {
@@ -405,7 +405,7 @@ input, button, select, textarea {
 }
 
 .brand img {
-    margin: -4px 5px 0px;
+    margin: 0 1px 0 4px;
 }
 
 .nav li {
@@ -550,6 +550,7 @@ input, button, select, textarea {
 .nav li span img {
     /* height: 35px; */
     MARGIN: -3px 4px 0px;
+    margin: -2px 4px 0;
 }
 
 .allfooter .row-fluid ul li {
@@ -1764,7 +1765,7 @@ i.icon-phone {
 #tab2 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
 #tab3 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open,
 #tab4 > ul > li > div.selectscore > ul > li > span > i.icon-eye-open {
-    margin: 3px 4px 0 5px;
+    margin: 3px 4px 0 6px;
 }
 
 #tab1 > ul > li > div.selectscore > ul > li > span > i.icon-comment,
