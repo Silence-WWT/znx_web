@@ -2003,8 +2003,6 @@ i.icon-phone {
     line-height: 36px;
 }
 
-
-
 .divhr {
     margin-top: -5px;
     border-top: 1px solid #fff;
@@ -2092,6 +2090,7 @@ i.icon-phone {
     margin-left: 0px;
     margin-right: 0px;
 }
+
 #organclass ul li .classright a.freeattend {
     margin: 4px 0 0px 10px;
     float: right;
@@ -2100,6 +2099,7 @@ i.icon-phone {
 #organclass ul li .classright a.freeattend .btn-next {
     background: #fd8f6a;
 }
+
 #organclass ul li .classright a.classinfo {
     margin: 5px 0px 0 0;
     float: right;
@@ -2119,9 +2119,11 @@ i.icon-phone {
 #organplay ul li .classright span {
     margin: -45px 0;
 }
+
 #organplay ul li .classright {
     margin: -38px 0;
 }
+
 #zixunbtn {
     width: 232px;
     height: 46px;
@@ -4367,7 +4369,7 @@ input[disabled] {
 
 #appdown1 {
     position: absolute;
-    margin: -501px -74px;
+    margin: -130px -74px;
     bottom: 0px;
 
 }
