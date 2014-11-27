@@ -590,13 +590,12 @@ input, button, select, textarea {
 #footer h3 {
     font-weight: normal;
     font-size: 20px;
-    text-align: center;
+    margin-left: 63px;
 }
 
 #footer ul li {
-    padding: 0 10px 5px;
-    padding: 0 10px 5px;
-    margin-left: 67px;
+    padding: 0 5px 5px;
+    margin-left: 60px;
 }
 
 #footer .span3 {
@@ -1787,7 +1786,7 @@ i.icon-phone {
 #tab2 > ul > li > div.selectscore > ul > li > span > i.icon-phone,
 #tab3 > ul > li > div.selectscore > ul > li > span > i.icon-phone,
 #tab4 > ul > li > div.selectscore > ul > li > span > i.icon-phone {
-    margin: 3px x;
+    margin: 3px;
 }
 
 #tab1 > ul > li > div.seledet > h3 > span a,
@@ -4368,8 +4367,9 @@ input[disabled] {
 }
 
 #appdown1 {
-    position: absolute;
-    margin: -130px -74px;
+    position: relative;
     bottom: 0px;
+    left: -78px;
+    top: 495px;
 
 }
